@@ -1,0 +1,70 @@
+{
+  "user": {
+    "user_firstname": "firstname",
+    "user_lastname": "lastname",
+    "user_dob": "2000-01-01T00:00:00.000Z",
+    "user_gender": "male",
+    "user_phone": "9999999999",
+    "user_mobile": "9999999999",
+    "user_profilephoto": "\\photos\\idfad\\afbfadfa.png",
+    "user_email": "example@example.com",
+    "address": {
+      "address_name": "home address",
+      "address_street1": "street1",
+      "address_street2": "street2",
+      "address_area": "area",
+      "address_city": "bangalore",
+      "address_state": "karnataka",
+      "address_postcode": "560000",
+      "address_country": "IN",
+      "address_landmark": "landmark"
+    },
+    "user_device_id": "mobileserialnumber###",
+    "familyMembers": [
+      {
+        "user_firstname": "firstname1",
+        "user_lastname": "lastname1",
+        "user_mobile": "9999999991",
+        "family_member_status": 1
+      },
+      {
+        "user_firstname": "firstname2",
+        "user_lastname": "lastname2",
+        "user_mobile": "9999999992",
+        "family_member_status": 1
+      }
+    ],
+    "partofFamily": [
+      {
+        "user_firstname": "firstname1",
+        "user_lastname": "lastname1",
+        "user_mobile": "9999999991",
+        "family_member_status": 1
+      },
+      {
+        "user_firstname": "firstname2",
+        "user_lastname": "lastname2",
+        "user_mobile": "9999999992",
+        "family_member_status": 2
+      }
+    ],
+    "myServices": [
+      {
+        "shop_id": 3343423,
+        "shop_name": "shopname",
+        "shop_address_area": "Indiranagar",
+        "shop_address_city": "Bangalore",
+        "shop_status": 1,
+        "shop_verification_status": 1
+      },
+      {
+        "shop_id": 3343423,
+        "shop_name": "shopname",
+        "shop_address_area": "Indiranagar",
+        "shop_address_city": "Bangalore",
+        "shop_status": 1,
+        "shop_verification_status": 1
+      }
+    ]
+  }
+}
