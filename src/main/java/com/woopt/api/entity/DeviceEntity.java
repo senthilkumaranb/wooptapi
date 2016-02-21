@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WOOPT_DEVICE")
-public class Device {
+public class DeviceEntity {
 
 	/**
 	 * 
@@ -33,8 +33,8 @@ public class Device {
 	@Column(name = "USER_ID")
 	private int userId;
 	
-	@Column(name = "DEVICE_IMEA")
-	private String deviceIMEA;
+	@Column(name = "DEVICE_IMEI")
+	private String deviceIMEI;
 	
 	@Column(name = "DEVICE_MAC")
 	private String deviceMAC;
@@ -95,17 +95,17 @@ public class Device {
 	}
 
 	/**
-	 * @return the deviceIMEA
+	 * @return the deviceIMEI
 	 */
-	public String getDeviceIMEA() {
-		return deviceIMEA;
+	public String getDeviceIMEI() {
+		return deviceIMEI;
 	}
 
 	/**
-	 * @param deviceIMEA the deviceIMEA to set
+	 * @param deviceIMEI the deviceIMEI to set
 	 */
-	public void setDeviceIMEA(String deviceIMEA) {
-		this.deviceIMEA = deviceIMEA;
+	public void setDeviceIMEI(String deviceIMEI) {
+		this.deviceIMEI = deviceIMEI;
 	}
 
 	/**
@@ -253,7 +253,7 @@ public class Device {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((createdDatetime == null) ? 0 : createdDatetime.hashCode());
-		result = prime * result + ((deviceIMEA == null) ? 0 : deviceIMEA.hashCode());
+		result = prime * result + ((deviceIMEI == null) ? 0 : deviceIMEI.hashCode());
 		result = prime * result + deviceId;
 		result = prime * result + ((deviceMAC == null) ? 0 : deviceMAC.hashCode());
 		result = prime * result + ((deviceOTP == null) ? 0 : deviceOTP.hashCode());
@@ -276,10 +276,10 @@ public class Device {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Device)) {
+		if (!(obj instanceof DeviceEntity)) {
 			return false;
 		}
-		Device other = (Device) obj;
+		DeviceEntity other = (DeviceEntity) obj;
 		if (createdDatetime == null) {
 			if (other.createdDatetime != null) {
 				return false;
@@ -287,11 +287,11 @@ public class Device {
 		} else if (!createdDatetime.equals(other.createdDatetime)) {
 			return false;
 		}
-		if (deviceIMEA == null) {
-			if (other.deviceIMEA != null) {
+		if (deviceIMEI == null) {
+			if (other.deviceIMEI != null) {
 				return false;
 			}
-		} else if (!deviceIMEA.equals(other.deviceIMEA)) {
+		} else if (!deviceIMEI.equals(other.deviceIMEI)) {
 			return false;
 		}
 		if (deviceId != other.deviceId) {
@@ -356,72 +356,5 @@ public class Device {
 			return false;
 		}
 		return true;
-	}
-
-	/*
-	@Override
-	public String toString() {
-		return String.format(
-				"Device [deviceId=%s, userId=%s, deviceIMEA=%s, deviceMAC=%s, deviceSerialNo=%s, deviceStatus=%s, deviceToken=%s, devicePhone=%s, deviceOTP=%s, deviceOTPStatus=%s, deviceOTPTimestamp=%s, createdDatetime=%s, lastUpdatedDatetime=%s]",
-				deviceId, userId, deviceIMEA, deviceMAC, deviceSerialNo, deviceStatus, deviceToken, devicePhone,
-				deviceOTP, deviceOTPStatus, deviceOTPTimestamp, createdDatetime, lastUpdatedDatetime);
-	}
-	
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Device [deviceId=").append(deviceId).append(", userId=").append(userId).append(", deviceIMEA=")
-				.append(deviceIMEA).append(", deviceMAC=").append(deviceMAC).append(", deviceSerialNo=")
-				.append(deviceSerialNo).append(", deviceStatus=").append(deviceStatus).append(", deviceToken=")
-				.append(deviceToken).append(", devicePhone=").append(devicePhone).append(", deviceOTP=")
-				.append(deviceOTP).append(", deviceOTPStatus=").append(deviceOTPStatus).append(", deviceOTPTimestamp=")
-				.append(deviceOTPTimestamp).append(", createdDatetime=").append(createdDatetime)
-				.append(", lastUpdatedDatetime=").append(lastUpdatedDatetime).append("]");
-		return builder.toString();
-	}
-	
-	/*
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Device [deviceId=");
-		builder.append(deviceId);
-		builder.append(", userId=");
-		builder.append(userId);
-		builder.append(", deviceIMEA=");
-		builder.append(deviceIMEA);
-		builder.append(", deviceMAC=");
-		builder.append(deviceMAC);
-		builder.append(", deviceSerialNo=");
-		builder.append(deviceSerialNo);
-		builder.append(", deviceStatus=");
-		builder.append(deviceStatus);
-		builder.append(", deviceToken=");
-		builder.append(deviceToken);
-		builder.append(", devicePhone=");
-		builder.append(devicePhone);
-		builder.append(", deviceOTP=");
-		builder.append(deviceOTP);
-		builder.append(", deviceOTPStatus=");
-		builder.append(deviceOTPStatus);
-		builder.append(", deviceOTPTimestamp=");
-		builder.append(deviceOTPTimestamp);
-		builder.append(", createdDatetime=");
-		builder.append(createdDatetime);
-		builder.append(", lastUpdatedDatetime=");
-		builder.append(lastUpdatedDatetime);
-		builder.append("]");
-		return builder.toString();
-	}
-
-	/*
-	@Override
-	public String toString() {
-		return "Device [deviceId=" + deviceId + ", userId=" + userId + ", deviceIMEA=" + deviceIMEA + ", deviceMAC="
-				+ deviceMAC + ", deviceSerialNo=" + deviceSerialNo + ", deviceStatus=" + deviceStatus + ", deviceToken="
-				+ deviceToken + ", devicePhone=" + devicePhone + ", deviceOTP=" + deviceOTP + ", deviceOTPStatus="
-				+ deviceOTPStatus + ", deviceOTPTimestamp=" + deviceOTPTimestamp + ", createdDatetime="
-				+ createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
-	}*/
-	
+	}	
 }

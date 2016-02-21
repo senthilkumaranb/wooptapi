@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="WOOPT_USER")
-public class User {
+public class UserEntity {
 
 	/**
 	 * 
@@ -74,6 +74,9 @@ public class User {
 	
 	@Column(name = "DEVICE_ID")
 	private int deviceId;
+	
+	@Column(name = "USER_STATUS")
+	private int userStatus;
 
 	/**
 	 * @return the userId
@@ -299,144 +302,17 @@ public class User {
 		this.deviceId = deviceId;
 	}
 
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userFirstName=" + userFirstName + ", userLastname=" + userLastname
-				+ ", userDOB=" + userDOB + ", userGender=" + userGender + ", userPhone=" + userPhone + ", userMobile="
-				+ userMobile + ", userProfilePhoto=" + userProfilePhoto + ", userEmail=" + userEmail
-				+ ", userLoginMode=" + userLoginMode + ", AddressId=" + AddressId + ", userAuthorization="
-				+ userAuthorization + ", userCreatedDatetime=" + userCreatedDatetime + ", userLastUpdateDatetime="
-				+ userLastUpdateDatetime + ", deviceId=" + deviceId + ", getUserId()=" + getUserId()
-				+ ", getUserFirstName()=" + getUserFirstName() + ", getUserLastname()=" + getUserLastname()
-				+ ", getUserDOB()=" + getUserDOB() + ", getUserGender()=" + getUserGender() + ", getUserPhone()="
-				+ getUserPhone() + ", getUserMobile()=" + getUserMobile() + ", getUserProfilePhoto()="
-				+ getUserProfilePhoto() + ", getUserEmail()=" + getUserEmail() + ", getUserPassword()="
-				+ getUserPassword() + ", getUserLoginMode()=" + getUserLoginMode() + ", getAddressId()="
-				+ getAddressId() + ", getUserAuthorization()=" + getUserAuthorization() + ", getUserCreatedDatetime()="
-				+ getUserCreatedDatetime() + ", getUserLastUpdateDatetime()=" + getUserLastUpdateDatetime()
-				+ ", getDeviceId()=" + getDeviceId() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+	/**
+	 * @return the userStatus
+	 */
+	public int getUserStatus() {
+		return userStatus;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + AddressId;
-		result = prime * result + deviceId;
-		result = prime * result + userAuthorization;
-		result = prime * result + userCreatedDatetime;
-		result = prime * result + ((userDOB == null) ? 0 : userDOB.hashCode());
-		result = prime * result + ((userEmail == null) ? 0 : userEmail.hashCode());
-		result = prime * result + ((userFirstName == null) ? 0 : userFirstName.hashCode());
-		result = prime * result + ((userGender == null) ? 0 : userGender.hashCode());
-		result = prime * result + userId;
-		result = prime * result + userLastUpdateDatetime;
-		result = prime * result + ((userLastname == null) ? 0 : userLastname.hashCode());
-		result = prime * result + userLoginMode;
-		result = prime * result + ((userMobile == null) ? 0 : userMobile.hashCode());
-		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
-		result = prime * result + ((userPhone == null) ? 0 : userPhone.hashCode());
-		result = prime * result + ((userProfilePhoto == null) ? 0 : userProfilePhoto.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof User)) {
-			return false;
-		}
-		User other = (User) obj;
-		if (AddressId != other.AddressId) {
-			return false;
-		}
-		if (deviceId != other.deviceId) {
-			return false;
-		}
-		if (userAuthorization != other.userAuthorization) {
-			return false;
-		}
-		if (userCreatedDatetime != other.userCreatedDatetime) {
-			return false;
-		}
-		if (userDOB == null) {
-			if (other.userDOB != null) {
-				return false;
-			}
-		} else if (!userDOB.equals(other.userDOB)) {
-			return false;
-		}
-		if (userEmail == null) {
-			if (other.userEmail != null) {
-				return false;
-			}
-		} else if (!userEmail.equals(other.userEmail)) {
-			return false;
-		}
-		if (userFirstName == null) {
-			if (other.userFirstName != null) {
-				return false;
-			}
-		} else if (!userFirstName.equals(other.userFirstName)) {
-			return false;
-		}
-		if (userGender == null) {
-			if (other.userGender != null) {
-				return false;
-			}
-		} else if (!userGender.equals(other.userGender)) {
-			return false;
-		}
-		if (userId != other.userId) {
-			return false;
-		}
-		if (userLastUpdateDatetime != other.userLastUpdateDatetime) {
-			return false;
-		}
-		if (userLastname == null) {
-			if (other.userLastname != null) {
-				return false;
-			}
-		} else if (!userLastname.equals(other.userLastname)) {
-			return false;
-		}
-		if (userLoginMode != other.userLoginMode) {
-			return false;
-		}
-		if (userMobile == null) {
-			if (other.userMobile != null) {
-				return false;
-			}
-		} else if (!userMobile.equals(other.userMobile)) {
-			return false;
-		}
-		if (userPassword == null) {
-			if (other.userPassword != null) {
-				return false;
-			}
-		} else if (!userPassword.equals(other.userPassword)) {
-			return false;
-		}
-		if (userPhone == null) {
-			if (other.userPhone != null) {
-				return false;
-			}
-		} else if (!userPhone.equals(other.userPhone)) {
-			return false;
-		}
-		if (userProfilePhoto == null) {
-			if (other.userProfilePhoto != null) {
-				return false;
-			}
-		} else if (!userProfilePhoto.equals(other.userProfilePhoto)) {
-			return false;
-		}
-		return true;
+	/**
+	 * @param userStatus the userStatus to set
+	 */
+	public void setUserStatus(int userStatus) {
+		this.userStatus = userStatus;
 	}
 }

@@ -2,17 +2,17 @@ package com.woopt.api.dao;
 
 import java.util.List;
 
-import com.woopt.api.entity.Address;
+import com.woopt.api.entity.AddressEntity;
 
 public interface AddressDAO {
 
-	public void save(Address address);
+	public void save(AddressEntity address);
 	
-	public List<Address> list();
+	public List<AddressEntity> list();
 	
-	public Address findById(long id);
+	public AddressEntity findById(long id);
 	
 	public void  delete(long id);
 	
-	public void  updateAddress(Address address);
+	public void  updateAddress(AddressEntity address);
 }

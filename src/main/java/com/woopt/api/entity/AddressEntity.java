@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WOOPT_ADDRESS")
-public class Address {
+public class AddressEntity {
 	
 	/**
 	 * 
@@ -359,10 +359,10 @@ public class Address {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Address)) {
+		if (!(obj instanceof AddressEntity)) {
 			return false;
 		}
-		Address other = (Address) obj;
+		AddressEntity other = (AddressEntity) obj;
 		if (addressArea == null) {
 			if (other.addressArea != null) {
 				return false;

@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.woopt.api.common.Validate;
+import com.woopt.api.dao.DeviceDAO;
 import com.woopt.api.dao.UserDAO;
-import com.woopt.api.entity.User;
+import com.woopt.api.entity.UserEntity;
+import com.woopt.api.model.Device;
+import com.woopt.api.model.User;
+import com.woopt.api.model.UserModel;
 
 /**
  * REST Controller Implementation
@@ -31,8 +36,81 @@ public class UserController {
 	@Autowired
 	UserDAO userDAO;
 	
+	@Autowired
+	DeviceDAO deviceDAO;
+	
+	@RequestMapping(value = "/regusr/", method = RequestMethod.POST, headers="Accept=application/json")
+	public ResponseEntity<String> registerUser(@RequestBody UserModel userModel, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		
+		User user = userModel.getUser();
+		Device device = userModel.getDevice();
+		
+		String mobileNo = null;
+		String firstName = null;
+		String imei = null;
+		
+		try {
+			
+			/**
+			 * Validate input
+			 **/
+			if (null != user && user.getUserMobile() != null) {
+				mobileNo = user.getUserMobile();
+				
+				if (!Validate.validateMobileNumber(mobileNo)) {
+					//return error code that invalid Mobile number. 
+				}
+			}
+			
+			if (user.getUserFirstname() != null) {
+				firstName = user.getUserFirstname();
+				
+				if (!Validate.validateFirstName(firstName)) {
+					//return error code that invalid Name. 
+				}
+			}
+			
+			if (null != device && device.getDevice_imei() != null) {
+				imei = device.getDevice_imei();
+				
+				if (!Validate.validateIMEI(imei)) {
+					//return error code that invalid Name. 
+				}
+			}
+			
+			/**
+			 * Verify duplicate User Mobile & Device
+			 * -- Null has been verified
+			 */
+			if (userDAO.findByMobile(mobileNo) != null) {
+				
+				// return error code that 
+			}
+			
+			
+		} catch (Exception e) {
+			
+		}
+		
+		
+		
+		UserEntity userEntity = new UserEntity();
+		userEntity.setUserFirstName(user.getUserFirstname());
+		
+		
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/createUser/", method = RequestMethod.POST, headers="Accept=application/json")
-	public ResponseEntity<String> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+	public ResponseEntity<String> createUser(@RequestBody UserEntity user, UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
 		
 		System.out.println("++++++ inside createUser method..");
 		int userId = user.getUserId();

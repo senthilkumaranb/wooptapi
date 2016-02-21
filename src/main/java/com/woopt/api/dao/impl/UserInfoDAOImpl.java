@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.woopt.api.dao.UserInfoDAO;
-import com.woopt.api.entity.UserInfo;
+import com.woopt.api.entity.UserInfoEntity;
 
 /**
  * DAO Implementation
@@ -28,7 +28,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	}
 	
 	@Override
-	public void save(UserInfo userinfo) {
+	public void save(UserInfoEntity userinfo) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(userinfo);
@@ -38,18 +38,18 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<UserInfo> list() {
+	public List<UserInfoEntity> list() {
 		System.out.println("--------++-----------");
 		Session session = this.sessionFactory.openSession();
 		System.out.println("--------++****************-----------" + session);
-		List<UserInfo> userInfoList = session.createQuery("from WOOPT_USER_INFO").list();
+		List<UserInfoEntity> userInfoList = session.createQuery("from WOOPT_USER_INFO").list();
 		System.out.println("-------------------" + userInfoList);
 		session.close();
 		return userInfoList;
 	}
 
 	@Override
-	public UserInfo findById(long userinfoId) {
+	public UserInfoEntity findById(long userinfoId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -61,7 +61,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	}
 
 	@Override
-	public void updateUserInfo(UserInfo userinfo) {
+	public void updateUserInfo(UserInfoEntity userinfo) {
 		// TODO Auto-generated method stub
 		
 	}

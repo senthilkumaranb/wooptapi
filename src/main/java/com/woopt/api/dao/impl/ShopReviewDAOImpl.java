@@ -3,7 +3,7 @@ package com.woopt.api.dao.impl;
 import java.util.List;
 
 import com.woopt.api.dao.ShopReviewDAO;
-import com.woopt.api.entity.ShopReview;
+import com.woopt.api.entity.ShopReviewEntity;
 
 /**
  * DAO Implementation
@@ -14,19 +14,19 @@ import com.woopt.api.entity.ShopReview;
 public class ShopReviewDAOImpl implements ShopReviewDAO {
 
 	@Override
-	public void save(ShopReview shopreview) {
+	public void save(ShopReviewEntity shopreview) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<ShopReview> list() {
+	public List<ShopReviewEntity> list() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ShopReview findById(long shopreviewId) {
+	public ShopReviewEntity findById(long shopreviewId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -38,7 +38,7 @@ public class ShopReviewDAOImpl implements ShopReviewDAO {
 	}
 
 	@Override
-	public void updateShopReview(ShopReview shopreview) {
+	public void updateShopReview(ShopReviewEntity shopreview) {
 		// TODO Auto-generated method stub
 		
 	}

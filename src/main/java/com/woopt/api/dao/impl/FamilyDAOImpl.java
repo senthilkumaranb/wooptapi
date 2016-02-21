@@ -3,7 +3,7 @@ package com.woopt.api.dao.impl;
 import java.util.List;
 
 import com.woopt.api.dao.FamilyDAO;
-import com.woopt.api.entity.Family;
+import com.woopt.api.entity.FamilyEntity;
 
 /**
  * DAO Implementation
@@ -14,19 +14,19 @@ import com.woopt.api.entity.Family;
 public class FamilyDAOImpl implements FamilyDAO {
 
 	@Override
-	public void save(Family family) {
+	public void save(FamilyEntity family) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Family> list() {
+	public List<FamilyEntity> list() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Family findById(long familyId) {
+	public FamilyEntity findById(long familyId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -38,7 +38,7 @@ public class FamilyDAOImpl implements FamilyDAO {
 	}
 
 	@Override
-	public void updateFamily(Family family) {
+	public void updateFamily(FamilyEntity family) {
 		// TODO Auto-generated method stub
 		
 	}

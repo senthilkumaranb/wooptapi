@@ -2,17 +2,17 @@ package com.woopt.api.dao;
 
 import java.util.List;
 
-import com.woopt.api.entity.ShopInfo;
+import com.woopt.api.entity.ShopInfoEntity;
 
 public interface ShopInfoDAO {
 	
-	public void save(ShopInfo shopinfo);
+	public void save(ShopInfoEntity shopinfo);
 	
-	public List<ShopInfo> list();
+	public List<ShopInfoEntity> list();
 	
-	public ShopInfo findById(long shopinfoId);
+	public ShopInfoEntity findById(long shopinfoId);
 	
 	public void  delete(int shopinfoId);
 	
-	public void  updateShopInfo(ShopInfo shopinfo);
+	public void  updateShopInfo(ShopInfoEntity shopinfo);
 }

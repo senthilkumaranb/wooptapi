@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WOOPT_SHOP_TO_CATEGORIES")
-public class ShopToCategory {
+public class ShopToCategoryEntity {
 	
 	/**
 	 * 
@@ -118,10 +118,10 @@ public class ShopToCategory {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof ShopToCategory)) {
+		if (!(obj instanceof ShopToCategoryEntity)) {
 			return false;
 		}
-		ShopToCategory other = (ShopToCategory) obj;
+		ShopToCategoryEntity other = (ShopToCategoryEntity) obj;
 		if (categoryId != other.categoryId) {
 			return false;
 		}

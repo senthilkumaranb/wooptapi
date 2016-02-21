@@ -3,7 +3,7 @@ package com.woopt.api.dao.impl;
 import java.util.List;
 
 import com.woopt.api.dao.AddressDAO;
-import com.woopt.api.entity.Address;
+import com.woopt.api.entity.AddressEntity;
 
 /**
  * DAO Implementation
@@ -14,19 +14,19 @@ import com.woopt.api.entity.Address;
 public class AddressDAOImpl implements AddressDAO {
 
 	@Override
-	public void save(Address address) {
+	public void save(AddressEntity address) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Address> list() {
+	public List<AddressEntity> list() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Address findById(long id) {
+	public AddressEntity findById(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -38,7 +38,7 @@ public class AddressDAOImpl implements AddressDAO {
 	}
 
 	@Override
-	public void updateAddress(Address address) {
+	public void updateAddress(AddressEntity address) {
 		// TODO Auto-generated method stub
 		
 	}

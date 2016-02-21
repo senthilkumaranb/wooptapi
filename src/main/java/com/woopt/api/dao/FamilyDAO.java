@@ -2,17 +2,17 @@ package com.woopt.api.dao;
 
 import java.util.List;
 
-import com.woopt.api.entity.Family;
+import com.woopt.api.entity.FamilyEntity;
 
 public interface FamilyDAO {
 
-	public void save(Family family);
+	public void save(FamilyEntity family);
 	
-	public List<Family> list();
+	public List<FamilyEntity> list();
 	
-	public Family findById(long familyId);
+	public FamilyEntity findById(long familyId);
 	
 	public void  delete(long familyId);
 	
-	public void  updateFamily(Family family);
+	public void  updateFamily(FamilyEntity family);
 }

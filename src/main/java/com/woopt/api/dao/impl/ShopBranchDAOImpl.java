@@ -3,7 +3,7 @@ package com.woopt.api.dao.impl;
 import java.util.List;
 
 import com.woopt.api.dao.ShopBranchDAO;
-import com.woopt.api.entity.ShopBranch;
+import com.woopt.api.entity.ShopBranchEntity;
 
 /**
  * DAO Implementation
@@ -14,19 +14,19 @@ import com.woopt.api.entity.ShopBranch;
 public class ShopBranchDAOImpl implements ShopBranchDAO {
 
 	@Override
-	public void save(ShopBranch shopbranch) {
+	public void save(ShopBranchEntity shopbranch) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<ShopBranch> list() {
+	public List<ShopBranchEntity> list() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ShopBranch findById(long shopbranchId) {
+	public ShopBranchEntity findById(long shopbranchId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -38,7 +38,7 @@ public class ShopBranchDAOImpl implements ShopBranchDAO {
 	}
 
 	@Override
-	public void updateShopBranch(ShopBranch shopbranch) {
+	public void updateShopBranch(ShopBranchEntity shopbranch) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -17,6 +17,8 @@ public class User {
 	private String userProfilePhoto;
 	
 	private String userEmail;
+	
+	private int user_login_mode;
 
 	/**
 	 * @return the userFirstname
@@ -130,13 +132,34 @@ public class User {
 		this.userEmail = userEmail;
 	}
 
+	/**
+	 * @return the user_login_mode
+	 */
+	public int getUser_login_mode() {
+		return user_login_mode;
+	}
+
+	/**
+	 * @param user_login_mode the user_login_mode to set
+	 */
+	public void setUser_login_mode(int user_login_mode) {
+		this.user_login_mode = user_login_mode;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "User [userFirstname=" + userFirstname + ", userLastname=" + userLastname + ", userDOB=" + userDOB
 				+ ", userGender=" + userGender + ", userPhone=" + userPhone + ", userMobile=" + userMobile
-				+ ", userProfilePhoto=" + userProfilePhoto + ", userEmail=" + userEmail + "]";
+				+ ", userProfilePhoto=" + userProfilePhoto + ", userEmail=" + userEmail + ", user_login_mode="
+				+ user_login_mode + "]";
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -149,9 +172,13 @@ public class User {
 		result = prime * result + ((userMobile == null) ? 0 : userMobile.hashCode());
 		result = prime * result + ((userPhone == null) ? 0 : userPhone.hashCode());
 		result = prime * result + ((userProfilePhoto == null) ? 0 : userProfilePhoto.hashCode());
+		result = prime * result + user_login_mode;
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -218,6 +245,9 @@ public class User {
 				return false;
 			}
 		} else if (!userProfilePhoto.equals(other.userProfilePhoto)) {
+			return false;
+		}
+		if (user_login_mode != other.user_login_mode) {
 			return false;
 		}
 		return true;

@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WOOPT_FAMILY")
-public class Family {
+public class FamilyEntity {
 	
 	/**
 	 * 
@@ -124,10 +124,10 @@ public class Family {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Family)) {
+		if (!(obj instanceof FamilyEntity)) {
 			return false;
 		}
-		Family other = (Family) obj;
+		FamilyEntity other = (FamilyEntity) obj;
 		if (familyHeadId != other.familyHeadId) {
 			return false;
 		}

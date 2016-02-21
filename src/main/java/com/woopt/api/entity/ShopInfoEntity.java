@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WOOPT_SHOP_INFO")
-public class ShopInfo {
+public class ShopInfoEntity {
 	
 	/**
 	 * 
@@ -249,10 +249,10 @@ public class ShopInfo {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof ShopInfo)) {
+		if (!(obj instanceof ShopInfoEntity)) {
 			return false;
 		}
-		ShopInfo other = (ShopInfo) obj;
+		ShopInfoEntity other = (ShopInfoEntity) obj;
 		if (createdDatetime == null) {
 			if (other.createdDatetime != null) {
 				return false;

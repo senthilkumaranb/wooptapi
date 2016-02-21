@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WOOPT_SHOP_EMPLOYEE")
-public class ShopEmployee {
+public class ShopEmployeeEntity {
 	
 	/**
 	 * 
@@ -175,10 +175,10 @@ public class ShopEmployee {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof ShopEmployee)) {
+		if (!(obj instanceof ShopEmployeeEntity)) {
 			return false;
 		}
-		ShopEmployee other = (ShopEmployee) obj;
+		ShopEmployeeEntity other = (ShopEmployeeEntity) obj;
 		if (createdDatetime == null) {
 			if (other.createdDatetime != null) {
 				return false;

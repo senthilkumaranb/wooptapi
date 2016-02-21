@@ -2,17 +2,17 @@ package com.woopt.api.dao;
 
 import java.util.List;
 
-import com.woopt.api.entity.UserInfo;
+import com.woopt.api.entity.UserInfoEntity;
 
 public interface UserInfoDAO {
 
-	public void save(UserInfo userinfo);
+	public void save(UserInfoEntity userinfo);
 	
-	public List<UserInfo> list();
+	public List<UserInfoEntity> list();
 	
-	public UserInfo findById(long userinfoId);
+	public UserInfoEntity findById(long userinfoId);
 	
 	public void  delete(int userinfoId);
 	
-	public void  updateUserInfo(UserInfo userinfo);
+	public void  updateUserInfo(UserInfoEntity userinfo);
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.woopt.api.dao.UserDAO;
-import com.woopt.api.entity.User;
+import com.woopt.api.entity.UserEntity;
 
 /**
  * DAO Implementation
@@ -28,7 +28,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void save(User user) {
+	public void save(UserEntity user) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(user);
@@ -38,11 +38,11 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<User> list() {
+	public List<UserEntity> list() {
 		System.out.println("--------++-----------");
 		Session session = this.sessionFactory.openSession();
 		System.out.println("--------++****************-----------" + session);
-		List<User> userList = session.createQuery("from WOOPT_USER").list();
+		List<UserEntity> userList = session.createQuery("from WOOPT_USER").list();
 		System.out.println("-------------------" + userList);
 		session.close();
 		return userList;
@@ -50,11 +50,11 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public User findById(long id) {
+	public UserEntity findById(long id) {
 		Session session = this.sessionFactory.openSession();
-		List<User> userList = session.createQuery("from WOOPT_USER").list();
+		List<UserEntity> userList = session.createQuery("from WOOPT_USER").list();
 		session.close();
-		for (User user : userList) {
+		for (UserEntity user : userList) {
 			if (user.getUserId() == id) {
 				return user;
 			}
@@ -69,7 +69,7 @@ public class UserDAOImpl implements UserDAO {
 
 		try {
 			transaction = session.beginTransaction();
-			User user = (User) session.load(User.class, new Integer(id));
+			UserEntity user = (UserEntity) session.load(UserEntity.class, new Integer(id));
 			session.delete(user);
 			session.getTransaction().commit();
 
@@ -83,7 +83,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void updateUser(User user) {
+	public void updateUser(UserEntity user) {
 		Transaction transaction = null;
 		Session session = this.sessionFactory.openSession();
 
@@ -99,6 +99,19 @@ public class UserDAOImpl implements UserDAO {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public UserEntity findByMobile(String mobileNo) {
+		Session session = this.sessionFactory.openSession();
+		List<UserEntity> userList = session.createQuery("from WOOPT_USER").list();
+		session.close();
+		for (UserEntity user : userList) {
+			if (user.getUserMobile() == mobileNo) {
+				return user;
+			}
+		}
+		return null;
 	}
 
 }

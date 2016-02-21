@@ -3,7 +3,7 @@ package com.woopt.api.dao.impl;
 import java.util.List;
 
 import com.woopt.api.dao.DeviceDAO;
-import com.woopt.api.entity.Device;
+import com.woopt.api.entity.DeviceEntity;
 
 /**
  * DAO Implementation
@@ -14,19 +14,19 @@ import com.woopt.api.entity.Device;
 public class DeviceDAOImpl implements DeviceDAO {
 
 	@Override
-	public void save(Device device) {
+	public void save(DeviceEntity device) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Device> list() {
+	public List<DeviceEntity> list() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Device findById(long deviceId) {
+	public DeviceEntity findById(long deviceId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -38,7 +38,7 @@ public class DeviceDAOImpl implements DeviceDAO {
 	}
 
 	@Override
-	public void updateDevice(Device device) {
+	public void updateDevice(DeviceEntity device) {
 		// TODO Auto-generated method stub
 		
 	}

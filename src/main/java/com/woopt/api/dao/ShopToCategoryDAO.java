@@ -2,17 +2,17 @@ package com.woopt.api.dao;
 
 import java.util.List;
 
-import com.woopt.api.entity.ShopToCategory;
+import com.woopt.api.entity.ShopToCategoryEntity;
 
 public interface ShopToCategoryDAO {
 
-	public void save(ShopToCategory shoptocategory);
+	public void save(ShopToCategoryEntity shoptocategory);
 	
-	public List<ShopToCategory> list();
+	public List<ShopToCategoryEntity> list();
 	
-	public ShopToCategory findById(long shoptocategoryId);
+	public ShopToCategoryEntity findById(long shoptocategoryId);
 	
 	public void  delete(int shoptocategoryId);
 	
-	public void  updateshoptocategory(ShopToCategory shoptocategory);
+	public void  updateshoptocategory(ShopToCategoryEntity shoptocategory);
 }
