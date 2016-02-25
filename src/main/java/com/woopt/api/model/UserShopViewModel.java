@@ -1,14 +1,10 @@
 package com.woopt.api.model;
 
-public class ShopModel {
+public class UserShopViewModel {
 	
 	private Shop shop;
 	
 	private ShopInfo shopInfo;
-	
-	private ShopBranch[] shopBranches;
-	
-	private ShopEmployee[] shopEmployee;
 	
 	private ShopReview[] shopReview;
 	
@@ -16,6 +12,6 @@ public class ShopModel {
 	
 	private ShopLoyaltyProgram shopLoyaltyProgram;
 	
-	private Offer[] offer;
-	
+	private UserDealViewModel[] userDealViewModel;
+
 }
