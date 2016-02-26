@@ -11,5 +11,6 @@ public class Order {
 	  private int user_shop_order_status;
 	  private int user_shop_order_net_transaction;
 
+	  private OrderCartOfferAdded[] orderCartOfferAdded;
 
 }
