@@ -2,7 +2,7 @@ package com.woopt.api.model;
 
 import java.security.Timestamp;
 
-public class UserChatMessage {
+public class ChatMessage {
 	
 	private int chat_sequence_id;
 	private int user_id;

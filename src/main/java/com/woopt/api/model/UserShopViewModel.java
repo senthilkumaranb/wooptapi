@@ -12,6 +12,7 @@ public class UserShopViewModel {
 	
 	private ShopLoyaltyProgram shopLoyaltyProgram;
 	
+	//User deals related to this shop
 	private UserDealViewModel[] userDealViewModel;
 
 }

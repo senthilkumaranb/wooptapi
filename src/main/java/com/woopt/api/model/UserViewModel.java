@@ -6,6 +6,6 @@ public class UserViewModel {
 	
 	UserDealViewModel[] userDealViews;
 	
-	UserChat[] userChats;
+	Chat[] userChats;
 
 }

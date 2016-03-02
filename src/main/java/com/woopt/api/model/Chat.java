@@ -2,7 +2,7 @@ package com.woopt.api.model;
 
 import java.security.Timestamp;
 
-public class UserChat {
+public class Chat {
 	
 	private int chat_id;
 	private String chat_title;
@@ -12,9 +12,9 @@ public class UserChat {
 	private int chat_action_isactionpresent;
 	private Timestamp createddatetime;
 
-	private ChatParticipants[] chatParticipants;
+	private String[] chatParticipants;
 	
-	private UserChatMessage[] userChatMessages;
+	private ChatMessage[] userChatMessages;
 	
 
 }

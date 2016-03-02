@@ -30,6 +30,6 @@ public class Offer {
 	private int offer_manufacturerid;
 	private int offer_available_units;
 	
-	private OfferUserPublish offerUserPublish;
+	private OfferUserPublish[] offerUserPublish;
 
 }
