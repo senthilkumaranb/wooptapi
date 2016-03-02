@@ -15,7 +15,7 @@ public class UserShopView {
 	private ShopLoyaltyProgram shopLoyaltyProgram;
 	
 	//User deals related to this shop
-	private UserDealView[] userDealViewModel;
+	private UserDealView userDeals;
 	
 	Cart cart;
 	

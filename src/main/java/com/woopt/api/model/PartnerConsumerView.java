@@ -2,7 +2,7 @@ package com.woopt.api.model;
 
 public class PartnerConsumerView {
 	
-	User user;
+	UserModel consumer;
 	
 	//loyalty card of the user for my shop
 	private ShopLoyaltyCard shopLoyaltyCard;
@@ -11,7 +11,7 @@ public class PartnerConsumerView {
 	private ShopLoyaltyProgram shopLoyaltyProgram;
 	
 	//User deals related to my shop
-	private UserDealView[] userDealViewModel;
+	private UserDealView userDeal;
 	
 	Cart cart;
 	
