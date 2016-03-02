@@ -4,15 +4,15 @@ import java.security.Timestamp;
 
 public class UserShopVisit {
 	
-	private int user_id;
-	private int shop_id;
-	private int user_shop_status;
-	private int user_shop_is_favourite;
-	private int user_shop_no_of_visits;
-	private Timestamp user_first_visted;
-	private Timestamp user_last_visited;
-	private int user_shop_total_transaction;
-	private int user_shop_total_redeemed;
-	private int user_shop_rating;
+	private int userId;
+	private int shopId;
+	private int userShopStatus;
+	private int userShopIsFavourite;
+	private int userShopNoOfVisits;
+	private Timestamp userFirstVisted;
+	private Timestamp userLastVisited;
+	private int userShopTotalTransaction;
+	private int userShopTotalRedeemed;
+	private int userShopRating;
 
 }

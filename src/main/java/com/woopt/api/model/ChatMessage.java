@@ -4,13 +4,13 @@ import java.security.Timestamp;
 
 public class ChatMessage {
 	
-	private int chat_sequence_id;
-	private int user_id;
-	private String messages_type_name;
-	private String messages_type_default_text;
-	private int message_type_scope;
-	private Timestamp messages_fromdatetime;
-	private String messages_text;
-	private int messages_id_status;
+	private int chatSequenceId;
+	private int userId;
+	private String messagesTypeName;
+	private String messagesTypeDefaultText;
+	private int messageTypeScope;
+	private Timestamp messagesFromdatetime;
+	private String messagesText;
+	private int messagesIdStatus;
 
 }
