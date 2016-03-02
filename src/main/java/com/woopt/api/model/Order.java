@@ -13,6 +13,4 @@ public class Order {
 
 	  private OrderCartOfferAdded[] orderCartOfferAdded;
 	  
-	  private UserCheckIn userCheckIn;
-
 }

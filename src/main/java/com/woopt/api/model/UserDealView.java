@@ -1,6 +1,6 @@
 package com.woopt.api.model;
 
-public class UserDealViewModel {
+public class UserDealView {
 	
 	private Offer[] offer;
 
