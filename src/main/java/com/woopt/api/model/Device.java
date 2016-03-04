@@ -14,19 +14,19 @@ public class Device {
 	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
-	private int device_id;
+	private int deviceId;
 	
-	private String device_imei;
+	private String deviceImei;
 	
-	private String device_mac;
+	private String deviceMac;
 	
-	private String device_serial_no;
+	private String deviceSerialNo;
 	
-	private int device_status;
+	private int deviceStatus;
 	
-	private String device_token;
+	private String deviceToken;
 	
-	private String device_phone;
+	private String devicePhone;
 
 	/**
 	 * @return the device_id
