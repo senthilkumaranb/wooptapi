@@ -21,7 +21,7 @@ public class Shop {
 	
 	private String shopEmail;
 	
-	private int shopAddressId;
+	private Address shopAddress;
 	
 	private int shopVerificationStatus;
 	

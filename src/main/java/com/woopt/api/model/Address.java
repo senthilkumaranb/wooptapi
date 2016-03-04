@@ -25,6 +25,11 @@ public class Address {
 	private String addressCountry;
 	
 	private String addressLandmark;
+	
+	private String addressLatitude;
+	
+	private String addressLongitude;
+
 
 	/**
 	 * @return the addressName

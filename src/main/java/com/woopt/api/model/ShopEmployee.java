@@ -1,7 +1,5 @@
 package com.woopt.api.model;
 
-import com.woopt.api.entity.Column;
-
 public class ShopEmployee {
 	
 	private User user;
