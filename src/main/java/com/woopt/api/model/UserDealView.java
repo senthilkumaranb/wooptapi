@@ -1,7 +1,6 @@
 package com.woopt.api.model;
 
-public class UserDealView {
+public class UserDealView extends Offer {
 	
-	private Offer[] offer;
 
 }
