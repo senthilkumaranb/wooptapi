@@ -62,7 +62,7 @@ public class UserInfoEntity {
 	
 	@Column(name = "USER_INFO_CURRENT_LONGITUDE")
 	private String userInfoCurrentLongitude;
-
+	
 	/**
 	 * @return the userInfoId
 	 */
