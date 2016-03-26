@@ -157,12 +157,29 @@ public class Address {
 		this.addressLandmark = addressLandmark;
 	}
 
+	public String getAddressLatitude() {
+		return addressLatitude;
+	}
+
+	public void setAddressLatitude(String addressLatitude) {
+		this.addressLatitude = addressLatitude;
+	}
+
+	public String getAddressLongitude() {
+		return addressLongitude;
+	}
+
+	public void setAddressLongitude(String addressLongitude) {
+		this.addressLongitude = addressLongitude;
+	}
+
 	@Override
 	public String toString() {
-		return "AddressModel [addressName=" + addressName + ", addressStreet1=" + addressStreet1 + ", addressStreet2="
+		return "Address [addressName=" + addressName + ", addressStreet1=" + addressStreet1 + ", addressStreet2="
 				+ addressStreet2 + ", addressArea=" + addressArea + ", addressCity=" + addressCity + ", addressState="
 				+ addressState + ", addressPostcode=" + addressPostcode + ", addressCountry=" + addressCountry
-				+ ", addressLandmark=" + addressLandmark + "]";
+				+ ", addressLandmark=" + addressLandmark + ", addressLatitude=" + addressLatitude
+				+ ", addressLongitude=" + addressLongitude + "]";
 	}
 
 	@Override
@@ -173,6 +190,8 @@ public class Address {
 		result = prime * result + ((addressCity == null) ? 0 : addressCity.hashCode());
 		result = prime * result + ((addressCountry == null) ? 0 : addressCountry.hashCode());
 		result = prime * result + ((addressLandmark == null) ? 0 : addressLandmark.hashCode());
+		result = prime * result + ((addressLatitude == null) ? 0 : addressLatitude.hashCode());
+		result = prime * result + ((addressLongitude == null) ? 0 : addressLongitude.hashCode());
 		result = prime * result + ((addressName == null) ? 0 : addressName.hashCode());
 		result = prime * result + ((addressPostcode == null) ? 0 : addressPostcode.hashCode());
 		result = prime * result + ((addressState == null) ? 0 : addressState.hashCode());
@@ -183,79 +202,68 @@ public class Address {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		if (obj == null) {
+		if (obj == null)
 			return false;
-		}
-		if (!(obj instanceof Address)) {
+		if (getClass() != obj.getClass())
 			return false;
-		}
 		Address other = (Address) obj;
 		if (addressArea == null) {
-			if (other.addressArea != null) {
+			if (other.addressArea != null)
 				return false;
-			}
-		} else if (!addressArea.equals(other.addressArea)) {
+		} else if (!addressArea.equals(other.addressArea))
 			return false;
-		}
 		if (addressCity == null) {
-			if (other.addressCity != null) {
+			if (other.addressCity != null)
 				return false;
-			}
-		} else if (!addressCity.equals(other.addressCity)) {
+		} else if (!addressCity.equals(other.addressCity))
 			return false;
-		}
 		if (addressCountry == null) {
-			if (other.addressCountry != null) {
+			if (other.addressCountry != null)
 				return false;
-			}
-		} else if (!addressCountry.equals(other.addressCountry)) {
+		} else if (!addressCountry.equals(other.addressCountry))
 			return false;
-		}
 		if (addressLandmark == null) {
-			if (other.addressLandmark != null) {
+			if (other.addressLandmark != null)
 				return false;
-			}
-		} else if (!addressLandmark.equals(other.addressLandmark)) {
+		} else if (!addressLandmark.equals(other.addressLandmark))
 			return false;
-		}
+		if (addressLatitude == null) {
+			if (other.addressLatitude != null)
+				return false;
+		} else if (!addressLatitude.equals(other.addressLatitude))
+			return false;
+		if (addressLongitude == null) {
+			if (other.addressLongitude != null)
+				return false;
+		} else if (!addressLongitude.equals(other.addressLongitude))
+			return false;
 		if (addressName == null) {
-			if (other.addressName != null) {
+			if (other.addressName != null)
 				return false;
-			}
-		} else if (!addressName.equals(other.addressName)) {
+		} else if (!addressName.equals(other.addressName))
 			return false;
-		}
 		if (addressPostcode == null) {
-			if (other.addressPostcode != null) {
+			if (other.addressPostcode != null)
 				return false;
-			}
-		} else if (!addressPostcode.equals(other.addressPostcode)) {
+		} else if (!addressPostcode.equals(other.addressPostcode))
 			return false;
-		}
 		if (addressState == null) {
-			if (other.addressState != null) {
+			if (other.addressState != null)
 				return false;
-			}
-		} else if (!addressState.equals(other.addressState)) {
+		} else if (!addressState.equals(other.addressState))
 			return false;
-		}
 		if (addressStreet1 == null) {
-			if (other.addressStreet1 != null) {
+			if (other.addressStreet1 != null)
 				return false;
-			}
-		} else if (!addressStreet1.equals(other.addressStreet1)) {
+		} else if (!addressStreet1.equals(other.addressStreet1))
 			return false;
-		}
 		if (addressStreet2 == null) {
-			if (other.addressStreet2 != null) {
+			if (other.addressStreet2 != null)
 				return false;
-			}
-		} else if (!addressStreet2.equals(other.addressStreet2)) {
+		} else if (!addressStreet2.equals(other.addressStreet2))
 			return false;
-		}
 		return true;
 	}
 }
