@@ -42,6 +42,9 @@ public class UserToShopLoyaltyCardEntity {
 	@Column(name = "USER_TO_SHOP_LOYALTY_CARD_STATUS")
 	private int userToShopLoyaltyCardStatus;
 	
+	@Column(name = "USER_TO_SHOP_LOYALTY_CARD_CURRENT_STAGE")
+	private int userToShopLoyaltyCardCurrentStage;
+	
 	@Column(name = "CREATED_DATETIME")
 	private Timestamp createdDatetime;
 
@@ -103,6 +106,15 @@ public class UserToShopLoyaltyCardEntity {
 	public void setLastUpdatedDatetime(Timestamp lastUpdatedDatetime) {
 		this.lastUpdatedDatetime = lastUpdatedDatetime;
 	}
+	
+	
+	public int getUserToShopLoyaltyCardCurrentStage() {
+		return userToShopLoyaltyCardCurrentStage;
+	}
+
+	public void setUserToShopLoyaltyCardCurrentStage(int userToShopLoyaltyCardCurrentStage) {
+		this.userToShopLoyaltyCardCurrentStage = userToShopLoyaltyCardCurrentStage;
+	}
 
 	@Override
 	public int hashCode() {
@@ -113,6 +125,7 @@ public class UserToShopLoyaltyCardEntity {
 		result = prime * result + shopId;
 		result = prime * result + shopLoyaltyCardId;
 		result = prime * result + userId;
+		result = prime * result + userToShopLoyaltyCardCurrentStage;
 		result = prime * result + userToShopLoyaltyCardId;
 		result = prime * result + userToShopLoyaltyCardStatus;
 		return result;
@@ -143,6 +156,8 @@ public class UserToShopLoyaltyCardEntity {
 			return false;
 		if (userId != other.userId)
 			return false;
+		if (userToShopLoyaltyCardCurrentStage != other.userToShopLoyaltyCardCurrentStage)
+			return false;
 		if (userToShopLoyaltyCardId != other.userToShopLoyaltyCardId)
 			return false;
 		if (userToShopLoyaltyCardStatus != other.userToShopLoyaltyCardStatus)
@@ -154,7 +169,8 @@ public class UserToShopLoyaltyCardEntity {
 	public String toString() {
 		return "UserToShopLoyaltyCardEntity [userToShopLoyaltyCardId=" + userToShopLoyaltyCardId + ", userId=" + userId
 				+ ", shopId=" + shopId + ", shopLoyaltyCardId=" + shopLoyaltyCardId + ", userToShopLoyaltyCardStatus="
-				+ userToShopLoyaltyCardStatus + ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime="
+				+ userToShopLoyaltyCardStatus + ", userToShopLoyaltyCardCurrentStage="
+				+ userToShopLoyaltyCardCurrentStage + ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime="
 				+ lastUpdatedDatetime + "]";
 	}
 	
