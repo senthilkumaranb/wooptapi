@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WOOPT_SHOP_LOYALTY_CARD")
-public class ShopLoyaltyCard {
+public class ShopLoyaltyCardEntity {
 	
 	/**
 	 * 
@@ -174,7 +174,7 @@ public class ShopLoyaltyCard {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ShopLoyaltyCard other = (ShopLoyaltyCard) obj;
+		ShopLoyaltyCardEntity other = (ShopLoyaltyCardEntity) obj;
 		if (createdDatetime == null) {
 			if (other.createdDatetime != null)
 				return false;
