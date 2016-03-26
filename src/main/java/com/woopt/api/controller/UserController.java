@@ -71,8 +71,8 @@ public class UserController {
 				}
 			}
 			
-			if (null != device && device.getDevice_imei() != null) {
-				imei = device.getDevice_imei();
+			if (null != device && device.getDeviceImei() != null) {
+				imei = device.getDeviceImei();
 				
 				if (!Validate.validateIMEI(imei)) {
 					//return error code that invalid Name. 
@@ -102,11 +102,7 @@ public class UserController {
 		return null;
 	}
 	
-	
-	
-	
-	
-	
+		
 	
 	
 	@RequestMapping(value = "/createUser/", method = RequestMethod.POST, headers="Accept=application/json")
