@@ -86,11 +86,11 @@ public class UserShopCheckInEntity {
 		this.userShopCheckInDatetime = userShopCheckInDatetime;
 	}
 
-	public int getUserShopCheckInMethod() {
+	public String getUserShopCheckInMethod() {
 		return userShopCheckInMethod;
 	}
 
-	public void setUserShopCheckInMethod(int userShopCheckInMethod) {
+	public void setUserShopCheckInMethod(String userShopCheckInMethod) {
 		this.userShopCheckInMethod = userShopCheckInMethod;
 	}
 
@@ -102,11 +102,11 @@ public class UserShopCheckInEntity {
 		this.userShopCheckInStatus = userShopCheckInStatus;
 	}
 
-	public int getUserShopCheckInSourcePage() {
+	public String getUserShopCheckInSourcePage() {
 		return userShopCheckInSourcePage;
 	}
 
-	public void setUserShopCheckInSourcePage(int userShopCheckInSourcePage) {
+	public void setUserShopCheckInSourcePage(String userShopCheckInSourcePage) {
 		this.userShopCheckInSourcePage = userShopCheckInSourcePage;
 	}
 
@@ -127,15 +127,6 @@ public class UserShopCheckInEntity {
 	}
 
 	@Override
-	public String toString() {
-		return "UserShopCheckInEntity [userShopCheckInId=" + userShopCheckInId + ", userId=" + userId + ", shopId="
-				+ shopId + ", userShopCheckInDatetime=" + userShopCheckInDatetime + ", userShopCheckInMethod="
-				+ userShopCheckInMethod + ", userShopCheckInStatus=" + userShopCheckInStatus
-				+ ", userShopCheckInSourcePage=" + userShopCheckInSourcePage + ", createdDatetime=" + createdDatetime
-				+ ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -145,8 +136,8 @@ public class UserShopCheckInEntity {
 		result = prime * result + userId;
 		result = prime * result + ((userShopCheckInDatetime == null) ? 0 : userShopCheckInDatetime.hashCode());
 		result = prime * result + userShopCheckInId;
-		result = prime * result + userShopCheckInMethod;
-		result = prime * result + userShopCheckInSourcePage;
+		result = prime * result + ((userShopCheckInMethod == null) ? 0 : userShopCheckInMethod.hashCode());
+		result = prime * result + ((userShopCheckInSourcePage == null) ? 0 : userShopCheckInSourcePage.hashCode());
 		result = prime * result + userShopCheckInStatus;
 		return result;
 	}
@@ -181,14 +172,29 @@ public class UserShopCheckInEntity {
 			return false;
 		if (userShopCheckInId != other.userShopCheckInId)
 			return false;
-		if (userShopCheckInMethod != other.userShopCheckInMethod)
+		if (userShopCheckInMethod == null) {
+			if (other.userShopCheckInMethod != null)
+				return false;
+		} else if (!userShopCheckInMethod.equals(other.userShopCheckInMethod))
 			return false;
-		if (userShopCheckInSourcePage != other.userShopCheckInSourcePage)
+		if (userShopCheckInSourcePage == null) {
+			if (other.userShopCheckInSourcePage != null)
+				return false;
+		} else if (!userShopCheckInSourcePage.equals(other.userShopCheckInSourcePage))
 			return false;
 		if (userShopCheckInStatus != other.userShopCheckInStatus)
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "UserShopCheckInEntity [userShopCheckInId=" + userShopCheckInId + ", userId=" + userId + ", shopId="
+				+ shopId + ", userShopCheckInDatetime=" + userShopCheckInDatetime + ", userShopCheckInMethod="
+				+ userShopCheckInMethod + ", userShopCheckInStatus=" + userShopCheckInStatus
+				+ ", userShopCheckInSourcePage=" + userShopCheckInSourcePage + ", createdDatetime=" + createdDatetime
+				+ ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
+	}
+
 		
 }

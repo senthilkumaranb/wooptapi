@@ -101,12 +101,12 @@ public class Shop {
 		this.shopEmail = shopEmail;
 	}
 
-	public int getShopAddressId() {
-		return shopAddressId;
+	public Address getShopAddress() {
+		return shopAddress;
 	}
 
-	public void setShopAddressId(int shopAddressId) {
-		this.shopAddressId = shopAddressId;
+	public void setShopAddress(Address shopAddress) {
+		this.shopAddress = shopAddress;
 	}
 
 	public int getShopVerificationStatus() {
@@ -169,8 +169,8 @@ public class Shop {
 	public String toString() {
 		return "Shop [shopId=" + shopId + ", shopName=" + shopName + ", shopProprietorId=" + shopProprietorId
 				+ ", shopPhone=" + shopPhone + ", shopMobile=" + shopMobile + ", shopProfilePhoto=" + shopProfilePhoto
-				+ ", shopPhotos=" + Arrays.toString(shopPhotos) + ", shopEmail=" + shopEmail + ", shopAddressId="
-				+ shopAddressId + ", shopVerificationStatus=" + shopVerificationStatus + ", shopStatus=" + shopStatus
+				+ ", shopPhotos=" + Arrays.toString(shopPhotos) + ", shopEmail=" + shopEmail + ", shopAddress="
+				+ shopAddress + ", shopVerificationStatus=" + shopVerificationStatus + ", shopStatus=" + shopStatus
 				+ ", shopIsparent=" + shopIsparent + ", shopParentId=" + shopParentId + ", shopQRCode=" + shopQRCode
 				+ ", shopType=" + shopType + ", shopSubcriptionType=" + shopSubcriptionType + "]";
 	}
@@ -179,7 +179,7 @@ public class Shop {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + shopAddressId;
+		result = prime * result + ((shopAddress == null) ? 0 : shopAddress.hashCode());
 		result = prime * result + ((shopEmail == null) ? 0 : shopEmail.hashCode());
 		result = prime * result + shopId;
 		result = prime * result + ((shopIsparent == null) ? 0 : shopIsparent.hashCode());
@@ -207,7 +207,10 @@ public class Shop {
 		if (getClass() != obj.getClass())
 			return false;
 		Shop other = (Shop) obj;
-		if (shopAddressId != other.shopAddressId)
+		if (shopAddress == null) {
+			if (other.shopAddress != null)
+				return false;
+		} else if (!shopAddress.equals(other.shopAddress))
 			return false;
 		if (shopEmail == null) {
 			if (other.shopEmail != null)

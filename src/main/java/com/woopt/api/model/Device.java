@@ -28,178 +28,123 @@ public class Device {
 	
 	private String devicePhone;
 
-	/**
-	 * @return the device_id
-	 */
-	public int getDevice_id() {
-		return device_id;
+	public int getDeviceId() {
+		return deviceId;
 	}
 
-	/**
-	 * @param device_id the device_id to set
-	 */
-	public void setDevice_id(int device_id) {
-		this.device_id = device_id;
+	public void setDeviceId(int deviceId) {
+		this.deviceId = deviceId;
 	}
 
-	/**
-	 * @return the device_imei
-	 */
-	public String getDevice_imei() {
-		return device_imei;
+	public String getDeviceImei() {
+		return deviceImei;
 	}
 
-	/**
-	 * @param device_imei the device_imei to set
-	 */
-	public void setDevice_imei(String device_imei) {
-		this.device_imei = device_imei;
+	public void setDeviceImei(String deviceImei) {
+		this.deviceImei = deviceImei;
 	}
 
-	/**
-	 * @return the device_mac
-	 */
-	public String getDevice_mac() {
-		return device_mac;
+	public String getDeviceMac() {
+		return deviceMac;
 	}
 
-	/**
-	 * @param device_mac the device_mac to set
-	 */
-	public void setDevice_mac(String device_mac) {
-		this.device_mac = device_mac;
+	public void setDeviceMac(String deviceMac) {
+		this.deviceMac = deviceMac;
 	}
 
-	/**
-	 * @return the device_serial_no
-	 */
-	public String getDevice_serial_no() {
-		return device_serial_no;
+	public String getDeviceSerialNo() {
+		return deviceSerialNo;
 	}
 
-	/**
-	 * @param device_serial_no the device_serial_no to set
-	 */
-	public void setDevice_serial_no(String device_serial_no) {
-		this.device_serial_no = device_serial_no;
+	public void setDeviceSerialNo(String deviceSerialNo) {
+		this.deviceSerialNo = deviceSerialNo;
 	}
 
-	/**
-	 * @return the device_status
-	 */
-	public int getDevice_status() {
-		return device_status;
+	public int getDeviceStatus() {
+		return deviceStatus;
 	}
 
-	/**
-	 * @param device_status the device_status to set
-	 */
-	public void setDevice_status(int device_status) {
-		this.device_status = device_status;
+	public void setDeviceStatus(int deviceStatus) {
+		this.deviceStatus = deviceStatus;
 	}
 
-	/**
-	 * @return the device_token
-	 */
-	public String getDevice_token() {
-		return device_token;
+	public String getDeviceToken() {
+		return deviceToken;
 	}
 
-	/**
-	 * @param device_token the device_token to set
-	 */
-	public void setDevice_token(String device_token) {
-		this.device_token = device_token;
+	public void setDeviceToken(String deviceToken) {
+		this.deviceToken = deviceToken;
 	}
 
-	/**
-	 * @return the device_phone
-	 */
-	public String getDevice_phone() {
-		return device_phone;
+	public String getDevicePhone() {
+		return devicePhone;
 	}
 
-	/**
-	 * @param device_phone the device_phone to set
-	 */
-	public void setDevice_phone(String device_phone) {
-		this.device_phone = device_phone;
-	}
-
-	@Override
-	public String toString() {
-		return "Device [device_id=" + device_id + ", device_imei=" + device_imei + ", device_mac=" + device_mac
-				+ ", device_serial_no=" + device_serial_no + ", device_status=" + device_status + ", device_token="
-				+ device_token + ", device_phone=" + device_phone + "]";
+	public void setDevicePhone(String devicePhone) {
+		this.devicePhone = devicePhone;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + device_id;
-		result = prime * result + ((device_imei == null) ? 0 : device_imei.hashCode());
-		result = prime * result + ((device_mac == null) ? 0 : device_mac.hashCode());
-		result = prime * result + ((device_phone == null) ? 0 : device_phone.hashCode());
-		result = prime * result + ((device_serial_no == null) ? 0 : device_serial_no.hashCode());
-		result = prime * result + device_status;
-		result = prime * result + ((device_token == null) ? 0 : device_token.hashCode());
+		result = prime * result + deviceId;
+		result = prime * result + ((deviceImei == null) ? 0 : deviceImei.hashCode());
+		result = prime * result + ((deviceMac == null) ? 0 : deviceMac.hashCode());
+		result = prime * result + ((devicePhone == null) ? 0 : devicePhone.hashCode());
+		result = prime * result + ((deviceSerialNo == null) ? 0 : deviceSerialNo.hashCode());
+		result = prime * result + deviceStatus;
+		result = prime * result + ((deviceToken == null) ? 0 : deviceToken.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		if (obj == null) {
+		if (obj == null)
 			return false;
-		}
-		if (!(obj instanceof Device)) {
+		if (getClass() != obj.getClass())
 			return false;
-		}
 		Device other = (Device) obj;
-		if (device_id != other.device_id) {
+		if (deviceId != other.deviceId)
 			return false;
-		}
-		if (device_imei == null) {
-			if (other.device_imei != null) {
+		if (deviceImei == null) {
+			if (other.deviceImei != null)
 				return false;
-			}
-		} else if (!device_imei.equals(other.device_imei)) {
+		} else if (!deviceImei.equals(other.deviceImei))
 			return false;
-		}
-		if (device_mac == null) {
-			if (other.device_mac != null) {
+		if (deviceMac == null) {
+			if (other.deviceMac != null)
 				return false;
-			}
-		} else if (!device_mac.equals(other.device_mac)) {
+		} else if (!deviceMac.equals(other.deviceMac))
 			return false;
-		}
-		if (device_phone == null) {
-			if (other.device_phone != null) {
+		if (devicePhone == null) {
+			if (other.devicePhone != null)
 				return false;
-			}
-		} else if (!device_phone.equals(other.device_phone)) {
+		} else if (!devicePhone.equals(other.devicePhone))
 			return false;
-		}
-		if (device_serial_no == null) {
-			if (other.device_serial_no != null) {
+		if (deviceSerialNo == null) {
+			if (other.deviceSerialNo != null)
 				return false;
-			}
-		} else if (!device_serial_no.equals(other.device_serial_no)) {
+		} else if (!deviceSerialNo.equals(other.deviceSerialNo))
 			return false;
-		}
-		if (device_status != other.device_status) {
+		if (deviceStatus != other.deviceStatus)
 			return false;
-		}
-		if (device_token == null) {
-			if (other.device_token != null) {
+		if (deviceToken == null) {
+			if (other.deviceToken != null)
 				return false;
-			}
-		} else if (!device_token.equals(other.device_token)) {
+		} else if (!deviceToken.equals(other.deviceToken))
 			return false;
-		}
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Device [deviceId=" + deviceId + ", deviceImei=" + deviceImei + ", deviceMac=" + deviceMac
+				+ ", deviceSerialNo=" + deviceSerialNo + ", deviceStatus=" + deviceStatus + ", deviceToken="
+				+ deviceToken + ", devicePhone=" + devicePhone + "]";
+	}
+
+	
 }

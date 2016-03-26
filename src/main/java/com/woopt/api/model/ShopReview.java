@@ -2,8 +2,6 @@ package com.woopt.api.model;
 
 import java.security.Timestamp;
 
-import com.woopt.api.entity.Column;
-
 public class ShopReview {
 	
 	private String shopReviewUserName;
