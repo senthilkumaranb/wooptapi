@@ -47,6 +47,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.woopt.api.entity.UserEntity</value>
+				<value>com.woopt.api.entity.DeviceEntity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -58,8 +59,12 @@
 		</property>
 	</bean>
 
-	<!-- bean id="jobStatusDAO" class="com.woopt.api.dao.JobStatusDAOImpl">
+	<bean id="userDAO" class="com.woopt.api.dao.impl.UserDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</bean -->
+	</bean>
+	
+	<bean id="deviceDAO" class="com.woopt.api.dao.impl.DeviceDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
 
 </beans>

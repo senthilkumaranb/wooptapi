@@ -2,6 +2,8 @@ package com.woopt.api.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+
 import com.woopt.api.dao.DeviceDAO;
 import com.woopt.api.entity.DeviceEntity;
 
@@ -13,6 +15,12 @@ import com.woopt.api.entity.DeviceEntity;
  */
 public class DeviceDAOImpl implements DeviceDAO {
 
+	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
 	@Override
 	public void save(DeviceEntity device) {
 		// TODO Auto-generated method stub
