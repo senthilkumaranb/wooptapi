@@ -1,5 +1,8 @@
 package com.woopt.api.controller;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +25,7 @@ import com.woopt.api.entity.UserEntity;
 import com.woopt.api.model.Device;
 import com.woopt.api.model.User;
 import com.woopt.api.model.UserModel;
+import com.woopt.api.service.OTPService;
 
 /**
  * REST Controller Implementation
@@ -108,10 +112,22 @@ public class UserController {
 				UserEntity userEntity = new UserEntity();
 				DeviceEntity deviceEntity = new DeviceEntity();
 				
+				Timestamp currentTimestamp = new Timestamp(new java.util.Date().getTime());
+				
 				userEntity.setUserFirstName(firstName);
 				userEntity.setUserMobile(mobileNo);
+				userEntity.setUserCreatedDatetime(currentTimestamp);
+				userEntity.setUserLastUpdateDatetime(currentTimestamp);
 				deviceEntity.setDeviceIMEI(imei);
 				deviceEntity.setDeviceSerialNo(deviceSerialNo);
+				long newOTP = OTPService.generateNewOTP();
+				deviceEntity.setDeviceOTP(newOTP+"");
+				deviceEntity.setDeviceOTPStatus(WooptCode.OPT_NOT_YET_VALIDATED);
+				deviceEntity.setDeviceOTPTimestamp(currentTimestamp);
+				
+				//TODO Send OPT to user using SMS service.
+				//newOTP
+				
 				//Inserting user and device entities
 				userDAO.save(userEntity);
 				deviceDAO.save(deviceEntity);

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+	
 	<!-- POM file generated with GWT webAppCreator -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.woopt.api</groupId>
 	<artifactId>portal</artifactId>
-	<packaging>war</packaging>
 	<version>1.0</version>
-	<name>Bluemix Woopt Portal Dashboard</name>
+	<packaging>war</packaging>
+	<name>WooptPortal</name>
 	<description>Bluemix Woopt Portal Dashboard code</description>
 
 	<properties>
@@ -19,7 +19,6 @@
 		<cglib.version>2.2</cglib.version>
 		<aspectj.version>1.6.10</aspectj.version>
 		<gwt-sl.version>1.3-RC1</gwt-sl.version>
-
 	</properties>
 
 	<dependencies>

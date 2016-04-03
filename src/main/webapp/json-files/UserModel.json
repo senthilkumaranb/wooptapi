@@ -1,0 +1,67 @@
+{
+	"user": {
+		"userFirstname": "firstname",
+		"userLastname": "lastname",
+		"userLastname": "2000-01-01T00:00:00.000Z",
+		"userGender": "male",
+		"userPhone": "9999999999",
+		"userMobile": "9999999999",
+		"userProfilePhoto": "\\photos\\idfad\\afbfadfa.png",
+		"userEmail": "example@example.com",
+		"userLoginMode": "1"
+	},
+	"address": {
+		"addressName": "home address",
+		"addressStreet1": "street1",
+		"addressStreet2": "street2",
+		"addressArea": "area",
+		"addressCity": "bangalore",
+		"addressState": "karnataka",
+		"addressPostcode": "560000",
+		"addressCountry": "IN",
+		"addressLandmark": "landmark",
+		"addressLatitude": "34.99",
+		"addressLongitude": "45.45"
+	},
+	"device": {
+		"deviceImei": "123456789012345678",
+		"deviceSerialNo": "mobileserialnumber###"
+	},
+	"familyMembers": [{
+		"userFirstname": "firstname1",
+		"userLastname": "lastname1",
+		"userMobile": "9999999991",
+		"familyMemberStatus": 1
+	}, {
+		"userFirstname": "firstname2",
+		"userLastname": "lastname2",
+		"userMobile": "9999999992",
+		"familyMemberStatus": 1
+	}],
+	"partofFamily": [{
+		"userFirstname": "firstname1",
+		"userLastname": "lastname1",
+		"userMobile": "9999999991",
+		"familyMemberStatus": 1
+	}, {
+		"userFirstname": "firstname2",
+		"userLastname": "lastname2",
+		"usermobile": "9999999992",
+		"familyMemberStatus": 2
+	}],
+	"myServices": [{
+		"shop_id": 3343423,
+		"shop_name": "shopname",
+		"shop_address_area": "Indiranagar",
+		"shop_address_city": "Bangalore",
+		"shop_status": 1,
+		"shop_verification_status": 1
+	}, {
+		"shop_id": 3343423,
+		"shop_name": "shopname",
+		"shop_address_area": "Indiranagar",
+		"shop_address_city": "Bangalore",
+		"shop_status": 1,
+		"shop_verification_status": 1
+	}]
+}

@@ -1,6 +1,6 @@
 package com.woopt.api.entity;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -67,10 +67,10 @@ public class UserEntity {
 	private int userAuthorization;
 	
 	@Column(name = "USER_CREATED_DATETIME")
-	private int userCreatedDatetime;
+	private Timestamp userCreatedDatetime;
 	
 	@Column(name = "USER_LAST_UPDATE_DATETIME")
-	private int userLastUpdateDatetime;
+	private Timestamp userLastUpdateDatetime;
 	
 	@Column(name = "DEVICE_ID")
 	private int deviceId;
@@ -263,28 +263,28 @@ public class UserEntity {
 	/**
 	 * @return the userCreatedDatetime
 	 */
-	public int getUserCreatedDatetime() {
+	public Timestamp getUserCreatedDatetime() {
 		return userCreatedDatetime;
 	}
 
 	/**
 	 * @param userCreatedDatetime the userCreatedDatetime to set
 	 */
-	public void setUserCreatedDatetime(int userCreatedDatetime) {
+	public void setUserCreatedDatetime(Timestamp userCreatedDatetime) {
 		this.userCreatedDatetime = userCreatedDatetime;
 	}
 
 	/**
 	 * @return the userLastUpdateDatetime
 	 */
-	public int getUserLastUpdateDatetime() {
+	public Timestamp getUserLastUpdateDatetime() {
 		return userLastUpdateDatetime;
 	}
 
 	/**
 	 * @param userLastUpdateDatetime the userLastUpdateDatetime to set
 	 */
-	public void setUserLastUpdateDatetime(int userLastUpdateDatetime) {
+	public void setUserLastUpdateDatetime(Timestamp userLastUpdateDatetime) {
 		this.userLastUpdateDatetime = userLastUpdateDatetime;
 	}
 

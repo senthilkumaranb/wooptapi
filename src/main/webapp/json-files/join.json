@@ -1,0 +1,10 @@
+{
+	"user": {
+		"userFirstname": "firstname",
+		"userMobile": "9972741020"
+	},
+	"device": {
+		"deviceImei": "123456789012345678",
+		"deviceSerialNo": "mobileserialnumber###"
+	}
+}

@@ -20,7 +20,13 @@ public class WooptCode {
 	
 	public static final String MOBILE_NUMBER_ALREADY_EXIST = "7";
 	
-	public static final String SYSTEM_ERROR = "8";
+	// number 8
+	
+	public static final String SYSTEM_ERROR = "9";
+	
+	public static final int OPT_NOT_YET_VALIDATED = 10;
+	
+	public static final int OPT_VALIDATED = 11;
 
 	private WooptCode(){
 		

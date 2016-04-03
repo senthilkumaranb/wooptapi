@@ -1,6 +1,6 @@
 package com.woopt.api.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Arrays;
 
 public class Chat {
