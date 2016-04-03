@@ -1,7 +1,5 @@
 package com.woopt.api.entity;
 
-import java.security.Timestamp;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
