@@ -147,6 +147,4 @@ public class UserShopView {
 			return false;
 		return true;
 	}
-	
-	
 }

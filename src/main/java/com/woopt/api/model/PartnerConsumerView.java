@@ -125,8 +125,4 @@ public class PartnerConsumerView {
 				+ ", shopLoyaltyProgram=" + shopLoyaltyProgram + ", userDeal=" + userDeal + ", cart=" + cart
 				+ ", chats=" + Arrays.toString(chats) + "]";
 	}
-	
-	
-
-
 }

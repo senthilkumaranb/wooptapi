@@ -87,7 +87,4 @@ public class FamilyMember {
 		return "FamilyMember [userFirstname=" + userFirstname + ", userLastname=" + userLastname + ", userMobile="
 				+ userMobile + ", familyMemberStatus=" + familyMemberStatus + "]";
 	}
-	
-	
-
 }

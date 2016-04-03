@@ -146,7 +146,4 @@ public class ShopModel {
 				+ ", shopLoyaltyCard=" + shopLoyaltyCard + ", shopLoyaltyProgram=" + shopLoyaltyProgram + ", offer="
 				+ Arrays.toString(offer) + "]";
 	}
-	
-	
-	
 }

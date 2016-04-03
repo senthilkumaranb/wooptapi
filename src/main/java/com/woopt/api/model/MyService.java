@@ -126,7 +126,5 @@ public class MyService {
 		return "MyService [shopId=" + shopId + ", shopName=" + shopName + ", shopAddressArea=" + shopAddressArea
 				+ ", shopAddressCity=" + shopAddressCity + ", shopStatus=" + shopStatus + ", shopVerificationStatus="
 				+ shopVerificationStatus + ", shopOpenStatus=" + shopOpenStatus + "]";
-	}
-    
-    
+	}  
 }

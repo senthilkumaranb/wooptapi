@@ -13,8 +13,8 @@ public class Offer {
 	private String offerQRCode;
 	private int offerAmount;
 	private int offerMinimumOrder;
-	private Timestamp offerStartDate;
-	private Timestamp offerExpireDate;
+	private String offerStartDate;
+	private String offerExpireDate;
 	private int offerUnits;
 	private int offerZoneRestriction;
 	private int offerUnitsPerZone;
@@ -89,19 +89,19 @@ public class Offer {
 		this.offerMinimumOrder = offerMinimumOrder;
 	}
 
-	public Timestamp getOfferStartDate() {
+	public String getOfferStartDate() {
 		return offerStartDate;
 	}
 
-	public void setOfferStartDate(Timestamp offerStartDate) {
+	public void setOfferStartDate(String offerStartDate) {
 		this.offerStartDate = offerStartDate;
 	}
 
-	public Timestamp getOfferExpireDate() {
+	public String getOfferExpireDate() {
 		return offerExpireDate;
 	}
 
-	public void setOfferExpireDate(Timestamp offerExpireDate) {
+	public void setOfferExpireDate(String offerExpireDate) {
 		this.offerExpireDate = offerExpireDate;
 	}
 
@@ -377,6 +377,4 @@ public class Offer {
 				+ ", offerAvailableUnits=" + offerAvailableUnits + ", offerUserPublish="
 				+ Arrays.toString(offerUserPublish) + "]";
 	}
-	
-	
 }

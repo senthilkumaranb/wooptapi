@@ -100,7 +100,4 @@ public class ShopLoyaltyCardStage {
 				+ ", shopLoyaltyCardStageReward=" + shopLoyaltyCardStageReward + ", shopLoyaltyCardStageRewardPhoto="
 				+ shopLoyaltyCardStageRewardPhoto + ", shopLoyaltyCardStageStatus=" + shopLoyaltyCardStageStatus + "]";
 	}
-    
-    
-
 }

@@ -84,6 +84,4 @@ public class ShopEmployee {
 		return "ShopEmployee [user=" + user + ", shopId=" + shopId + ", shopEmployeeStatus=" + shopEmployeeStatus
 				+ ", shopEmployeeRole=" + shopEmployeeRole + "]";
 	}
-	
-	
 }

@@ -1,6 +1,5 @@
 package com.woopt.api.model;
 
-import java.security.Timestamp;
 import java.util.Arrays;
 
 public class ShopLoyaltyCard {
@@ -13,9 +12,9 @@ public class ShopLoyaltyCard {
     
     private int shopLoyaltyCardStatus;
     
-    private Timestamp shopLoyaltyCardStartDate;
+    private String shopLoyaltyCardStartDate;
     
-    private Timestamp shopLoyaltyCardExpiryDate;
+    private String shopLoyaltyCardExpiryDate;
     
     private String shopLoyaltyProgramType;
     
@@ -55,19 +54,19 @@ public class ShopLoyaltyCard {
 		this.shopLoyaltyCardStatus = shopLoyaltyCardStatus;
 	}
 
-	public Timestamp getShopLoyaltyCardStartDate() {
+	public String getShopLoyaltyCardStartDate() {
 		return shopLoyaltyCardStartDate;
 	}
 
-	public void setShopLoyaltyCardStartDate(Timestamp shopLoyaltyCardStartDate) {
+	public void setShopLoyaltyCardStartDate(String shopLoyaltyCardStartDate) {
 		this.shopLoyaltyCardStartDate = shopLoyaltyCardStartDate;
 	}
 
-	public Timestamp getShopLoyaltyCardExpiryDate() {
+	public String getShopLoyaltyCardExpiryDate() {
 		return shopLoyaltyCardExpiryDate;
 	}
 
-	public void setShopLoyaltyCardExpiryDate(Timestamp shopLoyaltyCardExpiryDate) {
+	public void setShopLoyaltyCardExpiryDate(String shopLoyaltyCardExpiryDate) {
 		this.shopLoyaltyCardExpiryDate = shopLoyaltyCardExpiryDate;
 	}
 
@@ -161,7 +160,5 @@ public class ShopLoyaltyCard {
 				+ shopLoyaltyCardStartDate + ", shopLoyaltyCardExpiryDate=" + shopLoyaltyCardExpiryDate
 				+ ", shopLoyaltyProgramType=" + shopLoyaltyProgramType + ", shopLoyaltyCardNoOfStages="
 				+ shopLoyaltyCardNoOfStages + ", shopLoyaltyCardStage=" + Arrays.toString(shopLoyaltyCardStage) + "]";
-	}
-    
-    
+	}   
 }

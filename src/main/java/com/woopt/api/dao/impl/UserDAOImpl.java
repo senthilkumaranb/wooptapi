@@ -2,6 +2,7 @@ package com.woopt.api.dao.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,7 +21,9 @@ import com.woopt.api.entity.UserEntity;
 @Service("userDAO")
 @Transactional
 public class UserDAOImpl implements UserDAO {
-
+	
+	private static final Logger LOGGER = Logger.getLogger(UserDAOImpl.class.getName());
+	
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -42,7 +45,7 @@ public class UserDAOImpl implements UserDAO {
 		System.out.println("--------++-----------");
 		Session session = this.sessionFactory.openSession();
 		System.out.println("--------++****************-----------" + session);
-		List<UserEntity> userList = session.createQuery("from WOOPT_USER").list();
+		List<UserEntity> userList = session.createQuery("from UserEntity").list();
 		System.out.println("-------------------" + userList);
 		session.close();
 		return userList;
@@ -52,7 +55,7 @@ public class UserDAOImpl implements UserDAO {
 	@SuppressWarnings("unchecked")
 	public UserEntity findById(long id) {
 		Session session = this.sessionFactory.openSession();
-		List<UserEntity> userList = session.createQuery("from WOOPT_USER").list();
+		List<UserEntity> userList = session.createQuery("from UserEntity").list();
 		session.close();
 		for (UserEntity user : userList) {
 			if (user.getUserId() == id) {
@@ -101,13 +104,17 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public UserEntity findByMobile(String mobileNo) {
 		Session session = this.sessionFactory.openSession();
-		List<UserEntity> userList = session.createQuery("from WOOPT_USER").list();
+		List<UserEntity> userList = session.createQuery("from UserEntity").list();
 		session.close();
+		
 		for (UserEntity user : userList) {
-			if (user.getUserMobile() == mobileNo) {
+			LOGGER.info("User object in findByMobile method (for mobile no-" + mobileNo + "): " + user);
+			
+			if (null != user && user.getUserMobile() == mobileNo) {
 				return user;
 			}
 		}

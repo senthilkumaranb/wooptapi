@@ -1,93 +1,116 @@
 package com.woopt.api.model;
 
-import java.security.Timestamp;
-
 public class OfferUserPublish {
-	
+
 	private int userId;
 	private String offerUserPublishOfferCode;
 	private String offerUserPublishMethod;
 	private int offerUserPublishIsRedeemed;
-	private Timestamp offerUserPublishDatetime;
-	private Timestamp offerUserPublishDateOfRedeem;
+	private String offerUserPublishDatetime;
+	private String offerUserPublishDateOfRedeem;
 	private int offerUserPublishRedeemShopId;
 	private String offerUserPubilshRedeemMethod;
-	private Timestamp offerUserPublishExpireDatetime;
+	private String offerUserPublishExpireDatetime;
 	private int offerUserPublishIsShared;
 	private int offerUserPublishStatus;
 	private int offerUserPubilshWhoRedeemed;
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 	public String getOfferUserPublishOfferCode() {
 		return offerUserPublishOfferCode;
 	}
+
 	public void setOfferUserPublishOfferCode(String offerUserPublishOfferCode) {
 		this.offerUserPublishOfferCode = offerUserPublishOfferCode;
 	}
+
 	public String getOfferUserPublishMethod() {
 		return offerUserPublishMethod;
 	}
+
 	public void setOfferUserPublishMethod(String offerUserPublishMethod) {
 		this.offerUserPublishMethod = offerUserPublishMethod;
 	}
+
 	public int getOfferUserPublishIsRedeemed() {
 		return offerUserPublishIsRedeemed;
 	}
+
 	public void setOfferUserPublishIsRedeemed(int offerUserPublishIsRedeemed) {
 		this.offerUserPublishIsRedeemed = offerUserPublishIsRedeemed;
 	}
-	public Timestamp getOfferUserPublishDatetime() {
+
+	public String getOfferUserPublishDatetime() {
 		return offerUserPublishDatetime;
 	}
-	public void setOfferUserPublishDatetime(Timestamp offerUserPublishDatetime) {
+
+	public void setOfferUserPublishDatetime(String offerUserPublishDatetime) {
 		this.offerUserPublishDatetime = offerUserPublishDatetime;
 	}
-	public Timestamp getOfferUserPublishDateOfRedeem() {
+
+	public String getOfferUserPublishDateOfRedeem() {
 		return offerUserPublishDateOfRedeem;
 	}
-	public void setOfferUserPublishDateOfRedeem(Timestamp offerUserPublishDateOfRedeem) {
+
+	public void setOfferUserPublishDateOfRedeem(String offerUserPublishDateOfRedeem) {
 		this.offerUserPublishDateOfRedeem = offerUserPublishDateOfRedeem;
 	}
+
 	public int getOfferUserPublishRedeemShopId() {
 		return offerUserPublishRedeemShopId;
 	}
+
 	public void setOfferUserPublishRedeemShopId(int offerUserPublishRedeemShopId) {
 		this.offerUserPublishRedeemShopId = offerUserPublishRedeemShopId;
 	}
+
 	public String getOfferUserPubilshRedeemMethod() {
 		return offerUserPubilshRedeemMethod;
 	}
+
 	public void setOfferUserPubilshRedeemMethod(String offerUserPubilshRedeemMethod) {
 		this.offerUserPubilshRedeemMethod = offerUserPubilshRedeemMethod;
 	}
-	public Timestamp getOfferUserPublishExpireDatetime() {
+
+	public String getOfferUserPublishExpireDatetime() {
 		return offerUserPublishExpireDatetime;
 	}
-	public void setOfferUserPublishExpireDatetime(Timestamp offerUserPublishExpireDatetime) {
+
+	public void setOfferUserPublishExpireDatetime(String offerUserPublishExpireDatetime) {
 		this.offerUserPublishExpireDatetime = offerUserPublishExpireDatetime;
 	}
+
 	public int getOfferUserPublishIsShared() {
 		return offerUserPublishIsShared;
 	}
+
 	public void setOfferUserPublishIsShared(int offerUserPublishIsShared) {
 		this.offerUserPublishIsShared = offerUserPublishIsShared;
 	}
+
 	public int getOfferUserPublishStatus() {
 		return offerUserPublishStatus;
 	}
+
 	public void setOfferUserPublishStatus(int offerUserPublishStatus) {
 		this.offerUserPublishStatus = offerUserPublishStatus;
 	}
+
 	public int getOfferUserPubilshWhoRedeemed() {
 		return offerUserPubilshWhoRedeemed;
 	}
+
 	public void setOfferUserPubilshWhoRedeemed(int offerUserPubilshWhoRedeemed) {
 		this.offerUserPubilshWhoRedeemed = offerUserPubilshWhoRedeemed;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -109,6 +132,7 @@ public class OfferUserPublish {
 		result = prime * result + userId;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -162,6 +186,7 @@ public class OfferUserPublish {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "OfferUserPublish [userId=" + userId + ", offerUserPublishOfferCode=" + offerUserPublishOfferCode
@@ -173,6 +198,4 @@ public class OfferUserPublish {
 				+ offerUserPublishIsShared + ", offerUserPublishStatus=" + offerUserPublishStatus
 				+ ", offerUserPubilshWhoRedeemed=" + offerUserPubilshWhoRedeemed + "]";
 	}
-	
-	
 }

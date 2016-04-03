@@ -273,7 +273,5 @@ public class Shop {
 		if (shopVerificationStatus != other.shopVerificationStatus)
 			return false;
 		return true;
-	}
-	
-	
+	}	
 }

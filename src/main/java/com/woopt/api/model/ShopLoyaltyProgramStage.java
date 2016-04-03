@@ -82,7 +82,5 @@ public class ShopLoyaltyProgramStage {
 				+ ", shopLoyaltyProgramStageName=" + shopLoyaltyProgramStageName
 				+ ", shopLoyaltyProgramStagePromotionEligibility=" + shopLoyaltyProgramStagePromotionEligibility
 				+ ", shopLoyaltyProgramStageDiscount=" + shopLoyaltyProgramStageDiscount + "]";
-	}
-    
-    
+	}   
 }

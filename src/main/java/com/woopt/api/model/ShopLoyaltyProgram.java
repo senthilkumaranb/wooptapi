@@ -119,6 +119,4 @@ public class ShopLoyaltyProgram {
 				+ shopLoyaltyProgramCurrentStage + ", shopLoyaltyProgramStage="
 				+ Arrays.toString(shopLoyaltyProgramStage) + "]";
 	}
-    
-    
 }

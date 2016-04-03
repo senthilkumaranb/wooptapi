@@ -3,63 +3,80 @@ package com.woopt.api.model;
 import java.security.Timestamp;
 
 public class ChatMessage {
-	
+
 	private int chatSequenceId;
 	private int userId;
 	private String messagesTypeName;
 	private String messagesTypeDefaultText;
 	private int messageTypeScope;
-	private Timestamp messagesFromdatetime;
+	private String messagesFromdatetime;
 	private String messagesText;
 	private int messagesIdStatus;
+
 	public int getChatSequenceId() {
 		return chatSequenceId;
 	}
+
 	public void setChatSequenceId(int chatSequenceId) {
 		this.chatSequenceId = chatSequenceId;
 	}
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 	public String getMessagesTypeName() {
 		return messagesTypeName;
 	}
+
 	public void setMessagesTypeName(String messagesTypeName) {
 		this.messagesTypeName = messagesTypeName;
 	}
+
 	public String getMessagesTypeDefaultText() {
 		return messagesTypeDefaultText;
 	}
+
 	public void setMessagesTypeDefaultText(String messagesTypeDefaultText) {
 		this.messagesTypeDefaultText = messagesTypeDefaultText;
 	}
+
 	public int getMessageTypeScope() {
 		return messageTypeScope;
 	}
+
 	public void setMessageTypeScope(int messageTypeScope) {
 		this.messageTypeScope = messageTypeScope;
 	}
-	public Timestamp getMessagesFromdatetime() {
+
+	public String getMessagesFromdatetime() {
 		return messagesFromdatetime;
 	}
-	public void setMessagesFromdatetime(Timestamp messagesFromdatetime) {
+
+	public void setMessagesFromdatetime(String messagesFromdatetime) {
 		this.messagesFromdatetime = messagesFromdatetime;
 	}
+
 	public String getMessagesText() {
 		return messagesText;
 	}
+
 	public void setMessagesText(String messagesText) {
 		this.messagesText = messagesText;
 	}
+
 	public int getMessagesIdStatus() {
 		return messagesIdStatus;
 	}
+
 	public void setMessagesIdStatus(int messagesIdStatus) {
 		this.messagesIdStatus = messagesIdStatus;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -74,6 +91,7 @@ public class ChatMessage {
 		result = prime * result + userId;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -113,6 +131,7 @@ public class ChatMessage {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "ChatMessage [chatSequenceId=" + chatSequenceId + ", userId=" + userId + ", messagesTypeName="
@@ -120,6 +139,4 @@ public class ChatMessage {
 				+ messageTypeScope + ", messagesFromdatetime=" + messagesFromdatetime + ", messagesText=" + messagesText
 				+ ", messagesIdStatus=" + messagesIdStatus + "]";
 	}
-	
-	
 }

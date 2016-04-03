@@ -41,6 +41,4 @@ public class UserDealView {
 	public String toString() {
 		return "UserDealView [userDeal=" + userDeal + "]";
 	}
-	
-	
 }

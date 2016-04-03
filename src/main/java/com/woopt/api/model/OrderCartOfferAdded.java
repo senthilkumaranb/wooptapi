@@ -49,7 +49,4 @@ public class OrderCartOfferAdded {
 		return "OrderCartOfferAdded [userDeal=" + userDeal + ", userShopOrderCartOfferStatus="
 				+ userShopOrderCartOfferStatus + "]";
 	}
-	
-	
-
 }

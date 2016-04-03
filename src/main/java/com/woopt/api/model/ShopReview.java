@@ -1,7 +1,5 @@
 package com.woopt.api.model;
 
-import java.security.Timestamp;
-
 public class ShopReview {
 	
 	private String shopReviewUserName;
@@ -12,7 +10,7 @@ public class ShopReview {
 	
 	private String shopReviewDescription;
 
-	private Timestamp shopReviewDatetime;
+	private String shopReviewDatetime;
 	
 	private int shopReviewReads;
 	
@@ -54,11 +52,11 @@ public class ShopReview {
 		this.shopReviewDescription = shopReviewDescription;
 	}
 
-	public Timestamp getShopReviewDatetime() {
+	public String getShopReviewDatetime() {
 		return shopReviewDatetime;
 	}
 
-	public void setShopReviewDatetime(Timestamp shopReviewDatetime) {
+	public void setShopReviewDatetime(String shopReviewDatetime) {
 		this.shopReviewDatetime = shopReviewDatetime;
 	}
 
@@ -166,6 +164,4 @@ public class ShopReview {
 				+ ", shopReviewShopRating=" + shopReviewShopRating + ", shopReviewLikesNo=" + shopReviewLikesNo
 				+ ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
 	}
-	
-	
 }

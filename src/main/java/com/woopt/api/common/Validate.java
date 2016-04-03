@@ -14,6 +14,12 @@ public class Validate {
 		return true;
 	}
 	
+	public static boolean isNullOrEmpty(String string) {
+		if (null == string || string.isEmpty())
+			return true;
+		return false;
+	}
+
 	//Method to validate mobile with regular expression.
 	public static boolean validateIMEI(String imei) {
 		

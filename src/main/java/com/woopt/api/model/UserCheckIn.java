@@ -1,44 +1,53 @@
 package com.woopt.api.model;
 
-import java.security.Timestamp;
-
 public class UserCheckIn {
-	
+
 	private int userId;
 	private int shopId;
-	private Timestamp userShopCheckinDatetime;
-	private Timestamp userShopCheckinMethodName;
+	private String userShopCheckinDatetime;
+	private String userShopCheckinMethodName;
 	private int userShopCheckinStatus;
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 	public int getShopId() {
 		return shopId;
 	}
+
 	public void setShopId(int shopId) {
 		this.shopId = shopId;
 	}
-	public Timestamp getUserShopCheckinDatetime() {
+
+	public String getUserShopCheckinDatetime() {
 		return userShopCheckinDatetime;
 	}
-	public void setUserShopCheckinDatetime(Timestamp userShopCheckinDatetime) {
+
+	public void setUserShopCheckinDatetime(String userShopCheckinDatetime) {
 		this.userShopCheckinDatetime = userShopCheckinDatetime;
 	}
-	public Timestamp getUserShopCheckinMethodName() {
+
+	public String getUserShopCheckinMethodName() {
 		return userShopCheckinMethodName;
 	}
-	public void setUserShopCheckinMethodName(Timestamp userShopCheckinMethodName) {
+
+	public void setUserShopCheckinMethodName(String userShopCheckinMethodName) {
 		this.userShopCheckinMethodName = userShopCheckinMethodName;
 	}
+
 	public int getUserShopCheckinStatus() {
 		return userShopCheckinStatus;
 	}
+
 	public void setUserShopCheckinStatus(int userShopCheckinStatus) {
 		this.userShopCheckinStatus = userShopCheckinStatus;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -50,6 +59,7 @@ public class UserCheckIn {
 		result = prime * result + userShopCheckinStatus;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -77,13 +87,11 @@ public class UserCheckIn {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "UserCheckIn [userId=" + userId + ", shopId=" + shopId + ", userShopCheckinDatetime="
 				+ userShopCheckinDatetime + ", userShopCheckinMethodName=" + userShopCheckinMethodName
 				+ ", userShopCheckinStatus=" + userShopCheckinStatus + "]";
 	}
-	
-	
 }

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.woopt.api.common.Validate;
+import com.woopt.api.common.WooptCode;
 import com.woopt.api.dao.DeviceDAO;
 import com.woopt.api.dao.UserDAO;
+import com.woopt.api.entity.DeviceEntity;
 import com.woopt.api.entity.UserEntity;
 import com.woopt.api.model.Device;
 import com.woopt.api.model.User;
@@ -39,72 +41,94 @@ public class UserController {
 	@Autowired
 	DeviceDAO deviceDAO;
 	
-	@RequestMapping(value = "/regusr/", method = RequestMethod.POST, headers="Accept=application/json")
-	public ResponseEntity<String> registerUser(@RequestBody UserModel userModel, 
+	@RequestMapping(value = "/join", method = RequestMethod.POST, headers="Accept=application/json")
+	public ResponseEntity<UserModel> registerUser(@RequestBody UserModel userModel, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		
-		User user = userModel.getUser();
-		Device device = userModel.getDevice();
-		
-		String mobileNo = null;
-		String firstName = null;
-		String imei = null;
+		LOGGER.info("calling /api/user/join api");
+		LOGGER.info("Input UserMode:" + userModel);
+		HttpHeaders returnHeader = new HttpHeaders();
+		User user = null;
+		Device device = null;
+		String responseCode = WooptCode.SUCCESS;
 		
 		try {
 			
-			/**
-			 * Validate input
-			 **/
-			if (null != user && user.getUserMobile() != null) {
+			if (null != userModel) {
+				user = userModel.getUser();
+				device = userModel.getDevice();
+			}
+			String firstName = null;
+			String mobileNo = null;
+			String imei = null;
+			String deviceSerialNo = null;
+			
+			if (null != user) {
+				//Validate inputs
+				firstName = user.getUserFirstname();
 				mobileNo = user.getUserMobile();
 				
-				if (!Validate.validateMobileNumber(mobileNo)) {
-					//return error code that invalid Mobile number. 
-				}
-			}
-			
-			if (user.getUserFirstname() != null) {
-				firstName = user.getUserFirstname();
-				
 				if (!Validate.validateFirstName(firstName)) {
-					//return error code that invalid Name. 
+					LOGGER.error("Invalid UserModel");
+					responseCode = WooptCode.INVALID_FIRSTNAME;
+					throw new Exception();
+				}else if (!Validate.validateMobileNumber(mobileNo)) {
+					LOGGER.error("Invalid UserModel");
+					responseCode = WooptCode.INVALID_MOBILENUMBER;
+					throw new Exception(); 
 				}
+			} else {
+				LOGGER.error("Invalid UserModel");
+				responseCode = WooptCode.INVALID_USERMODE;
+				throw new Exception();
 			}
 			
-			if (null != device && device.getDeviceImei() != null) {
+			if (null != device) {
 				imei = device.getDeviceImei();
+				deviceSerialNo = device.getDeviceSerialNo();
 				
 				if (!Validate.validateIMEI(imei)) {
-					//return error code that invalid Name. 
+					LOGGER.error("Invalid UserModel");
+					responseCode = WooptCode.INVALID_IMEI;
+					throw new Exception();
+				}
+				
+				if (!Validate.validateIMEI(deviceSerialNo)) {
+					LOGGER.error("Invalid UserModel");
+					responseCode = WooptCode.INVALID_DEVICESERIALNO;
+					throw new Exception();
 				}
 			}
 			
-			/**
-			 * Verify duplicate User Mobile & Device
-			 * -- Null has been verified
-			 */
 			if (userDAO.findByMobile(mobileNo) != null) {
+				//Verify duplicate User Mobile & Device
+				LOGGER.warn("Mobile number already exist");
+				responseCode = WooptCode.MOBILE_NUMBER_ALREADY_EXIST;
+				throw new Exception();
+			} else {
+				UserEntity userEntity = new UserEntity();
+				DeviceEntity deviceEntity = new DeviceEntity();
 				
-				// return error code that 
+				userEntity.setUserFirstName(firstName);
+				userEntity.setUserMobile(mobileNo);
+				deviceEntity.setDeviceIMEI(imei);
+				deviceEntity.setDeviceSerialNo(deviceSerialNo);
+				//Inserting user and device entities
+				userDAO.save(userEntity);
+				deviceDAO.save(deviceEntity);
 			}
-			
-			
 		} catch (Exception e) {
+			LOGGER.error("Inside catch block, e.getMessage() is: " + e.getMessage());
 			
+			if (e.getMessage() != null) {
+				responseCode = WooptCode.SYSTEM_ERROR;
+			}
+		} finally {
+			returnHeader.add("responseCode", responseCode);
 		}
-		
-		
-		
-		UserEntity userEntity = new UserEntity();
-		userEntity.setUserFirstName(user.getUserFirstname());
-		
-		
-		return null;
+		LOGGER.info("Return UserModel:" + userModel);
+		return new ResponseEntity<UserModel>(userModel, returnHeader, HttpStatus.OK);
 	}
-	
-		
-	
-	
+
 	@RequestMapping(value = "/createUser/", method = RequestMethod.POST, headers="Accept=application/json")
 	public ResponseEntity<String> createUser(@RequestBody UserEntity user, UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
 		

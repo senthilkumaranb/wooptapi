@@ -1,79 +1,98 @@
 package com.woopt.api.model;
 
-import java.security.Timestamp;
-
 public class UserShopVisit {
-	
+
 	private int userId;
 	private int shopId;
 	private int userShopStatus;
 	private int userShopIsFavourite;
 	private int userShopNoOfVisits;
-	private Timestamp userFirstVisted;
-	private Timestamp userLastVisited;
+	private String userFirstVisted;
+	private String userLastVisited;
 	private int userShopTotalTransaction;
 	private int userShopTotalRedeemed;
 	private int userShopRating;
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 	public int getShopId() {
 		return shopId;
 	}
+
 	public void setShopId(int shopId) {
 		this.shopId = shopId;
 	}
+
 	public int getUserShopStatus() {
 		return userShopStatus;
 	}
+
 	public void setUserShopStatus(int userShopStatus) {
 		this.userShopStatus = userShopStatus;
 	}
+
 	public int getUserShopIsFavourite() {
 		return userShopIsFavourite;
 	}
+
 	public void setUserShopIsFavourite(int userShopIsFavourite) {
 		this.userShopIsFavourite = userShopIsFavourite;
 	}
+
 	public int getUserShopNoOfVisits() {
 		return userShopNoOfVisits;
 	}
+
 	public void setUserShopNoOfVisits(int userShopNoOfVisits) {
 		this.userShopNoOfVisits = userShopNoOfVisits;
 	}
-	public Timestamp getUserFirstVisted() {
+
+	public String getUserFirstVisted() {
 		return userFirstVisted;
 	}
-	public void setUserFirstVisted(Timestamp userFirstVisted) {
+
+	public void setUserFirstVisted(String userFirstVisted) {
 		this.userFirstVisted = userFirstVisted;
 	}
-	public Timestamp getUserLastVisited() {
+
+	public String getUserLastVisited() {
 		return userLastVisited;
 	}
-	public void setUserLastVisited(Timestamp userLastVisited) {
+
+	public void setUserLastVisited(String userLastVisited) {
 		this.userLastVisited = userLastVisited;
 	}
+
 	public int getUserShopTotalTransaction() {
 		return userShopTotalTransaction;
 	}
+
 	public void setUserShopTotalTransaction(int userShopTotalTransaction) {
 		this.userShopTotalTransaction = userShopTotalTransaction;
 	}
+
 	public int getUserShopTotalRedeemed() {
 		return userShopTotalRedeemed;
 	}
+
 	public void setUserShopTotalRedeemed(int userShopTotalRedeemed) {
 		this.userShopTotalRedeemed = userShopTotalRedeemed;
 	}
+
 	public int getUserShopRating() {
 		return userShopRating;
 	}
+
 	public void setUserShopRating(int userShopRating) {
 		this.userShopRating = userShopRating;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -90,6 +109,7 @@ public class UserShopVisit {
 		result = prime * result + userShopTotalTransaction;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -127,7 +147,7 @@ public class UserShopVisit {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "UserShopVisit [userId=" + userId + ", shopId=" + shopId + ", userShopStatus=" + userShopStatus
@@ -136,6 +156,4 @@ public class UserShopVisit {
 				+ ", userShopTotalTransaction=" + userShopTotalTransaction + ", userShopTotalRedeemed="
 				+ userShopTotalRedeemed + ", userShopRating=" + userShopRating + "]";
 	}
-	
-	
 }

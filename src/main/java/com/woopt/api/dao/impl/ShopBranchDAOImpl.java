@@ -2,6 +2,8 @@ package com.woopt.api.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+
 import com.woopt.api.dao.ShopBranchDAO;
 import com.woopt.api.entity.ShopBranchEntity;
 
@@ -13,6 +15,12 @@ import com.woopt.api.entity.ShopBranchEntity;
  */
 public class ShopBranchDAOImpl implements ShopBranchDAO {
 
+	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
 	@Override
 	public void save(ShopBranchEntity shopbranch) {
 		// TODO Auto-generated method stub

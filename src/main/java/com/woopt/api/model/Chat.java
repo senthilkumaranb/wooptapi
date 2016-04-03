@@ -11,7 +11,7 @@ public class Chat {
 	private int chatReceiverGroupId;
 	private int chatActionTobeRead;
 	private int chatActionIsActionPresent;
-	private Timestamp createdDateTime;
+	private String createdDateTime;
 
 	private String[] chatParticipants;
 	
@@ -65,11 +65,11 @@ public class Chat {
 		this.chatActionIsActionPresent = chatActionIsActionPresent;
 	}
 
-	public Timestamp getCreatedDateTime() {
+	public String getCreatedDateTime() {
 		return createdDateTime;
 	}
 
-	public void setCreatedDateTime(Timestamp createdDateTime) {
+	public void setCreatedDateTime(String createdDateTime) {
 		this.createdDateTime = createdDateTime;
 	}
 
@@ -149,7 +149,4 @@ public class Chat {
 				+ ", chatParticipants=" + Arrays.toString(chatParticipants) + ", userChatMessages="
 				+ Arrays.toString(userChatMessages) + "]";
 	}
-	
-	
-
 }

@@ -48,6 +48,31 @@
 			<list>
 				<value>com.woopt.api.entity.UserEntity</value>
 				<value>com.woopt.api.entity.DeviceEntity</value>
+				<value>com.woopt.api.entity.AddressEntity</value>
+				<value>com.woopt.api.entity.FamilyEntity</value>
+				<value>com.woopt.api.entity.OfferEntity</value>
+				<value>com.woopt.api.entity.OfferNotificationEntity</value>
+				<value>com.woopt.api.entity.OfferUserPublishEntity</value>
+				<value>com.woopt.api.entity.OfferUserPublishSharedEntity</value>
+				<value>com.woopt.api.entity.OfferZoneScopeEntity</value>
+				<value>com.woopt.api.entity.ShopBranchEntity</value>
+				<value>com.woopt.api.entity.ShopEmployeeEntity</value>
+				<value>com.woopt.api.entity.ShopEntity</value>
+				<value>com.woopt.api.entity.ShopInfoEntity</value>
+				<value>com.woopt.api.entity.ShopLoyaltyCardEntity</value>
+				<value>com.woopt.api.entity.ShopLoyaltyCardStageEntity</value>
+				<value>com.woopt.api.entity.ShopLoyaltyProgramEntity</value>
+				<value>com.woopt.api.entity.ShopLoyaltyProgramStageEntity</value>
+				<value>com.woopt.api.entity.ShopReviewEntity</value>
+				<value>com.woopt.api.entity.ShopToCategoryEntity</value>
+				<value>com.woopt.api.entity.UserEntity</value>
+				<value>com.woopt.api.entity.UserInfoEntity</value>
+				<value>com.woopt.api.entity.UserShopCartEntity</value>
+				<value>com.woopt.api.entity.UserShopCheckInEntity</value>
+				<value>com.woopt.api.entity.UserShopOrderEntity</value>
+				<value>com.woopt.api.entity.UserShopVisitEntity</value>
+				<value>com.woopt.api.entity.UserToShopLoyaltyCardEntity</value>
+				<value>com.woopt.api.entity.UserToShopLoyaltyCardTransactionEntity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

@@ -1,14 +1,12 @@
 package com.woopt.api.model;
 
-import java.security.Timestamp;
-
 public class User {
 	
 	private String userFirstname;
 	
 	private String userLastname;
 	
-	private Timestamp userDOB;
+	private String userDOB;
 	
 	private String userGender;
 	
@@ -38,11 +36,11 @@ public class User {
 		this.userLastname = userLastname;
 	}
 
-	public Timestamp getUserDOB() {
+	public String getUserDOB() {
 		return userDOB;
 	}
 
-	public void setUserDOB(Timestamp userDOB) {
+	public void setUserDOB(String userDOB) {
 		this.userDOB = userDOB;
 	}
 
@@ -171,6 +169,4 @@ public class User {
 				+ ", userProfilePhoto=" + userProfilePhoto + ", userEmail=" + userEmail + ", userLoginMode="
 				+ userLoginMode + "]";
 	}
-	
-	
 }

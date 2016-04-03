@@ -130,7 +130,4 @@ public class ShopInfo {
 				+ ", shopDescription=" + shopDescription + ", shopChatStatus=" + shopChatStatus + ", shopFacebook="
 				+ shopFacebook + "]";
 	}
-	
-	
-
 }

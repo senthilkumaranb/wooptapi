@@ -126,7 +126,5 @@ public class ShopBranch {
 		return "ShopBranch [shopBranchesShopId=" + shopBranchesShopId + ", shopName=" + shopName + ", shopProprietorId="
 				+ shopProprietorId + ", shopPhone=" + shopPhone + ", shopMobile=" + shopMobile + ", shopBranchesStatus="
 				+ shopBranchesStatus + ", shopBranchesManagerId=" + shopBranchesManagerId + "]";
-	}
-	
-	
+	}	
 }
