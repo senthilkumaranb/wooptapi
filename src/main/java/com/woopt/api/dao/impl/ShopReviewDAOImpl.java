@@ -51,4 +51,10 @@ public class ShopReviewDAOImpl implements ShopReviewDAO {
 		
 	}
 
+	@Override
+	public List<ShopReviewEntity> list(int shopId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

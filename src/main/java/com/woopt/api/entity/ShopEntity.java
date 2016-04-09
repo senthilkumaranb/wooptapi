@@ -52,10 +52,10 @@ public class ShopEntity {
 	private String shopEmail;
 	
 	@Column(name = "SHOP_ADDRESS_ID")
-	private int shopAddressId;
+	private Integer shopAddressId;
 	
 	@Column(name = "SHOP_VERIFICATION_STATUS")
-	private int shopVerificationStatus;
+	private Integer shopVerificationStatus;
 	
 	@Column(name = "SHOP_STATUS")
 	private String shopStatus;
@@ -64,7 +64,7 @@ public class ShopEntity {
 	private String shopIsparent;
 	
 	@Column(name = "SHOP_PARENT_ID")
-	private int shopParentId;
+	private Integer shopParentId;
 	
 	@Column(name = "SHOP_QR_CODE")
 	private String shopQRCode;
@@ -333,166 +333,5 @@ public class ShopEntity {
 		this.lastUpdatedDatetime = lastUpdatedDatetime;
 	}
 
-	@Override
-	public String toString() {
-		return "Shop [shopId=" + shopId + ", shopName=" + shopName + ", shopProprietorId=" + shopProprietorId
-				+ ", shopPhone=" + shopPhone + ", shopMobile=" + shopMobile + ", shopProfilePhoto=" + shopProfilePhoto
-				+ ", shopPhotos=" + shopPhotos + ", shopEmail=" + shopEmail + ", shopAddressId=" + shopAddressId
-				+ ", shopVerificationStatus=" + shopVerificationStatus + ", shopStatus=" + shopStatus
-				+ ", shopIsparent=" + shopIsparent + ", shopParentId=" + shopParentId + ", shopQRCode=" + shopQRCode
-				+ ", shopType=" + shopType + ", shopSubcriptionType=" + shopSubcriptionType + ", createdDatetime="
-				+ createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((createdDatetime == null) ? 0 : createdDatetime.hashCode());
-		result = prime * result + ((lastUpdatedDatetime == null) ? 0 : lastUpdatedDatetime.hashCode());
-		result = prime * result + shopAddressId;
-		result = prime * result + ((shopEmail == null) ? 0 : shopEmail.hashCode());
-		result = prime * result + shopId;
-		result = prime * result + ((shopIsparent == null) ? 0 : shopIsparent.hashCode());
-		result = prime * result + ((shopMobile == null) ? 0 : shopMobile.hashCode());
-		result = prime * result + ((shopName == null) ? 0 : shopName.hashCode());
-		result = prime * result + shopParentId;
-		result = prime * result + ((shopPhone == null) ? 0 : shopPhone.hashCode());
-		result = prime * result + ((shopPhotos == null) ? 0 : shopPhotos.hashCode());
-		result = prime * result + ((shopProfilePhoto == null) ? 0 : shopProfilePhoto.hashCode());
-		result = prime * result + shopProprietorId;
-		result = prime * result + ((shopQRCode == null) ? 0 : shopQRCode.hashCode());
-		result = prime * result + ((shopStatus == null) ? 0 : shopStatus.hashCode());
-		result = prime * result + ((shopSubcriptionType == null) ? 0 : shopSubcriptionType.hashCode());
-		result = prime * result + ((shopType == null) ? 0 : shopType.hashCode());
-		result = prime * result + shopVerificationStatus;
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof ShopEntity)) {
-			return false;
-		}
-		ShopEntity other = (ShopEntity) obj;
-		if (createdDatetime == null) {
-			if (other.createdDatetime != null) {
-				return false;
-			}
-		} else if (!createdDatetime.equals(other.createdDatetime)) {
-			return false;
-		}
-		if (lastUpdatedDatetime == null) {
-			if (other.lastUpdatedDatetime != null) {
-				return false;
-			}
-		} else if (!lastUpdatedDatetime.equals(other.lastUpdatedDatetime)) {
-			return false;
-		}
-		if (shopAddressId != other.shopAddressId) {
-			return false;
-		}
-		if (shopEmail == null) {
-			if (other.shopEmail != null) {
-				return false;
-			}
-		} else if (!shopEmail.equals(other.shopEmail)) {
-			return false;
-		}
-		if (shopId != other.shopId) {
-			return false;
-		}
-		if (shopIsparent == null) {
-			if (other.shopIsparent != null) {
-				return false;
-			}
-		} else if (!shopIsparent.equals(other.shopIsparent)) {
-			return false;
-		}
-		if (shopMobile == null) {
-			if (other.shopMobile != null) {
-				return false;
-			}
-		} else if (!shopMobile.equals(other.shopMobile)) {
-			return false;
-		}
-		if (shopName == null) {
-			if (other.shopName != null) {
-				return false;
-			}
-		} else if (!shopName.equals(other.shopName)) {
-			return false;
-		}
-		if (shopParentId != other.shopParentId) {
-			return false;
-		}
-		if (shopPhone == null) {
-			if (other.shopPhone != null) {
-				return false;
-			}
-		} else if (!shopPhone.equals(other.shopPhone)) {
-			return false;
-		}
-		if (shopPhotos == null) {
-			if (other.shopPhotos != null) {
-				return false;
-			}
-		} else if (!shopPhotos.equals(other.shopPhotos)) {
-			return false;
-		}
-		if (shopProfilePhoto == null) {
-			if (other.shopProfilePhoto != null) {
-				return false;
-			}
-		} else if (!shopProfilePhoto.equals(other.shopProfilePhoto)) {
-			return false;
-		}
-		if (shopProprietorId != other.shopProprietorId) {
-			return false;
-		}
-		if (shopQRCode == null) {
-			if (other.shopQRCode != null) {
-				return false;
-			}
-		} else if (!shopQRCode.equals(other.shopQRCode)) {
-			return false;
-		}
-		if (shopStatus == null) {
-			if (other.shopStatus != null) {
-				return false;
-			}
-		} else if (!shopStatus.equals(other.shopStatus)) {
-			return false;
-		}
-		if (shopSubcriptionType == null) {
-			if (other.shopSubcriptionType != null) {
-				return false;
-			}
-		} else if (!shopSubcriptionType.equals(other.shopSubcriptionType)) {
-			return false;
-		}
-		if (shopType == null) {
-			if (other.shopType != null) {
-				return false;
-			}
-		} else if (!shopType.equals(other.shopType)) {
-			return false;
-		}
-		if (shopVerificationStatus != other.shopVerificationStatus) {
-			return false;
-		}
-		return true;
-	}
+	
 }

@@ -10,6 +10,8 @@ public interface ShopReviewDAO {
 	
 	public List<ShopReviewEntity> list();
 	
+	public List<ShopReviewEntity> list(int shopId);
+	
 	public ShopReviewEntity findById(long shopreviewId);
 	
 	public void  delete(int shopreviewId);

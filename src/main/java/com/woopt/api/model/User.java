@@ -2,6 +2,8 @@ package com.woopt.api.model;
 
 public class User {
 	
+	private int userId;
+	
 	private String userFirstname;
 	
 	private String userLastname;
@@ -19,6 +21,15 @@ public class User {
 	private String userEmail;
 	
 	private int userLoginMode;
+
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
 	public String getUserFirstname() {
 		return userFirstname;
@@ -100,6 +111,7 @@ public class User {
 		result = prime * result + ((userEmail == null) ? 0 : userEmail.hashCode());
 		result = prime * result + ((userFirstname == null) ? 0 : userFirstname.hashCode());
 		result = prime * result + ((userGender == null) ? 0 : userGender.hashCode());
+		result = prime * result + userId;
 		result = prime * result + ((userLastname == null) ? 0 : userLastname.hashCode());
 		result = prime * result + userLoginMode;
 		result = prime * result + ((userMobile == null) ? 0 : userMobile.hashCode());
@@ -137,6 +149,8 @@ public class User {
 				return false;
 		} else if (!userGender.equals(other.userGender))
 			return false;
+		if (userId != other.userId)
+			return false;
 		if (userLastname == null) {
 			if (other.userLastname != null)
 				return false;
@@ -164,9 +178,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userFirstname=" + userFirstname + ", userLastname=" + userLastname + ", userDOB=" + userDOB
-				+ ", userGender=" + userGender + ", userPhone=" + userPhone + ", userMobile=" + userMobile
-				+ ", userProfilePhoto=" + userProfilePhoto + ", userEmail=" + userEmail + ", userLoginMode="
-				+ userLoginMode + "]";
+		return "User [userId=" + userId + ", userFirstname=" + userFirstname + ", userLastname=" + userLastname
+				+ ", userDOB=" + userDOB + ", userGender=" + userGender + ", userPhone=" + userPhone + ", userMobile="
+				+ userMobile + ", userProfilePhoto=" + userProfilePhoto + ", userEmail=" + userEmail
+				+ ", userLoginMode=" + userLoginMode + "]";
 	}
 }

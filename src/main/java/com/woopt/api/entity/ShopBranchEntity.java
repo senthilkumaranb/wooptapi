@@ -31,7 +31,7 @@ public class ShopBranchEntity {
 	private int shopBranchesId;
 	
 	@Column(name = "SHOP_ID")
-	private String shopId;
+	private int shopId;
 	
 	@Column(name = "SHOP_BRANCHES_SHOP_ID")
 	private int shopBranchesShopId;
@@ -65,14 +65,14 @@ public class ShopBranchEntity {
 	/**
 	 * @return the shopId
 	 */
-	public String getShopId() {
+	public int getShopId() {
 		return shopId;
 	}
 
 	/**
 	 * @param shopId the shopId to set
 	 */
-	public void setShopId(String shopId) {
+	public void setShopId(int shopId) {
 		this.shopId = shopId;
 	}
 
@@ -146,73 +146,4 @@ public class ShopBranchEntity {
 		this.lastUpdatedDatetime = lastUpdatedDatetime;
 	}
 
-	@Override
-	public String toString() {
-		return "ShopBranches [shopBranchesId=" + shopBranchesId + ", shopId=" + shopId + ", shopBranchesShopId="
-				+ shopBranchesShopId + ", shopBranchesStatus=" + shopBranchesStatus + ", shopBranchesManagerId="
-				+ shopBranchesManagerId + ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime="
-				+ lastUpdatedDatetime + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((createdDatetime == null) ? 0 : createdDatetime.hashCode());
-		result = prime * result + ((lastUpdatedDatetime == null) ? 0 : lastUpdatedDatetime.hashCode());
-		result = prime * result + shopBranchesId;
-		result = prime * result + shopBranchesManagerId;
-		result = prime * result + shopBranchesShopId;
-		result = prime * result + shopBranchesStatus;
-		result = prime * result + ((shopId == null) ? 0 : shopId.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof ShopBranchEntity)) {
-			return false;
-		}
-		ShopBranchEntity other = (ShopBranchEntity) obj;
-		if (createdDatetime == null) {
-			if (other.createdDatetime != null) {
-				return false;
-			}
-		} else if (!createdDatetime.equals(other.createdDatetime)) {
-			return false;
-		}
-		if (lastUpdatedDatetime == null) {
-			if (other.lastUpdatedDatetime != null) {
-				return false;
-			}
-		} else if (!lastUpdatedDatetime.equals(other.lastUpdatedDatetime)) {
-			return false;
-		}
-		if (shopBranchesId != other.shopBranchesId) {
-			return false;
-		}
-		if (shopBranchesManagerId != other.shopBranchesManagerId) {
-			return false;
-		}
-		if (shopBranchesShopId != other.shopBranchesShopId) {
-			return false;
-		}
-		if (shopBranchesStatus != other.shopBranchesStatus) {
-			return false;
-		}
-		if (shopId == null) {
-			if (other.shopId != null) {
-				return false;
-			}
-		} else if (!shopId.equals(other.shopId)) {
-			return false;
-		}
-		return true;
-	}
 }

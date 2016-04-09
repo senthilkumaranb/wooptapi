@@ -2,7 +2,12 @@ package com.woopt.api.dao.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.woopt.api.dao.ShopBranchDAO;
 import com.woopt.api.entity.ShopBranchEntity;
@@ -15,6 +20,8 @@ import com.woopt.api.entity.ShopBranchEntity;
  */
 public class ShopBranchDAOImpl implements ShopBranchDAO {
 
+	private static final Logger LOGGER = Logger.getLogger(UserDAOImpl.class.getName());
+	
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -49,6 +56,12 @@ public class ShopBranchDAOImpl implements ShopBranchDAO {
 	public void updateShopBranch(ShopBranchEntity shopbranch) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<ShopBranchEntity> list(int shopId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

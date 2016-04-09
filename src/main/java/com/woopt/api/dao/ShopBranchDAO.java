@@ -10,6 +10,8 @@ public interface ShopBranchDAO {
 	
 	public List<ShopBranchEntity> list();
 	
+	public List<ShopBranchEntity> list(int shopId);
+	
 	public ShopBranchEntity findById(long shopbranchId);
 	
 	public void  delete(int shopbranchesId);

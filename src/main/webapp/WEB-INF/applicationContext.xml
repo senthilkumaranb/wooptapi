@@ -91,5 +91,25 @@
 	<bean id="deviceDAO" class="com.woopt.api.dao.impl.DeviceDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
+	
+		<bean id="shopDAO" class="com.woopt.api.dao.impl.ShopDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="shopInfoDAO" class="com.woopt.api.dao.impl.ShopInfoDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="shopBranchDAO" class="com.woopt.api.dao.impl.ShopBranchDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="shopEmployeeDAO" class="com.woopt.api.dao.impl.ShopEmployeeDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="shopReviewDAO" class="com.woopt.api.dao.impl.ShopReviewDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
 
 </beans>

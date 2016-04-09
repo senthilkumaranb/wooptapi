@@ -1,6 +1,7 @@
 package com.woopt.api.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class ShopModel {
 	
@@ -8,7 +9,7 @@ public class ShopModel {
 	
 	private ShopInfo shopInfo;
 	
-	private ShopBranch[] shopBranches;
+	private List<ShopBranch> shopBranches;
 	
 	private ShopEmployee[] shopEmployee;
 	
@@ -36,11 +37,11 @@ public class ShopModel {
 		this.shopInfo = shopInfo;
 	}
 
-	public ShopBranch[] getShopBranches() {
+	public List<ShopBranch> getShopBranches() {
 		return shopBranches;
 	}
 
-	public void setShopBranches(ShopBranch[] shopBranches) {
+	public void setShopBranches(List<ShopBranch> shopBranches) {
 		this.shopBranches = shopBranches;
 	}
 
@@ -90,7 +91,7 @@ public class ShopModel {
 		int result = 1;
 		result = prime * result + Arrays.hashCode(offer);
 		result = prime * result + ((shop == null) ? 0 : shop.hashCode());
-		result = prime * result + Arrays.hashCode(shopBranches);
+		result = prime * result + ((shopBranches == null) ? 0 : shopBranches.hashCode());
 		result = prime * result + Arrays.hashCode(shopEmployee);
 		result = prime * result + ((shopInfo == null) ? 0 : shopInfo.hashCode());
 		result = prime * result + ((shopLoyaltyCard == null) ? 0 : shopLoyaltyCard.hashCode());
@@ -115,7 +116,10 @@ public class ShopModel {
 				return false;
 		} else if (!shop.equals(other.shop))
 			return false;
-		if (!Arrays.equals(shopBranches, other.shopBranches))
+		if (shopBranches == null) {
+			if (other.shopBranches != null)
+				return false;
+		} else if (!shopBranches.equals(other.shopBranches))
 			return false;
 		if (!Arrays.equals(shopEmployee, other.shopEmployee))
 			return false;
@@ -141,7 +145,7 @@ public class ShopModel {
 
 	@Override
 	public String toString() {
-		return "ShopModel [shop=" + shop + ", shopInfo=" + shopInfo + ", shopBranches=" + Arrays.toString(shopBranches)
+		return "ShopModel [shop=" + shop + ", shopInfo=" + shopInfo + ", shopBranches=" + shopBranches
 				+ ", shopEmployee=" + Arrays.toString(shopEmployee) + ", shopReview=" + Arrays.toString(shopReview)
 				+ ", shopLoyaltyCard=" + shopLoyaltyCard + ", shopLoyaltyProgram=" + shopLoyaltyProgram + ", offer="
 				+ Arrays.toString(offer) + "]";
