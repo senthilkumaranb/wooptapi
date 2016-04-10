@@ -37,10 +37,10 @@ public class ShopBranchEntity {
 	private int shopBranchesShopId;
 	
 	@Column(name = "SHOP_BRANCHES_STATUS")
-	private int shopBranchesStatus;
+	private Integer shopBranchesStatus;
 	
 	@Column(name = "SHOP_BRANCHES_MANAGER_ID")
-	private int shopBranchesManagerId;
+	private Integer shopBranchesManagerId;
 	
 	@Column(name = "CREATED_DATETIME")
 	private Timestamp createdDatetime;

@@ -58,7 +58,7 @@ public class ShopEntity {
 	private Integer shopVerificationStatus;
 	
 	@Column(name = "SHOP_STATUS")
-	private String shopStatus;
+	private Integer shopStatus;
 	
 	@Column(name = "SHOP_ISPARENT")
 	private String shopIsparent;
@@ -224,14 +224,14 @@ public class ShopEntity {
 	/**
 	 * @return the shopStatus
 	 */
-	public String getShopStatus() {
+	public int getShopStatus() {
 		return shopStatus;
 	}
 
 	/**
 	 * @param shopStatus the shopStatus to set
 	 */
-	public void setShopStatus(String shopStatus) {
+	public void setShopStatus(int shopStatus) {
 		this.shopStatus = shopStatus;
 	}
 

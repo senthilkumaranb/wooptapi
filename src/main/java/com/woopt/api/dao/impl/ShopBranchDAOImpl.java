@@ -3,6 +3,7 @@ package com.woopt.api.dao.impl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.woopt.api.dao.ShopBranchDAO;
 import com.woopt.api.entity.ShopBranchEntity;
+import com.woopt.api.entity.ShopEntity;
 
 /**
  * DAO Implementation
@@ -41,7 +43,7 @@ public class ShopBranchDAOImpl implements ShopBranchDAO {
 	}
 
 	@Override
-	public ShopBranchEntity findById(long shopbranchId) {
+	public ShopBranchEntity findById(long shopBranchId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -49,7 +51,7 @@ public class ShopBranchDAOImpl implements ShopBranchDAO {
 	@Override
 	public void delete(int shopbranchesId) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -61,7 +63,15 @@ public class ShopBranchDAOImpl implements ShopBranchDAO {
 	@Override
 	public List<ShopBranchEntity> list(int shopId) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("--------++-----------");
+		Session session = this.sessionFactory.openSession();
+		System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from ShopBranchEntity W where W.shopId=:shopID");
+		query.setParameter("shopID",shopId);
+		@SuppressWarnings("unchecked")
+		List<ShopBranchEntity> shopBranchesList = query.list();
+		session.close();
+		return shopBranchesList;
 	}
 
 }

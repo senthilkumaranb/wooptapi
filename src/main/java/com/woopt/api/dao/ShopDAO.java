@@ -23,5 +23,6 @@ public interface ShopDAO {
 	
 	public String getShopName(int shopId);
 	
+	public List<ShopEntity> getShopBranches(int shopId);
 	
 }

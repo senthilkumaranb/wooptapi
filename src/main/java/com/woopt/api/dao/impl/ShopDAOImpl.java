@@ -48,7 +48,15 @@ public class ShopDAOImpl implements ShopDAO {
 	@Override
 	public ShopEntity findById(long shopId) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("--------++-----------");
+		Session session = this.sessionFactory.openSession();
+		System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from ShopEntity W where W.shopId=:shopID");
+		query.setParameter("shopID",shopId);
+		@SuppressWarnings("unchecked")
+		List<ShopEntity> shopEntity = query.list();
+		session.close();
+		return shopEntity.get(0);
 	}
 
 	@Override
@@ -89,6 +97,22 @@ public class ShopDAOImpl implements ShopDAO {
 		List<ShopEntity> shopList = query.list();
 		session.close();
 		return shopList;
+	}
+	
+	//@SuppressWarnings("unchecked")
+	@Override
+	public List<ShopEntity> getShopBranches(int shopId) {
+		// TODO Auto-generated method stub
+
+		System.out.println("--------++-----------");
+		Session session = this.sessionFactory.openSession();
+		System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from ShopEntity W where W.shopParentId=:shopID and W.shopIsparent=0");
+		query.setParameter("shopID",shopId);
+		List<ShopEntity> shopList = query.list();
+		session.close();
+		return shopList;
+
 	}
 
 	@Override

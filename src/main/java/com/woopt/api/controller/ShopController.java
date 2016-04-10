@@ -127,22 +127,32 @@ public class ShopController {
 			        shopModel.setShopInfo(shopInfo);
 			        LOGGER.info("shopModel ShopInfo Opening hours: " + shopModel.getShopInfo().getShopOpeningHours());
 					
-					/*//ShopBranches
+					//ShopBranches
 					List<ShopBranch> shopBranches = new ArrayList<ShopBranch>();
-					List<ShopBranchEntity> shopBranchEntities = new ArrayList<ShopBranchEntity>();
-					shopBranchEntities = shopBranchDAO.list(se.getShopId());
+					List<ShopEntity> shopBranchEntities = new ArrayList<ShopEntity>();
+					shopBranchEntities = shopDAO.getShopBranches(se.getShopId());
 					
 					//Get all the shopReviewEntities records and add to ShopReview Model
-					for (ShopBranchEntity sbe: shopBranchEntities){
+					for (ShopEntity sbe: shopBranchEntities){
+						
 						ShopBranch shopBranch = new ShopBranch();
-						shopBranch.setShopName(shopDAO.getShopName(sbe.getShopId()));
+						shopBranch.setShopBranchesShopId(sbe.getShopId());
+						shopBranch.setShopName(sbe.getShopName());
+						shopBranch.setShopProprietorId(sbe.getShopProprietorId());
+						shopBranch.setShopPhone(sbe.getShopPhone());
+						shopBranch.setShopMobile(sbe.getShopMobile());
+						shopBranch.setShopBranchesManagerId(sbe.getShopProprietorId());
+						shopBranch.setShopBranchesStatus(sbe.getShopStatus());
+						
 						shopBranches.add(shopBranch);
+						shopBranch = null;
 					}
 					
-					shopModel.setShopBranches(shopBranches);
+					if (shopBranches.size()!=0)
+						shopModel.setShopBranches(shopBranches);
 
 					
-					//ShopReviews
+					/*//ShopReviews
 					List<ShopReview> shopReviews = new ArrayList<ShopReview>();
 					List<ShopReviewEntity> shopReviewEntities = new ArrayList<ShopReviewEntity>();
 					shopReviewEntities = shopReviewDAO.list(se.getShopId());
@@ -155,7 +165,9 @@ public class ShopController {
 					}*/
 					
 					shopModels.add(shopModel);
-					
+					shop=null;
+					shopInfo=null;
+					shopBranches=null;
 					shopModel = null;
 
 		        }
