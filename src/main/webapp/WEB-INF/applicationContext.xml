@@ -111,5 +111,14 @@
 	<bean id="shopReviewDAO" class="com.woopt.api.dao.impl.ShopReviewDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
+	
+	<bean id="shopLoyaltyCardDAO" class="com.woopt.api.dao.impl.ShopLoyaltyCardDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="shopLoyaltyCardStageDAO" class="com.woopt.api.dao.impl.ShopLoyaltyCardStageDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
 
 </beans>

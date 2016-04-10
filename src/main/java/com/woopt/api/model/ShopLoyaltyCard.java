@@ -1,6 +1,7 @@
 package com.woopt.api.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class ShopLoyaltyCard {
 	
@@ -16,11 +17,11 @@ public class ShopLoyaltyCard {
     
     private String shopLoyaltyCardExpiryDate;
     
-    private String shopLoyaltyProgramType;
+    private String shopLoyaltyCardType;
     
     private int shopLoyaltyCardNoOfStages;
     
-    private ShopLoyaltyCardStage[] shopLoyaltyCardStage;
+    private List<ShopLoyaltyCardStage> shopLoyaltyCardStage;
 
 	public int getShopLoyaltyCardId() {
 		return shopLoyaltyCardId;
@@ -70,12 +71,12 @@ public class ShopLoyaltyCard {
 		this.shopLoyaltyCardExpiryDate = shopLoyaltyCardExpiryDate;
 	}
 
-	public String getShopLoyaltyProgramType() {
-		return shopLoyaltyProgramType;
+	public String getShopLoyaltyCardType() {
+		return shopLoyaltyCardType;
 	}
 
-	public void setShopLoyaltyProgramType(String shopLoyaltyProgramType) {
-		this.shopLoyaltyProgramType = shopLoyaltyProgramType;
+	public void setShopLoyaltyCardType(String shopLoyaltyCardType) {
+		this.shopLoyaltyCardType = shopLoyaltyCardType;
 	}
 
 	public int getShopLoyaltyCardNoOfStages() {
@@ -86,11 +87,11 @@ public class ShopLoyaltyCard {
 		this.shopLoyaltyCardNoOfStages = shopLoyaltyCardNoOfStages;
 	}
 
-	public ShopLoyaltyCardStage[] getShopLoyaltyCardStage() {
+	public List<ShopLoyaltyCardStage> getShopLoyaltyCardStage() {
 		return shopLoyaltyCardStage;
 	}
 
-	public void setShopLoyaltyCardStage(ShopLoyaltyCardStage[] shopLoyaltyCardStage) {
+	public void setShopLoyaltyCardStage(List<ShopLoyaltyCardStage> shopLoyaltyCardStage) {
 		this.shopLoyaltyCardStage = shopLoyaltyCardStage;
 	}
 
@@ -103,10 +104,10 @@ public class ShopLoyaltyCard {
 		result = prime * result + shopLoyaltyCardIsSameForAllbranches;
 		result = prime * result + ((shopLoyaltyCardName == null) ? 0 : shopLoyaltyCardName.hashCode());
 		result = prime * result + shopLoyaltyCardNoOfStages;
-		result = prime * result + Arrays.hashCode(shopLoyaltyCardStage);
+		result = prime * result + ((shopLoyaltyCardStage == null) ? 0 : shopLoyaltyCardStage.hashCode());
 		result = prime * result + ((shopLoyaltyCardStartDate == null) ? 0 : shopLoyaltyCardStartDate.hashCode());
 		result = prime * result + shopLoyaltyCardStatus;
-		result = prime * result + ((shopLoyaltyProgramType == null) ? 0 : shopLoyaltyProgramType.hashCode());
+		result = prime * result + ((shopLoyaltyCardType == null) ? 0 : shopLoyaltyCardType.hashCode());
 		return result;
 	}
 
@@ -135,7 +136,10 @@ public class ShopLoyaltyCard {
 			return false;
 		if (shopLoyaltyCardNoOfStages != other.shopLoyaltyCardNoOfStages)
 			return false;
-		if (!Arrays.equals(shopLoyaltyCardStage, other.shopLoyaltyCardStage))
+		if (shopLoyaltyCardStage == null) {
+			if (other.shopLoyaltyCardStage != null)
+				return false;
+		} else if (!shopLoyaltyCardStage.equals(other.shopLoyaltyCardStage))
 			return false;
 		if (shopLoyaltyCardStartDate == null) {
 			if (other.shopLoyaltyCardStartDate != null)
@@ -144,10 +148,10 @@ public class ShopLoyaltyCard {
 			return false;
 		if (shopLoyaltyCardStatus != other.shopLoyaltyCardStatus)
 			return false;
-		if (shopLoyaltyProgramType == null) {
-			if (other.shopLoyaltyProgramType != null)
+		if (shopLoyaltyCardType == null) {
+			if (other.shopLoyaltyCardType != null)
 				return false;
-		} else if (!shopLoyaltyProgramType.equals(other.shopLoyaltyProgramType))
+		} else if (!shopLoyaltyCardType.equals(other.shopLoyaltyCardType))
 			return false;
 		return true;
 	}
@@ -158,7 +162,7 @@ public class ShopLoyaltyCard {
 				+ shopLoyaltyCardName + ", shopLoyaltyCardIsSameForAllbranches=" + shopLoyaltyCardIsSameForAllbranches
 				+ ", shopLoyaltyCardStatus=" + shopLoyaltyCardStatus + ", shopLoyaltyCardStartDate="
 				+ shopLoyaltyCardStartDate + ", shopLoyaltyCardExpiryDate=" + shopLoyaltyCardExpiryDate
-				+ ", shopLoyaltyProgramType=" + shopLoyaltyProgramType + ", shopLoyaltyCardNoOfStages="
-				+ shopLoyaltyCardNoOfStages + ", shopLoyaltyCardStage=" + Arrays.toString(shopLoyaltyCardStage) + "]";
+				+ ", shopLoyaltyCardType=" + shopLoyaltyCardType + ", shopLoyaltyCardNoOfStages="
+				+ shopLoyaltyCardNoOfStages + ", shopLoyaltyCardStage=" + shopLoyaltyCardStage + "]";
 	}   
 }

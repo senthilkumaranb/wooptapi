@@ -11,6 +11,8 @@ public interface ShopLoyaltyCardDAO {
 	
 	public List<ShopLoyaltyCardEntity> list();
 	
+	public ShopLoyaltyCardEntity getbyShopId(int shopId);
+	
 	public ShopLoyaltyCardEntity findById(long shopId);
 	
 	public void  delete(int ShopLoyaltyCardId);

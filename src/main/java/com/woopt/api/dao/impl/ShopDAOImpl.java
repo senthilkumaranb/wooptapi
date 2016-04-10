@@ -46,7 +46,7 @@ public class ShopDAOImpl implements ShopDAO {
 	}
 
 	@Override
-	public ShopEntity findById(long shopId) {
+	public ShopEntity findById(int shopId) {
 		// TODO Auto-generated method stub
 		System.out.println("--------++-----------");
 		Session session = this.sessionFactory.openSession();

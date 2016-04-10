@@ -18,15 +18,19 @@ import com.woopt.api.dao.ShopInfoDAO;
 import com.woopt.api.dao.ShopLoyaltyCardDAO;
 import com.woopt.api.dao.ShopLoyaltyCardStageDAO;
 import com.woopt.api.dao.ShopReviewDAO;
+import com.woopt.api.dao.impl.ShopLoyaltyCardDAOImpl;
 import com.woopt.api.entity.ShopBranchEntity;
 import com.woopt.api.entity.ShopEntity;
 import com.woopt.api.entity.ShopInfoEntity;
+import com.woopt.api.entity.ShopLoyaltyCardEntity;
+import com.woopt.api.entity.ShopLoyaltyCardStageEntity;
 import com.woopt.api.entity.ShopReviewEntity;
 import com.woopt.api.model.Offer;
 import com.woopt.api.model.Shop;
 import com.woopt.api.model.ShopBranch;
 import com.woopt.api.model.ShopInfo;
 import com.woopt.api.model.ShopLoyaltyCard;
+import com.woopt.api.model.ShopLoyaltyCardStage;
 import com.woopt.api.model.ShopLoyaltyProgram;
 import com.woopt.api.model.ShopModel;
 import com.woopt.api.model.ShopReview;
@@ -52,6 +56,12 @@ public class ShopService {
 	@Autowired
 	ShopReviewDAO shopReviewDAO;
 	
+	@Autowired
+	ShopLoyaltyCardDAO shopLoyaltyCardDAO;
+	
+	@Autowired
+	ShopLoyaltyCardStageDAO shopLoyaltyCardStageDAO;
+	
 	@Transactional
 	public List<ShopModel> getShopModelsbyUser(int userId){
 		
@@ -68,6 +78,10 @@ public class ShopService {
 			List<ShopBranch> sb = this.getShopBranches(shopId);
 			if (sb.size()!=0)
 					shopModel.setShopBranches(sb);
+			
+			ShopLoyaltyCard shopLoyaltyCard = this.getShopLoyaltyCard(shopId);
+			if (shopLoyaltyCard!=null)
+				shopModel.setShopLoyaltyCard(shopLoyaltyCard);
 			
 			shopModels.add(shopModel);
 			LOGGER.info("shopModel data >>>>> :" + shopModel);
@@ -156,8 +170,42 @@ public class ShopService {
 		return null;
 	}
 	
+	@Transactional
 	public ShopLoyaltyCard getShopLoyaltyCard(int shopId){
-		return null;
+		ShopLoyaltyCard shopLoyaltyCard = new ShopLoyaltyCard();
+		List<ShopLoyaltyCardStage> shopLoyaltyCardStages = new ArrayList<ShopLoyaltyCardStage>();
+
+		ShopLoyaltyCardEntity shopLoyaltyCardEntity = new ShopLoyaltyCardEntity();
+		shopLoyaltyCardEntity = shopLoyaltyCardDAO.getbyShopId(shopId);
+		
+		//Set the ShopLoyaltyCard model
+		if (shopLoyaltyCardEntity!=null){
+			shopLoyaltyCard.setShopLoyaltyCardId(shopLoyaltyCardEntity.getShopLoyaltyCardId());
+			shopLoyaltyCard.setShopLoyaltyCardName(shopLoyaltyCardEntity.getShopLoyaltyCardName());
+			
+			LOGGER.info("ShopLoyaltyCard...." + shopLoyaltyCard);
+			
+			List<ShopLoyaltyCardStageEntity> shopLoyaltyCardStageEntities = new ArrayList<ShopLoyaltyCardStageEntity>();
+			shopLoyaltyCardStageEntities = shopLoyaltyCardStageDAO.getbyId(shopLoyaltyCardEntity.getShopLoyaltyCardId());
+			
+			for (ShopLoyaltyCardStageEntity sse: shopLoyaltyCardStageEntities){
+				ShopLoyaltyCardStage shopLoyaltyCardStage = new ShopLoyaltyCardStage();
+				shopLoyaltyCardStage.setShopLoyaltyCardStageNo(sse.getShopLoyaltyCardStageId());
+				shopLoyaltyCardStage.setShopLoyaltyCardStageIsRedeemable(sse.getShopLoyaltyCardStageIsRedeemable());
+				shopLoyaltyCardStage.setShopLoyaltyCardStageReward(sse.getShopLoyaltyCardStageReward());
+				shopLoyaltyCardStage.setShopLoyaltyCardStageRewardPhoto(sse.getShopLoyaltyCardStageRewardPhoto());
+				shopLoyaltyCardStage.setShopLoyaltyCardStageStatus(sse.getShopLoyaltyCardStageStatus());
+				shopLoyaltyCardStages.add(shopLoyaltyCardStage);
+				shopLoyaltyCardStage = null;
+			}
+
+			shopLoyaltyCard.setShopLoyaltyCardStage(shopLoyaltyCardStages);
+			return shopLoyaltyCard;
+		} 
+		else {
+			return null;
+		}
+		
 	}
 	
 	public ShopLoyaltyProgram getShopLoyaltyProgram(int shopId){

@@ -34,10 +34,10 @@ public class ShopLoyaltyCardStageEntity {
 	private int shopLoyaltyCardId;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_STAGE_NO")
-	private int shopLoyaltyCardStageNo;
+	private Integer shopLoyaltyCardStageNo;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_STAGE_IS_REDEEMABLE")
-	private int shopLoyaltyCardStageIsRedeemable;
+	private Integer shopLoyaltyCardStageIsRedeemable;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_STAGE_REWARD")
 	private String shopLoyaltyCardStageReward;
@@ -46,7 +46,7 @@ public class ShopLoyaltyCardStageEntity {
 	private String shopLoyaltyCardStageRewardPhoto;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_STAGE_STATUS")
-	private int shopLoyaltyCardStageStatus;
+	private Integer shopLoyaltyCardStageStatus;
 
 	@Column(name = "CREATED_DATETIME")
 	private Timestamp createdDatetime;

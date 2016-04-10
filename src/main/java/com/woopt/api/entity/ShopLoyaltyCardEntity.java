@@ -37,10 +37,10 @@ public class ShopLoyaltyCardEntity {
 	private String shopLoyaltyCardName;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_ISSAME_FOR_ALLBRANCHES")
-	private int shopLoyaltyCardIsSameForAllBranches;
+	private Integer shopLoyaltyCardIsSameForAllBranches;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_STATUS")
-	private int shopLoyaltyCardStatus;
+	private Integer shopLoyaltyCardStatus;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_START_DATE")
 	private Timestamp shopLoyaltyCardStartDate;
@@ -49,10 +49,10 @@ public class ShopLoyaltyCardEntity {
 	private Timestamp shopLoyaltyCardEndDate;
 
 	@Column(name = "SHOP_LOYALTY_CARD_TYPE_ID")
-	private int shopLoyaltyCardTypeId;
+	private Integer shopLoyaltyCardTypeId;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_NO_OF_STAGES")
-	private int shopLoyaltyCardNoOfStages;
+	private Integer shopLoyaltyCardNoOfStages;
 	
 	@Column(name = "CREATED_DATETIME")
 	private Timestamp createdDatetime;

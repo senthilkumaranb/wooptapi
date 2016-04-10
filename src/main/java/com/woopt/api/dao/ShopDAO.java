@@ -15,7 +15,7 @@ public interface ShopDAO {
 	
 	public List<ShopEntity> getUserShops(int userId);
 	
-	public ShopEntity findById(long shopId);
+	public ShopEntity findById(int shopId);
 	
 	public void  delete(int shopId);
 	
