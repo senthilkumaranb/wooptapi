@@ -89,9 +89,9 @@ public class ShopDAOImpl implements ShopDAO {
 	public List<ShopEntity> getUserShops(int userId) {
 		// TODO Auto-generated method stub
 
-		System.out.println("--------++-----------");
+		System.out.println("--------+ getUserShops +-----------");
 		Session session = this.sessionFactory.openSession();
-		System.out.println("--------++****************-----------" + session);
+		//System.out.println("--------++*******getUserShops*********-----------" + session);
 		Query query = session.createQuery("from ShopEntity W where W.shopProprietorId=:userID");
 		query.setParameter("userID",userId);
 		List<ShopEntity> shopList = query.list();
@@ -104,9 +104,9 @@ public class ShopDAOImpl implements ShopDAO {
 	public List<ShopEntity> getShopBranches(int shopId) {
 		// TODO Auto-generated method stub
 
-		System.out.println("--------++-----------");
+		System.out.println("--------+ getShopBranches +-----------");
 		Session session = this.sessionFactory.openSession();
-		System.out.println("--------++****************-----------" + session);
+		//System.out.println("--------++****************-----------" + session);
 		Query query = session.createQuery("from ShopEntity W where W.shopParentId=:shopID and W.shopIsparent=0");
 		query.setParameter("shopID",shopId);
 		List<ShopEntity> shopList = query.list();
@@ -118,9 +118,9 @@ public class ShopDAOImpl implements ShopDAO {
 	@Override
 	public String getShopName(int shopId) {
 		// TODO Auto-generated method stub
-		System.out.println("--------++-----------");
+		System.out.println("--------+ getShopName +-----------");
 		Session session = this.sessionFactory.openSession();
-		System.out.println("--------++****************-----------" + session);
+		//System.out.println("--------++****************-----------" + session);
 		Query query = session.createQuery("from WOOPT_SHOP W where W.shop_id=:shopId");
 		query.setInteger(shopId, shopId);
 		List result = query.list();

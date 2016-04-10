@@ -64,9 +64,9 @@ public class ShopInfoDAOImpl implements ShopInfoDAO {
 	@Override
 	public ShopInfoEntity list(int shopId) {
 		// TODO Auto-generated method stub
-		System.out.println("--------++-----------");
+		System.out.println("--------+ ShopInfo +-----------");
 		Session session = this.sessionFactory.openSession();
-		System.out.println("--------++****************-----------" + session);
+		//System.out.println("--------++****************-----------" + session);
 		Query query = session.createQuery("from ShopInfoEntity W where W.shopId=:shopID");
 		query.setParameter("shopID",shopId);
 		List<ShopInfoEntity> shopInfoList = query.list();

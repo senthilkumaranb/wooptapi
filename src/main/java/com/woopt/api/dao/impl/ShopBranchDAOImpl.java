@@ -63,9 +63,9 @@ public class ShopBranchDAOImpl implements ShopBranchDAO {
 	@Override
 	public List<ShopBranchEntity> list(int shopId) {
 		// TODO Auto-generated method stub
-		System.out.println("--------++-----------");
+		System.out.println("--------+ ShopBranch +-----------");
 		Session session = this.sessionFactory.openSession();
-		System.out.println("--------++****************-----------" + session);
+		//System.out.println("--------++****************-----------" + session);
 		Query query = session.createQuery("from ShopBranchEntity W where W.shopId=:shopID");
 		query.setParameter("shopID",shopId);
 		@SuppressWarnings("unchecked")
