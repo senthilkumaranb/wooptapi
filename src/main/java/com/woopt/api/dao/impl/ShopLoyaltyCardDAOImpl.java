@@ -53,7 +53,7 @@ public class ShopLoyaltyCardDAOImpl implements ShopLoyaltyCardDAO {
 		@SuppressWarnings("unchecked")
 		List<ShopLoyaltyCardEntity> shopLoyaltyCardEntity = query.list();
 		session.close();
-		System.out.println("+++++shop loyalty card record+++++"+shopLoyaltyCardEntity.get(0));
+		//System.out.println("+++++shop loyalty card record+++++"+shopLoyaltyCardEntity.get(0));
 		if (shopLoyaltyCardEntity.size()!=0)
 			return shopLoyaltyCardEntity.get(0);
 		else

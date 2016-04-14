@@ -1,9 +1,11 @@
 package com.woopt.api.service;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.json.*;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +38,20 @@ import com.woopt.api.model.ShopModel;
 import com.woopt.api.model.ShopReview;
 import com.woopt.api.model.UserModel;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 @Service
 public class ShopService {
 	
 	private static final Logger LOGGER = Logger.getLogger(ShopService.class.getName());
+	
+	ObjectMapper mapper = new ObjectMapper();
 	
 	@Autowired
 	ShopDAO shopDAO;
@@ -73,6 +85,7 @@ public class ShopService {
 			ShopModel shopModel = new ShopModel();
 			int shopId = shop.getShopId();
 			shopModel.setShop(shop);
+			
 			shopModel.setShopInfo(this.getShopInfo(shopId));
 			
 			List<ShopBranch> sb = this.getShopBranches(shopId);
@@ -105,14 +118,51 @@ public class ShopService {
 			LOGGER.info("getShopbyUser Exception :" + e.getMessage());
 		}
 		
-		for (ShopEntity se: shopEntities) {
+	
+		Gson gson = new Gson();
+		String jsonShops = gson.toJson(shopEntities, new TypeToken<List<ShopEntity>>() {}.getType());
+		LOGGER.info("!!!!!!!!!!!!!!! Json Shop Entities !!!!!!!!!!!!!!!!" + jsonShops);
+		
+		shops = gson.fromJson(jsonShops, new TypeToken<List<Shop>>() {}.getType());
+		LOGGER.info("!!!!!!!!!!!!!!! Jackson Json conversion !!!!!!!!!!!!!!!!11" + shops);
+
+		/*String jsonShops=null;
+		try {
+			jsonShops = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(shopEntities);
+			LOGGER.info("!!!!!!!!!!!!!!! Json Shop Entities !!!!!!!!!!!!!!!!" + jsonShops);
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			shops = mapper.readValue(jsonShops, new TypeReference<List<Shop>>(){});
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+
+
+		/*for (ShopEntity se: shopEntities) {
      	
         	//Shop
 	        Shop shop=new Shop();
 	        shop.setShopName(se.getShopName());
 	        shop.setShopId(se.getShopId());
 	        shops.add(shop);			
-		}
+		}*/
 		return shops;
 
 	}
@@ -137,8 +187,15 @@ public class ShopService {
 		List<ShopEntity> shopBranchEntities = new ArrayList<ShopEntity>();
 		shopBranchEntities = shopDAO.getShopBranches(shopId);
 		
+		Gson gson = new Gson();
+		String jsonShopBranches = gson.toJson(shopBranchEntities, new TypeToken<List<ShopEntity>>() {}.getType());
+		LOGGER.info("!!!!!!!!!!!!!!! Json Shop Entities !!!!!!!!!!!!!!!!" + jsonShopBranches);
+		
+		shopBranches = gson.fromJson(jsonShopBranches, new TypeToken<List<ShopBranch>>() {}.getType());
+		LOGGER.info("!!!!!!!!!!!!!!! Jackson Json conversion !!!!!!!!!!!!!!!!11" + shopBranches);
+		
 		//Get all the shopReviewEntities records and add to ShopReview Model
-		for (ShopEntity sbe: shopBranchEntities){
+		/*for (ShopEntity sbe: shopBranchEntities){
 			
 			ShopBranch shopBranch = new ShopBranch();
 			shopBranch.setShopBranchesShopId(sbe.getShopId());
@@ -151,7 +208,8 @@ public class ShopService {
 			
 			shopBranches.add(shopBranch);
 			shopBranch = null;
-		}
+		}*/
+		
 		return shopBranches;
 	}
 	

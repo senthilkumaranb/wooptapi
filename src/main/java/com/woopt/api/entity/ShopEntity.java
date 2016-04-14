@@ -19,6 +19,46 @@ import javax.persistence.Table;
 @Table(name = "WOOPT_SHOP")
 public class ShopEntity {
 	
+	public ShopEntity(int shopId, String shopName) {
+		super();
+		this.shopId = shopId;
+		this.shopName = shopName;
+		/*this.shopProprietorId = shopProprietorId;
+		this.shopPhone = shopPhone;
+		this.shopMobile = shopMobile;
+		this.shopProfilePhoto = shopProfilePhoto;
+		this.shopPhotos = shopPhotos;
+		this.shopEmail = shopEmail;
+		this.shopAddressId = shopAddressId;
+		this.shopVerificationStatus = shopVerificationStatus;
+		this.shopStatus = shopStatus;
+		this.shopIsparent = shopIsparent;
+		this.shopParentId = shopParentId;
+		this.shopQRCode = shopQRCode;
+		this.shopType = shopType;
+		this.shopSubcriptionType = shopSubcriptionType;
+		this.createdDatetime = createdDatetime;
+		this.lastUpdatedDatetime = lastUpdatedDatetime;*/
+	}
+	
+	
+	public ShopEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public ShopEntity(int shopId, String shopName, int shopProprietorId, String shopPhone, String shopMobile,
+			Integer shopStatus) {
+		super();
+		this.shopId = shopId;
+		this.shopName = shopName;
+		this.shopProprietorId = shopProprietorId;
+		this.shopPhone = shopPhone;
+		this.shopMobile = shopMobile;
+		this.shopStatus = shopStatus;
+	}
+
 	/**
 	 * 
 	 */
@@ -333,5 +373,16 @@ public class ShopEntity {
 		this.lastUpdatedDatetime = lastUpdatedDatetime;
 	}
 
+	@Override
+	public String toString() {
+		return "ShopEntity [shopId=" + shopId + ", shopName=" + shopName + ", shopProprietorId=" + shopProprietorId
+				+ ", shopPhone=" + shopPhone + ", shopMobile=" + shopMobile + ", shopProfilePhoto=" + shopProfilePhoto
+				+ ", shopPhotos=" + shopPhotos + ", shopEmail=" + shopEmail + ", shopAddressId=" + shopAddressId
+				+ ", shopVerificationStatus=" + shopVerificationStatus + ", shopStatus=" + shopStatus
+				+ ", shopIsparent=" + shopIsparent + ", shopParentId=" + shopParentId + ", shopQRCode=" + shopQRCode
+				+ ", shopType=" + shopType + ", shopSubcriptionType=" + shopSubcriptionType + ", createdDatetime="
+				+ createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
+	}
 	
+		
 }

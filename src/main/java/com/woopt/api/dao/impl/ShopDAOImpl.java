@@ -92,7 +92,7 @@ public class ShopDAOImpl implements ShopDAO {
 		System.out.println("--------+ getUserShops +-----------");
 		Session session = this.sessionFactory.openSession();
 		//System.out.println("--------++*******getUserShops*********-----------" + session);
-		Query query = session.createQuery("from ShopEntity W where W.shopProprietorId=:userID");
+		Query query = session.createQuery("select new ShopEntity(W.shopId,W.shopName) from ShopEntity W where W.shopProprietorId=:userID Order by W.shopId");
 		query.setParameter("userID",userId);
 		List<ShopEntity> shopList = query.list();
 		session.close();
@@ -107,7 +107,7 @@ public class ShopDAOImpl implements ShopDAO {
 		System.out.println("--------+ getShopBranches +-----------");
 		Session session = this.sessionFactory.openSession();
 		//System.out.println("--------++****************-----------" + session);
-		Query query = session.createQuery("from ShopEntity W where W.shopParentId=:shopID and W.shopIsparent=0");
+		Query query = session.createQuery("Select new ShopEntity(W.shopId,W.shopName,W.shopProprietorId,W.shopPhone,W.shopMobile,W.shopStatus) from ShopEntity W where W.shopParentId=:shopID and W.shopIsparent=0");
 		query.setParameter("shopID",shopId);
 		List<ShopEntity> shopList = query.list();
 		session.close();
