@@ -28,27 +28,21 @@ public class ShopReviewDAOImpl implements ShopReviewDAO {
 	}
 
 	@Override
+	public void update(ShopReviewEntity shopReview) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(int shopReviewId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public List<ShopReviewEntity> list() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public ShopReviewEntity findById(long shopreviewId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void delete(int shopreviewId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateShopReview(ShopReviewEntity shopreview) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -56,5 +50,12 @@ public class ShopReviewDAOImpl implements ShopReviewDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ShopReviewEntity findById(int shopReviewId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

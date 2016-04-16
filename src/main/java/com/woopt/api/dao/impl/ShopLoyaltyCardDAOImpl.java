@@ -33,6 +33,27 @@ public class ShopLoyaltyCardDAOImpl implements ShopLoyaltyCardDAO {
 	@Override
 	public void save(ShopLoyaltyCardEntity shopLoyaltyCardEntity) {
 		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(shopLoyaltyCardEntity);
+		tx.commit();
+		session.close();
+	}
+	
+	@Override
+	public void update(ShopLoyaltyCardEntity shopLoyaltyCardEntity) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(shopLoyaltyCardEntity);
+		tx.commit();
+		session.close();
+		
+	}
+	
+	@Override
+	public void delete(int ShopLoyaltyCardId) {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -64,18 +85,6 @@ public class ShopLoyaltyCardDAOImpl implements ShopLoyaltyCardDAO {
 	public ShopLoyaltyCardEntity findById(int shopLoyaltyCardEntityId) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void delete(int ShopLoyaltyCardId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateLoyaltyCard(ShopLoyaltyCardEntity shopLoyaltyCardEntity) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

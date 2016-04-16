@@ -36,6 +36,27 @@ public class ShopDAOImpl implements ShopDAO {
 	@Override
 	public void save(ShopEntity shop) {
 		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(shop);
+		tx.commit();
+		session.close();
+	}
+
+	@Override
+	public void update(ShopEntity shop) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(shop);
+		tx.commit();
+		session.close();
+		
+	}
+	
+	@Override
+	public void delete(int shopId) {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -57,18 +78,6 @@ public class ShopDAOImpl implements ShopDAO {
 		List<ShopEntity> shopEntity = query.list();
 		session.close();
 		return shopEntity.get(0);
-	}
-
-	@Override
-	public void delete(int shopId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateShopDAO(ShopEntity shop) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

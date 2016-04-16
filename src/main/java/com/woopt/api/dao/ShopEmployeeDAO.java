@@ -8,11 +8,12 @@ public interface ShopEmployeeDAO {
 	
 	public void save(ShopEmployeeEntity shopemployee);
 	
-	public List<ShopEmployeeEntity> list();
-	
-	public ShopEmployeeEntity findById(long shopemployeeId);
+	public void  update(ShopEmployeeEntity shopemployee);
 	
 	public void  delete(int shopemployeeId);
 	
-	public void  updateShopEmployee(ShopEmployeeEntity shopemployee);
+	public List<ShopEmployeeEntity> list();
+	
+	public ShopEmployeeEntity findById(long shopemployeeId);
+
 }

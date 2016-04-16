@@ -19,7 +19,7 @@ import com.woopt.api.entity.ShopInfoEntity;
 /**
  * DAO Implementation
  * Hibernate provides JPA implementation
- * @author Sushil
+ * @author Sushil/ Senthil
  *
  */
 public class ShopInfoDAOImpl implements ShopInfoDAO {
@@ -31,11 +31,30 @@ public class ShopInfoDAOImpl implements ShopInfoDAO {
 	}
 	
 	@Override
-	public void save(ShopInfoEntity shopinfo) {
+	public void save(ShopInfoEntity shopInfo) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(shopInfo);
+		tx.commit();
+		session.close();
+	}
+
+	@Override
+	public void update(ShopInfoEntity shopInfo) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(shopInfo);
+		tx.commit();
+		session.close();
+	}
+
+	@Override
+	public void delete(int shopinfoId) {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public List<ShopInfoEntity> list() {
 		// TODO Auto-generated method stub
@@ -46,18 +65,6 @@ public class ShopInfoDAOImpl implements ShopInfoDAO {
 	public ShopInfoEntity findById(long shopinfoId) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void delete(int shopinfoId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateShopInfo(ShopInfoEntity shopinfo) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@SuppressWarnings("unchecked")

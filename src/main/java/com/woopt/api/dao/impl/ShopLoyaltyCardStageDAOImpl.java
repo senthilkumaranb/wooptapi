@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import com.woopt.api.dao.ShopLoyaltyCardStageDAO;
 import com.woopt.api.entity.ShopLoyaltyCardEntity;
@@ -20,6 +21,28 @@ public class ShopLoyaltyCardStageDAOImpl implements ShopLoyaltyCardStageDAO {
 	
 	@Override
 	public void save(ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(shopLoyaltyCardStageEntity);
+		tx.commit();
+		session.close();
+		
+	}
+	
+	@Override
+	public void update(ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(shopLoyaltyCardStageEntity);
+		tx.commit();
+		session.close();
+		
+	}
+	
+	@Override
+	public void delete(int ShopLoyaltyCardId) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -48,18 +71,6 @@ public class ShopLoyaltyCardStageDAOImpl implements ShopLoyaltyCardStageDAO {
 	public ShopLoyaltyCardStageEntity findById(long shopStageId) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void delete(int ShopLoyaltyCardId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(ShopLoyaltyCardEntity shopLoyaltyCardEntity) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

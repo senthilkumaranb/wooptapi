@@ -26,8 +26,31 @@ public class OfferDAOImpl implements OfferDAO {
 	@Override
 	public void save(OfferEntity offerEntity) {
 		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(offerEntity);
+		tx.commit();
+		session.close();
 		
 	}
+	
+	@Override
+	public void update(OfferEntity offerEntity) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(offerEntity);
+		tx.commit();
+		session.close();
+		
+	}
+	
+	@Override
+	public void delete(int offerId) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	@Override
 	public List<OfferEntity> list() {
@@ -53,18 +76,6 @@ public class OfferDAOImpl implements OfferDAO {
 	public OfferEntity findById(int offerId) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void delete(int offerId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(OfferEntity offerId) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

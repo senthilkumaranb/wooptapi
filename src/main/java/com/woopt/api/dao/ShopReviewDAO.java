@@ -6,15 +6,16 @@ import com.woopt.api.entity.ShopReviewEntity;
 
 public interface ShopReviewDAO {
 	
-	public void save(ShopReviewEntity shopreview);
+	public void save(ShopReviewEntity shopReview);
 	
+	public void update(ShopReviewEntity shopReview);
+	
+	public void delete(int shopReviewId);
+
 	public List<ShopReviewEntity> list();
 	
 	public List<ShopReviewEntity> list(int shopId);
 	
-	public ShopReviewEntity findById(long shopreviewId);
-	
-	public void  delete(int shopreviewId);
-	
-	public void  updateShopReview(ShopReviewEntity shopreview);
+	public ShopReviewEntity findById(int shopReviewId);
+
 }

@@ -36,6 +36,7 @@ import com.woopt.api.entity.ShopReviewEntity;
 import com.woopt.api.model.Offer;
 import com.woopt.api.model.Shop;
 import com.woopt.api.model.ShopBranch;
+import com.woopt.api.model.ShopEmployee;
 import com.woopt.api.model.ShopInfo;
 import com.woopt.api.model.ShopLoyaltyCard;
 import com.woopt.api.model.ShopLoyaltyCardStage;
@@ -331,6 +332,93 @@ public class ShopService {
 		shopOffers = gson.fromJson(jsonOfferEntities, new TypeToken<List<Offer>>() {}.getType());
 		
 		return shopOffers;
+	}
+	
+	// function to add a new shop model
+	public List<ShopModel> addShopModel(ShopModel shopModel){
+		return null;
+	}
+	
+	// function to add a new shop
+	public Integer addShop(Shop shop){
+		return null;
+	}
+	
+	// function to add a new shop info
+	public Integer addShopInfo(ShopInfo shopInfo){
+		return null;
+	}
+	
+	// function to add a new shop Branch
+	public Integer addShopBranch(ShopBranch shopBranch){
+		return null;
+	}
+	
+	// function to add a new shop Employee
+	public Integer addShopEmployee(ShopEmployee shopEmployee){
+		return null;
+	}
+	
+	// function to add a new shop loyalty card
+	public Integer addShopLoyaltyCard(ShopLoyaltyCard shopLoyaltyCard){
+		return null;
+	}
+	
+	// function to add a new shop loyalty program
+	public Integer addShopLoyaltyProgram(ShopLoyaltyProgram shopLoyaltyProgram){
+		return null;
+	}
+	
+	// function to add a new shop offer
+	public Integer addShopOffer(Offer shopOffer){
+		return null;
+	}
+	
+	
+	// function to update shop model
+	public List<ShopModel> updateShopModel(ShopModel shopModel){
+		return null;
+	}
+		
+	// function to update shop
+	public Shop updateShop(Shop shop){
+		return null;
+	}
+		
+	// function to update shopInfo
+	public ShopInfo updateShopInfo(ShopInfo shopInfo){
+		return null;
+	}
+		
+	// function to update a new shop Branch
+	public ShopBranch updateShopBranch(ShopBranch shopBranch){
+		return null;
+	}
+		
+	// function to update shop Employee
+	public ShopEmployee updateShopEmployee(ShopEmployee shopEmployee){
+		return null;
+	}
+		
+		
+	// function to update shop loyalty card
+	public ShopLoyaltyCard updateShopLoyaltyCard(ShopLoyaltyCard shopLoyaltyCard){
+		return null;
+	}
+	
+	// function to update shop loyalty card
+	public ShopLoyaltyCardStage updateShopLoyaltyCard(ShopLoyaltyCardStage shopLoyaltyCardStage){
+		return null;
+	}
+		
+	// function to update shop loyalty program
+	public ShopLoyaltyProgram updateShopLoyaltyProgram(ShopLoyaltyProgram shopLoyaltyProgram){
+		return null;
+	}
+		
+	// function to add a new shop offer
+	public Integer updateShopOffer(Offer shopOffer){
+		return null;
 	}
 	
 }

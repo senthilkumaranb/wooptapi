@@ -9,14 +9,14 @@ public interface ShopLoyaltyCardStageDAO {
 	
 	public void save(ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity);
 	
+	public void  update(ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity);
+	
+	public void  delete(int ShopLoyaltyCardId);
+	
 	public List<ShopLoyaltyCardStageEntity> list();
 	
 	public List<ShopLoyaltyCardStageEntity> getbyId(int shopLoyaltyCardId);
 	
 	public ShopLoyaltyCardStageEntity findById(long shopStageId);
-	
-	public void  delete(int ShopLoyaltyCardId);
-	
-	public void  update(ShopLoyaltyCardEntity shopLoyaltyCardEntity);
 
 }

@@ -31,10 +31,33 @@ public class ShopBranchDAOImpl implements ShopBranchDAO {
 	}
 	
 	@Override
-	public void save(ShopBranchEntity shopbranch) {
+	public void save(ShopBranchEntity shopBranch) {
 		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(shopBranch);
+		tx.commit();
+		session.close();
 		
 	}
+
+	@Override
+	public void update(ShopBranchEntity shopBranch) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(shopBranch);
+		tx.commit();
+		session.close();
+		
+	}
+	
+	@Override
+	public void delete(int shopbranchesId) {
+		// TODO Auto-generated method stub
+
+	}
+
 
 	@Override
 	public List<ShopBranchEntity> list() {
@@ -46,18 +69,6 @@ public class ShopBranchDAOImpl implements ShopBranchDAO {
 	public ShopBranchEntity findById(long shopBranchId) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void delete(int shopbranchesId) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void updateShopBranch(ShopBranchEntity shopbranch) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -6,13 +6,14 @@ import com.woopt.api.entity.ShopToCategoryEntity;
 
 public interface ShopToCategoryDAO {
 
-	public void save(ShopToCategoryEntity shoptocategory);
+	public void save(ShopToCategoryEntity shoptoCategory);
+	
+	public void update(ShopToCategoryEntity shoptoCategory);
+	
+	public void delete(int shoptoCategoryId);
 	
 	public List<ShopToCategoryEntity> list();
 	
 	public ShopToCategoryEntity findById(long shoptocategoryId);
-	
-	public void  delete(int shoptocategoryId);
-	
-	public void  updateshoptocategory(ShopToCategoryEntity shoptocategory);
+
 }

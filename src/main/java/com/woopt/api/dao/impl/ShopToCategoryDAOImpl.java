@@ -20,9 +20,21 @@ public class ShopToCategoryDAOImpl implements ShopToCategoryDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@Override
-	public void save(ShopToCategoryEntity shoptocategory) {
+	public void save(ShopToCategoryEntity shoptoCategory) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(ShopToCategoryEntity shoptoCategory) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(int shoptoCategoryId) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -37,18 +49,6 @@ public class ShopToCategoryDAOImpl implements ShopToCategoryDAO {
 	public ShopToCategoryEntity findById(long shoptocategoryId) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void delete(int shoptocategoryId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateshoptocategory(ShopToCategoryEntity shoptocategory) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

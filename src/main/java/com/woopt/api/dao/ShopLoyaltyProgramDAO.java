@@ -9,14 +9,14 @@ public interface ShopLoyaltyProgramDAO {
 	
 	public void save(ShopLoyaltyProgramEntity shopLoyaltyProgramEntity);
 	
+	public void  update(ShopLoyaltyProgramEntity shopLoyaltyProgramEntity);
+	
+	public void  delete(int ShopLoyaltyProgramId);
+	
 	public List<ShopLoyaltyProgramEntity> list();
 	
 	public ShopLoyaltyProgramEntity getbyShopId(int shopId);
 	
-	public ShopLoyaltyProgramEntity findById(int shopProgramId);
+	public ShopLoyaltyProgramEntity findById(int ShopLoyaltyProgramId);
 	
-	public void  delete(int ShopLoyaltyCardId);
-	
-	public void  updateLoyaltyCard(ShopLoyaltyProgramEntity shopLoyaltyProgramEntity);
-
 }

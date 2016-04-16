@@ -8,6 +8,10 @@ import com.woopt.api.model.UserModel;
 public interface ShopDAO {
 	
 	public void save(ShopEntity shop);
+		
+	public void  update(ShopEntity shop);
+	
+	public void  delete(int shopId);
 	
 	public List<ShopEntity> list();
 	
@@ -16,10 +20,6 @@ public interface ShopDAO {
 	public List<ShopEntity> getUserShops(int userId);
 	
 	public ShopEntity findById(int shopId);
-	
-	public void  delete(int shopId);
-	
-	public void  updateShopDAO(ShopEntity shop);
 	
 	public String getShopName(int shopId);
 	
