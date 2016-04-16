@@ -128,5 +128,9 @@
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 	
+	<bean id="OfferDAO" class="com.woopt.api.dao.impl.OfferDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
 
 </beans>

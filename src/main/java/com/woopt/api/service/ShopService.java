@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.woopt.api.dao.OfferDAO;
 import com.woopt.api.dao.ShopBranchDAO;
 import com.woopt.api.dao.ShopDAO;
 import com.woopt.api.dao.ShopEmployeeDAO;
@@ -23,6 +24,7 @@ import com.woopt.api.dao.ShopLoyaltyProgramDAO;
 import com.woopt.api.dao.ShopLoyaltyProgramStageDAO;
 import com.woopt.api.dao.ShopReviewDAO;
 import com.woopt.api.dao.impl.ShopLoyaltyCardDAOImpl;
+import com.woopt.api.entity.OfferEntity;
 import com.woopt.api.entity.ShopBranchEntity;
 import com.woopt.api.entity.ShopEntity;
 import com.woopt.api.entity.ShopInfoEntity;
@@ -85,6 +87,9 @@ public class ShopService {
 	@Autowired
 	ShopLoyaltyProgramStageDAO shopLoyaltyProgramStageDAO;
 	
+	@Autowired
+	OfferDAO offerDAO;
+	
 	@Transactional
 	public List<ShopModel> getShopModelsbyUser(int userId){
 		
@@ -110,6 +115,10 @@ public class ShopService {
 			ShopLoyaltyProgram shopLoyaltyProgram = this.getShopLoyaltyProgram(shopId);
 			if (shopLoyaltyProgram!=null)
 				shopModel.setShopLoyaltyProgram(shopLoyaltyProgram);
+			
+			List<Offer> shopOffers = this.getShopOffer(shopId);
+			if (shopOffers.size()!=0)
+				shopModel.setOffer(shopOffers);
 			
 			shopModels.add(shopModel);
 			LOGGER.info("shopModel data >>>>> :" + shopModel);
@@ -312,8 +321,16 @@ public class ShopService {
 
 	}
 	
-	public Offer getShopOffer(int shopId){
-		return null;
+	public List<Offer> getShopOffer(int shopId){
+		List<Offer> shopOffers = new ArrayList<Offer>();
+		List<OfferEntity> shopOfferEntities = new ArrayList<OfferEntity>();
+		shopOfferEntities = offerDAO.getbyShopId(shopId);
+		
+		Gson gson = new Gson();
+		String jsonOfferEntities = gson.toJson(shopOfferEntities, new TypeToken<List<OfferEntity>>() {}.getType());
+		shopOffers = gson.fromJson(jsonOfferEntities, new TypeToken<List<Offer>>() {}.getType());
+		
+		return shopOffers;
 	}
 	
 }
