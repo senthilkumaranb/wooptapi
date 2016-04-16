@@ -29,19 +29,19 @@ public class ShopLoyaltyProgramStageEntity {
 	@Id
 	@Column(name = "SHOP_LOYALTY_PROGRAM_STAGE_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int shopLoyaltyProgramStageId;
+	private Integer shopLoyaltyProgramStageId;
 	
 	@Column(name = "SHOP_LOYALTY_PROGRAM_ID")
-	private int shopLoyaltyProgramId;
+	private Integer shopLoyaltyProgramId;
 	
 	@Column(name = "SHOP_LOYALTY_PROGRAM_STAGE_NO")
-	private int shopLoyaltyProgramStageNo;
+	private Integer shopLoyaltyProgramStageNo;
 	
 	@Column(name = "SHOP_LOYALTY_PROGRAM_STAGE_NAME")
 	private String shopLoyaltyProgramStageName;
 	
 	@Column(name = "SHOP_LOYALTY_PROGRAM_STAGE_PROMOTION_ELIGIBILITY")
-	private int shopLoyaltyProgramStagePromotionEligibility;
+	private Integer shopLoyaltyProgramStagePromotionEligibility;
 	
 	@Column(name = "SHOP_LOYALTY_PROGRAM_STAGE_DISCOUNT")
 	private String shopLoyaltyProgramStageDiscount;
@@ -52,134 +52,119 @@ public class ShopLoyaltyProgramStageEntity {
 	@Column(name = "LAST_UPDATED_DATETIME")
 	private Timestamp lastUpdatedDatetime;
 
-	public int getShopLoyaltyProgramStageId() {
+	public ShopLoyaltyProgramStageEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+
+	public ShopLoyaltyProgramStageEntity(Integer shopLoyaltyProgramStageNo, String shopLoyaltyProgramStageName,
+			Integer shopLoyaltyProgramStagePromotionEligibility, String shopLoyaltyProgramStageDiscount) {
+		super();
+		this.shopLoyaltyProgramStageNo = shopLoyaltyProgramStageNo;
+		this.shopLoyaltyProgramStageName = shopLoyaltyProgramStageName;
+		this.shopLoyaltyProgramStagePromotionEligibility = shopLoyaltyProgramStagePromotionEligibility;
+		this.shopLoyaltyProgramStageDiscount = shopLoyaltyProgramStageDiscount;
+	}
+
+
+	public Integer getShopLoyaltyProgramStageId() {
 		return shopLoyaltyProgramStageId;
 	}
 
-	public void setShopLoyaltyProgramStageId(int shopLoyaltyProgramStageId) {
+
+	public void setShopLoyaltyProgramStageId(Integer shopLoyaltyProgramStageId) {
 		this.shopLoyaltyProgramStageId = shopLoyaltyProgramStageId;
 	}
 
-	public int getShopLoyaltyProgramId() {
+
+	public Integer getShopLoyaltyProgramId() {
 		return shopLoyaltyProgramId;
 	}
 
-	public void setShopLoyaltyProgramId(int shopLoyaltyProgramId) {
+
+	public void setShopLoyaltyProgramId(Integer shopLoyaltyProgramId) {
 		this.shopLoyaltyProgramId = shopLoyaltyProgramId;
 	}
 
-	public int getShopLoyaltyProgramStageNo() {
+
+	public Integer getShopLoyaltyProgramStageNo() {
 		return shopLoyaltyProgramStageNo;
 	}
 
-	public void setShopLoyaltyProgramStageNo(int shopLoyaltyProgramStageNo) {
+
+	public void setShopLoyaltyProgramStageNo(Integer shopLoyaltyProgramStageNo) {
 		this.shopLoyaltyProgramStageNo = shopLoyaltyProgramStageNo;
 	}
+
 
 	public String getShopLoyaltyProgramStageName() {
 		return shopLoyaltyProgramStageName;
 	}
 
+
 	public void setShopLoyaltyProgramStageName(String shopLoyaltyProgramStageName) {
 		this.shopLoyaltyProgramStageName = shopLoyaltyProgramStageName;
 	}
 
-	public int getShopLoyaltyProgramStagePromotionEligibility() {
+
+	public Integer getShopLoyaltyProgramStagePromotionEligibility() {
 		return shopLoyaltyProgramStagePromotionEligibility;
 	}
 
-	public void setShopLoyaltyProgramStagePromotionEligibility(int shopLoyaltyProgramStagePromotionEligibility) {
+
+	public void setShopLoyaltyProgramStagePromotionEligibility(Integer shopLoyaltyProgramStagePromotionEligibility) {
 		this.shopLoyaltyProgramStagePromotionEligibility = shopLoyaltyProgramStagePromotionEligibility;
 	}
+
 
 	public String getShopLoyaltyProgramStageDiscount() {
 		return shopLoyaltyProgramStageDiscount;
 	}
 
+
 	public void setShopLoyaltyProgramStageDiscount(String shopLoyaltyProgramStageDiscount) {
 		this.shopLoyaltyProgramStageDiscount = shopLoyaltyProgramStageDiscount;
 	}
+
 
 	public Timestamp getCreatedDatetime() {
 		return createdDatetime;
 	}
 
+
 	public void setCreatedDatetime(Timestamp createdDatetime) {
 		this.createdDatetime = createdDatetime;
 	}
+
 
 	public Timestamp getLastUpdatedDatetime() {
 		return lastUpdatedDatetime;
 	}
 
+
 	public void setLastUpdatedDatetime(Timestamp lastUpdatedDatetime) {
 		this.lastUpdatedDatetime = lastUpdatedDatetime;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((createdDatetime == null) ? 0 : createdDatetime.hashCode());
-		result = prime * result + ((lastUpdatedDatetime == null) ? 0 : lastUpdatedDatetime.hashCode());
-		result = prime * result + shopLoyaltyProgramId;
-		result = prime * result
-				+ ((shopLoyaltyProgramStageDiscount == null) ? 0 : shopLoyaltyProgramStageDiscount.hashCode());
-		result = prime * result + shopLoyaltyProgramStageId;
-		result = prime * result + ((shopLoyaltyProgramStageName == null) ? 0 : shopLoyaltyProgramStageName.hashCode());
-		result = prime * result + shopLoyaltyProgramStageNo;
-		result = prime * result + shopLoyaltyProgramStagePromotionEligibility;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ShopLoyaltyProgramStageEntity other = (ShopLoyaltyProgramStageEntity) obj;
-		if (createdDatetime == null) {
-			if (other.createdDatetime != null)
-				return false;
-		} else if (!createdDatetime.equals(other.createdDatetime))
-			return false;
-		if (lastUpdatedDatetime == null) {
-			if (other.lastUpdatedDatetime != null)
-				return false;
-		} else if (!lastUpdatedDatetime.equals(other.lastUpdatedDatetime))
-			return false;
-		if (shopLoyaltyProgramId != other.shopLoyaltyProgramId)
-			return false;
-		if (shopLoyaltyProgramStageDiscount == null) {
-			if (other.shopLoyaltyProgramStageDiscount != null)
-				return false;
-		} else if (!shopLoyaltyProgramStageDiscount.equals(other.shopLoyaltyProgramStageDiscount))
-			return false;
-		if (shopLoyaltyProgramStageId != other.shopLoyaltyProgramStageId)
-			return false;
-		if (shopLoyaltyProgramStageName == null) {
-			if (other.shopLoyaltyProgramStageName != null)
-				return false;
-		} else if (!shopLoyaltyProgramStageName.equals(other.shopLoyaltyProgramStageName))
-			return false;
-		if (shopLoyaltyProgramStageNo != other.shopLoyaltyProgramStageNo)
-			return false;
-		if (shopLoyaltyProgramStagePromotionEligibility != other.shopLoyaltyProgramStagePromotionEligibility)
-			return false;
-		return true;
-	}
 
 	@Override
 	public String toString() {
-		return "ShopLoyaltyProgramStageEntity [shopLoyaltyProgramStageId=" + shopLoyaltyProgramStageId
-				+ ", shopLoyaltyProgramId=" + shopLoyaltyProgramId + ", shopLoyaltyProgramStageNo="
-				+ shopLoyaltyProgramStageNo + ", shopLoyaltyProgramStageName=" + shopLoyaltyProgramStageName
-				+ ", shopLoyaltyProgramStagePromotionEligibility=" + shopLoyaltyProgramStagePromotionEligibility
-				+ ", shopLoyaltyProgramStageDiscount=" + shopLoyaltyProgramStageDiscount + ", createdDatetime="
-				+ createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
+		return "ShopLoyaltyProgramStageEntity ["
+				+ (shopLoyaltyProgramStageId != null ? "shopLoyaltyProgramStageId=" + shopLoyaltyProgramStageId + ", "
+						: "")
+				+ (shopLoyaltyProgramId != null ? "shopLoyaltyProgramId=" + shopLoyaltyProgramId + ", " : "")
+				+ (shopLoyaltyProgramStageNo != null ? "shopLoyaltyProgramStageNo=" + shopLoyaltyProgramStageNo + ", "
+						: "")
+				+ (shopLoyaltyProgramStageName != null
+						? "shopLoyaltyProgramStageName=" + shopLoyaltyProgramStageName + ", " : "")
+				+ (shopLoyaltyProgramStagePromotionEligibility != null ? "shopLoyaltyProgramStagePromotionEligibility="
+						+ shopLoyaltyProgramStagePromotionEligibility + ", " : "")
+				+ (shopLoyaltyProgramStageDiscount != null
+						? "shopLoyaltyProgramStageDiscount=" + shopLoyaltyProgramStageDiscount + ", " : "")
+				+ (createdDatetime != null ? "createdDatetime=" + createdDatetime + ", " : "")
+				+ (lastUpdatedDatetime != null ? "lastUpdatedDatetime=" + lastUpdatedDatetime : "") + "]";
 	}
+
 	
 }

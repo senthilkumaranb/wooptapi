@@ -19,6 +19,8 @@ import com.woopt.api.dao.ShopEmployeeDAO;
 import com.woopt.api.dao.ShopInfoDAO;
 import com.woopt.api.dao.ShopLoyaltyCardDAO;
 import com.woopt.api.dao.ShopLoyaltyCardStageDAO;
+import com.woopt.api.dao.ShopLoyaltyProgramDAO;
+import com.woopt.api.dao.ShopLoyaltyProgramStageDAO;
 import com.woopt.api.dao.ShopReviewDAO;
 import com.woopt.api.dao.impl.ShopLoyaltyCardDAOImpl;
 import com.woopt.api.entity.ShopBranchEntity;
@@ -26,6 +28,8 @@ import com.woopt.api.entity.ShopEntity;
 import com.woopt.api.entity.ShopInfoEntity;
 import com.woopt.api.entity.ShopLoyaltyCardEntity;
 import com.woopt.api.entity.ShopLoyaltyCardStageEntity;
+import com.woopt.api.entity.ShopLoyaltyProgramEntity;
+import com.woopt.api.entity.ShopLoyaltyProgramStageEntity;
 import com.woopt.api.entity.ShopReviewEntity;
 import com.woopt.api.model.Offer;
 import com.woopt.api.model.Shop;
@@ -34,6 +38,7 @@ import com.woopt.api.model.ShopInfo;
 import com.woopt.api.model.ShopLoyaltyCard;
 import com.woopt.api.model.ShopLoyaltyCardStage;
 import com.woopt.api.model.ShopLoyaltyProgram;
+import com.woopt.api.model.ShopLoyaltyProgramStage;
 import com.woopt.api.model.ShopModel;
 import com.woopt.api.model.ShopReview;
 import com.woopt.api.model.UserModel;
@@ -74,6 +79,12 @@ public class ShopService {
 	@Autowired
 	ShopLoyaltyCardStageDAO shopLoyaltyCardStageDAO;
 	
+	@Autowired
+	ShopLoyaltyProgramDAO shopLoyaltyProgramDAO;
+	
+	@Autowired
+	ShopLoyaltyProgramStageDAO shopLoyaltyProgramStageDAO;
+	
 	@Transactional
 	public List<ShopModel> getShopModelsbyUser(int userId){
 		
@@ -95,6 +106,10 @@ public class ShopService {
 			ShopLoyaltyCard shopLoyaltyCard = this.getShopLoyaltyCard(shopId);
 			if (shopLoyaltyCard!=null)
 				shopModel.setShopLoyaltyCard(shopLoyaltyCard);
+			
+			ShopLoyaltyProgram shopLoyaltyProgram = this.getShopLoyaltyProgram(shopId);
+			if (shopLoyaltyProgram!=null)
+				shopModel.setShopLoyaltyProgram(shopLoyaltyProgram);
 			
 			shopModels.add(shopModel);
 			LOGGER.info("shopModel data >>>>> :" + shopModel);
@@ -267,7 +282,34 @@ public class ShopService {
 	}
 	
 	public ShopLoyaltyProgram getShopLoyaltyProgram(int shopId){
-		return null;
+		ShopLoyaltyProgram shopLoyaltyProgram = new ShopLoyaltyProgram();
+		ShopLoyaltyProgramEntity shopLoyaltyProgramEntity = new ShopLoyaltyProgramEntity();
+		shopLoyaltyProgramEntity = shopLoyaltyProgramDAO.getbyShopId(shopId);
+		
+		if (shopLoyaltyProgramEntity!=null){
+			Gson gson = new Gson();
+			String jsonShopProgramEntity = gson.toJson(shopLoyaltyProgramEntity, ShopLoyaltyProgramEntity.class);
+			LOGGER.info("!!!!!!!!!!!!!!! Json Shop Program Entities !!!!!!!!!!!!!!!!" + jsonShopProgramEntity);
+			
+			shopLoyaltyProgram = gson.fromJson(jsonShopProgramEntity, ShopLoyaltyProgram.class);
+			LOGGER.info("!!!!!!!!!!!!!!! Jackson Json Loyalty Program conversion !!!!!!!!!!!!!!!!11" + shopLoyaltyProgram);
+			
+			List<ShopLoyaltyProgramStageEntity> shopLoyaltyProgramStageEntities = new ArrayList<ShopLoyaltyProgramStageEntity>();
+			shopLoyaltyProgramStageEntities = shopLoyaltyProgramStageDAO.getbyId(shopLoyaltyProgramEntity.getShopLoyaltyProgramId());
+			
+			if(shopLoyaltyProgramStageEntities.size()!=0){
+				String jsonShopProgramStageEntity = gson.toJson(shopLoyaltyProgramStageEntities, new TypeToken<List<ShopLoyaltyProgramStageEntity>>() {}.getType());
+				List<ShopLoyaltyProgramStage> shopLoyaltyProgramStages = new ArrayList<ShopLoyaltyProgramStage>();
+				shopLoyaltyProgramStages = gson.fromJson(jsonShopProgramStageEntity, new TypeToken<List<ShopLoyaltyProgramStage>>() {}.getType());
+				shopLoyaltyProgram.setShopLoyaltyProgramStage(shopLoyaltyProgramStages);
+			}
+			return shopLoyaltyProgram;
+		}
+		else {
+			return null;
+		}
+		
+
 	}
 	
 	public Offer getShopOffer(int shopId){

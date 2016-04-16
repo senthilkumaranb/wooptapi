@@ -2,19 +2,19 @@ package com.woopt.api.model;
 
 public class ShopLoyaltyProgramStage {
 	
-    private int shopLoyaltyProgramStageNo;
+    private Integer shopLoyaltyProgramStageNo;
     
     private String shopLoyaltyProgramStageName;
     
-    private int shopLoyaltyProgramStagePromotionEligibility;
+    private Integer shopLoyaltyProgramStagePromotionEligibility;
     
-    private int shopLoyaltyProgramStageDiscount;
+    private String shopLoyaltyProgramStageDiscount;
 
-	public int getShopLoyaltyProgramStageNo() {
+	public Integer getShopLoyaltyProgramStageNo() {
 		return shopLoyaltyProgramStageNo;
 	}
 
-	public void setShopLoyaltyProgramStageNo(int shopLoyaltyProgramStageNo) {
+	public void setShopLoyaltyProgramStageNo(Integer shopLoyaltyProgramStageNo) {
 		this.shopLoyaltyProgramStageNo = shopLoyaltyProgramStageNo;
 	}
 
@@ -26,19 +26,19 @@ public class ShopLoyaltyProgramStage {
 		this.shopLoyaltyProgramStageName = shopLoyaltyProgramStageName;
 	}
 
-	public int getShopLoyaltyProgramStagePromotionEligibility() {
+	public Integer getShopLoyaltyProgramStagePromotionEligibility() {
 		return shopLoyaltyProgramStagePromotionEligibility;
 	}
 
-	public void setShopLoyaltyProgramStagePromotionEligibility(int shopLoyaltyProgramStagePromotionEligibility) {
+	public void setShopLoyaltyProgramStagePromotionEligibility(Integer shopLoyaltyProgramStagePromotionEligibility) {
 		this.shopLoyaltyProgramStagePromotionEligibility = shopLoyaltyProgramStagePromotionEligibility;
 	}
 
-	public int getShopLoyaltyProgramStageDiscount() {
+	public String getShopLoyaltyProgramStageDiscount() {
 		return shopLoyaltyProgramStageDiscount;
 	}
 
-	public void setShopLoyaltyProgramStageDiscount(int shopLoyaltyProgramStageDiscount) {
+	public void setShopLoyaltyProgramStageDiscount(String shopLoyaltyProgramStageDiscount) {
 		this.shopLoyaltyProgramStageDiscount = shopLoyaltyProgramStageDiscount;
 	}
 
@@ -46,10 +46,12 @@ public class ShopLoyaltyProgramStage {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + shopLoyaltyProgramStageDiscount;
+		result = prime * result
+				+ ((shopLoyaltyProgramStageDiscount == null) ? 0 : shopLoyaltyProgramStageDiscount.hashCode());
 		result = prime * result + ((shopLoyaltyProgramStageName == null) ? 0 : shopLoyaltyProgramStageName.hashCode());
-		result = prime * result + shopLoyaltyProgramStageNo;
-		result = prime * result + shopLoyaltyProgramStagePromotionEligibility;
+		result = prime * result + ((shopLoyaltyProgramStageNo == null) ? 0 : shopLoyaltyProgramStageNo.hashCode());
+		result = prime * result + ((shopLoyaltyProgramStagePromotionEligibility == null) ? 0
+				: shopLoyaltyProgramStagePromotionEligibility.hashCode());
 		return result;
 	}
 
@@ -62,16 +64,26 @@ public class ShopLoyaltyProgramStage {
 		if (getClass() != obj.getClass())
 			return false;
 		ShopLoyaltyProgramStage other = (ShopLoyaltyProgramStage) obj;
-		if (shopLoyaltyProgramStageDiscount != other.shopLoyaltyProgramStageDiscount)
+		if (shopLoyaltyProgramStageDiscount == null) {
+			if (other.shopLoyaltyProgramStageDiscount != null)
+				return false;
+		} else if (!shopLoyaltyProgramStageDiscount.equals(other.shopLoyaltyProgramStageDiscount))
 			return false;
 		if (shopLoyaltyProgramStageName == null) {
 			if (other.shopLoyaltyProgramStageName != null)
 				return false;
 		} else if (!shopLoyaltyProgramStageName.equals(other.shopLoyaltyProgramStageName))
 			return false;
-		if (shopLoyaltyProgramStageNo != other.shopLoyaltyProgramStageNo)
+		if (shopLoyaltyProgramStageNo == null) {
+			if (other.shopLoyaltyProgramStageNo != null)
+				return false;
+		} else if (!shopLoyaltyProgramStageNo.equals(other.shopLoyaltyProgramStageNo))
 			return false;
-		if (shopLoyaltyProgramStagePromotionEligibility != other.shopLoyaltyProgramStagePromotionEligibility)
+		if (shopLoyaltyProgramStagePromotionEligibility == null) {
+			if (other.shopLoyaltyProgramStagePromotionEligibility != null)
+				return false;
+		} else
+			if (!shopLoyaltyProgramStagePromotionEligibility.equals(other.shopLoyaltyProgramStagePromotionEligibility))
 			return false;
 		return true;
 	}

@@ -57,6 +57,23 @@ public class ShopLoyaltyProgramEntity {
 	@Column(name = "LAST_UPDATED_DATETIME")
 	private Timestamp lastUpdatedDatetime;
 
+	
+	
+	public ShopLoyaltyProgramEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ShopLoyaltyProgramEntity(int shopLoyaltyProgramId, String shopLoyaltyProgramName,
+			int shopLoyaltyProgramStatus, int shopLoyaltyProgramTypeId, int shopLoyaltyProgramNoOfStages) {
+		super();
+		this.shopLoyaltyProgramId = shopLoyaltyProgramId;
+		this.shopLoyaltyProgramName = shopLoyaltyProgramName;
+		this.shopLoyaltyProgramStatus = shopLoyaltyProgramStatus;
+		this.shopLoyaltyProgramTypeId = shopLoyaltyProgramTypeId;
+		this.shopLoyaltyProgramNoOfStages = shopLoyaltyProgramNoOfStages;
+	}
+
 	public int getShopLoyaltyProgramId() {
 		return shopLoyaltyProgramId;
 	}

@@ -13,7 +13,7 @@ public interface ShopLoyaltyCardDAO {
 	
 	public ShopLoyaltyCardEntity getbyShopId(int shopId);
 	
-	public ShopLoyaltyCardEntity findById(long shopId);
+	public ShopLoyaltyCardEntity findById(int shopcardId);
 	
 	public void  delete(int ShopLoyaltyCardId);
 	

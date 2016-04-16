@@ -1,6 +1,7 @@
 package com.woopt.api.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class ShopLoyaltyProgram {
 	
@@ -14,7 +15,7 @@ public class ShopLoyaltyProgram {
     
     private ShopLoyaltyProgramStage shopLoyaltyProgramCurrentStage;
 
-    private ShopLoyaltyProgramStage[] shopLoyaltyProgramStage;
+    private List<ShopLoyaltyProgramStage> shopLoyaltyProgramStage;
 
 	public int getShopLoyaltyProgramId() {
 		return shopLoyaltyProgramId;
@@ -56,11 +57,11 @@ public class ShopLoyaltyProgram {
 		this.shopLoyaltyProgramCurrentStage = shopLoyaltyProgramCurrentStage;
 	}
 
-	public ShopLoyaltyProgramStage[] getShopLoyaltyProgramStage() {
+	public List<ShopLoyaltyProgramStage> getShopLoyaltyProgramStage() {
 		return shopLoyaltyProgramStage;
 	}
 
-	public void setShopLoyaltyProgramStage(ShopLoyaltyProgramStage[] shopLoyaltyProgramStage) {
+	public void setShopLoyaltyProgramStage(List<ShopLoyaltyProgramStage> shopLoyaltyProgramStage) {
 		this.shopLoyaltyProgramStage = shopLoyaltyProgramStage;
 	}
 
@@ -73,7 +74,7 @@ public class ShopLoyaltyProgram {
 		result = prime * result + shopLoyaltyProgramId;
 		result = prime * result + ((shopLoyaltyProgramName == null) ? 0 : shopLoyaltyProgramName.hashCode());
 		result = prime * result + shopLoyaltyProgramNoOfStages;
-		result = prime * result + Arrays.hashCode(shopLoyaltyProgramStage);
+		result = prime * result + ((shopLoyaltyProgramStage == null) ? 0 : shopLoyaltyProgramStage.hashCode());
 		result = prime * result + ((shopLoyaltyProgramType == null) ? 0 : shopLoyaltyProgramType.hashCode());
 		return result;
 	}
@@ -101,7 +102,10 @@ public class ShopLoyaltyProgram {
 			return false;
 		if (shopLoyaltyProgramNoOfStages != other.shopLoyaltyProgramNoOfStages)
 			return false;
-		if (!Arrays.equals(shopLoyaltyProgramStage, other.shopLoyaltyProgramStage))
+		if (shopLoyaltyProgramStage == null) {
+			if (other.shopLoyaltyProgramStage != null)
+				return false;
+		} else if (!shopLoyaltyProgramStage.equals(other.shopLoyaltyProgramStage))
 			return false;
 		if (shopLoyaltyProgramType == null) {
 			if (other.shopLoyaltyProgramType != null)
@@ -116,7 +120,6 @@ public class ShopLoyaltyProgram {
 		return "ShopLoyaltyProgram [shopLoyaltyProgramId=" + shopLoyaltyProgramId + ", shopLoyaltyProgramName="
 				+ shopLoyaltyProgramName + ", shopLoyaltyProgramType=" + shopLoyaltyProgramType
 				+ ", shopLoyaltyProgramNoOfStages=" + shopLoyaltyProgramNoOfStages + ", shopLoyaltyProgramCurrentStage="
-				+ shopLoyaltyProgramCurrentStage + ", shopLoyaltyProgramStage="
-				+ Arrays.toString(shopLoyaltyProgramStage) + "]";
+				+ shopLoyaltyProgramCurrentStage + ", shopLoyaltyProgramStage=" + shopLoyaltyProgramStage + "]";
 	}
 }

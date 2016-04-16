@@ -120,5 +120,13 @@
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 	
+		<bean id="shopLoyaltyProgramDAO" class="com.woopt.api.dao.impl.ShopLoyaltyProgramDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="shopLoyaltyProgramStageDAO" class="com.woopt.api.dao.impl.ShopLoyaltyProgramStageDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
 
 </beans>
