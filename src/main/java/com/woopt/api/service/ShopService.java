@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.woopt.api.common.WooptCode;
 import com.woopt.api.dao.OfferDAO;
 import com.woopt.api.dao.ShopBranchDAO;
 import com.woopt.api.dao.ShopDAO;
@@ -26,6 +27,7 @@ import com.woopt.api.dao.ShopReviewDAO;
 import com.woopt.api.dao.impl.ShopLoyaltyCardDAOImpl;
 import com.woopt.api.entity.OfferEntity;
 import com.woopt.api.entity.ShopBranchEntity;
+import com.woopt.api.entity.ShopEmployeeEntity;
 import com.woopt.api.entity.ShopEntity;
 import com.woopt.api.entity.ShopInfoEntity;
 import com.woopt.api.entity.ShopLoyaltyCardEntity;
@@ -318,8 +320,6 @@ public class ShopService {
 		else {
 			return null;
 		}
-		
-
 	}
 	
 	public List<Offer> getShopOffer(int shopId){
@@ -335,43 +335,158 @@ public class ShopService {
 	}
 	
 	// function to add a new shop model
+	@Transactional
 	public List<ShopModel> addShopModel(ShopModel shopModel){
+		
+		String returnCode;
+		Shop shop = new Shop();
+		shop = shopModel.getShop();
+		int shopId = this.addShop(shop);
+		shop.setShopId(shopId);
+		
+		returnCode = this.addShopInfo(shopModel.getShopInfo(), shopId);
+		
+		for (ShopBranch sb: shopModel.getShopBranches()){
+			returnCode = this.addShopBranch(sb);
+		}
+		
+		for (ShopEmployee se: shopModel.getShopEmployee()){
+			returnCode = this.addShopEmployee(se);
+		}
+		
+		returnCode = this.addShopLoyaltyCard(shopModel.getShopLoyaltyCard());
+		
+		returnCode = this.addShopLoyaltyProgram(shopModel.getShopLoyaltyProgram());
+		
+		for (Offer so: shopModel.getOffer()) {
+			returnCode = this.addShopOffer(so);
+		}
+
 		return null;
 	}
 	
 	// function to add a new shop
-	public Integer addShop(Shop shop){
-		return null;
+	@Transactional
+	public int addShop(Shop shop){
+		
+		ShopEntity shopEntity = new ShopEntity();
+		Gson gson = new Gson();
+		String jsonShopEntity = gson.toJson(shop, Shop.class);
+		shopEntity = gson.fromJson(jsonShopEntity, ShopEntity.class);
+		LOGGER.info("!!!!!! shopEntity !!!!!!" + shopEntity);
+		try {
+			int shopId = shopDAO.save(shopEntity);
+			return shopId;
+		}
+		catch (Exception e){
+			return -1;
+		}
+
 	}
 	
 	// function to add a new shop info
-	public Integer addShopInfo(ShopInfo shopInfo){
-		return null;
+	@Transactional
+	public String addShopInfo(ShopInfo shopInfo, int shopId){
+		ShopInfoEntity shopInfoEntity = new ShopInfoEntity();
+		Gson gson = new Gson();
+		String jsonShopInfoEntity = gson.toJson(shopInfo, ShopInfo.class);
+		shopInfoEntity = gson.fromJson(jsonShopInfoEntity, ShopInfoEntity.class);
+		shopInfoEntity.setShopId(shopId);
+		try {
+			shopInfoDAO.save(shopInfoEntity);
+			return WooptCode.SUCCESS;
+		}
+		catch (Exception e){
+			return WooptCode.FAIL;
+		}
 	}
 	
 	// function to add a new shop Branch
-	public Integer addShopBranch(ShopBranch shopBranch){
-		return null;
+	public String addShopBranch(ShopBranch shopBranch){
+		ShopBranchEntity shopBranchEntity = new ShopBranchEntity();
+		Gson gson = new Gson();
+		String jsonShopBranchEntity = gson.toJson(shopBranch, ShopBranch.class);
+		shopBranchEntity = gson.fromJson(jsonShopBranchEntity, ShopBranchEntity.class);
+		try {
+			shopBranchDAO.save(shopBranchEntity);
+			return WooptCode.SUCCESS;
+		}
+		catch (Exception e){
+			return WooptCode.FAIL;
+		}
 	}
 	
 	// function to add a new shop Employee
-	public Integer addShopEmployee(ShopEmployee shopEmployee){
-		return null;
+	public String addShopEmployee(ShopEmployee shopEmployee){
+		ShopEmployeeEntity shopEmployeeEntity = new ShopEmployeeEntity();
+		Gson gson = new Gson();
+		String jsonShopEmployeeEntity = gson.toJson(shopEmployee, ShopEmployee.class);
+		shopEmployeeEntity = gson.fromJson(jsonShopEmployeeEntity, ShopEmployeeEntity.class);
+		try {
+			shopEmployeeDAO.save(shopEmployeeEntity);
+			return WooptCode.SUCCESS;
+		}
+		catch (Exception e){
+			return WooptCode.FAIL;
+		}
 	}
 	
 	// function to add a new shop loyalty card
-	public Integer addShopLoyaltyCard(ShopLoyaltyCard shopLoyaltyCard){
-		return null;
+	public String addShopLoyaltyCard(ShopLoyaltyCard shopLoyaltyCard){
+		ShopLoyaltyCardEntity shopLoyaltyCardEntity = new ShopLoyaltyCardEntity();
+		Gson gson = new Gson();
+		String jsonShopLoyaltyCardEntity = gson.toJson(shopLoyaltyCard, ShopLoyaltyCard.class);
+		shopLoyaltyCardEntity = gson.fromJson(jsonShopLoyaltyCardEntity, ShopLoyaltyCardEntity.class);
+		try {
+			shopLoyaltyCardDAO.save(shopLoyaltyCardEntity);
+			
+			for (ShopLoyaltyCardStage stage: shopLoyaltyCard.getShopLoyaltyCardStage()){
+				ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity = new ShopLoyaltyCardStageEntity();
+				String jsonShopLoyaltyCardStageEntity = gson.toJson(stage, ShopLoyaltyCardStage.class);
+				shopLoyaltyCardStageEntity = gson.fromJson(jsonShopLoyaltyCardStageEntity, ShopLoyaltyCardStageEntity.class);
+				shopLoyaltyCardStageDAO.save(shopLoyaltyCardStageEntity);
+			}
+			return WooptCode.SUCCESS;
+		}
+		catch (Exception e){
+			return WooptCode.FAIL;
+		}
 	}
 	
 	// function to add a new shop loyalty program
-	public Integer addShopLoyaltyProgram(ShopLoyaltyProgram shopLoyaltyProgram){
-		return null;
+	public String addShopLoyaltyProgram(ShopLoyaltyProgram shopLoyaltyProgram){
+		ShopLoyaltyProgramEntity shopLoyaltyProgramEntity = new ShopLoyaltyProgramEntity();
+		Gson gson = new Gson();
+		String jsonShopLoyaltyProgramEntity = gson.toJson(shopLoyaltyProgram, ShopLoyaltyProgram.class);
+		shopLoyaltyProgramEntity = gson.fromJson(jsonShopLoyaltyProgramEntity, ShopLoyaltyProgramEntity.class);
+		try {
+			shopLoyaltyProgramDAO.save(shopLoyaltyProgramEntity);
+			for (ShopLoyaltyProgramStage stage: shopLoyaltyProgram.getShopLoyaltyProgramStage()){
+				ShopLoyaltyProgramStageEntity shopLoyaltyProgramStageEntity = new ShopLoyaltyProgramStageEntity();
+				String jsonShopLoyaltyProgramStageEntity = gson.toJson(stage, ShopLoyaltyProgramStage.class);
+				shopLoyaltyProgramStageEntity = gson.fromJson(jsonShopLoyaltyProgramStageEntity, ShopLoyaltyProgramStageEntity.class);
+				shopLoyaltyProgramStageDAO.save(shopLoyaltyProgramStageEntity);
+			}
+			return WooptCode.SUCCESS;
+		}
+		catch (Exception e){
+			return WooptCode.FAIL;
+		}
 	}
 	
 	// function to add a new shop offer
-	public Integer addShopOffer(Offer shopOffer){
-		return null;
+	public String addShopOffer(Offer shopOffer){
+		OfferEntity offerEntity = new OfferEntity();
+		Gson gson = new Gson();
+		String jsonOffer = gson.toJson(shopOffer, Offer.class);
+		offerEntity = gson.fromJson(jsonOffer, OfferEntity.class);
+		try {
+			offerDAO.save(offerEntity);
+			return WooptCode.SUCCESS;
+		}
+		catch (Exception e){
+			return WooptCode.FAIL;
+		}
 	}
 	
 	

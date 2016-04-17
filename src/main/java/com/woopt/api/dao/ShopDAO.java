@@ -7,7 +7,7 @@ import com.woopt.api.model.UserModel;
 
 public interface ShopDAO {
 	
-	public void save(ShopEntity shop);
+	public int save(ShopEntity shop);
 		
 	public void  update(ShopEntity shop);
 	

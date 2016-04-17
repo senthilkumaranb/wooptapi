@@ -34,13 +34,15 @@ public class ShopDAOImpl implements ShopDAO {
 	}
 	
 	@Override
-	public void save(ShopEntity shop) {
+	public int save(ShopEntity shop) {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(shop);
+		int shopId = shop.getShopId();
 		tx.commit();
 		session.close();
+		return shopId;
 	}
 
 	@Override

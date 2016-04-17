@@ -75,8 +75,34 @@ public class ShopController {
 		} finally {
 		}
 	
-	LOGGER.info("Return ShopModel:" + shopModels);
-	return new ResponseEntity<List<ShopModel>>(shopModels, returnHeader, HttpStatus.OK);
+		LOGGER.info("Return ShopModel:" + shopModels);
+		return new ResponseEntity<List<ShopModel>>(shopModels, returnHeader, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/add", method = RequestMethod.POST, headers="Accept=application/json")
+	public ResponseEntity<List<ShopModel>> addShops(@RequestBody ShopModel shopModel, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		LOGGER.info("calling /api/shop/add api");
+		LOGGER.info("Input User:" + shopModel);
+		HttpHeaders returnHeader = new HttpHeaders();
+		User user = null;
+
+		List<ShopModel> shopModels = new ArrayList<ShopModel>();
+		String responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != shopModel){
+				//user = userModel.getUser();
+				shopModels = shopService.addShopModel(shopModel);
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return ShopModel:" + shopModels);
+		return new ResponseEntity<List<ShopModel>>(shopModels, returnHeader, HttpStatus.OK);
 	}
 
 }
