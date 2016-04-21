@@ -1,14 +1,14 @@
 package com.woopt.api.model;
 
-import java.util.Arrays;
+import java.util.List;
 
-public class UserShopView {
+public class ConsumerViewModel {
 	
 	private Shop shop;
 	
 	private ShopInfo shopInfo;
 	
-	private ShopReview[] shopReview;
+	private List<ShopReview> shopReview;
 	
 	//loyalty card of the user for this shop
 	private ShopLoyaltyCard shopLoyaltyCard;
@@ -17,11 +17,15 @@ public class UserShopView {
 	private ShopLoyaltyProgram shopLoyaltyProgram;
 	
 	//User deals related to this shop
-	private UserDealView userDeals;
+	private List<Offer> userDeals;
 	
-	Cart cart;
+	private ConsumerCheckIn consumerCheckIn;
 	
-	Chat[] chats;
+	Order order;
+	
+	List<Order> allOrders;
+	
+	List<Chat> chats;
 
 	public Shop getShop() {
 		return shop;
@@ -39,11 +43,11 @@ public class UserShopView {
 		this.shopInfo = shopInfo;
 	}
 
-	public ShopReview[] getShopReview() {
+	public List<ShopReview> getShopReview() {
 		return shopReview;
 	}
 
-	public void setShopReview(ShopReview[] shopReview) {
+	public void setShopReview(List<ShopReview> shopReview) {
 		this.shopReview = shopReview;
 	}
 
@@ -63,27 +67,43 @@ public class UserShopView {
 		this.shopLoyaltyProgram = shopLoyaltyProgram;
 	}
 
-	public UserDealView getUserDeals() {
+	public List<Offer> getUserDeals() {
 		return userDeals;
 	}
 
-	public void setUserDeals(UserDealView userDeals) {
+	public void setUserDeals(List<Offer> userDeals) {
 		this.userDeals = userDeals;
 	}
 
-	public Cart getCart() {
-		return cart;
+	public ConsumerCheckIn getConsumerCheckIn() {
+		return consumerCheckIn;
 	}
 
-	public void setCart(Cart cart) {
-		this.cart = cart;
+	public void setConsumerCheckIn(ConsumerCheckIn consumerCheckIn) {
+		this.consumerCheckIn = consumerCheckIn;
 	}
 
-	public Chat[] getChats() {
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public List<Order> getAllOrders() {
+		return allOrders;
+	}
+
+	public void setAllOrders(List<Order> allOrders) {
+		this.allOrders = allOrders;
+	}
+
+	public List<Chat> getChats() {
 		return chats;
 	}
 
-	public void setChats(Chat[] chats) {
+	public void setChats(List<Chat> chats) {
 		this.chats = chats;
 	}
 
@@ -91,13 +111,15 @@ public class UserShopView {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cart == null) ? 0 : cart.hashCode());
-		result = prime * result + Arrays.hashCode(chats);
+		result = prime * result + ((allOrders == null) ? 0 : allOrders.hashCode());
+		result = prime * result + ((chats == null) ? 0 : chats.hashCode());
+		result = prime * result + ((consumerCheckIn == null) ? 0 : consumerCheckIn.hashCode());
+		result = prime * result + ((order == null) ? 0 : order.hashCode());
 		result = prime * result + ((shop == null) ? 0 : shop.hashCode());
 		result = prime * result + ((shopInfo == null) ? 0 : shopInfo.hashCode());
 		result = prime * result + ((shopLoyaltyCard == null) ? 0 : shopLoyaltyCard.hashCode());
 		result = prime * result + ((shopLoyaltyProgram == null) ? 0 : shopLoyaltyProgram.hashCode());
-		result = prime * result + Arrays.hashCode(shopReview);
+		result = prime * result + ((shopReview == null) ? 0 : shopReview.hashCode());
 		result = prime * result + ((userDeals == null) ? 0 : userDeals.hashCode());
 		return result;
 	}
@@ -110,13 +132,26 @@ public class UserShopView {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserShopView other = (UserShopView) obj;
-		if (cart == null) {
-			if (other.cart != null)
+		ConsumerViewModel other = (ConsumerViewModel) obj;
+		if (allOrders == null) {
+			if (other.allOrders != null)
 				return false;
-		} else if (!cart.equals(other.cart))
+		} else if (!allOrders.equals(other.allOrders))
 			return false;
-		if (!Arrays.equals(chats, other.chats))
+		if (chats == null) {
+			if (other.chats != null)
+				return false;
+		} else if (!chats.equals(other.chats))
+			return false;
+		if (consumerCheckIn == null) {
+			if (other.consumerCheckIn != null)
+				return false;
+		} else if (!consumerCheckIn.equals(other.consumerCheckIn))
+			return false;
+		if (order == null) {
+			if (other.order != null)
+				return false;
+		} else if (!order.equals(other.order))
 			return false;
 		if (shop == null) {
 			if (other.shop != null)
@@ -138,7 +173,10 @@ public class UserShopView {
 				return false;
 		} else if (!shopLoyaltyProgram.equals(other.shopLoyaltyProgram))
 			return false;
-		if (!Arrays.equals(shopReview, other.shopReview))
+		if (shopReview == null) {
+			if (other.shopReview != null)
+				return false;
+		} else if (!shopReview.equals(other.shopReview))
 			return false;
 		if (userDeals == null) {
 			if (other.userDeals != null)
@@ -147,4 +185,14 @@ public class UserShopView {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "ConsumerViewModel [shop=" + shop + ", shopInfo=" + shopInfo + ", shopReview=" + shopReview
+				+ ", shopLoyaltyCard=" + shopLoyaltyCard + ", shopLoyaltyProgram=" + shopLoyaltyProgram + ", userDeals="
+				+ userDeals + ", consumerCheckIn=" + consumerCheckIn + ", order=" + order + ", allOrders=" + allOrders
+				+ ", chats=" + chats + "]";
+	}
+
+
 }

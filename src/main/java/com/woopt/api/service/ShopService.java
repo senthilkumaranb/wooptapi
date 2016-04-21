@@ -56,6 +56,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Service Implementation for ShopController
+ * calls DAO
+ * @author Senthil
+ *
+ */
 @Service
 public class ShopService {
 	
@@ -492,12 +498,28 @@ public class ShopService {
 	
 	// function to update shop model
 	public List<ShopModel> updateShopModel(ShopModel shopModel){
+		String returnCode;
+		Shop shop = new Shop();
+		shop = shopModel.getShop();
+		shop = this.updateShop(shop);
+		
 		return null;
 	}
 		
 	// function to update shop
 	public Shop updateShop(Shop shop){
-		return null;
+		ShopEntity shopEntity = new ShopEntity();
+		Gson gson = new Gson();
+		String jsonShopEntity = gson.toJson(shop, Shop.class);
+		shopEntity = gson.fromJson(jsonShopEntity, ShopEntity.class);
+		LOGGER.info("!!!!!! shopEntity !!!!!!" + shopEntity);
+		try {
+			shopDAO.update(shopEntity);
+			return shop;
+		}
+		catch (Exception e){
+			return shop;
+		}
 	}
 		
 	// function to update shopInfo

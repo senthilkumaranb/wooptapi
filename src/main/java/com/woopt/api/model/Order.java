@@ -1,96 +1,132 @@
 package com.woopt.api.model;
 
-import java.util.Arrays;
-
 public class Order {
 	
+	private Integer orderId;
+	
+	private Integer orderType;
+	
+	private Integer orderMethod;
+	
+	private Integer consumerId;
+	
+	private Integer userId;
+	
+	private Integer shopId;
+	
+	private Double orderTotalTransaction;
+	
+	private Double orderTotalRedeemed;
+	
+	private Double orderNetTransaction;
+	
+	private Integer orderStatus;
+	
+	private Cart cart;
 
-	  private int userShopOrderId;
-	  private int userId;
-	  private int shopId;
-	  private int userShopOrderTotalTransaction;
-	  private int userShopOrderTotalRedeemed;
-	  private int userShopOrderStatus;
-	  private int userShopOrderNetTransaction;
-
-	  private OrderCartOfferAdded[] orderCartOfferAdded;
-
-	public int getUserShopOrderId() {
-		return userShopOrderId;
+	public Integer getOrderId() {
+		return orderId;
 	}
 
-	public void setUserShopOrderId(int userShopOrderId) {
-		this.userShopOrderId = userShopOrderId;
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
 	}
 
-	public int getUserId() {
+	public Integer getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(Integer orderType) {
+		this.orderType = orderType;
+	}
+
+	public Integer getOrderMethod() {
+		return orderMethod;
+	}
+
+	public void setOrderMethod(Integer orderMethod) {
+		this.orderMethod = orderMethod;
+	}
+
+	public Integer getConsumerId() {
+		return consumerId;
+	}
+
+	public void setConsumerId(Integer consumerId) {
+		this.consumerId = consumerId;
+	}
+
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
-	public int getShopId() {
+	public Integer getShopId() {
 		return shopId;
 	}
 
-	public void setShopId(int shopId) {
+	public void setShopId(Integer shopId) {
 		this.shopId = shopId;
 	}
 
-	public int getUserShopOrderTotalTransaction() {
-		return userShopOrderTotalTransaction;
+	public Double getOrderTotalTransaction() {
+		return orderTotalTransaction;
 	}
 
-	public void setUserShopOrderTotalTransaction(int userShopOrderTotalTransaction) {
-		this.userShopOrderTotalTransaction = userShopOrderTotalTransaction;
+	public void setOrderTotalTransaction(Double orderTotalTransaction) {
+		this.orderTotalTransaction = orderTotalTransaction;
 	}
 
-	public int getUserShopOrderTotalRedeemed() {
-		return userShopOrderTotalRedeemed;
+	public Double getOrderTotalRedeemed() {
+		return orderTotalRedeemed;
 	}
 
-	public void setUserShopOrderTotalRedeemed(int userShopOrderTotalRedeemed) {
-		this.userShopOrderTotalRedeemed = userShopOrderTotalRedeemed;
+	public void setOrderTotalRedeemed(Double orderTotalRedeemed) {
+		this.orderTotalRedeemed = orderTotalRedeemed;
 	}
 
-	public int getUserShopOrderStatus() {
-		return userShopOrderStatus;
+	public Double getOrderNetTransaction() {
+		return orderNetTransaction;
 	}
 
-	public void setUserShopOrderStatus(int userShopOrderStatus) {
-		this.userShopOrderStatus = userShopOrderStatus;
+	public void setOrderNetTransaction(Double orderNetTransaction) {
+		this.orderNetTransaction = orderNetTransaction;
 	}
 
-	public int getUserShopOrderNetTransaction() {
-		return userShopOrderNetTransaction;
+	public Integer getOrderStatus() {
+		return orderStatus;
 	}
 
-	public void setUserShopOrderNetTransaction(int userShopOrderNetTransaction) {
-		this.userShopOrderNetTransaction = userShopOrderNetTransaction;
+	public void setOrderStatus(Integer orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
-	public OrderCartOfferAdded[] getOrderCartOfferAdded() {
-		return orderCartOfferAdded;
+	public Cart getCart() {
+		return cart;
 	}
 
-	public void setOrderCartOfferAdded(OrderCartOfferAdded[] orderCartOfferAdded) {
-		this.orderCartOfferAdded = orderCartOfferAdded;
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Arrays.hashCode(orderCartOfferAdded);
-		result = prime * result + shopId;
-		result = prime * result + userId;
-		result = prime * result + userShopOrderId;
-		result = prime * result + userShopOrderNetTransaction;
-		result = prime * result + userShopOrderStatus;
-		result = prime * result + userShopOrderTotalRedeemed;
-		result = prime * result + userShopOrderTotalTransaction;
+		result = prime * result + ((cart == null) ? 0 : cart.hashCode());
+		result = prime * result + ((consumerId == null) ? 0 : consumerId.hashCode());
+		result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
+		result = prime * result + ((orderMethod == null) ? 0 : orderMethod.hashCode());
+		result = prime * result + ((orderNetTransaction == null) ? 0 : orderNetTransaction.hashCode());
+		result = prime * result + ((orderStatus == null) ? 0 : orderStatus.hashCode());
+		result = prime * result + ((orderTotalRedeemed == null) ? 0 : orderTotalRedeemed.hashCode());
+		result = prime * result + ((orderTotalTransaction == null) ? 0 : orderTotalTransaction.hashCode());
+		result = prime * result + ((orderType == null) ? 0 : orderType.hashCode());
+		result = prime * result + ((shopId == null) ? 0 : shopId.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -103,33 +139,72 @@ public class Order {
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		if (!Arrays.equals(orderCartOfferAdded, other.orderCartOfferAdded))
+		if (cart == null) {
+			if (other.cart != null)
+				return false;
+		} else if (!cart.equals(other.cart))
 			return false;
-		if (shopId != other.shopId)
+		if (consumerId == null) {
+			if (other.consumerId != null)
+				return false;
+		} else if (!consumerId.equals(other.consumerId))
 			return false;
-		if (userId != other.userId)
+		if (orderId == null) {
+			if (other.orderId != null)
+				return false;
+		} else if (!orderId.equals(other.orderId))
 			return false;
-		if (userShopOrderId != other.userShopOrderId)
+		if (orderMethod == null) {
+			if (other.orderMethod != null)
+				return false;
+		} else if (!orderMethod.equals(other.orderMethod))
 			return false;
-		if (userShopOrderNetTransaction != other.userShopOrderNetTransaction)
+		if (orderNetTransaction == null) {
+			if (other.orderNetTransaction != null)
+				return false;
+		} else if (!orderNetTransaction.equals(other.orderNetTransaction))
 			return false;
-		if (userShopOrderStatus != other.userShopOrderStatus)
+		if (orderStatus == null) {
+			if (other.orderStatus != null)
+				return false;
+		} else if (!orderStatus.equals(other.orderStatus))
 			return false;
-		if (userShopOrderTotalRedeemed != other.userShopOrderTotalRedeemed)
+		if (orderTotalRedeemed == null) {
+			if (other.orderTotalRedeemed != null)
+				return false;
+		} else if (!orderTotalRedeemed.equals(other.orderTotalRedeemed))
 			return false;
-		if (userShopOrderTotalTransaction != other.userShopOrderTotalTransaction)
+		if (orderTotalTransaction == null) {
+			if (other.orderTotalTransaction != null)
+				return false;
+		} else if (!orderTotalTransaction.equals(other.orderTotalTransaction))
+			return false;
+		if (orderType == null) {
+			if (other.orderType != null)
+				return false;
+		} else if (!orderType.equals(other.orderType))
+			return false;
+		if (shopId == null) {
+			if (other.shopId != null)
+				return false;
+		} else if (!shopId.equals(other.shopId))
+			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Order [userShopOrderId=" + userShopOrderId + ", userId=" + userId + ", shopId=" + shopId
-				+ ", userShopOrderTotalTransaction=" + userShopOrderTotalTransaction + ", userShopOrderTotalRedeemed="
-				+ userShopOrderTotalRedeemed + ", userShopOrderStatus=" + userShopOrderStatus
-				+ ", userShopOrderNetTransaction=" + userShopOrderNetTransaction + ", orderCartOfferAdded="
-				+ Arrays.toString(orderCartOfferAdded) + "]";
+		return "Order [orderId=" + orderId + ", orderType=" + orderType + ", orderMethod=" + orderMethod
+				+ ", consumerId=" + consumerId + ", userId=" + userId + ", shopId=" + shopId
+				+ ", orderTotalTransaction=" + orderTotalTransaction + ", orderTotalRedeemed=" + orderTotalRedeemed
+				+ ", orderNetTransaction=" + orderNetTransaction + ", orderStatus=" + orderStatus + ", cart=" + cart
+				+ "]";
 	}
-	  
+	
 		  
 }

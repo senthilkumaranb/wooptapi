@@ -31,6 +31,7 @@ public class Offer {
 	private Integer offerShopId;
 	private Integer offerManufacturerid;
 	private Integer offerAvailableUnits;
+	
 	private List<OfferUserPublish> offerUserPublish;
 	
 	public Integer getOfferId() {
@@ -367,7 +368,5 @@ public class Offer {
 				+ ", offerAvailableUnits=" + offerAvailableUnits + ", offerUserPublish=" + offerUserPublish + "]";
 	}
 	
-	
-
 	
 }

@@ -104,5 +104,31 @@ public class ShopController {
 		LOGGER.info("Return ShopModel:" + shopModels);
 		return new ResponseEntity<List<ShopModel>>(shopModels, returnHeader, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST, headers="Accept=application/json")
+	public ResponseEntity<List<ShopModel>> updateShops(@RequestBody ShopModel shopModel, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		LOGGER.info("calling /api/shop/update api");
+		LOGGER.info("Input User:" + shopModel);
+		HttpHeaders returnHeader = new HttpHeaders();
+		User user = null;
+
+		List<ShopModel> shopModels = new ArrayList<ShopModel>();
+		String responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != shopModel){
+				//user = userModel.getUser();
+				shopModels = shopService.updateShopModel(shopModel);
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return ShopModel:" + shopModels);
+		return new ResponseEntity<List<ShopModel>>(shopModels, returnHeader, HttpStatus.OK);
+	}
 
 }

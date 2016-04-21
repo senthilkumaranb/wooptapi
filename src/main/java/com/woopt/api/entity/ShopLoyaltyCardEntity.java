@@ -28,10 +28,10 @@ public class ShopLoyaltyCardEntity {
 	@Id
 	@Column(name = "SHOP_LOYALTY_CARD_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int shopLoyaltyCardId;
+	private Integer shopLoyaltyCardId;
 	
 	@Column(name = "SHOP_ID")
-	private int shopId;
+	private Integer shopId;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_NAME")
 	private String shopLoyaltyCardName;
@@ -54,25 +54,33 @@ public class ShopLoyaltyCardEntity {
 	@Column(name = "SHOP_LOYALTY_CARD_NO_OF_STAGES")
 	private Integer shopLoyaltyCardNoOfStages;
 	
+	@Column(name = "SHOP_LOYALTY_CARD_VALIDITY")
+	private Integer shopLoyaltyCardValidity;
+	
 	@Column(name = "CREATED_DATETIME")
 	private Timestamp createdDatetime;
 
 	@Column(name = "LAST_UPDATED_DATETIME")
 	private Timestamp lastUpdatedDatetime;
+	
+	public ShopLoyaltyCardEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	public int getShopLoyaltyCardId() {
+	public Integer getShopLoyaltyCardId() {
 		return shopLoyaltyCardId;
 	}
 
-	public void setShopLoyaltyCardId(int shopLoyaltyCardId) {
+	public void setShopLoyaltyCardId(Integer shopLoyaltyCardId) {
 		this.shopLoyaltyCardId = shopLoyaltyCardId;
 	}
 
-	public int getShopId() {
+	public Integer getShopId() {
 		return shopId;
 	}
 
-	public void setShopId(int shopId) {
+	public void setShopId(Integer shopId) {
 		this.shopId = shopId;
 	}
 
@@ -84,19 +92,19 @@ public class ShopLoyaltyCardEntity {
 		this.shopLoyaltyCardName = shopLoyaltyCardName;
 	}
 
-	public int getShopLoyaltyCardIsSameForAllBranches() {
+	public Integer getShopLoyaltyCardIsSameForAllBranches() {
 		return shopLoyaltyCardIsSameForAllBranches;
 	}
 
-	public void setShopLoyaltyCardIsSameForAllBranches(int shopLoyaltyCardIsSameForAllBranches) {
+	public void setShopLoyaltyCardIsSameForAllBranches(Integer shopLoyaltyCardIsSameForAllBranches) {
 		this.shopLoyaltyCardIsSameForAllBranches = shopLoyaltyCardIsSameForAllBranches;
 	}
 
-	public int getShopLoyaltyCardStatus() {
+	public Integer getShopLoyaltyCardStatus() {
 		return shopLoyaltyCardStatus;
 	}
 
-	public void setShopLoyaltyCardStatus(int shopLoyaltyCardStatus) {
+	public void setShopLoyaltyCardStatus(Integer shopLoyaltyCardStatus) {
 		this.shopLoyaltyCardStatus = shopLoyaltyCardStatus;
 	}
 
@@ -116,20 +124,28 @@ public class ShopLoyaltyCardEntity {
 		this.shopLoyaltyCardEndDate = shopLoyaltyCardEndDate;
 	}
 
-	public int getShopLoyaltyCardTypeId() {
+	public Integer getShopLoyaltyCardTypeId() {
 		return shopLoyaltyCardTypeId;
 	}
 
-	public void setShopLoyaltyCardTypeId(int shopLoyaltyCardTypeId) {
+	public void setShopLoyaltyCardTypeId(Integer shopLoyaltyCardTypeId) {
 		this.shopLoyaltyCardTypeId = shopLoyaltyCardTypeId;
 	}
 
-	public int getShopLoyaltyCardNoOfStages() {
+	public Integer getShopLoyaltyCardNoOfStages() {
 		return shopLoyaltyCardNoOfStages;
 	}
 
-	public void setShopLoyaltyCardNoOfStages(int shopLoyaltyCardNoOfStages) {
+	public void setShopLoyaltyCardNoOfStages(Integer shopLoyaltyCardNoOfStages) {
 		this.shopLoyaltyCardNoOfStages = shopLoyaltyCardNoOfStages;
+	}
+
+	public Integer getShopLoyaltyCardValidity() {
+		return shopLoyaltyCardValidity;
+	}
+
+	public void setShopLoyaltyCardValidity(Integer shopLoyaltyCardValidity) {
+		this.shopLoyaltyCardValidity = shopLoyaltyCardValidity;
 	}
 
 	public Timestamp getCreatedDatetime() {
@@ -147,84 +163,19 @@ public class ShopLoyaltyCardEntity {
 	public void setLastUpdatedDatetime(Timestamp lastUpdatedDatetime) {
 		this.lastUpdatedDatetime = lastUpdatedDatetime;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((createdDatetime == null) ? 0 : createdDatetime.hashCode());
-		result = prime * result + ((lastUpdatedDatetime == null) ? 0 : lastUpdatedDatetime.hashCode());
-		result = prime * result + shopId;
-		result = prime * result + ((shopLoyaltyCardEndDate == null) ? 0 : shopLoyaltyCardEndDate.hashCode());
-		result = prime * result + shopLoyaltyCardId;
-		result = prime * result + shopLoyaltyCardIsSameForAllBranches;
-		result = prime * result + ((shopLoyaltyCardName == null) ? 0 : shopLoyaltyCardName.hashCode());
-		result = prime * result + shopLoyaltyCardNoOfStages;
-		result = prime * result + ((shopLoyaltyCardStartDate == null) ? 0 : shopLoyaltyCardStartDate.hashCode());
-		result = prime * result + shopLoyaltyCardStatus;
-		result = prime * result + shopLoyaltyCardTypeId;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ShopLoyaltyCardEntity other = (ShopLoyaltyCardEntity) obj;
-		if (createdDatetime == null) {
-			if (other.createdDatetime != null)
-				return false;
-		} else if (!createdDatetime.equals(other.createdDatetime))
-			return false;
-		if (lastUpdatedDatetime == null) {
-			if (other.lastUpdatedDatetime != null)
-				return false;
-		} else if (!lastUpdatedDatetime.equals(other.lastUpdatedDatetime))
-			return false;
-		if (shopId != other.shopId)
-			return false;
-		if (shopLoyaltyCardEndDate == null) {
-			if (other.shopLoyaltyCardEndDate != null)
-				return false;
-		} else if (!shopLoyaltyCardEndDate.equals(other.shopLoyaltyCardEndDate))
-			return false;
-		if (shopLoyaltyCardId != other.shopLoyaltyCardId)
-			return false;
-		if (shopLoyaltyCardIsSameForAllBranches != other.shopLoyaltyCardIsSameForAllBranches)
-			return false;
-		if (shopLoyaltyCardName == null) {
-			if (other.shopLoyaltyCardName != null)
-				return false;
-		} else if (!shopLoyaltyCardName.equals(other.shopLoyaltyCardName))
-			return false;
-		if (shopLoyaltyCardNoOfStages != other.shopLoyaltyCardNoOfStages)
-			return false;
-		if (shopLoyaltyCardStartDate == null) {
-			if (other.shopLoyaltyCardStartDate != null)
-				return false;
-		} else if (!shopLoyaltyCardStartDate.equals(other.shopLoyaltyCardStartDate))
-			return false;
-		if (shopLoyaltyCardStatus != other.shopLoyaltyCardStatus)
-			return false;
-		if (shopLoyaltyCardTypeId != other.shopLoyaltyCardTypeId)
-			return false;
-		return true;
-	}
+	
 
 	@Override
 	public String toString() {
-		return "ShopLoyaltyCard [shopLoyaltyCardId=" + shopLoyaltyCardId + ", shopId=" + shopId
+		return "ShopLoyaltyCardEntity [shopLoyaltyCardId=" + shopLoyaltyCardId + ", shopId=" + shopId
 				+ ", shopLoyaltyCardName=" + shopLoyaltyCardName + ", shopLoyaltyCardIsSameForAllBranches="
 				+ shopLoyaltyCardIsSameForAllBranches + ", shopLoyaltyCardStatus=" + shopLoyaltyCardStatus
 				+ ", shopLoyaltyCardStartDate=" + shopLoyaltyCardStartDate + ", shopLoyaltyCardEndDate="
 				+ shopLoyaltyCardEndDate + ", shopLoyaltyCardTypeId=" + shopLoyaltyCardTypeId
-				+ ", shopLoyaltyCardNoOfStages=" + shopLoyaltyCardNoOfStages + ", createdDatetime=" + createdDatetime
-				+ ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
+				+ ", shopLoyaltyCardNoOfStages=" + shopLoyaltyCardNoOfStages + ", shopLoyaltyCardValidity="
+				+ shopLoyaltyCardValidity + ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime="
+				+ lastUpdatedDatetime + "]";
 	}
-	
+
 	
 }

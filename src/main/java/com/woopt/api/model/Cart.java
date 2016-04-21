@@ -1,35 +1,57 @@
 package com.woopt.api.model;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class Cart {
 	
-	Order[] order;
+	private Integer cardId;
 	
-	private UserCheckIn userCheckIn;
+	private List<CartItem> cartItems;
+	
+	private Integer cartStatus;
+	
+	private Integer consumerCheckInId;
 
-	public Order[] getOrder() {
-		return order;
+	public Integer getCardId() {
+		return cardId;
 	}
 
-	public void setOrder(Order[] order) {
-		this.order = order;
+	public void setCardId(Integer cardId) {
+		this.cardId = cardId;
 	}
 
-	public UserCheckIn getUserCheckIn() {
-		return userCheckIn;
+	public List<CartItem> getCartItems() {
+		return cartItems;
 	}
 
-	public void setUserCheckIn(UserCheckIn userCheckIn) {
-		this.userCheckIn = userCheckIn;
+	public void setCartItems(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
+	}
+
+	public Integer getCartStatus() {
+		return cartStatus;
+	}
+
+	public void setCartStatus(Integer cartStatus) {
+		this.cartStatus = cartStatus;
+	}
+
+	public Integer getConsumerCheckInId() {
+		return consumerCheckInId;
+	}
+
+	public void setConsumerCheckInId(Integer consumerCheckInId) {
+		this.consumerCheckInId = consumerCheckInId;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Arrays.hashCode(order);
-		result = prime * result + ((userCheckIn == null) ? 0 : userCheckIn.hashCode());
+		result = prime * result + ((cardId == null) ? 0 : cardId.hashCode());
+		result = prime * result + ((cartItems == null) ? 0 : cartItems.hashCode());
+		result = prime * result + ((cartStatus == null) ? 0 : cartStatus.hashCode());
+		result = prime * result + ((consumerCheckInId == null) ? 0 : consumerCheckInId.hashCode());
 		return result;
 	}
 
@@ -42,20 +64,33 @@ public class Cart {
 		if (getClass() != obj.getClass())
 			return false;
 		Cart other = (Cart) obj;
-		if (!Arrays.equals(order, other.order))
-			return false;
-		if (userCheckIn == null) {
-			if (other.userCheckIn != null)
+		if (cardId == null) {
+			if (other.cardId != null)
 				return false;
-		} else if (!userCheckIn.equals(other.userCheckIn))
+		} else if (!cardId.equals(other.cardId))
+			return false;
+		if (cartItems == null) {
+			if (other.cartItems != null)
+				return false;
+		} else if (!cartItems.equals(other.cartItems))
+			return false;
+		if (cartStatus == null) {
+			if (other.cartStatus != null)
+				return false;
+		} else if (!cartStatus.equals(other.cartStatus))
+			return false;
+		if (consumerCheckInId == null) {
+			if (other.consumerCheckInId != null)
+				return false;
+		} else if (!consumerCheckInId.equals(other.consumerCheckInId))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Cart [order=" + Arrays.toString(order) + ", userCheckIn=" + userCheckIn + "]";
+		return "Cart [cardId=" + cardId + ", cartItems=" + cartItems + ", cartStatus=" + cartStatus
+				+ ", consumerCheckInId=" + consumerCheckInId + "]";
 	}
-	
 		
 }
