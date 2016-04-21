@@ -30,6 +30,15 @@ public class Cart {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer cartId;
 	
+	@Column(name = "USER_ID")
+	private Integer userId;
+	
+	@Column(name = "SHOP_ID")
+	private Integer shopId;
+	
+	@Column(name = "CONSUMER_ID")
+	private Integer consumerId;
+	
 	@Column(name = "CART_STATUS")
 	private Integer cartStatus;
 	
@@ -53,6 +62,30 @@ public class Cart {
 
 	public void setCartId(Integer cartId) {
 		this.cartId = cartId;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public Integer getShopId() {
+		return shopId;
+	}
+
+	public void setShopId(Integer shopId) {
+		this.shopId = shopId;
+	}
+
+	public Integer getConsumerId() {
+		return consumerId;
+	}
+
+	public void setConsumerId(Integer consumerId) {
+		this.consumerId = consumerId;
 	}
 
 	public Integer getCartStatus() {
@@ -89,8 +122,10 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [cartId=" + cartId + ", cartStatus=" + cartStatus + ", consumerCheckInId=" + consumerCheckInId
-				+ ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
+		return "Cart [cartId=" + cartId + ", userId=" + userId + ", shopId=" + shopId + ", consumerId=" + consumerId
+				+ ", cartStatus=" + cartStatus + ", consumerCheckInId=" + consumerCheckInId + ", createdDatetime="
+				+ createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
 	}
 
+	
 }
