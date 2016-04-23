@@ -25,4 +25,6 @@ public interface ShopDAO {
 	
 	public List<ShopEntity> getShopBranches(int shopId);
 	
+	public ShopEntity getShopbyShopId(int shopId);
+	
 }

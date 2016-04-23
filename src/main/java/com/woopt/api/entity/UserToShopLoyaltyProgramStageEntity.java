@@ -16,8 +16,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "WOOPT_USER_TO_SHOP_LOYALTY_PROGRAM_TRANSACTION")
-public class UserToShopLoyaltyProgramTransactionEntity {
+@Table(name = "WOOPT_USER_TO_SHOP_LOYALTY_PROGRAM_STAGE")
+public class UserToShopLoyaltyProgramStageEntity {
 	
 	/**
 	 * 
@@ -26,9 +26,9 @@ public class UserToShopLoyaltyProgramTransactionEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "USER_TO_SHOP_LOYALTY_PROGRAM_TRANSACTION_ID")
+	@Column(name = "USER_TO_SHOP_LOYALTY_PROGRAM_STAGE_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int userToShopLoyaltyProgramTransactionId;
+	private int userToShopLoyaltyProgramStageId;
 	
 	@Column(name = "USER_TO_SHOP_LOYALTY_PROGRAM_ID")
 	private int userToShopLoyaltyProgramId;
@@ -45,12 +45,17 @@ public class UserToShopLoyaltyProgramTransactionEntity {
 	@Column(name = "LAST_UPDATED_DATETIME")
 	private Timestamp lastUpdatedDatetime;
 
-	public int getUserToShopLoyaltyProgramTransactionId() {
-		return userToShopLoyaltyProgramTransactionId;
+	public UserToShopLoyaltyProgramStageEntity() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setUserToShopLoyaltyProgramTransactionId(int userToShopLoyaltyProgramTransactionId) {
-		this.userToShopLoyaltyProgramTransactionId = userToShopLoyaltyProgramTransactionId;
+	public int getUserToShopLoyaltyProgramStageId() {
+		return userToShopLoyaltyProgramStageId;
+	}
+
+	public void setUserToShopLoyaltyProgramStageId(int userToShopLoyaltyProgramStageId) {
+		this.userToShopLoyaltyProgramStageId = userToShopLoyaltyProgramStageId;
 	}
 
 	public int getUserToShopLoyaltyProgramId() {
@@ -92,7 +97,15 @@ public class UserToShopLoyaltyProgramTransactionEntity {
 	public void setLastUpdatedDatetime(Timestamp lastUpdatedDatetime) {
 		this.lastUpdatedDatetime = lastUpdatedDatetime;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "UserToShopLoyaltyProgramStageEntity [userToShopLoyaltyProgramStageId=" + userToShopLoyaltyProgramStageId
+				+ ", userToShopLoyaltyProgramId=" + userToShopLoyaltyProgramId + ", shopLoyaltyProgramStageId="
+				+ shopLoyaltyProgramStageId + ", userToShopLoyaltyProgramStageAchievedDateTime="
+				+ userToShopLoyaltyProgramStageAchievedDateTime + ", createdDatetime=" + createdDatetime
+				+ ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
+	}
 	
 
 }

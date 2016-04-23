@@ -144,5 +144,20 @@ public class ShopDAOImpl implements ShopDAO {
 		session.close();
 		return shopName;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public ShopEntity getShopbyShopId(int shopId) {
+		// TODO Auto-generated method stub
+
+		System.out.println("--------+ getUserShops +-----------");
+		Session session = this.sessionFactory.openSession();
+		//System.out.println("--------++*******getUserShops*********-----------" + session);
+		Query query = session.createQuery("from ShopEntity W where W.shopId=:shopId");
+		query.setParameter("shopId",shopId);
+		List<ShopEntity> shopList = query.list();
+		session.close();
+		return shopList.get(0);
+	}
 
 }

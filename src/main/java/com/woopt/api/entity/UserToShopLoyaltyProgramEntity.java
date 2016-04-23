@@ -30,14 +30,14 @@ public class UserToShopLoyaltyProgramEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int userToShopLoyaltyProgramId;
 	
-	@Column(name = "USER_ID")
-	private int userId;
-	
-	@Column(name = "SHOP_ID")
-	private int shopId;
+	@Column(name = "CONSUMER_ID")
+	private int consumerId;
 	
 	@Column(name = "SHOP_LOYALTY_PROGRAM_ID")
 	private int shopLoyaltyProgramId;
+	
+	@Column(name = "SHOP_LOYALTY_PROGRAM_NAME")
+	private String shopLoyaltyProgramName;
 	
 	@Column(name = "USER_TO_SHOP_LOYALTY_PROGRAM_STATUS")
 	private int userToShopLoyaltyProgramStatus;
@@ -45,11 +45,25 @@ public class UserToShopLoyaltyProgramEntity {
 	@Column(name = "USER_TO_SHOP_LOYALTY_PROGRAM_CURRENT_STAGE")
 	private int userToShopLoyaltyProgramCurrentStage;
 	
+	@Column(name = "USER_TO_SHOP_LOYALTY_PROGRAM_NO_OF_STAGES")
+	private int userToShopLoyaltyProgramNoOfStages;
+	
+	@Column(name = "USER_TO_SHOP_LOYALTY_PROGRAM_START_DATE")
+	private Timestamp userToShopLoyaltyProgramStartDate;
+	
+	@Column(name = "USER_TO_SHOP_LOYALTY_PROGRAM_EXPIRY_DATE")
+	private Timestamp userToShopLoyaltyProgramExpiryDate;
+	
 	@Column(name = "CREATED_DATETIME")
 	private Timestamp createdDatetime;
 
 	@Column(name = "LAST_UPDATED_DATETIME")
 	private Timestamp lastUpdatedDatetime;
+
+	public UserToShopLoyaltyProgramEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getUserToShopLoyaltyProgramId() {
 		return userToShopLoyaltyProgramId;
@@ -59,20 +73,12 @@ public class UserToShopLoyaltyProgramEntity {
 		this.userToShopLoyaltyProgramId = userToShopLoyaltyProgramId;
 	}
 
-	public int getUserId() {
-		return userId;
+	public int getConsumerId() {
+		return consumerId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public int getShopId() {
-		return shopId;
-	}
-
-	public void setShopId(int shopId) {
-		this.shopId = shopId;
+	public void setConsumerId(int consumerId) {
+		this.consumerId = consumerId;
 	}
 
 	public int getShopLoyaltyProgramId() {
@@ -81,6 +87,14 @@ public class UserToShopLoyaltyProgramEntity {
 
 	public void setShopLoyaltyProgramId(int shopLoyaltyProgramId) {
 		this.shopLoyaltyProgramId = shopLoyaltyProgramId;
+	}
+
+	public String getShopLoyaltyProgramName() {
+		return shopLoyaltyProgramName;
+	}
+
+	public void setShopLoyaltyProgramName(String shopLoyaltyProgramName) {
+		this.shopLoyaltyProgramName = shopLoyaltyProgramName;
 	}
 
 	public int getUserToShopLoyaltyProgramStatus() {
@@ -99,6 +113,30 @@ public class UserToShopLoyaltyProgramEntity {
 		this.userToShopLoyaltyProgramCurrentStage = userToShopLoyaltyProgramCurrentStage;
 	}
 
+	public int getUserToShopLoyaltyProgramNoOfStages() {
+		return userToShopLoyaltyProgramNoOfStages;
+	}
+
+	public void setUserToShopLoyaltyProgramNoOfStages(int userToShopLoyaltyProgramNoOfStages) {
+		this.userToShopLoyaltyProgramNoOfStages = userToShopLoyaltyProgramNoOfStages;
+	}
+
+	public Timestamp getUserToShopLoyaltyProgramStartDate() {
+		return userToShopLoyaltyProgramStartDate;
+	}
+
+	public void setUserToShopLoyaltyProgramStartDate(Timestamp userToShopLoyaltyProgramStartDate) {
+		this.userToShopLoyaltyProgramStartDate = userToShopLoyaltyProgramStartDate;
+	}
+
+	public Timestamp getUserToShopLoyaltyProgramExpiryDate() {
+		return userToShopLoyaltyProgramExpiryDate;
+	}
+
+	public void setUserToShopLoyaltyProgramExpiryDate(Timestamp userToShopLoyaltyProgramExpiryDate) {
+		this.userToShopLoyaltyProgramExpiryDate = userToShopLoyaltyProgramExpiryDate;
+	}
+
 	public Timestamp getCreatedDatetime() {
 		return createdDatetime;
 	}
@@ -114,7 +152,20 @@ public class UserToShopLoyaltyProgramEntity {
 	public void setLastUpdatedDatetime(Timestamp lastUpdatedDatetime) {
 		this.lastUpdatedDatetime = lastUpdatedDatetime;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "UserToShopLoyaltyProgramEntity [userToShopLoyaltyProgramId=" + userToShopLoyaltyProgramId
+				+ ", consumerId=" + consumerId + ", shopLoyaltyProgramId=" + shopLoyaltyProgramId
+				+ ", shopLoyaltyProgramName=" + shopLoyaltyProgramName + ", userToShopLoyaltyProgramStatus="
+				+ userToShopLoyaltyProgramStatus + ", userToShopLoyaltyProgramCurrentStage="
+				+ userToShopLoyaltyProgramCurrentStage + ", userToShopLoyaltyProgramNoOfStages="
+				+ userToShopLoyaltyProgramNoOfStages + ", userToShopLoyaltyProgramStartDate="
+				+ userToShopLoyaltyProgramStartDate + ", userToShopLoyaltyProgramExpiryDate="
+				+ userToShopLoyaltyProgramExpiryDate + ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime="
+				+ lastUpdatedDatetime + "]";
+	}
+
+	
+	
 }

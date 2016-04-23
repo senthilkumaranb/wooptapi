@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "WOOPT_CART")
-public class Cart {
+public class CartEntity {
 	
 	/**
 	 * 
@@ -51,7 +51,7 @@ public class Cart {
 	@Column(name = "LAST_UPDATED_DATETIME")
 	private Timestamp lastUpdatedDatetime;
 
-	public Cart() {
+	public CartEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -122,9 +122,9 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [cartId=" + cartId + ", userId=" + userId + ", shopId=" + shopId + ", consumerId=" + consumerId
-				+ ", cartStatus=" + cartStatus + ", consumerCheckInId=" + consumerCheckInId + ", createdDatetime="
-				+ createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
+		return "CartEntity [cartId=" + cartId + ", userId=" + userId + ", shopId=" + shopId + ", consumerId="
+				+ consumerId + ", cartStatus=" + cartStatus + ", consumerCheckInId=" + consumerCheckInId
+				+ ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
 	}
 
 	

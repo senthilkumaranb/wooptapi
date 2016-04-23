@@ -313,7 +313,7 @@ public class ShopService {
 			LOGGER.info("!!!!!!!!!!!!!!! Jackson Json Loyalty Program conversion !!!!!!!!!!!!!!!!11" + shopLoyaltyProgram);
 			
 			List<ShopLoyaltyProgramStageEntity> shopLoyaltyProgramStageEntities = new ArrayList<ShopLoyaltyProgramStageEntity>();
-			shopLoyaltyProgramStageEntities = shopLoyaltyProgramStageDAO.getbyId(shopLoyaltyProgramEntity.getShopLoyaltyProgramId());
+			shopLoyaltyProgramStageEntities = shopLoyaltyProgramStageDAO.getbyProgramId(shopLoyaltyProgramEntity.getShopLoyaltyProgramId());
 			
 			if(shopLoyaltyProgramStageEntities.size()!=0){
 				String jsonShopProgramStageEntity = gson.toJson(shopLoyaltyProgramStageEntities, new TypeToken<List<ShopLoyaltyProgramStageEntity>>() {}.getType());
@@ -326,6 +326,39 @@ public class ShopService {
 		else {
 			return null;
 		}
+	}
+	
+	//Function to get shoploaylty program stages
+	//currently not used
+	public List<ShopLoyaltyProgramStage> getShopLoyaltyProgramStages(int shopLoyaltyProgramId){
+		List<ShopLoyaltyProgramStageEntity> shopLoyaltyProgramStageEntities = new ArrayList<ShopLoyaltyProgramStageEntity>();
+		shopLoyaltyProgramStageEntities = shopLoyaltyProgramStageDAO.getbyProgramId(shopLoyaltyProgramId);
+		
+		List<ShopLoyaltyProgramStage> shopLoyaltyProgramStages = new ArrayList<ShopLoyaltyProgramStage>();
+		
+		for (ShopLoyaltyProgramStageEntity slpe: shopLoyaltyProgramStageEntities){
+			ShopLoyaltyProgramStage shopLoyaltyProgramStage = new ShopLoyaltyProgramStage();
+			shopLoyaltyProgramStage.setShopLoyaltyProgramStageNo(slpe.getShopLoyaltyProgramStageId());
+			shopLoyaltyProgramStage.setShopLoyaltyProgramStageName(slpe.getShopLoyaltyProgramStageName());
+			shopLoyaltyProgramStage.setShopLoyaltyProgramStageDiscount(slpe.getShopLoyaltyProgramStageDiscount());
+			shopLoyaltyProgramStage.setShopLoyaltyProgramStagePromotionEligibility(slpe.getShopLoyaltyProgramStagePromotionEligibility());
+			shopLoyaltyProgramStages.add(shopLoyaltyProgramStage);
+			shopLoyaltyProgramStage=null;
+		}
+		return shopLoyaltyProgramStages;
+	}
+	
+	public ShopLoyaltyProgramStage getShopLoyaltyProgramStage(int shopLoyaltyProgramStageId){
+		ShopLoyaltyProgramStageEntity slpe = new ShopLoyaltyProgramStageEntity();
+		slpe = shopLoyaltyProgramStageDAO.findById(shopLoyaltyProgramStageId);
+		ShopLoyaltyProgramStage shopLoyaltyProgramStage = new ShopLoyaltyProgramStage();
+		if (slpe!=null) {
+			shopLoyaltyProgramStage.setShopLoyaltyProgramStageNo(slpe.getShopLoyaltyProgramStageId());
+			shopLoyaltyProgramStage.setShopLoyaltyProgramStageName(slpe.getShopLoyaltyProgramStageName());
+			shopLoyaltyProgramStage.setShopLoyaltyProgramStageDiscount(slpe.getShopLoyaltyProgramStageDiscount());
+			shopLoyaltyProgramStage.setShopLoyaltyProgramStagePromotionEligibility(slpe.getShopLoyaltyProgramStagePromotionEligibility());
+		}
+		return shopLoyaltyProgramStage;
 	}
 	
 	public List<Offer> getShopOffer(int shopId){

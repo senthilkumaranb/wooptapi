@@ -67,12 +67,15 @@
 				<value>com.woopt.api.entity.ShopToCategoryEntity</value>
 				<value>com.woopt.api.entity.UserEntity</value>
 				<value>com.woopt.api.entity.UserInfoEntity</value>
-				<value>com.woopt.api.entity.UserShopCartEntity</value>
-				<value>com.woopt.api.entity.UserShopCheckInEntity</value>
-				<value>com.woopt.api.entity.UserShopOrderEntity</value>
-				<value>com.woopt.api.entity.UserShopVisitEntity</value>
+				<value>com.woopt.api.entity.ConsumerEntity</value>
+				<value>com.woopt.api.entity.ConcumerCheckInEntity</value>
 				<value>com.woopt.api.entity.UserToShopLoyaltyCardEntity</value>
-				<value>com.woopt.api.entity.UserToShopLoyaltyCardTransactionEntity</value>
+				<value>com.woopt.api.entity.UserToShopLoyaltyCardStageEntity</value>
+				<value>com.woopt.api.entity.UserToShopLoyaltyProgramEntity</value>
+				<value>com.woopt.api.entity.UserToShopLoyaltyProgramStageEntity</value>
+				<value>com.woopt.api.entity.OrderEntity</value>
+				<value>com.woopt.api.entity.CartEntity</value>
+				<value>com.woopt.api.entity.CartItemEntity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -92,7 +95,7 @@
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 	
-		<bean id="shopDAO" class="com.woopt.api.dao.impl.ShopDAOImpl">
+	<bean id="shopDAO" class="com.woopt.api.dao.impl.ShopDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 	
@@ -120,7 +123,7 @@
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 	
-		<bean id="shopLoyaltyProgramDAO" class="com.woopt.api.dao.impl.ShopLoyaltyProgramDAOImpl">
+	<bean id="shopLoyaltyProgramDAO" class="com.woopt.api.dao.impl.ShopLoyaltyProgramDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 	
@@ -128,9 +131,28 @@
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 	
-	<bean id="OfferDAO" class="com.woopt.api.dao.impl.OfferDAOImpl">
+	<bean id="offerDAO" class="com.woopt.api.dao.impl.OfferDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 	
-
+	<bean id="consumerDAO" class="com.woopt.api.dao.impl.ConsumerDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="userToShopLoyaltyCardDAO" class="com.woopt.api.dao.impl.UserToShopLoyaltyCardDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="userToShopLoyaltyCardStageDAO" class="com.woopt.api.dao.impl.UserToShopLoyaltyCardStageDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="userToShopLoyaltyProgramDAO" class="com.woopt.api.dao.impl.UserToShopLoyaltyProgramDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="userToShopLoyaltyProgramStageDAO" class="com.woopt.api.dao.impl.UserToShopLoyaltyProgramStageDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
 </beans>

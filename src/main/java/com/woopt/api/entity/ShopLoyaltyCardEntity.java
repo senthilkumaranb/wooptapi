@@ -45,8 +45,8 @@ public class ShopLoyaltyCardEntity {
 	@Column(name = "SHOP_LOYALTY_CARD_START_DATE")
 	private Timestamp shopLoyaltyCardStartDate;
 	
-	@Column(name = "SHOP_LOYALTY_CARD_END_DATE")
-	private Timestamp shopLoyaltyCardEndDate;
+	@Column(name = "SHOP_LOYALTY_CARD_EXIRY_DATE")
+	private Timestamp shopLoyaltyCardExpiryDate;
 
 	@Column(name = "SHOP_LOYALTY_CARD_TYPE_ID")
 	private Integer shopLoyaltyCardTypeId;
@@ -116,12 +116,12 @@ public class ShopLoyaltyCardEntity {
 		this.shopLoyaltyCardStartDate = shopLoyaltyCardStartDate;
 	}
 
-	public Timestamp getShopLoyaltyCardEndDate() {
-		return shopLoyaltyCardEndDate;
+	public Timestamp getShopLoyaltyCardExpiryDate() {
+		return shopLoyaltyCardExpiryDate;
 	}
 
-	public void setShopLoyaltyCardEndDate(Timestamp shopLoyaltyCardEndDate) {
-		this.shopLoyaltyCardEndDate = shopLoyaltyCardEndDate;
+	public void setShopLoyaltyCardExpiryDate(Timestamp shopLoyaltyCardExpiryDate) {
+		this.shopLoyaltyCardExpiryDate = shopLoyaltyCardExpiryDate;
 	}
 
 	public Integer getShopLoyaltyCardTypeId() {
@@ -163,19 +163,17 @@ public class ShopLoyaltyCardEntity {
 	public void setLastUpdatedDatetime(Timestamp lastUpdatedDatetime) {
 		this.lastUpdatedDatetime = lastUpdatedDatetime;
 	}
-	
 
 	@Override
 	public String toString() {
 		return "ShopLoyaltyCardEntity [shopLoyaltyCardId=" + shopLoyaltyCardId + ", shopId=" + shopId
 				+ ", shopLoyaltyCardName=" + shopLoyaltyCardName + ", shopLoyaltyCardIsSameForAllBranches="
 				+ shopLoyaltyCardIsSameForAllBranches + ", shopLoyaltyCardStatus=" + shopLoyaltyCardStatus
-				+ ", shopLoyaltyCardStartDate=" + shopLoyaltyCardStartDate + ", shopLoyaltyCardEndDate="
-				+ shopLoyaltyCardEndDate + ", shopLoyaltyCardTypeId=" + shopLoyaltyCardTypeId
+				+ ", shopLoyaltyCardStartDate=" + shopLoyaltyCardStartDate + ", shopLoyaltyCardExpiryDate="
+				+ shopLoyaltyCardExpiryDate + ", shopLoyaltyCardTypeId=" + shopLoyaltyCardTypeId
 				+ ", shopLoyaltyCardNoOfStages=" + shopLoyaltyCardNoOfStages + ", shopLoyaltyCardValidity="
 				+ shopLoyaltyCardValidity + ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime="
 				+ lastUpdatedDatetime + "]";
 	}
-
 	
 }

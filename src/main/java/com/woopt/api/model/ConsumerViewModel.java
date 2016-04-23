@@ -17,7 +17,7 @@ public class ConsumerViewModel {
 	private ShopLoyaltyProgram shopLoyaltyProgram;
 	
 	//User deals related to this shop
-	private List<Offer> userDeals;
+	private List<Offer> offers;
 	
 	private ConsumerCheckIn consumerCheckIn;
 	
@@ -67,12 +67,12 @@ public class ConsumerViewModel {
 		this.shopLoyaltyProgram = shopLoyaltyProgram;
 	}
 
-	public List<Offer> getUserDeals() {
-		return userDeals;
+	public List<Offer> getOffers() {
+		return offers;
 	}
 
-	public void setUserDeals(List<Offer> userDeals) {
-		this.userDeals = userDeals;
+	public void setOffers(List<Offer> offers) {
+		this.offers = offers;
 	}
 
 	public ConsumerCheckIn getConsumerCheckIn() {
@@ -114,13 +114,13 @@ public class ConsumerViewModel {
 		result = prime * result + ((allOrders == null) ? 0 : allOrders.hashCode());
 		result = prime * result + ((chats == null) ? 0 : chats.hashCode());
 		result = prime * result + ((consumerCheckIn == null) ? 0 : consumerCheckIn.hashCode());
+		result = prime * result + ((offers == null) ? 0 : offers.hashCode());
 		result = prime * result + ((order == null) ? 0 : order.hashCode());
 		result = prime * result + ((shop == null) ? 0 : shop.hashCode());
 		result = prime * result + ((shopInfo == null) ? 0 : shopInfo.hashCode());
 		result = prime * result + ((shopLoyaltyCard == null) ? 0 : shopLoyaltyCard.hashCode());
 		result = prime * result + ((shopLoyaltyProgram == null) ? 0 : shopLoyaltyProgram.hashCode());
 		result = prime * result + ((shopReview == null) ? 0 : shopReview.hashCode());
-		result = prime * result + ((userDeals == null) ? 0 : userDeals.hashCode());
 		return result;
 	}
 
@@ -147,6 +147,11 @@ public class ConsumerViewModel {
 			if (other.consumerCheckIn != null)
 				return false;
 		} else if (!consumerCheckIn.equals(other.consumerCheckIn))
+			return false;
+		if (offers == null) {
+			if (other.offers != null)
+				return false;
+		} else if (!offers.equals(other.offers))
 			return false;
 		if (order == null) {
 			if (other.order != null)
@@ -178,19 +183,14 @@ public class ConsumerViewModel {
 				return false;
 		} else if (!shopReview.equals(other.shopReview))
 			return false;
-		if (userDeals == null) {
-			if (other.userDeals != null)
-				return false;
-		} else if (!userDeals.equals(other.userDeals))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "ConsumerViewModel [shop=" + shop + ", shopInfo=" + shopInfo + ", shopReview=" + shopReview
-				+ ", shopLoyaltyCard=" + shopLoyaltyCard + ", shopLoyaltyProgram=" + shopLoyaltyProgram + ", userDeals="
-				+ userDeals + ", consumerCheckIn=" + consumerCheckIn + ", order=" + order + ", allOrders=" + allOrders
+				+ ", shopLoyaltyCard=" + shopLoyaltyCard + ", shopLoyaltyProgram=" + shopLoyaltyProgram + ", offers="
+				+ offers + ", consumerCheckIn=" + consumerCheckIn + ", order=" + order + ", allOrders=" + allOrders
 				+ ", chats=" + chats + "]";
 	}
 

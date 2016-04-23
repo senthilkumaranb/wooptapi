@@ -51,7 +51,7 @@ public class ShopLoyaltyProgramStageDAOImpl implements ShopLoyaltyProgramStageDA
 	}
 
 	@Override
-	public List<ShopLoyaltyProgramStageEntity> getbyId(int shopLoyaltyProgramId) {
+	public List<ShopLoyaltyProgramStageEntity> getbyProgramId(int shopLoyaltyProgramId) {
 		// TODO Auto-generated method stub
 		System.out.println("--------+ ShopLoyaltyProgram +-----------");
 		Session session = this.sessionFactory.openSession();
@@ -68,7 +68,17 @@ public class ShopLoyaltyProgramStageDAOImpl implements ShopLoyaltyProgramStageDA
 	@Override
 	public ShopLoyaltyProgramStageEntity findById(long shopStageId) {
 		// TODO Auto-generated method stub
-		return null;
+
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("from ShopLoyaltyProgramStageEntity W where W.shopLoyaltyProgramStageId=:shopLoyaltyProgramStageId ORDER BY W.shopLoyaltyProgramStageId ASC");
+		query.setParameter("shopLoyaltyProgramStageId",shopStageId);
+		@SuppressWarnings("unchecked")
+		List<ShopLoyaltyProgramStageEntity> shopLoyaltyProgramStageEntity = query.list();
+		session.close();
+		if (shopLoyaltyProgramStageEntity.size()!=0)	
+			return shopLoyaltyProgramStageEntity.get(0);
+		else
+			return null;
 	}
 
 }

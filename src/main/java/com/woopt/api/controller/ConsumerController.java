@@ -60,7 +60,7 @@ private static final Logger LOGGER = Logger.getLogger(ShopController.class.getNa
 		try{			
 			if (null != userModel){
 				//user = userModel.getUser();
-				consumerShopModels = consumerService.getMyFavShops(userModel);
+				consumerShopModels = consumerService.getMyFavShops(userModel.getUser().getUserId());
 			}			
 		}
 		catch (Exception e){

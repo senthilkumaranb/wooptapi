@@ -28,10 +28,10 @@ public class ShopLoyaltyCardStageEntity {
 	@Id
 	@Column(name = "SHOP_LOYALTY_CARD_STAGE_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int shopLoyaltyCardStageId;
+	private Integer shopLoyaltyCardStageId;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_ID")
-	private int shopLoyaltyCardId;
+	private Integer shopLoyaltyCardId;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_STAGE_NO")
 	private Integer shopLoyaltyCardStageNo;
@@ -54,35 +54,40 @@ public class ShopLoyaltyCardStageEntity {
 	@Column(name = "LAST_UPDATED_DATETIME")
 	private Timestamp lastUpdatedDatetime;
 
-	public int getShopLoyaltyCardStageId() {
+	public ShopLoyaltyCardStageEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Integer getShopLoyaltyCardStageId() {
 		return shopLoyaltyCardStageId;
 	}
 
-	public void setShopLoyaltyCardStageId(int shopLoyaltyCardStageId) {
+	public void setShopLoyaltyCardStageId(Integer shopLoyaltyCardStageId) {
 		this.shopLoyaltyCardStageId = shopLoyaltyCardStageId;
 	}
 
-	public int getShopLoyaltyCardId() {
+	public Integer getShopLoyaltyCardId() {
 		return shopLoyaltyCardId;
 	}
 
-	public void setShopLoyaltyCardId(int shopLoyaltyCardId) {
+	public void setShopLoyaltyCardId(Integer shopLoyaltyCardId) {
 		this.shopLoyaltyCardId = shopLoyaltyCardId;
 	}
 
-	public int getShopLoyaltyCardStageNo() {
+	public Integer getShopLoyaltyCardStageNo() {
 		return shopLoyaltyCardStageNo;
 	}
 
-	public void setShopLoyaltyCardStageNo(int shopLoyaltyCardStageNo) {
+	public void setShopLoyaltyCardStageNo(Integer shopLoyaltyCardStageNo) {
 		this.shopLoyaltyCardStageNo = shopLoyaltyCardStageNo;
 	}
 
-	public int getShopLoyaltyCardStageIsRedeemable() {
+	public Integer getShopLoyaltyCardStageIsRedeemable() {
 		return shopLoyaltyCardStageIsRedeemable;
 	}
 
-	public void setShopLoyaltyCardStageIsRedeemable(int shopLoyaltyCardStageIsRedeemable) {
+	public void setShopLoyaltyCardStageIsRedeemable(Integer shopLoyaltyCardStageIsRedeemable) {
 		this.shopLoyaltyCardStageIsRedeemable = shopLoyaltyCardStageIsRedeemable;
 	}
 
@@ -102,11 +107,11 @@ public class ShopLoyaltyCardStageEntity {
 		this.shopLoyaltyCardStageRewardPhoto = shopLoyaltyCardStageRewardPhoto;
 	}
 
-	public int getShopLoyaltyCardStageStatus() {
+	public Integer getShopLoyaltyCardStageStatus() {
 		return shopLoyaltyCardStageStatus;
 	}
 
-	public void setShopLoyaltyCardStageStatus(int shopLoyaltyCardStageStatus) {
+	public void setShopLoyaltyCardStageStatus(Integer shopLoyaltyCardStageStatus) {
 		this.shopLoyaltyCardStageStatus = shopLoyaltyCardStageStatus;
 	}
 
@@ -127,65 +132,6 @@ public class ShopLoyaltyCardStageEntity {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((createdDatetime == null) ? 0 : createdDatetime.hashCode());
-		result = prime * result + ((lastUpdatedDatetime == null) ? 0 : lastUpdatedDatetime.hashCode());
-		result = prime * result + shopLoyaltyCardId;
-		result = prime * result + shopLoyaltyCardStageId;
-		result = prime * result + shopLoyaltyCardStageIsRedeemable;
-		result = prime * result + shopLoyaltyCardStageNo;
-		result = prime * result + ((shopLoyaltyCardStageReward == null) ? 0 : shopLoyaltyCardStageReward.hashCode());
-		result = prime * result
-				+ ((shopLoyaltyCardStageRewardPhoto == null) ? 0 : shopLoyaltyCardStageRewardPhoto.hashCode());
-		result = prime * result + shopLoyaltyCardStageStatus;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ShopLoyaltyCardStageEntity other = (ShopLoyaltyCardStageEntity) obj;
-		if (createdDatetime == null) {
-			if (other.createdDatetime != null)
-				return false;
-		} else if (!createdDatetime.equals(other.createdDatetime))
-			return false;
-		if (lastUpdatedDatetime == null) {
-			if (other.lastUpdatedDatetime != null)
-				return false;
-		} else if (!lastUpdatedDatetime.equals(other.lastUpdatedDatetime))
-			return false;
-		if (shopLoyaltyCardId != other.shopLoyaltyCardId)
-			return false;
-		if (shopLoyaltyCardStageId != other.shopLoyaltyCardStageId)
-			return false;
-		if (shopLoyaltyCardStageIsRedeemable != other.shopLoyaltyCardStageIsRedeemable)
-			return false;
-		if (shopLoyaltyCardStageNo != other.shopLoyaltyCardStageNo)
-			return false;
-		if (shopLoyaltyCardStageReward == null) {
-			if (other.shopLoyaltyCardStageReward != null)
-				return false;
-		} else if (!shopLoyaltyCardStageReward.equals(other.shopLoyaltyCardStageReward))
-			return false;
-		if (shopLoyaltyCardStageRewardPhoto == null) {
-			if (other.shopLoyaltyCardStageRewardPhoto != null)
-				return false;
-		} else if (!shopLoyaltyCardStageRewardPhoto.equals(other.shopLoyaltyCardStageRewardPhoto))
-			return false;
-		if (shopLoyaltyCardStageStatus != other.shopLoyaltyCardStageStatus)
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
 		return "ShopLoyaltyCardStageEntity [shopLoyaltyCardStageId=" + shopLoyaltyCardStageId + ", shopLoyaltyCardId="
 				+ shopLoyaltyCardId + ", shopLoyaltyCardStageNo=" + shopLoyaltyCardStageNo
@@ -194,5 +140,7 @@ public class ShopLoyaltyCardStageEntity {
 				+ shopLoyaltyCardStageRewardPhoto + ", shopLoyaltyCardStageStatus=" + shopLoyaltyCardStageStatus
 				+ ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
 	}
+
+	
 
 }

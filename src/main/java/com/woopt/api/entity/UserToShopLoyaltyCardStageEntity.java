@@ -16,8 +16,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "WOOPT_USER_TO_SHOP_LOYALTY_CARD_TRANSACTION")
-public class UserToShopLoyaltyCardTransactionEntity {
+@Table(name = "WOOPT_USER_TO_SHOP_LOYALTY_CARD_STAGE")
+public class UserToShopLoyaltyCardStageEntity {
 
 	/**
 	 * 
@@ -26,9 +26,9 @@ public class UserToShopLoyaltyCardTransactionEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "USER_TO_SHOP_LOYALTY_CARD_TRANSACTION_ID")
+	@Column(name = "USER_TO_SHOP_LOYALTY_CARD_STAGE_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer userToShopLoyaltyCardTransactionId;
+	private Integer userToShopLoyaltyCardStageId;
 	
 	@Column(name = "USER_TO_SHOP_LOYALTY_CARD_ID")
 	private Integer userToShopLoyaltyCardId;
@@ -49,7 +49,7 @@ public class UserToShopLoyaltyCardTransactionEntity {
 	private String shopLoyaltyCardStageRewardPhoto;
 	
 	@Column(name = "USER_TO_SHOP_LOYALTY_CARD_STAGE_STATUS")
-	private Integer shopLoyaltyCardStageStatus;
+	private Integer userToShopLoyaltyCardStageStatus;
 	
 	@Column(name = "CREATED_DATETIME")
 	private Timestamp createdDatetime;
@@ -57,17 +57,17 @@ public class UserToShopLoyaltyCardTransactionEntity {
 	@Column(name = "LAST_UPDATED_DATETIME")
 	private Timestamp lastUpdatedDatetime;
 	
-	public UserToShopLoyaltyCardTransactionEntity() {
+	public UserToShopLoyaltyCardStageEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer getUserToShopLoyaltyCardTransactionId() {
-		return userToShopLoyaltyCardTransactionId;
+	public Integer getUserToShopLoyaltyCardStageId() {
+		return userToShopLoyaltyCardStageId;
 	}
 
-	public void setUserToShopLoyaltyCardTransactionId(Integer userToShopLoyaltyCardTransactionId) {
-		this.userToShopLoyaltyCardTransactionId = userToShopLoyaltyCardTransactionId;
+	public void setUserToShopLoyaltyCardStageId(Integer userToShopLoyaltyCardStageId) {
+		this.userToShopLoyaltyCardStageId = userToShopLoyaltyCardStageId;
 	}
 
 	public Integer getUserToShopLoyaltyCardId() {
@@ -118,12 +118,12 @@ public class UserToShopLoyaltyCardTransactionEntity {
 		this.shopLoyaltyCardStageRewardPhoto = shopLoyaltyCardStageRewardPhoto;
 	}
 
-	public Integer getShopLoyaltyCardStageStatus() {
-		return shopLoyaltyCardStageStatus;
+	public Integer getUserToShopLoyaltyCardStageStatus() {
+		return userToShopLoyaltyCardStageStatus;
 	}
 
-	public void setShopLoyaltyCardStageStatus(Integer shopLoyaltyCardStageStatus) {
-		this.shopLoyaltyCardStageStatus = shopLoyaltyCardStageStatus;
+	public void setUserToShopLoyaltyCardStageStatus(Integer userToShopLoyaltyCardStageStatus) {
+		this.userToShopLoyaltyCardStageStatus = userToShopLoyaltyCardStageStatus;
 	}
 
 	public Timestamp getCreatedDatetime() {
@@ -144,13 +144,15 @@ public class UserToShopLoyaltyCardTransactionEntity {
 
 	@Override
 	public String toString() {
-		return "UserToShopLoyaltyCardTransactionEntity [userToShopLoyaltyCardTransactionId="
-				+ userToShopLoyaltyCardTransactionId + ", userToShopLoyaltyCardId=" + userToShopLoyaltyCardId
-				+ ", shopLoyaltyCardStageId=" + shopLoyaltyCardStageId + ", userToShopLoyaltyCardAchievedDateTime="
+		return "UserToShopLoyaltyCardStageEntity [userToShopLoyaltyCardStageId=" + userToShopLoyaltyCardStageId
+				+ ", userToShopLoyaltyCardId=" + userToShopLoyaltyCardId + ", shopLoyaltyCardStageId="
+				+ shopLoyaltyCardStageId + ", userToShopLoyaltyCardAchievedDateTime="
 				+ userToShopLoyaltyCardAchievedDateTime + ", shopLoyaltyCardIsRedeemable=" + shopLoyaltyCardIsRedeemable
 				+ ", shopLoyaltyCardStageReward=" + shopLoyaltyCardStageReward + ", shopLoyaltyCardStageRewardPhoto="
-				+ shopLoyaltyCardStageRewardPhoto + ", shopLoyaltyCardStageStatus=" + shopLoyaltyCardStageStatus
-				+ ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
+				+ shopLoyaltyCardStageRewardPhoto + ", userToShopLoyaltyCardStageStatus="
+				+ userToShopLoyaltyCardStageStatus + ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime="
+				+ lastUpdatedDatetime + "]";
 	}
 	
+
 }
