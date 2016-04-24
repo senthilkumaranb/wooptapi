@@ -16,6 +16,6 @@ public interface ShopLoyaltyProgramStageDAO {
 	
 	public List<ShopLoyaltyProgramStageEntity> getbyProgramId(int shopLoyaltyProgramId);
 	
-	public ShopLoyaltyProgramStageEntity findById(long shopStageId);
+	public ShopLoyaltyProgramStageEntity findById(int shopStageId);
 
 }

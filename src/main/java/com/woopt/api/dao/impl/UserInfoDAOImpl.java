@@ -49,7 +49,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	}
 
 	@Override
-	public UserInfoEntity findById(long userinfoId) {
+	public UserInfoEntity findById(int userinfoId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

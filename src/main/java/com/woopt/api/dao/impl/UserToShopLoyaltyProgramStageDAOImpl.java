@@ -61,7 +61,7 @@ public class UserToShopLoyaltyProgramStageDAOImpl implements UserToShopLoyaltyPr
 		System.out.println("--------+ UserShopLoyaltyCardStage +-----------");
 		Session session = this.sessionFactory.openSession();
 		Query query = session.createQuery("from UserToShopLoyaltyProgramStageEntity W "
-				+ "where W.userToShopLoyaltyProgramId=:userShopLoyaltyProgramId ORDER BY W.shopLoyaltyProgamStageId ASC");
+				+ "where W.userToShopLoyaltyProgramId=:userShopLoyaltyProgramId ORDER BY W.shopLoyaltyProgramStageId ASC");
 		query.setParameter("userShopLoyaltyProgramId",userShopLoyaltyProgramId);
 		@SuppressWarnings("unchecked")
 		List<UserToShopLoyaltyProgramStageEntity> userShopLoyaltyProgramStageEntity = query.list();
@@ -70,7 +70,7 @@ public class UserToShopLoyaltyProgramStageDAOImpl implements UserToShopLoyaltyPr
 	}
 
 	@Override
-	public UserToShopLoyaltyProgramStageEntity findById(long userShopLoyaltyProgramStageId) {
+	public UserToShopLoyaltyProgramStageEntity findById(int userShopLoyaltyProgramStageId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -10,7 +10,7 @@ public interface UserInfoDAO {
 	
 	public List<UserInfoEntity> list();
 	
-	public UserInfoEntity findById(long userinfoId);
+	public UserInfoEntity findById(int userinfoId);
 	
 	public void  delete(int userinfoId);
 	

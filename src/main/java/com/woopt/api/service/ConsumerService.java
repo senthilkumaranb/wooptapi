@@ -19,6 +19,7 @@ import com.woopt.api.dao.ConsumerDAO;
 import com.woopt.api.dao.OfferDAO;
 import com.woopt.api.dao.ShopDAO;
 import com.woopt.api.dao.ShopInfoDAO;
+import com.woopt.api.dao.ShopLoyaltyProgramStageDAO;
 import com.woopt.api.dao.UserToShopLoyaltyCardDAO;
 import com.woopt.api.dao.UserToShopLoyaltyCardStageDAO;
 import com.woopt.api.dao.UserToShopLoyaltyProgramDAO;
@@ -86,11 +87,8 @@ public class ConsumerService {
     @Autowired
     OfferDAO offerDAO;
     
-	private ShopService shopService;
-	
-    public void setShopService(ShopService ss){
-        this.shopService = ss;
-    }
+    @Autowired
+    ShopLoyaltyProgramStageDAO shopLoyaltyProgramStageDAO;
 	
 	public List<ConsumerViewModel> getMyFavShops(int userId){
 		
@@ -239,10 +237,13 @@ public class ConsumerService {
 					shopLoyaltyProgramStage.setShopLoyaltyProgramStageNo(upg.getUserToShopLoyaltyProgramStageId());
 					
 					ShopLoyaltyProgramStage slpg = new ShopLoyaltyProgramStage();
-					slpg = shopService.getShopLoyaltyProgramStage(upg.getShopLoyaltyProgramStageId());
+					slpg = this.getShopLoyaltyProgramStage(upg.getShopLoyaltyProgramStageId());
 					
 					shopLoyaltyProgramStage.setShopLoyaltyProgramStageName(slpg.getShopLoyaltyProgramStageName());
 					shopLoyaltyProgramStage.setShopLoyaltyProgramStagePromotionEligibility(slpg.getShopLoyaltyProgramStagePromotionEligibility());
+					
+					shopLoyaltyProgramStages.add(shopLoyaltyProgramStage);
+					shopLoyaltyProgramStage=null;
 				}
 				
 				shopLoyaltyProgram.setShopLoyaltyProgramStage(shopLoyaltyProgramStages);
@@ -252,6 +253,19 @@ public class ConsumerService {
 		else {
 			return null;
 		}
+	}
+	
+	public ShopLoyaltyProgramStage getShopLoyaltyProgramStage(int shopLoyaltyProgramStageId){
+		ShopLoyaltyProgramStageEntity slpe = new ShopLoyaltyProgramStageEntity();
+		slpe = shopLoyaltyProgramStageDAO.findById(shopLoyaltyProgramStageId);
+		ShopLoyaltyProgramStage shopLoyaltyProgramStage = new ShopLoyaltyProgramStage();
+		if (slpe!=null) {
+			shopLoyaltyProgramStage.setShopLoyaltyProgramStageNo(slpe.getShopLoyaltyProgramStageId());
+			shopLoyaltyProgramStage.setShopLoyaltyProgramStageName(slpe.getShopLoyaltyProgramStageName());
+			shopLoyaltyProgramStage.setShopLoyaltyProgramStageDiscount(slpe.getShopLoyaltyProgramStageDiscount());
+			shopLoyaltyProgramStage.setShopLoyaltyProgramStagePromotionEligibility(slpe.getShopLoyaltyProgramStagePromotionEligibility());
+		}
+		return shopLoyaltyProgramStage;
 	}
 	
 	public List<Offer> getUserShopOffers(int userId, int shopId){

@@ -68,7 +68,7 @@ public class ShopLoyaltyCardStageDAOImpl implements ShopLoyaltyCardStageDAO {
 	}
 
 	@Override
-	public ShopLoyaltyCardStageEntity findById(long shopStageId) {
+	public ShopLoyaltyCardStageEntity findById(int shopStageId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

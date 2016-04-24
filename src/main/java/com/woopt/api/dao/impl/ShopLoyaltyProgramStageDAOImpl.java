@@ -66,7 +66,7 @@ public class ShopLoyaltyProgramStageDAOImpl implements ShopLoyaltyProgramStageDA
 	}
 
 	@Override
-	public ShopLoyaltyProgramStageEntity findById(long shopStageId) {
+	public ShopLoyaltyProgramStageEntity findById(int shopStageId) {
 		// TODO Auto-generated method stub
 
 		Session session = this.sessionFactory.openSession();

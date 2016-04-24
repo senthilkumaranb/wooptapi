@@ -14,6 +14,6 @@ public interface ShopToCategoryDAO {
 	
 	public List<ShopToCategoryEntity> list();
 	
-	public ShopToCategoryEntity findById(long shoptocategoryId);
+	public ShopToCategoryEntity findById(int shoptocategoryId);
 
 }

@@ -46,7 +46,7 @@ public class ShopToCategoryDAOImpl implements ShopToCategoryDAO {
 	}
 
 	@Override
-	public ShopToCategoryEntity findById(long shoptocategoryId) {
+	public ShopToCategoryEntity findById(int shoptocategoryId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
