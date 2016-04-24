@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.woopt.api.dao.UserToShopLoyaltyCardStageDAO;
-import com.woopt.api.entity.ShopLoyaltyCardStageEntity;
 import com.woopt.api.entity.UserToShopLoyaltyCardStageEntity;
 
 
@@ -23,7 +22,7 @@ import com.woopt.api.entity.UserToShopLoyaltyCardStageEntity;
  * @author Senthil
  *
  */
-public class UserToShopLoyaltyCardDAOStageImpl implements UserToShopLoyaltyCardStageDAO {
+public class UserToShopLoyaltyCardStageDAOImpl implements UserToShopLoyaltyCardStageDAO {
 	
 	private SessionFactory sessionFactory;
 
@@ -62,7 +61,7 @@ public class UserToShopLoyaltyCardDAOStageImpl implements UserToShopLoyaltyCardS
 		Session session = this.sessionFactory.openSession();
 		Query query = session.createQuery("from UserToShopLoyaltyCardStageEntity W "
 				+ "where W.userToShopLoyaltyCardId=:userShopLoyaltyCardId ORDER BY W.shopLoyaltyCardStageId ASC");
-		query.setParameter("userToShopLoyaltyCardId",userShopLoyaltyCardId);
+		query.setParameter("userShopLoyaltyCardId",userShopLoyaltyCardId);
 		@SuppressWarnings("unchecked")
 		List<UserToShopLoyaltyCardStageEntity> userToShopLoyaltyCardStageEntity = query.list();
 		session.close();

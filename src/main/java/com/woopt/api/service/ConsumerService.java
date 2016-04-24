@@ -18,6 +18,7 @@ import com.google.gson.reflect.TypeToken;
 import com.woopt.api.dao.ConsumerDAO;
 import com.woopt.api.dao.OfferDAO;
 import com.woopt.api.dao.ShopDAO;
+import com.woopt.api.dao.ShopInfoDAO;
 import com.woopt.api.dao.UserToShopLoyaltyCardDAO;
 import com.woopt.api.dao.UserToShopLoyaltyCardStageDAO;
 import com.woopt.api.dao.UserToShopLoyaltyProgramDAO;
@@ -25,6 +26,7 @@ import com.woopt.api.dao.UserToShopLoyaltyProgramStageDAO;
 import com.woopt.api.entity.ConsumerEntity;
 import com.woopt.api.entity.OfferEntity;
 import com.woopt.api.entity.ShopEntity;
+import com.woopt.api.entity.ShopInfoEntity;
 import com.woopt.api.entity.ShopLoyaltyCardStageEntity;
 import com.woopt.api.entity.ShopLoyaltyProgramEntity;
 import com.woopt.api.entity.ShopLoyaltyProgramStageEntity;
@@ -39,6 +41,7 @@ import com.woopt.api.model.Offer;
 import com.woopt.api.model.Order;
 import com.woopt.api.model.Shop;
 import com.woopt.api.model.ShopBranch;
+import com.woopt.api.model.ShopInfo;
 import com.woopt.api.model.ShopLoyaltyCard;
 import com.woopt.api.model.ShopLoyaltyCardStage;
 import com.woopt.api.model.ShopLoyaltyProgram;
@@ -57,19 +60,16 @@ import com.woopt.api.model.ConsumerViewModel;
 @Service
 public class ConsumerService {
 	
-	private static final Logger LOGGER = Logger.getLogger(ShopService.class.getName());
-	
-/*	private ShopService shopService;
-	
-    public void setShopService(ShopService ss){
-        this.shopService = ss;
-    }*/
+	private static final Logger LOGGER = Logger.getLogger(ConsumerService.class.getName());
     
     @Autowired
     ConsumerDAO consumerDAO;
     
     @Autowired
     ShopDAO shopDAO;
+    
+    @Autowired
+    ShopInfoDAO shopInfoDAO;
     
     @Autowired
     UserToShopLoyaltyCardDAO userToShopLoyaltyCardDAO;
@@ -85,6 +85,12 @@ public class ConsumerService {
     
     @Autowired
     OfferDAO offerDAO;
+    
+	private ShopService shopService;
+	
+    public void setShopService(ShopService ss){
+        this.shopService = ss;
+    }
 	
 	public List<ConsumerViewModel> getMyFavShops(int userId){
 		
@@ -100,18 +106,25 @@ public class ConsumerService {
 			int consumerId = c.getConsumerId();
 			int shopId = c.getShopId();
 			ConsumerViewModel consumerView = new ConsumerViewModel();
+			
+			LOGGER.info("!!!!!!! calling Shop Details !!!!!!!!" + c);
 			consumerView.setShop(this.getShopbyShopId(shopId));
 			
-			//consumerView.setShopInfo(shopService.getShopInfo(shopId));
+			LOGGER.info("!!!!!!! calling ShopInfo !!!!!!!!");
+			consumerView.setShopInfo(this.getUserShopInfo(shopId));
 			
+			LOGGER.info("!!!!!!! calling User Shop Loyalty Card !!!!!!!!");
 			consumerView.setShopLoyaltyCard(this.getUserShopLoyaltyCard(consumerId));
 			
+			LOGGER.info("!!!!!!! calling User Shop Loyalty Program !!!!!!!!");
 			consumerView.setShopLoyaltyProgram(this.getUserShopLoyaltyProgram(consumerId));
 			
+			LOGGER.info("!!!!!!! calling Shop Offer !!!!!!!!");
 			//offers are not based on consumer ID
 			consumerView.setOffers(this.getUserShopOffers(userId, shopId));
 			
-			consumerView.setOrder(this.getUserShopOrder(consumerId));
+			LOGGER.info("!!!!!!! calling Shop Order !!!!!!!!");
+			//consumerView.setOrder(this.getUserShopOrder(consumerId));
 			
 			consumerViewModel.add(consumerView);
 			
@@ -139,6 +152,7 @@ public class ConsumerService {
 	}
 	
 	public Shop getShopbyShopId(int shopId){
+		LOGGER.info("Inside getShopInfo function...");
 		Shop shop = new Shop();
 		ShopEntity shopEntity = new ShopEntity();
 		
@@ -150,8 +164,20 @@ public class ConsumerService {
 		return shop;
 	}
 	
+	public ShopInfo getUserShopInfo(int shopId){
+		LOGGER.info("Inside getShopInfo function...");
+        ShopInfo shopInfo = new ShopInfo();
+		ShopInfoEntity shopInfoEntity = new ShopInfoEntity();			
+		shopInfoEntity = shopInfoDAO.list(shopId);
+		shopInfo.setShopOpenStatus(shopInfoEntity.getShopOpenStatus());
+		shopInfo.setShopOpeningHours(shopInfoEntity.getShopOpeningHours());
+		shopInfo.setShopMainCategory(shopInfoEntity.getShopMainCategory());
+		//shopInfo.setShopCategories(shopInfoEntity.getShopCategories());
+		return shopInfo;
+	}
+	
 	public ShopLoyaltyCard getUserShopLoyaltyCard(int consumerId){
-		
+		LOGGER.info("Inside getUserShopLoyaltyCard function...");
 		ShopLoyaltyCard shopLoyaltyCard = new ShopLoyaltyCard();
 		UserToShopLoyaltyCardEntity userShopLoyaltyCardEntity = new UserToShopLoyaltyCardEntity();
 		userShopLoyaltyCardEntity = userToShopLoyaltyCardDAO.getbyConsumerId(consumerId);
@@ -175,7 +201,7 @@ public class ConsumerService {
 				for (UserToShopLoyaltyCardStageEntity ucard: userShopLoyaltyCardStageEntities){
 					ShopLoyaltyCardStage shopLoyaltyCardStage = new ShopLoyaltyCardStage();
 					shopLoyaltyCardStage.setShopLoyaltyCardStageNo(ucard.getUserToShopLoyaltyCardStageId());
-					shopLoyaltyCardStage.setShopLoyaltyCardStageIsRedeemable(ucard.getShopLoyaltyCardIsRedeemable());
+					shopLoyaltyCardStage.setShopLoyaltyCardStageIsRedeemable(ucard.getShopLoyaltyCardStageIsRedeemable());
 					shopLoyaltyCardStage.setShopLoyaltyCardStageReward(ucard.getShopLoyaltyCardStageReward());
 					shopLoyaltyCardStage.setShopLoyaltyCardStageRewardPhoto(ucard.getShopLoyaltyCardStageRewardPhoto());
 					shopLoyaltyCardStage.setShopLoyaltyCardStageStatus(ucard.getUserToShopLoyaltyCardStageStatus());
@@ -193,6 +219,7 @@ public class ConsumerService {
 	}
 	
 	public ShopLoyaltyProgram getUserShopLoyaltyProgram(int consumerId){
+		LOGGER.info("Inside getUserShopLoyaltyProgram function...");
 		ShopLoyaltyProgram shopLoyaltyProgram = new ShopLoyaltyProgram();
 		UserToShopLoyaltyProgramEntity userShopLoyaltyProgramEntity = new UserToShopLoyaltyProgramEntity();
 		userShopLoyaltyProgramEntity = userToShopLoyaltyProgramDAO.getbyConsumerId(consumerId);
@@ -212,7 +239,7 @@ public class ConsumerService {
 					shopLoyaltyProgramStage.setShopLoyaltyProgramStageNo(upg.getUserToShopLoyaltyProgramStageId());
 					
 					ShopLoyaltyProgramStage slpg = new ShopLoyaltyProgramStage();
-					//slpg = shopService.getShopLoyaltyProgramStage(upg.getShopLoyaltyProgramStageId());
+					slpg = shopService.getShopLoyaltyProgramStage(upg.getShopLoyaltyProgramStageId());
 					
 					shopLoyaltyProgramStage.setShopLoyaltyProgramStageName(slpg.getShopLoyaltyProgramStageName());
 					shopLoyaltyProgramStage.setShopLoyaltyProgramStagePromotionEligibility(slpg.getShopLoyaltyProgramStagePromotionEligibility());

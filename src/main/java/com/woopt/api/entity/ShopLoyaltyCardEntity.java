@@ -45,7 +45,7 @@ public class ShopLoyaltyCardEntity {
 	@Column(name = "SHOP_LOYALTY_CARD_START_DATE")
 	private Timestamp shopLoyaltyCardStartDate;
 	
-	@Column(name = "SHOP_LOYALTY_CARD_EXIRY_DATE")
+	@Column(name = "SHOP_LOYALTY_CARD_EXPIRY_DATE")
 	private Timestamp shopLoyaltyCardExpiryDate;
 
 	@Column(name = "SHOP_LOYALTY_CARD_TYPE_ID")

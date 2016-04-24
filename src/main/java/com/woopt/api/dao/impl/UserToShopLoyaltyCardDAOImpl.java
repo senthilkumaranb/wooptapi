@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.woopt.api.dao.UserToShopLoyaltyCardDAO;
-import com.woopt.api.entity.ShopLoyaltyCardEntity;
 import com.woopt.api.entity.UserToShopLoyaltyCardEntity;
 
 
@@ -61,7 +60,7 @@ public class UserToShopLoyaltyCardDAOImpl implements UserToShopLoyaltyCardDAO {
 		System.out.println("--------+ UserShopLoyaltyCard +-----------");
 		Session session = this.sessionFactory.openSession();
 		Query query = session.createQuery("from UserToShopLoyaltyCardEntity W "
-				+ "where W.consumerId=:consumerId and W.userToshopLoyaltyCardStatus=1");
+				+ "where W.consumerId=:consumerId and W.userToShopLoyaltyCardStatus=1");
 		query.setParameter("consumerId",consumerId);
 		@SuppressWarnings("unchecked")
 		List<UserToShopLoyaltyCardEntity> userShopLoyaltyCardEntity = query.list();

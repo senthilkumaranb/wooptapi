@@ -68,7 +68,7 @@
 				<value>com.woopt.api.entity.UserEntity</value>
 				<value>com.woopt.api.entity.UserInfoEntity</value>
 				<value>com.woopt.api.entity.ConsumerEntity</value>
-				<value>com.woopt.api.entity.ConcumerCheckInEntity</value>
+				<value>com.woopt.api.entity.ConsumerCheckInEntity</value>
 				<value>com.woopt.api.entity.UserToShopLoyaltyCardEntity</value>
 				<value>com.woopt.api.entity.UserToShopLoyaltyCardStageEntity</value>
 				<value>com.woopt.api.entity.UserToShopLoyaltyProgramEntity</value>

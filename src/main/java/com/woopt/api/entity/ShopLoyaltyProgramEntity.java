@@ -51,8 +51,8 @@ public class ShopLoyaltyProgramEntity {
 	@Column(name = "SHOP_LOYALTY_PROGRAM_NO_OF_STAGES")
 	private int shopLoyaltyProgramNoOfStages;
 	
-	@Column(name = "SHOP_LOYALTY_CARD_VALIDITY")
-	private Integer shopLoyaltyCardValidity;
+	@Column(name = "SHOP_LOYALTY_PROGRAM_VALIDITY")
+	private Integer shopLoyaltyProgramValidity;
 	
 	@Column(name = "CREATED_DATETIME")
 	private Timestamp createdDatetime;
@@ -139,12 +139,14 @@ public class ShopLoyaltyProgramEntity {
 		this.shopLoyaltyProgramNoOfStages = shopLoyaltyProgramNoOfStages;
 	}
 
-	public Integer getShopLoyaltyCardValidity() {
-		return shopLoyaltyCardValidity;
+
+
+	public Integer getShopLoyaltyProgramValidity() {
+		return shopLoyaltyProgramValidity;
 	}
 
-	public void setShopLoyaltyCardValidity(Integer shopLoyaltyCardValidity) {
-		this.shopLoyaltyCardValidity = shopLoyaltyCardValidity;
+	public void setShopLoyaltyProgramValidity(Integer shopLoyaltyProgramValidity) {
+		this.shopLoyaltyProgramValidity = shopLoyaltyProgramValidity;
 	}
 
 	public Timestamp getCreatedDatetime() {
@@ -170,7 +172,7 @@ public class ShopLoyaltyProgramEntity {
 				+ shopLoyaltyProgramStatus + ", shopLoyaltyProgramStartDate=" + shopLoyaltyProgramStartDate
 				+ ", shopLoyaltyProgramExpiryDate=" + shopLoyaltyProgramExpiryDate + ", shopLoyaltyProgramTypeId="
 				+ shopLoyaltyProgramTypeId + ", shopLoyaltyProgramNoOfStages=" + shopLoyaltyProgramNoOfStages
-				+ ", shopLoyaltyCardValidity=" + shopLoyaltyCardValidity + ", createdDatetime=" + createdDatetime
+				+ ", shopLoyaltyProgramValidity=" + shopLoyaltyProgramValidity + ", createdDatetime=" + createdDatetime
 				+ ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
 	}
 	

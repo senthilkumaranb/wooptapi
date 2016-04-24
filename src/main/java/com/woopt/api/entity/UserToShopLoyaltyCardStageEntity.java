@@ -39,8 +39,8 @@ public class UserToShopLoyaltyCardStageEntity {
 	@Column(name = "USER_TO_SHOP_LOYALTY_CARD_ACHIEVED_DATETIME")
 	private Timestamp userToShopLoyaltyCardAchievedDateTime;
 	
-	@Column(name = "SHOP_LOYALTY_CARD_IS_REDEEMABLE")
-	private Integer shopLoyaltyCardIsRedeemable;
+	@Column(name = "SHOP_LOYALTY_CARD_STAGE_IS_REDEEMABLE")
+	private Integer shopLoyaltyCardStageIsRedeemable;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_STAGE_REWARD")
 	private String shopLoyaltyCardStageReward;
@@ -94,12 +94,12 @@ public class UserToShopLoyaltyCardStageEntity {
 		this.userToShopLoyaltyCardAchievedDateTime = userToShopLoyaltyCardAchievedDateTime;
 	}
 
-	public Integer getShopLoyaltyCardIsRedeemable() {
-		return shopLoyaltyCardIsRedeemable;
+	public Integer getShopLoyaltyCardStageIsRedeemable() {
+		return shopLoyaltyCardStageIsRedeemable;
 	}
 
-	public void setShopLoyaltyCardIsRedeemable(Integer shopLoyaltyCardIsRedeemable) {
-		this.shopLoyaltyCardIsRedeemable = shopLoyaltyCardIsRedeemable;
+	public void setShopLoyaltyCardStageIsRedeemable(Integer shopLoyaltyCardStageIsRedeemable) {
+		this.shopLoyaltyCardStageIsRedeemable = shopLoyaltyCardStageIsRedeemable;
 	}
 
 	public String getShopLoyaltyCardStageReward() {
@@ -147,11 +147,11 @@ public class UserToShopLoyaltyCardStageEntity {
 		return "UserToShopLoyaltyCardStageEntity [userToShopLoyaltyCardStageId=" + userToShopLoyaltyCardStageId
 				+ ", userToShopLoyaltyCardId=" + userToShopLoyaltyCardId + ", shopLoyaltyCardStageId="
 				+ shopLoyaltyCardStageId + ", userToShopLoyaltyCardAchievedDateTime="
-				+ userToShopLoyaltyCardAchievedDateTime + ", shopLoyaltyCardIsRedeemable=" + shopLoyaltyCardIsRedeemable
-				+ ", shopLoyaltyCardStageReward=" + shopLoyaltyCardStageReward + ", shopLoyaltyCardStageRewardPhoto="
-				+ shopLoyaltyCardStageRewardPhoto + ", userToShopLoyaltyCardStageStatus="
-				+ userToShopLoyaltyCardStageStatus + ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime="
-				+ lastUpdatedDatetime + "]";
+				+ userToShopLoyaltyCardAchievedDateTime + ", shopLoyaltyCardStageIsRedeemable="
+				+ shopLoyaltyCardStageIsRedeemable + ", shopLoyaltyCardStageReward=" + shopLoyaltyCardStageReward
+				+ ", shopLoyaltyCardStageRewardPhoto=" + shopLoyaltyCardStageRewardPhoto
+				+ ", userToShopLoyaltyCardStageStatus=" + userToShopLoyaltyCardStageStatus + ", createdDatetime="
+				+ createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
 	}
 	
 

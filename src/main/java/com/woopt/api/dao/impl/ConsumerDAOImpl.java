@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.woopt.api.dao.ConsumerDAO;
 import com.woopt.api.entity.ConsumerEntity;
+import com.woopt.api.entity.ShopEntity;
 
 /**
  * DAO Implementation
@@ -53,8 +54,13 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 
 	@Override
 	public List<ConsumerEntity> getFavShops(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("--------+ ConsumerEntity +-----------");
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("from ConsumerEntity W where W.userId=:userId Order by W.shopId");
+		query.setParameter("userId",userId);
+		List<ConsumerEntity> consumerList = query.list();
+		session.close();
+		return consumerList;
 	}
 
 	@Override

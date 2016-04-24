@@ -62,7 +62,7 @@ public class UserToShopLoyaltyProgramStageDAOImpl implements UserToShopLoyaltyPr
 		Session session = this.sessionFactory.openSession();
 		Query query = session.createQuery("from UserToShopLoyaltyProgramStageEntity W "
 				+ "where W.userToShopLoyaltyProgramId=:userShopLoyaltyProgramId ORDER BY W.shopLoyaltyProgamStageId ASC");
-		query.setParameter("userToShopLoyaltyProgramId",userShopLoyaltyProgramId);
+		query.setParameter("userShopLoyaltyProgramId",userShopLoyaltyProgramId);
 		@SuppressWarnings("unchecked")
 		List<UserToShopLoyaltyProgramStageEntity> userShopLoyaltyProgramStageEntity = query.list();
 		session.close();
