@@ -57,7 +57,7 @@ public class PartnerController {
         this.partnerService = ps;
     }
     
-    @RequestMapping(value = "/view", method = RequestMethod.POST, headers="Accept=application/json")
+    @RequestMapping(value = "/consumers/", method = RequestMethod.POST, headers="Accept=application/json")
    	public ResponseEntity<List<PartnerViewModel>> partnerView(@RequestBody ShopModel shopModel, 
    			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
     	
@@ -81,10 +81,18 @@ public class PartnerController {
    		LOGGER.info("Return ShopModel:" + partnerViewModels);
    		return new ResponseEntity<List<PartnerViewModel>>(partnerViewModels, returnHeader, HttpStatus.OK);
    	}
-
+    
+    //API to search for customers
+    @RequestMapping(value = "/consumers/search", method = RequestMethod.POST, headers="Accept=application/json")
+   	public ResponseEntity<List<PartnerViewModel>> customerSearch(@RequestBody ShopModel shopModel, 
+   			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+    	
+    	return null;
+    	
+    }
     
 	//API to check in consumer
-	@RequestMapping(value = "/checkin", method = RequestMethod.POST, headers="Accept=application/json")
+	@RequestMapping(value = "/checkinConsumer", method = RequestMethod.POST, headers="Accept=application/json")
 	public ResponseEntity<ConsumerCheckIn> checkInPost(@RequestBody ConsumerCheckIn consumerCheckIn, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
 		return null;
@@ -93,14 +101,14 @@ public class PartnerController {
 	//Shop Loyalty Card related rest services go here
 	
 	//API to update shop loyalty card
-	@RequestMapping(value = "/lcard", method = RequestMethod.PUT, headers="Accept=application/json")
+	@RequestMapping(value = "/consumer/lcard", method = RequestMethod.PUT, headers="Accept=application/json")
 	public ResponseEntity<ShopLoyaltyCard> lcardPUT(@RequestBody ShopLoyaltyCard shopLoyaltyCard, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
 		return null;
 	}
 	
 	//API to update shop loyalty card stage
-	@RequestMapping(value = "/lcard/stage", method = RequestMethod.PUT, headers="Accept=application/json")
+	@RequestMapping(value = "/consumer/lcard/stage", method = RequestMethod.PUT, headers="Accept=application/json")
 	public ResponseEntity<ShopLoyaltyCardStage> lcardStagePUT(@RequestBody ShopLoyaltyCardStage shopLoyaltyCardStage, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
 		return null;
@@ -108,16 +116,15 @@ public class PartnerController {
 	
 	//Shop Loyalty Program related rest services go here
 
-
 	//API to update shop loyalty program
-	@RequestMapping(value = "/lprogram", method = RequestMethod.PUT, headers="Accept=application/json")
+	@RequestMapping(value = "/consumer/lprogram", method = RequestMethod.PUT, headers="Accept=application/json")
 	public ResponseEntity<ShopLoyaltyProgram> lprogramPUT(@RequestBody ShopLoyaltyProgram shopLoyaltyProgram, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
 		return null;
 	}
 	
 	//API to update shop loyalty program stage
-	@RequestMapping(value = "/lprogram/stage", method = RequestMethod.PUT, headers="Accept=application/json")
+	@RequestMapping(value = "/consumer/lprogram/stage", method = RequestMethod.PUT, headers="Accept=application/json")
 	public ResponseEntity<ShopLoyaltyProgramStage> lprogramStagePOST(@RequestBody ShopLoyaltyProgramStage shopLoyaltyProgramStage, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
 		return null;
@@ -126,7 +133,7 @@ public class PartnerController {
   	//Offer related services go here
   	
   	//API to redeem an offer
-  	@RequestMapping(value = "/offer/redeem", method = RequestMethod.POST, headers="Accept=application/json")
+  	@RequestMapping(value = "/consumer/offer/redeem", method = RequestMethod.POST, headers="Accept=application/json")
   	public ResponseEntity<Cart> offerRedeemPOST(@RequestBody Offer offer, 
   			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
   		return null;

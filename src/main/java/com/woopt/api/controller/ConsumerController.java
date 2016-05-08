@@ -80,13 +80,30 @@ private static final Logger LOGGER = Logger.getLogger(ShopController.class.getNa
 		return new ResponseEntity<List<ConsumerViewModel>>(consumerShopModels, returnHeader, HttpStatus.OK);
 	}
     
+    //API to list the near by shops
+    @RequestMapping(value = "/shops", method = RequestMethod.POST, headers="Accept=application/json")
+	public ResponseEntity<List<ConsumerViewModel>> nearbyShops(@RequestBody UserModel userModel, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+    	return null;
+    	
+    	//to handle nearby, location and by categories
+    }
+    
+    
+    //Customer Check In related APIs go here
+    
     //API to check in consumer
-  	@RequestMapping(value = "/checkin", method = RequestMethod.POST, headers="Accept=application/json")
+  	@RequestMapping(value = "/checkin/atshop", method = RequestMethod.POST, headers="Accept=application/json")
   	public ResponseEntity<ConsumerCheckIn> checkInPost(@RequestBody ConsumerCheckIn consumerCheckIn, 
   			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+  		
+  		//Method parameter to be set 
+  		//at shop
+  		//qr
+  		//code
+  		//auto
   		return null;
   	}
-  	
 
   	//Offer related services go here
   	
