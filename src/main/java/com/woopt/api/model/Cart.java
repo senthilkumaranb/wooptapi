@@ -8,6 +8,10 @@ public class Cart {
 	
 	private List<CartItem> cartItems;
 	
+	private Integer consumerId;
+	
+	private Integer cartType;
+	
 	private Integer cartStatus;
 	
 	private Integer consumerCheckInId;
@@ -26,6 +30,22 @@ public class Cart {
 
 	public void setCartItems(List<CartItem> cartItems) {
 		this.cartItems = cartItems;
+	}
+
+	public Integer getConsumerId() {
+		return consumerId;
+	}
+
+	public void setConsumerId(Integer consumerId) {
+		this.consumerId = consumerId;
+	}
+
+	public Integer getCartType() {
+		return cartType;
+	}
+
+	public void setCartType(Integer cartType) {
+		this.cartType = cartType;
 	}
 
 	public Integer getCartStatus() {
@@ -51,7 +71,9 @@ public class Cart {
 		result = prime * result + ((cardId == null) ? 0 : cardId.hashCode());
 		result = prime * result + ((cartItems == null) ? 0 : cartItems.hashCode());
 		result = prime * result + ((cartStatus == null) ? 0 : cartStatus.hashCode());
+		result = prime * result + ((cartType == null) ? 0 : cartType.hashCode());
 		result = prime * result + ((consumerCheckInId == null) ? 0 : consumerCheckInId.hashCode());
+		result = prime * result + ((consumerId == null) ? 0 : consumerId.hashCode());
 		return result;
 	}
 
@@ -79,18 +101,29 @@ public class Cart {
 				return false;
 		} else if (!cartStatus.equals(other.cartStatus))
 			return false;
+		if (cartType == null) {
+			if (other.cartType != null)
+				return false;
+		} else if (!cartType.equals(other.cartType))
+			return false;
 		if (consumerCheckInId == null) {
 			if (other.consumerCheckInId != null)
 				return false;
 		} else if (!consumerCheckInId.equals(other.consumerCheckInId))
+			return false;
+		if (consumerId == null) {
+			if (other.consumerId != null)
+				return false;
+		} else if (!consumerId.equals(other.consumerId))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Cart [cardId=" + cardId + ", cartItems=" + cartItems + ", cartStatus=" + cartStatus
-				+ ", consumerCheckInId=" + consumerCheckInId + "]";
+		return "Cart [cardId=" + cardId + ", cartItems=" + cartItems + ", consumerId=" + consumerId + ", cartType="
+				+ cartType + ", cartStatus=" + cartStatus + ", consumerCheckInId=" + consumerCheckInId + "]";
 	}
+
 		
 }

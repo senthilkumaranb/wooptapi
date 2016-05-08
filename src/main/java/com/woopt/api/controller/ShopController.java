@@ -20,10 +20,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.woopt.api.common.WooptCode;
+import com.woopt.api.model.Cart;
+import com.woopt.api.model.ConsumerCheckIn;
 import com.woopt.api.model.Device;
+import com.woopt.api.model.Offer;
+import com.woopt.api.model.Order;
 import com.woopt.api.model.Shop;
 import com.woopt.api.model.ShopBranch;
+import com.woopt.api.model.ShopEmployee;
 import com.woopt.api.model.ShopInfo;
+import com.woopt.api.model.ShopLoyaltyCard;
+import com.woopt.api.model.ShopLoyaltyCardStage;
+import com.woopt.api.model.ShopLoyaltyProgram;
+import com.woopt.api.model.ShopLoyaltyProgramStage;
 import com.woopt.api.model.ShopModel;
 import com.woopt.api.model.ShopReview;
 import com.woopt.api.model.User;
@@ -84,6 +93,9 @@ public class ShopController {
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
 		LOGGER.info("calling /api/shop/add api");
 		LOGGER.info("Input User:" + shopModel);
+		
+		//LOGGER.info(">>>>>>" + header.get("shopId"));
+		
 		HttpHeaders returnHeader = new HttpHeaders();
 		User user = null;
 
@@ -129,6 +141,100 @@ public class ShopController {
 	
 		LOGGER.info("Return ShopModel:" + shopModels);
 		return new ResponseEntity<List<ShopModel>>(shopModels, returnHeader, HttpStatus.OK);
+	}
+	
+	//Shop Employee related rest services go here
+	
+	//API to add new shop employee
+	@RequestMapping(value = "/employee", method = RequestMethod.POST, headers="Accept=application/json")
+	public ResponseEntity<List<ShopEmployee>> employeePOST(@RequestBody ShopEmployee shopEmployee, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		return null;
+	}
+	
+	//API to get shop employee by id
+	@RequestMapping(value = "/employee/{id}", method = RequestMethod.POST, headers="Accept=application/json")
+	public ResponseEntity<List<ShopEmployee>> employeeGET(@RequestBody ShopEmployee shopEmployee, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		return null;
+	}
+	
+	//API to get update employee
+	@RequestMapping(value = "/employee", method = RequestMethod.PUT, headers="Accept=application/json")
+	public ResponseEntity<List<ShopEmployee>> employeePUT(@RequestBody ShopEmployee shopEmployee, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		return null;
+	}
+	
+	//Shop Loyalty Card related rest services go here
+	
+	//API to add new shop loyalty card
+	@RequestMapping(value = "/lcard", method = RequestMethod.POST, headers="Accept=application/json")
+	public ResponseEntity<ShopLoyaltyCard> lcardPOST(@RequestBody ShopLoyaltyCard shopLoyaltyCard, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		return null;
+	}
+	
+
+	//API to update shop loyalty card
+	@RequestMapping(value = "/lcard", method = RequestMethod.PUT, headers="Accept=application/json")
+	public ResponseEntity<ShopLoyaltyCard> lcardPUT(@RequestBody ShopLoyaltyCard shopLoyaltyCard, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		return null;
+	}
+	
+	//API to update shop loyalty card stage
+	@RequestMapping(value = "/lcard/stage", method = RequestMethod.PUT, headers="Accept=application/json")
+	public ResponseEntity<ShopLoyaltyCardStage> lcardStagePUT(@RequestBody ShopLoyaltyCardStage shopLoyaltyCardStage, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		return null;
+	}
+	
+	//Shop Loyalty Program related rest services go here
+
+	//API to add new shop loyalty program
+	@RequestMapping(value = "/lprogram", method = RequestMethod.POST, headers="Accept=application/json")
+	public ResponseEntity<ShopLoyaltyProgram> lprogramPOST(@RequestBody ShopLoyaltyProgram shopLoyaltyProgram, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		return null;
+	}
+	
+
+	//API to update shop loyalty program
+	@RequestMapping(value = "/lprogram", method = RequestMethod.PUT, headers="Accept=application/json")
+	public ResponseEntity<ShopLoyaltyProgram> lprogramPUT(@RequestBody ShopLoyaltyProgram shopLoyaltyProgram, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		return null;
+	}
+	
+	//API to update shop loyalty program stage
+	@RequestMapping(value = "/lprogram/stage", method = RequestMethod.PUT, headers="Accept=application/json")
+	public ResponseEntity<ShopLoyaltyProgramStage> lprogramStagePOST(@RequestBody ShopLoyaltyProgramStage shopLoyaltyProgramStage, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		return null;
+	}
+	
+	//Offer related rest services go here
+
+	//API to add new offer
+	@RequestMapping(value = "/offer", method = RequestMethod.POST, headers="Accept=application/json")
+	public ResponseEntity<List<Offer>> offerPOST(@RequestBody Offer offer, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		return null;
+	}
+	
+	//API to update offer
+	@RequestMapping(value = "/offer", method = RequestMethod.PUT, headers="Accept=application/json")
+	public ResponseEntity<List<Offer>> offerPUT(@RequestBody Offer offer, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		return null;
+	}
+	
+	//API to publish offer
+	@RequestMapping(value = "/offer/publish", method = RequestMethod.POST, headers="Accept=application/json")
+	public ResponseEntity<Offer> offerPublishPUT(@RequestBody Offer offer, 
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		return null;
 	}
 
 }

@@ -6,7 +6,7 @@ public class CartItem {
 	
 	private Integer cartId;
 	
-	private Offer userDeal;
+	private Offer offer;
 	
 	private Integer cartItemOfferCode;
 	
@@ -30,12 +30,12 @@ public class CartItem {
 		this.cartId = cartId;
 	}
 
-	public Offer getUserDeal() {
-		return userDeal;
+	public Offer getOffer() {
+		return offer;
 	}
 
-	public void setUserDeal(Offer userDeal) {
-		this.userDeal = userDeal;
+	public void setOffer(Offer offer) {
+		this.offer = offer;
 	}
 
 	public Integer getCartItemOfferCode() {
@@ -71,7 +71,7 @@ public class CartItem {
 		result = prime * result + ((cartItemOfferAmount == null) ? 0 : cartItemOfferAmount.hashCode());
 		result = prime * result + ((cartItemOfferCode == null) ? 0 : cartItemOfferCode.hashCode());
 		result = prime * result + ((cartItemStatus == null) ? 0 : cartItemStatus.hashCode());
-		result = prime * result + ((userDeal == null) ? 0 : userDeal.hashCode());
+		result = prime * result + ((offer == null) ? 0 : offer.hashCode());
 		return result;
 	}
 
@@ -109,21 +109,20 @@ public class CartItem {
 				return false;
 		} else if (!cartItemStatus.equals(other.cartItemStatus))
 			return false;
-		if (userDeal == null) {
-			if (other.userDeal != null)
+		if (offer == null) {
+			if (other.offer != null)
 				return false;
-		} else if (!userDeal.equals(other.userDeal))
+		} else if (!offer.equals(other.offer))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "CartItem [cartItemId=" + cartItemId + ", cartId=" + cartId + ", userDeal=" + userDeal
-				+ ", cartItemOfferCode=" + cartItemOfferCode + ", cartItemOfferAmount=" + cartItemOfferAmount
-				+ ", cartItemStatus=" + cartItemStatus + "]";
+		return "CartItem [cartItemId=" + cartItemId + ", cartId=" + cartId + ", offer=" + offer + ", cartItemOfferCode="
+				+ cartItemOfferCode + ", cartItemOfferAmount=" + cartItemOfferAmount + ", cartItemStatus="
+				+ cartItemStatus + "]";
 	}
-	
 	
 
 }

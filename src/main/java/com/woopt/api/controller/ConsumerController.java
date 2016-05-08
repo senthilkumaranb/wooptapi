@@ -20,7 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.woopt.api.common.WooptCode;
+import com.woopt.api.model.Cart;
+import com.woopt.api.model.ConsumerCheckIn;
 import com.woopt.api.model.ConsumerViewModel;
+import com.woopt.api.model.Offer;
+import com.woopt.api.model.Order;
+import com.woopt.api.model.ShopLoyaltyCard;
+import com.woopt.api.model.ShopLoyaltyCardStage;
+import com.woopt.api.model.ShopLoyaltyProgram;
+import com.woopt.api.model.ShopLoyaltyProgramStage;
 import com.woopt.api.model.ShopModel;
 import com.woopt.api.model.User;
 import com.woopt.api.model.UserModel;
@@ -71,5 +79,52 @@ private static final Logger LOGGER = Logger.getLogger(ShopController.class.getNa
 		LOGGER.info("Return ShopModel:" + consumerShopModels);
 		return new ResponseEntity<List<ConsumerViewModel>>(consumerShopModels, returnHeader, HttpStatus.OK);
 	}
+    
+    //API to check in consumer
+  	@RequestMapping(value = "/checkin", method = RequestMethod.POST, headers="Accept=application/json")
+  	public ResponseEntity<ConsumerCheckIn> checkInPost(@RequestBody ConsumerCheckIn consumerCheckIn, 
+  			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+  		return null;
+  	}
+  	
+
+  	//Offer related services go here
+  	
+  	//API to redeem an offer
+  	@RequestMapping(value = "/offer/redeem", method = RequestMethod.POST, headers="Accept=application/json")
+  	public ResponseEntity<Cart> offerRedeemPOST(@RequestBody Offer offer, 
+  			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+  		return null;
+  	}
+  	
+  	//API to share an offer
+  	@RequestMapping(value = "/offer/share", method = RequestMethod.POST, headers="Accept=application/json")
+  	public ResponseEntity<Cart> offerSharePOST(@RequestBody Offer offer, 
+  			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+  		return null;
+  	}
+  	
+  	//Order and Cart related rest services go here
+  	
+  	//API to update User Cart
+  	@RequestMapping(value = "/consumer/cart", method = RequestMethod.PUT, headers="Accept=application/json")
+  	public ResponseEntity<Cart> cartPUT(@RequestBody Cart cart, 
+  			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+  		return null;
+  	}
+  	
+  	//API to create User Order
+  	@RequestMapping(value = "/consumer/order", method = RequestMethod.POST, headers="Accept=application/json")
+  	public ResponseEntity<Order> orderPOST(@RequestBody Cart cart, 
+  			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+  		return null;
+  	}
+  	
+  	//API to update User Order
+  	@RequestMapping(value = "/consumer/order", method = RequestMethod.POST, headers="Accept=application/json")
+  	public ResponseEntity<Order> orderPUT(@RequestBody Cart cart, 
+  			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+  		return null;
+  	}
 
 }

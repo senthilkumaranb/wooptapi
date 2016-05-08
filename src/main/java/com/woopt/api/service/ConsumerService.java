@@ -15,8 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.woopt.api.dao.CartDAO;
+import com.woopt.api.dao.CartItemDAO;
 import com.woopt.api.dao.ConsumerDAO;
 import com.woopt.api.dao.OfferDAO;
+import com.woopt.api.dao.OrderDAO;
 import com.woopt.api.dao.ShopDAO;
 import com.woopt.api.dao.ShopInfoDAO;
 import com.woopt.api.dao.ShopLoyaltyProgramStageDAO;
@@ -24,8 +27,11 @@ import com.woopt.api.dao.UserToShopLoyaltyCardDAO;
 import com.woopt.api.dao.UserToShopLoyaltyCardStageDAO;
 import com.woopt.api.dao.UserToShopLoyaltyProgramDAO;
 import com.woopt.api.dao.UserToShopLoyaltyProgramStageDAO;
+import com.woopt.api.entity.CartEntity;
+import com.woopt.api.entity.CartItemEntity;
 import com.woopt.api.entity.ConsumerEntity;
 import com.woopt.api.entity.OfferEntity;
+import com.woopt.api.entity.OrderEntity;
 import com.woopt.api.entity.ShopEntity;
 import com.woopt.api.entity.ShopInfoEntity;
 import com.woopt.api.entity.ShopLoyaltyCardStageEntity;
@@ -36,6 +42,7 @@ import com.woopt.api.entity.UserToShopLoyaltyCardStageEntity;
 import com.woopt.api.entity.UserToShopLoyaltyProgramEntity;
 import com.woopt.api.entity.UserToShopLoyaltyProgramStageEntity;
 import com.woopt.api.model.Cart;
+import com.woopt.api.model.CartItem;
 import com.woopt.api.model.Chat;
 import com.woopt.api.model.Consumer;
 import com.woopt.api.model.Offer;
@@ -62,6 +69,9 @@ import com.woopt.api.model.ConsumerViewModel;
 public class ConsumerService {
 	
 	private static final Logger LOGGER = Logger.getLogger(ConsumerService.class.getName());
+	
+	@Autowired
+	private ShopService shopService;
     
     @Autowired
     ConsumerDAO consumerDAO;
@@ -89,6 +99,15 @@ public class ConsumerService {
     
     @Autowired
     ShopLoyaltyProgramStageDAO shopLoyaltyProgramStageDAO;
+    
+    @Autowired
+    OrderDAO orderDAO;
+    
+    @Autowired
+    CartDAO cartDAO;
+    
+    @Autowired
+    CartItemDAO cartItemDAO;
 	
 	public List<ConsumerViewModel> getMyFavShops(int userId){
 		
@@ -237,7 +256,7 @@ public class ConsumerService {
 					shopLoyaltyProgramStage.setShopLoyaltyProgramStageNo(upg.getUserToShopLoyaltyProgramStageId());
 					
 					ShopLoyaltyProgramStage slpg = new ShopLoyaltyProgramStage();
-					slpg = this.getShopLoyaltyProgramStage(upg.getShopLoyaltyProgramStageId());
+					slpg = shopService.getShopLoyaltyProgramStage(upg.getShopLoyaltyProgramStageId());
 					
 					shopLoyaltyProgramStage.setShopLoyaltyProgramStageName(slpg.getShopLoyaltyProgramStageName());
 					shopLoyaltyProgramStage.setShopLoyaltyProgramStagePromotionEligibility(slpg.getShopLoyaltyProgramStagePromotionEligibility());
@@ -255,7 +274,7 @@ public class ConsumerService {
 		}
 	}
 	
-	public ShopLoyaltyProgramStage getShopLoyaltyProgramStage(int shopLoyaltyProgramStageId){
+/*	public ShopLoyaltyProgramStage getShopLoyaltyProgramStage(int shopLoyaltyProgramStageId){
 		ShopLoyaltyProgramStageEntity slpe = new ShopLoyaltyProgramStageEntity();
 		slpe = shopLoyaltyProgramStageDAO.findById(shopLoyaltyProgramStageId);
 		ShopLoyaltyProgramStage shopLoyaltyProgramStage = new ShopLoyaltyProgramStage();
@@ -266,7 +285,7 @@ public class ConsumerService {
 			shopLoyaltyProgramStage.setShopLoyaltyProgramStagePromotionEligibility(slpe.getShopLoyaltyProgramStagePromotionEligibility());
 		}
 		return shopLoyaltyProgramStage;
-	}
+	}*/
 	
 	public List<Offer> getUserShopOffers(int userId, int shopId){
 		List<Offer> shopOffers = new ArrayList<Offer>();
@@ -280,17 +299,177 @@ public class ConsumerService {
 		return shopOffers;
 	}
 	
-	public Order getUserShopOrder(int consumerId){
+	
+	public Cart createCart(int consumerId){
+		
+		Cart cart = new Cart();
+		CartEntity cartEntity = new CartEntity();
+		
+		cartEntity.setConsumerId(consumerId);
+		
+		cartEntity = cartDAO.save(cartEntity);
+		
+		Gson gson = new Gson();
+		String jsonCartEntity = gson.toJson(cartEntity, CartEntity.class);
+		cart = gson.fromJson(jsonCartEntity, Cart.class);
+		
+		return cart;
+	}
+	
+	public Cart addCartItem(Cart cart, CartItem cartItem){
+		
+		CartItemEntity cartItemEntity = new CartItemEntity();
+		
+		cartItemEntity.setCardId(cart.getCardId());
+		cartItemEntity.setOfferUserPublishId(cartItem.getOffer().getOfferUserPublish().get(0).getOfferUserPublishId());
+		Integer cartItemStatus=1;
+		cartItemEntity.setCartItemStatus(cartItemStatus);
+		
+		cartItemEntity = cartItemDAO.save(cartItemEntity);
+		
+		Gson gson = new Gson();
+		String jsonCartItemEntity = gson.toJson(cartItemEntity, CartEntity.class);
+		cartItem = gson.fromJson(jsonCartItemEntity, CartItem.class);
+		
+		List<CartItem> cartItems = new ArrayList<CartItem>();
+		cartItems = cart.getCartItems();
+		cartItems.add(cartItem);
+		
+		cart.setCartItems(cartItems);
+		
+		return cart;
+	
+	}
+	
+	public Cart removeCartItem(Cart cart, CartItem cartItem){
+		CartItemEntity cartItemEntity = new CartItemEntity();
+		
+		cartItemEntity.setCardId(cart.getCardId());
+		cartItemEntity.setOfferUserPublishId(cartItem.getOffer().getOfferUserPublish().get(0).getOfferUserPublishId());
+		Integer cartItemStatus=0;
+		cartItemEntity.setCartItemStatus(cartItemStatus);
+		
+		cartItemEntity = cartItemDAO.save(cartItemEntity);
+		
+		Gson gson = new Gson();
+		String jsonCartItemEntity = gson.toJson(cartItemEntity, CartEntity.class);
+		cartItem = gson.fromJson(jsonCartItemEntity, CartItem.class);
+		
+		List<CartItem> cartItems = new ArrayList<CartItem>();
+		cartItems = cart.getCartItems();
+		cartItems.add(cartItem);
+		
+		cart.setCartItems(cartItems);
+		
+		return cart;
+	}
+	
+	public Cart cancelCart(int cartId){
 		return null;
+	}
+	
+	public Cart getCartbyConsumerId(int consumerId){
+		Cart cart = new Cart();
+		CartEntity cartEntity = new CartEntity();
+		
+		cartEntity = cartDAO.getActiveCartbyConsumerId(consumerId);
+		
+		Gson gson = new Gson();
+		String jsonCartEntity = gson.toJson(cartEntity, CartEntity.class);
+		cart = gson.fromJson(jsonCartEntity, Cart.class);
+		
+		//update cart model with cart items
+		cart.setCartItems(this.getCartItems(cart.getCardId()));
+		
+		return cart;
+	}
+	
+	public Cart getCartbyCartId(int cartId){
+		Cart cart = new Cart();
+		CartEntity cartEntity = new CartEntity();
+		
+		cartEntity = cartDAO.findById(cartId);
+		
+		Gson gson = new Gson();
+		String jsonCartEntity = gson.toJson(cartEntity, CartEntity.class);
+		cart = gson.fromJson(jsonCartEntity, Cart.class);
+		
+		//Update cart model with cart items
+		cart.setCartItems(this.getCartItems(cart.getCardId()));
+		
+		return cart;
+	}
+	
+	public List<CartItem> getCartItems(int cartId){
+		
+		List<CartItem> cartItems = new ArrayList<CartItem>();
+		
+		List<CartItemEntity> cartItemEntities = new ArrayList<CartItemEntity>();
+		cartItemEntities = cartItemDAO.getbyCartId(cartId);
+		
+		Gson gson = new Gson();
+		String jsonCartItemEntity = gson.toJson(cartItemEntities, new TypeToken<List<CartItemEntity>>() {}.getType());
+		cartItems = gson.fromJson(jsonCartItemEntity, new TypeToken<List<CartItem>>() {}.getType());
+		
+		return cartItems;
+	}
+	
+	public Order createOrder(int shopId,int userId, Cart cart){
+		Order order = new Order();
+		OrderEntity orderEntity = new OrderEntity();
+
+		orderEntity.setShopId(shopId);
+		orderEntity.setUserId(userId);
+		orderEntity.setCartId(cart.getCardId());
+		int orderStatus=1;
+		orderEntity.setOrderStatus(orderStatus);
+		
+		Timestamp currentTimestamp = new Timestamp(new java.util.Date().getTime());
+		orderEntity.setCreatedDatetime(currentTimestamp);
+
+		orderEntity = orderDAO.save(orderEntity);
+		
+		Gson gson = new Gson();
+		String jsonOrderEntity = gson.toJson(orderEntity, OrderEntity.class);
+		order = gson.fromJson(jsonOrderEntity, Order.class);
+		
+		order.setCart(cart);
+		
+		return order;
+	}
+	
+	public Order updateOrder(int orderId){
+		return null;
+	}
+	
+	public Order cancelOrder(int orderId){
+		return null;
+	}
+	
+	
+	public Order getOrder(int consumerId){
+		
+		Order shopOrder = new Order();
+		OrderEntity orderEntity = new OrderEntity();
+		
+		orderEntity = orderDAO.getActiveOrder(consumerId);
+		
+		int cartId = orderEntity.getCartId();
+		
+		Gson gson = new Gson();
+		String jsonOrderEntity= gson.toJson(orderEntity, OrderEntity.class);
+		shopOrder = gson.fromJson(jsonOrderEntity, Order.class);
+
+		//GetCart and initialize here
+		shopOrder.setCart(this.getCartbyCartId(cartId));
+		
+		return shopOrder;
 	}
 	
 	public List<Order> getUserShopPastOrders(int consumerId){
 		return null;
 	}
 	
-	public Cart getUserShopCart(int userId, int shopId){
-		return null;
-	}
 	
 	public List<Chat> getUserShopChat(int userId, int shopId){
 		return null;
@@ -311,23 +490,6 @@ public class ConsumerService {
 	public Chat sendChatMessage(int userId, int chatId){
 		return null;
 	}
-	
-	public Order createOrder(int userId, int shopId){
-		return null;
-	}
-	
-	public Order updateOrder(int userId, int shopId){
-		return null;
-	}
-	
-	public Order cancelOrder(int userId, int shopId){
-		return null;
-	}
-	
-	public Order addOffertoOrder(int userId, int shopId){
-		return null;
-	}
-	
 
 
 }

@@ -6,9 +6,7 @@ import java.util.List;
 public class PartnerViewModel {
 	
 	Consumer consumer;
-	
-	UserModel user;
-	
+		
 	//loyalty card of the user for my shop
 	private ShopLoyaltyCard shopLoyaltyCard;
 	
@@ -32,14 +30,6 @@ public class PartnerViewModel {
 
 	public void setConsumer(Consumer consumer) {
 		this.consumer = consumer;
-	}
-
-	public UserModel getUser() {
-		return user;
-	}
-
-	public void setUser(UserModel user) {
-		this.user = user;
 	}
 
 	public ShopLoyaltyCard getShopLoyaltyCard() {
@@ -109,7 +99,6 @@ public class PartnerViewModel {
 		result = prime * result + ((order == null) ? 0 : order.hashCode());
 		result = prime * result + ((shopLoyaltyCard == null) ? 0 : shopLoyaltyCard.hashCode());
 		result = prime * result + ((shopLoyaltyProgram == null) ? 0 : shopLoyaltyProgram.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		result = prime * result + ((userDeals == null) ? 0 : userDeals.hashCode());
 		return result;
 	}
@@ -158,11 +147,6 @@ public class PartnerViewModel {
 				return false;
 		} else if (!shopLoyaltyProgram.equals(other.shopLoyaltyProgram))
 			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
 		if (userDeals == null) {
 			if (other.userDeals != null)
 				return false;
@@ -173,11 +157,10 @@ public class PartnerViewModel {
 
 	@Override
 	public String toString() {
-		return "PartnerViewModel [consumer=" + consumer + ", user=" + user + ", shopLoyaltyCard=" + shopLoyaltyCard
+		return "PartnerViewModel [consumer=" + consumer + ", shopLoyaltyCard=" + shopLoyaltyCard
 				+ ", shopLoyaltyProgram=" + shopLoyaltyProgram + ", userDeals=" + userDeals + ", consumerCheckIn="
 				+ consumerCheckIn + ", order=" + order + ", allOrders=" + allOrders + ", chats=" + chats + "]";
 	}
-	
 	
 
 }
