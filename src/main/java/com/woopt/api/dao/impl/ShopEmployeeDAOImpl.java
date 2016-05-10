@@ -2,11 +2,13 @@ package com.woopt.api.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.woopt.api.dao.ShopEmployeeDAO;
+import com.woopt.api.entity.ShopBranchEntity;
 import com.woopt.api.entity.ShopEmployeeEntity;
 
 /**
@@ -53,6 +55,19 @@ public class ShopEmployeeDAOImpl implements ShopEmployeeDAO {
 	public List<ShopEmployeeEntity> list() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public List<ShopEmployeeEntity> getEmployeesbyShopId(int shopId){
+		//get all shop employees
+		Session session = this.sessionFactory.openSession();
+		//System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from ShopEmployee W where W.shopId=:shopId");
+		query.setParameter("shopId",shopId);
+		@SuppressWarnings("unchecked")
+		List<ShopEmployeeEntity> shopEmployeesList = query.list();
+		session.close();
+		return shopEmployeesList;
 	}
 
 	@Override

@@ -14,6 +14,8 @@ public interface ShopEmployeeDAO {
 	
 	public List<ShopEmployeeEntity> list();
 	
+	public List<ShopEmployeeEntity> getEmployeesbyShopId(int shopId);
+	
 	public ShopEmployeeEntity findById(long shopemployeeId);
 
 }

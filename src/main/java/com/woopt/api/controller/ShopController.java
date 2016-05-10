@@ -149,7 +149,31 @@ public class ShopController {
 	@RequestMapping(value = "/employee", method = RequestMethod.POST, headers="Accept=application/json")
 	public ResponseEntity<List<ShopEmployee>> employeePOST(@RequestBody ShopEmployee shopEmployee, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		
+		HttpHeaders returnHeader = new HttpHeaders();
+			
+		//Getting the shopId from request header
+		int shopId = Integer.parseInt(header.get("ShopId").get(0));
+
+		List<ShopEmployee> shopEmployees = new ArrayList<ShopEmployee>();
+		String responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != shopEmployee){
+				//user = userModel.getUser();
+				String rc = shopService.addShopEmployee(shopEmployee);
+				
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+		
+		shopEmployees = shopService.getShopEmployees(shopId);
+	
+		LOGGER.info("Return ShopEmployees:" + shopEmployees);
+		return new ResponseEntity<List<ShopEmployee>>(shopEmployees, returnHeader, HttpStatus.OK);
 	}
 	
 	//API to get shop employee by id
@@ -163,7 +187,30 @@ public class ShopController {
 	@RequestMapping(value = "/employee", method = RequestMethod.PUT, headers="Accept=application/json")
 	public ResponseEntity<List<ShopEmployee>> employeePUT(@RequestBody ShopEmployee shopEmployee, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		//Getting the shopId from request header
+		int shopId = Integer.parseInt(header.get("ShopId").get(0));
+		
+		List<ShopEmployee> shopEmployees = new ArrayList<ShopEmployee>();
+		String responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != shopEmployee){
+				//user = userModel.getUser();
+				shopEmployee = shopService.updateShopEmployee(shopEmployee, shopId);
+				
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+		
+		shopEmployees = shopService.getShopEmployees(shopId);
+	
+		LOGGER.info("Return ShopEmployees:" + shopEmployees);
+		return new ResponseEntity<List<ShopEmployee>>(shopEmployees, returnHeader, HttpStatus.OK);
 	}
 	
 	//Shop Loyalty Card related rest services go here

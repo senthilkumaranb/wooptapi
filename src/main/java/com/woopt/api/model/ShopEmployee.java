@@ -2,13 +2,21 @@ package com.woopt.api.model;
 
 public class ShopEmployee {
 	
-	private User user;
+	private int shopEmployeeId;
 	
-	private int shopId;
+	private User user;
 	
 	private int shopEmployeeStatus;
 	
 	private String shopEmployeeRole;
+
+	public int getShopEmployeeId() {
+		return shopEmployeeId;
+	}
+
+	public void setShopEmployeeId(int shopEmployeeId) {
+		this.shopEmployeeId = shopEmployeeId;
+	}
 
 	public User getUser() {
 		return user;
@@ -16,14 +24,6 @@ public class ShopEmployee {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public int getShopId() {
-		return shopId;
-	}
-
-	public void setShopId(int shopId) {
-		this.shopId = shopId;
 	}
 
 	public int getShopEmployeeStatus() {
@@ -46,9 +46,9 @@ public class ShopEmployee {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + shopEmployeeId;
 		result = prime * result + ((shopEmployeeRole == null) ? 0 : shopEmployeeRole.hashCode());
 		result = prime * result + shopEmployeeStatus;
-		result = prime * result + shopId;
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -62,14 +62,14 @@ public class ShopEmployee {
 		if (getClass() != obj.getClass())
 			return false;
 		ShopEmployee other = (ShopEmployee) obj;
+		if (shopEmployeeId != other.shopEmployeeId)
+			return false;
 		if (shopEmployeeRole == null) {
 			if (other.shopEmployeeRole != null)
 				return false;
 		} else if (!shopEmployeeRole.equals(other.shopEmployeeRole))
 			return false;
 		if (shopEmployeeStatus != other.shopEmployeeStatus)
-			return false;
-		if (shopId != other.shopId)
 			return false;
 		if (user == null) {
 			if (other.user != null)
@@ -81,7 +81,9 @@ public class ShopEmployee {
 
 	@Override
 	public String toString() {
-		return "ShopEmployee [user=" + user + ", shopId=" + shopId + ", shopEmployeeStatus=" + shopEmployeeStatus
-				+ ", shopEmployeeRole=" + shopEmployeeRole + "]";
+		return "ShopEmployee [shopEmployeeId=" + shopEmployeeId + ", user=" + user + ", shopEmployeeStatus="
+				+ shopEmployeeStatus + ", shopEmployeeRole=" + shopEmployeeRole + "]";
 	}
+
+	
 }
