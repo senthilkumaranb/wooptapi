@@ -68,7 +68,7 @@ public class UserController {
 			
 			if (null != user) {
 				//Validate inputs
-				firstName = user.getUserFirstname();
+				firstName = user.getUserFirstName();
 				mobileNo = user.getUserMobile();
 				
 				if (!Validate.validateFirstName(firstName)) {

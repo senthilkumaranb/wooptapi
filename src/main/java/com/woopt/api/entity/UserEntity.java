@@ -34,7 +34,7 @@ public class UserEntity {
 	private String userFirstName;
 	
 	@Column(name = "USER_LASTNAME")
-	private String userLastname;
+	private String userLastName;
 	
 	@Column(name = "USER_DOB")
 	private Timestamp userDOB;
@@ -78,241 +78,176 @@ public class UserEntity {
 	@Column(name = "USER_STATUS")
 	private int userStatus;
 
-	/**
-	 * @return the userId
-	 */
 	public int getUserId() {
 		return userId;
 	}
 
-	/**
-	 * @param userId the userId to set
-	 */
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
-	/**
-	 * @return the userFirstName
-	 */
 	public String getUserFirstName() {
 		return userFirstName;
 	}
 
-	/**
-	 * @param userFirstName the userFirstName to set
-	 */
 	public void setUserFirstName(String userFirstName) {
 		this.userFirstName = userFirstName;
 	}
 
-	/**
-	 * @return the userLastname
-	 */
-	public String getUserLastname() {
-		return userLastname;
+	public String getUserLastName() {
+		return userLastName;
 	}
 
-	/**
-	 * @param userLastname the userLastname to set
-	 */
-	public void setUserLastname(String userLastname) {
-		this.userLastname = userLastname;
+	public void setUserLastName(String userLastName) {
+		this.userLastName = userLastName;
 	}
 
-	/**
-	 * @return the userDOB
-	 */
 	public Timestamp getUserDOB() {
 		return userDOB;
 	}
 
-	/**
-	 * @param userDOB the userDOB to set
-	 */
 	public void setUserDOB(Timestamp userDOB) {
 		this.userDOB = userDOB;
 	}
 
-	/**
-	 * @return the userGender
-	 */
 	public String getUserGender() {
 		return userGender;
 	}
 
-	/**
-	 * @param userGender the userGender to set
-	 */
 	public void setUserGender(String userGender) {
 		this.userGender = userGender;
 	}
 
-	/**
-	 * @return the userPhone
-	 */
 	public String getUserPhone() {
 		return userPhone;
 	}
 
-	/**
-	 * @param userPhone the userPhone to set
-	 */
 	public void setUserPhone(String userPhone) {
 		this.userPhone = userPhone;
 	}
 
-	/**
-	 * @return the userMobile
-	 */
 	public String getUserMobile() {
 		return userMobile;
 	}
 
-	/**
-	 * @param userMobile the userMobile to set
-	 */
 	public void setUserMobile(String userMobile) {
 		this.userMobile = userMobile;
 	}
 
-	/**
-	 * @return the userProfilePhoto
-	 */
 	public String getUserProfilePhoto() {
 		return userProfilePhoto;
 	}
 
-	/**
-	 * @param userProfilePhoto the userProfilePhoto to set
-	 */
 	public void setUserProfilePhoto(String userProfilePhoto) {
 		this.userProfilePhoto = userProfilePhoto;
 	}
 
-	/**
-	 * @return the userEmail
-	 */
 	public String getUserEmail() {
 		return userEmail;
 	}
 
-	/**
-	 * @param userEmail the userEmail to set
-	 */
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
 
-	/**
-	 * @return the userPassword
-	 */
 	public String getUserPassword() {
 		return userPassword;
 	}
 
-	/**
-	 * @param userPassword the userPassword to set
-	 */
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
 
-	/**
-	 * @return the userLoginMode
-	 */
 	public int getUserLoginMode() {
 		return userLoginMode;
 	}
 
-	/**
-	 * @param userLoginMode the userLoginMode to set
-	 */
 	public void setUserLoginMode(int userLoginMode) {
 		this.userLoginMode = userLoginMode;
 	}
 
-	/**
-	 * @return the addressId
-	 */
 	public int getAddressId() {
 		return AddressId;
 	}
 
-	/**
-	 * @param addressId the addressId to set
-	 */
 	public void setAddressId(int addressId) {
 		AddressId = addressId;
 	}
 
-	/**
-	 * @return the userAuthorization
-	 */
 	public int getUserAuthorization() {
 		return userAuthorization;
 	}
 
-	/**
-	 * @param userAuthorization the userAuthorization to set
-	 */
 	public void setUserAuthorization(int userAuthorization) {
 		this.userAuthorization = userAuthorization;
 	}
 
-	/**
-	 * @return the userCreatedDatetime
-	 */
 	public Timestamp getUserCreatedDatetime() {
 		return userCreatedDatetime;
 	}
 
-	/**
-	 * @param userCreatedDatetime the userCreatedDatetime to set
-	 */
 	public void setUserCreatedDatetime(Timestamp userCreatedDatetime) {
 		this.userCreatedDatetime = userCreatedDatetime;
 	}
 
-	/**
-	 * @return the userLastUpdateDatetime
-	 */
 	public Timestamp getUserLastUpdateDatetime() {
 		return userLastUpdateDatetime;
 	}
 
-	/**
-	 * @param userLastUpdateDatetime the userLastUpdateDatetime to set
-	 */
 	public void setUserLastUpdateDatetime(Timestamp userLastUpdateDatetime) {
 		this.userLastUpdateDatetime = userLastUpdateDatetime;
 	}
 
-	/**
-	 * @return the deviceId
-	 */
 	public int getDeviceId() {
 		return deviceId;
 	}
 
-	/**
-	 * @param deviceId the deviceId to set
-	 */
 	public void setDeviceId(int deviceId) {
 		this.deviceId = deviceId;
 	}
 
-	/**
-	 * @return the userStatus
-	 */
 	public int getUserStatus() {
 		return userStatus;
 	}
 
-	/**
-	 * @param userStatus the userStatus to set
-	 */
 	public void setUserStatus(int userStatus) {
 		this.userStatus = userStatus;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + AddressId;
+		result = prime * result + deviceId;
+		result = prime * result + userAuthorization;
+		result = prime * result + ((userCreatedDatetime == null) ? 0 : userCreatedDatetime.hashCode());
+		result = prime * result + ((userDOB == null) ? 0 : userDOB.hashCode());
+		result = prime * result + ((userEmail == null) ? 0 : userEmail.hashCode());
+		result = prime * result + ((userFirstName == null) ? 0 : userFirstName.hashCode());
+		result = prime * result + ((userGender == null) ? 0 : userGender.hashCode());
+		result = prime * result + userId;
+		result = prime * result + ((userLastName == null) ? 0 : userLastName.hashCode());
+		result = prime * result + ((userLastUpdateDatetime == null) ? 0 : userLastUpdateDatetime.hashCode());
+		result = prime * result + userLoginMode;
+		result = prime * result + ((userMobile == null) ? 0 : userMobile.hashCode());
+		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
+		result = prime * result + ((userPhone == null) ? 0 : userPhone.hashCode());
+		result = prime * result + ((userProfilePhoto == null) ? 0 : userProfilePhoto.hashCode());
+		result = prime * result + userStatus;
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "UserEntity [userId=" + userId + ", userFirstName=" + userFirstName + ", userLastName=" + userLastName
+				+ ", userDOB=" + userDOB + ", userGender=" + userGender + ", userPhone=" + userPhone + ", userMobile="
+				+ userMobile + ", userProfilePhoto=" + userProfilePhoto + ", userEmail=" + userEmail + ", userPassword="
+				+ userPassword + ", userLoginMode=" + userLoginMode + ", AddressId=" + AddressId
+				+ ", userAuthorization=" + userAuthorization + ", userCreatedDatetime=" + userCreatedDatetime
+				+ ", userLastUpdateDatetime=" + userLastUpdateDatetime + ", deviceId=" + deviceId + ", userStatus="
+				+ userStatus + "]";
+	}
+
+	
 }

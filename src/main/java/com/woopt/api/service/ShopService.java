@@ -163,7 +163,7 @@ public class ShopService {
 		}
 		
 		for (ShopEmployee se: shopModel.getShopEmployee()){
-			returnCode = this.addShopEmployee(se);
+			se = this.addShopEmployee(shopId,se);
 		}
 		
 		returnCode = this.addShopLoyaltyCard(shopModel.getShopLoyaltyCard());
@@ -348,6 +348,7 @@ public class ShopService {
 	public List<ShopEmployee> getShopEmployees(int shopId){
 		List<ShopEmployee> shopEmployees = new ArrayList<ShopEmployee>();
 		List<ShopEmployeeEntity> shopEmployeeEntities = new ArrayList<ShopEmployeeEntity>();
+		
 		shopEmployeeEntities = shopEmployeeDAO.getEmployeesbyShopId(shopId);
 		
 		for(ShopEmployeeEntity e: shopEmployeeEntities){
@@ -356,11 +357,28 @@ public class ShopService {
 			shopEmployee.setUser(this.getShopUser(e.getUserId()));
 			shopEmployee.setShopEmployeeRole(e.getShopEmployeeRole());
 			shopEmployee.setShopEmployeeStatus(e.getShopEmployeeStatus());
-			shopEmployee=null;
 			shopEmployees.add(shopEmployee);
+			shopEmployee=null;
 		}
 
 		return shopEmployees;
+	}
+	
+	public ShopEmployee getShopEmployee(int shopEmployeeId){
+
+		ShopEmployee shopEmployee = new ShopEmployee();
+		ShopEmployeeEntity shopEmployeeEntity = new ShopEmployeeEntity();	
+		
+		shopEmployeeEntity = shopEmployeeDAO.findById(shopEmployeeId);
+		LOGGER.info("return shopemployee  $$$$$$$$$$$:" + shopEmployeeEntity);
+		
+		shopEmployee.setShopEmployeeId(shopEmployeeEntity.getShopEmployeeId());
+		shopEmployee.setUser(this.getShopUser(shopEmployeeEntity.getUserId()));
+		shopEmployee.setShopEmployeeRole(shopEmployeeEntity.getShopEmployeeRole());
+		shopEmployee.setShopEmployeeStatus(shopEmployeeEntity.getShopEmployeeStatus());
+
+		return shopEmployee;
+
 	}
 
 	public User getShopUser(int userId){
@@ -377,17 +395,20 @@ public class ShopService {
 	}
 	
 	// function to add a new shop Employee
-	public String addShopEmployee(ShopEmployee shopEmployee){
+	public ShopEmployee addShopEmployee(int shopId, ShopEmployee shopEmployee){
 		ShopEmployeeEntity shopEmployeeEntity = new ShopEmployeeEntity();
 		Gson gson = new Gson();
 		String jsonShopEmployeeEntity = gson.toJson(shopEmployee, ShopEmployee.class);
 		shopEmployeeEntity = gson.fromJson(jsonShopEmployeeEntity, ShopEmployeeEntity.class);
+		shopEmployeeEntity.setUserId(shopEmployee.getUser().getUserId());
+		shopEmployeeEntity.setShopId(shopId);
 		try {
-			shopEmployeeDAO.save(shopEmployeeEntity);
-			return WooptCode.SUCCESS;
+			shopEmployeeEntity = shopEmployeeDAO.save(shopEmployeeEntity);
+			shopEmployee.setShopEmployeeId(shopEmployeeEntity.getShopEmployeeId());
+			return shopEmployee;
 		}
 		catch (Exception e){
-			return WooptCode.FAIL;
+			return null;
 		}
 	}
 	
@@ -404,6 +425,7 @@ public class ShopService {
 		LOGGER.info("!!!!!! shopEntity !!!!!!" + shopEmployeeEntity);
 		try {
 			shopEmployeeDAO.update(shopEmployeeEntity);
+			shopEmployee = this.getShopEmployee(shopEmployeeEntity.getShopEmployeeId());
 			return shopEmployee;
 		}
 		catch (Exception e){

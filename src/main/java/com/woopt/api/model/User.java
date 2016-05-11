@@ -4,9 +4,9 @@ public class User {
 	
 	private int userId;
 	
-	private String userFirstname;
+	private String userFirstName;
 	
-	private String userLastname;
+	private String userLastName;
 	
 	private String userDOB;
 	
@@ -22,7 +22,6 @@ public class User {
 	
 	private int userLoginMode;
 
-	
 	public int getUserId() {
 		return userId;
 	}
@@ -31,20 +30,20 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getUserFirstname() {
-		return userFirstname;
+	public String getUserFirstName() {
+		return userFirstName;
 	}
 
-	public void setUserFirstname(String userFirstname) {
-		this.userFirstname = userFirstname;
+	public void setUserFirstName(String userFirstName) {
+		this.userFirstName = userFirstName;
 	}
 
-	public String getUserLastname() {
-		return userLastname;
+	public String getUserLastName() {
+		return userLastName;
 	}
 
-	public void setUserLastname(String userLastname) {
-		this.userLastname = userLastname;
+	public void setUserLastName(String userLastName) {
+		this.userLastName = userLastName;
 	}
 
 	public String getUserDOB() {
@@ -109,10 +108,10 @@ public class User {
 		int result = 1;
 		result = prime * result + ((userDOB == null) ? 0 : userDOB.hashCode());
 		result = prime * result + ((userEmail == null) ? 0 : userEmail.hashCode());
-		result = prime * result + ((userFirstname == null) ? 0 : userFirstname.hashCode());
+		result = prime * result + ((userFirstName == null) ? 0 : userFirstName.hashCode());
 		result = prime * result + ((userGender == null) ? 0 : userGender.hashCode());
 		result = prime * result + userId;
-		result = prime * result + ((userLastname == null) ? 0 : userLastname.hashCode());
+		result = prime * result + ((userLastName == null) ? 0 : userLastName.hashCode());
 		result = prime * result + userLoginMode;
 		result = prime * result + ((userMobile == null) ? 0 : userMobile.hashCode());
 		result = prime * result + ((userPhone == null) ? 0 : userPhone.hashCode());
@@ -139,10 +138,10 @@ public class User {
 				return false;
 		} else if (!userEmail.equals(other.userEmail))
 			return false;
-		if (userFirstname == null) {
-			if (other.userFirstname != null)
+		if (userFirstName == null) {
+			if (other.userFirstName != null)
 				return false;
-		} else if (!userFirstname.equals(other.userFirstname))
+		} else if (!userFirstName.equals(other.userFirstName))
 			return false;
 		if (userGender == null) {
 			if (other.userGender != null)
@@ -151,10 +150,10 @@ public class User {
 			return false;
 		if (userId != other.userId)
 			return false;
-		if (userLastname == null) {
-			if (other.userLastname != null)
+		if (userLastName == null) {
+			if (other.userLastName != null)
 				return false;
-		} else if (!userLastname.equals(other.userLastname))
+		} else if (!userLastName.equals(other.userLastName))
 			return false;
 		if (userLoginMode != other.userLoginMode)
 			return false;
@@ -178,9 +177,11 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userFirstname=" + userFirstname + ", userLastname=" + userLastname
+		return "User [userId=" + userId + ", userFirstName=" + userFirstName + ", userLastName=" + userLastName
 				+ ", userDOB=" + userDOB + ", userGender=" + userGender + ", userPhone=" + userPhone + ", userMobile="
 				+ userMobile + ", userProfilePhoto=" + userProfilePhoto + ", userEmail=" + userEmail
 				+ ", userLoginMode=" + userLoginMode + "]";
 	}
+
+	
 }

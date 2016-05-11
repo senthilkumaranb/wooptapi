@@ -107,7 +107,7 @@ public class PartnerService {
 		
 		if (userEntity!=null){
 			String userFirstName = userEntity.getUserFirstName();
-			String userLastname = userEntity.getUserLastname();
+			String userLastname = userEntity.getUserLastName();
 			String userMobile = userEntity.getUserMobile();
 			String userPhone = userEntity.getUserPhone();
 			String userPhoto = userEntity.getUserProfilePhoto();

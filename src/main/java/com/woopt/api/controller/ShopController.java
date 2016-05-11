@@ -153,7 +153,8 @@ public class ShopController {
 		HttpHeaders returnHeader = new HttpHeaders();
 			
 		//Getting the shopId from request header
-		int shopId = Integer.parseInt(header.get("ShopId").get(0));
+		int shopId = Integer.parseInt(header.get("shopId").get(0));
+		LOGGER.info("shopId value :" + shopId);
 
 		List<ShopEmployee> shopEmployees = new ArrayList<ShopEmployee>();
 		String responseCode = WooptCode.SUCCESS;
@@ -161,7 +162,7 @@ public class ShopController {
 		try{			
 			if (null != shopEmployee){
 				//user = userModel.getUser();
-				String rc = shopService.addShopEmployee(shopEmployee);
+				shopEmployee = shopService.addShopEmployee(shopId,shopEmployee);
 				
 			}			
 		}
@@ -170,6 +171,7 @@ public class ShopController {
 		} finally {
 		}
 		
+		LOGGER.info("SHOP Employee ############# :" + shopEmployee);
 		shopEmployees = shopService.getShopEmployees(shopId);
 	
 		LOGGER.info("Return ShopEmployees:" + shopEmployees);

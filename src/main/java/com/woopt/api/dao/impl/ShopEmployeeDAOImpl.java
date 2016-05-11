@@ -26,13 +26,16 @@ public class ShopEmployeeDAOImpl implements ShopEmployeeDAO {
 	}
 	
 	@Override
-	public void save(ShopEmployeeEntity shopEmployee) {
+	public ShopEmployeeEntity save(ShopEmployeeEntity shopEmployee) {
 		// TODO Auto-generated method stub
+		ShopEmployeeEntity rc = new ShopEmployeeEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(shopEmployee);
+		rc = shopEmployee;
 		tx.commit();
 		session.close();	
+		return rc;
 	}
 
 	@Override
@@ -62,7 +65,7 @@ public class ShopEmployeeDAOImpl implements ShopEmployeeDAO {
 		//get all shop employees
 		Session session = this.sessionFactory.openSession();
 		//System.out.println("--------++****************-----------" + session);
-		Query query = session.createQuery("from ShopEmployee W where W.shopId=:shopId");
+		Query query = session.createQuery("from ShopEmployeeEntity W where W.shopId=:shopId");
 		query.setParameter("shopId",shopId);
 		@SuppressWarnings("unchecked")
 		List<ShopEmployeeEntity> shopEmployeesList = query.list();
@@ -72,7 +75,16 @@ public class ShopEmployeeDAOImpl implements ShopEmployeeDAO {
 
 	@Override
 	public ShopEmployeeEntity findById(long shopemployeeId) {
-		// TODO Auto-generated method stub
+		//get all shop employees
+		Session session = this.sessionFactory.openSession();
+		//System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from ShopEmployee W where W.shopEmployeeId=:shopEmployeeId");
+		query.setParameter("shopEmployeeId",shopemployeeId);
+		@SuppressWarnings("unchecked")
+		List<ShopEmployeeEntity> shopEmployeesList = query.list();
+		session.close();
+		if (shopEmployeesList.size()!=0)
+			return shopEmployeesList.get(0);
 		return null;
 	}
 

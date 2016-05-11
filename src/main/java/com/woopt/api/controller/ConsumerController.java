@@ -138,7 +138,7 @@ private static final Logger LOGGER = Logger.getLogger(ShopController.class.getNa
   	}
   	
   	//API to update User Order
-  	@RequestMapping(value = "/consumer/order", method = RequestMethod.POST, headers="Accept=application/json")
+  	@RequestMapping(value = "/consumer/order", method = RequestMethod.PUT, headers="Accept=application/json")
   	public ResponseEntity<Order> orderPUT(@RequestBody Cart cart, 
   			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
   		return null;
