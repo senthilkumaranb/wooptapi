@@ -39,13 +39,16 @@ public class ShopEmployeeDAOImpl implements ShopEmployeeDAO {
 	}
 
 	@Override
-	public void update(ShopEmployeeEntity shopEmployee) {
+	public ShopEmployeeEntity update(ShopEmployeeEntity shopEmployee) {
 		// TODO Auto-generated method stub
+		ShopEmployeeEntity rc = new ShopEmployeeEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.update(shopEmployee);
+		rc = shopEmployee;
 		tx.commit();
-		session.close();	
+		session.close();
+		return rc;
 	}
 	
 	@Override

@@ -7,9 +7,9 @@ import com.woopt.api.entity.ShopLoyaltyCardEntity;
 
 public interface ShopLoyaltyCardDAO {
 	
-	public void save(ShopLoyaltyCardEntity shopLoyaltyCardEntity);
+	public ShopLoyaltyCardEntity save(ShopLoyaltyCardEntity shopLoyaltyCardEntity);
 	
-	public void  update(ShopLoyaltyCardEntity shopLoyaltyCardEntity);
+	public ShopLoyaltyCardEntity  update(ShopLoyaltyCardEntity shopLoyaltyCardEntity);
 	
 	public void  delete(int ShopLoyaltyCardId);
 	

@@ -31,23 +31,30 @@ public class ShopLoyaltyCardDAOImpl implements ShopLoyaltyCardDAO {
 	}
 	
 	@Override
-	public void save(ShopLoyaltyCardEntity shopLoyaltyCardEntity) {
+	public ShopLoyaltyCardEntity save(ShopLoyaltyCardEntity shopLoyaltyCardEntity) {
 		// TODO Auto-generated method stub
+		ShopLoyaltyCardEntity rc = new ShopLoyaltyCardEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(shopLoyaltyCardEntity);
+		rc=shopLoyaltyCardEntity;
 		tx.commit();
 		session.close();
+		return rc;
 	}
 	
 	@Override
-	public void update(ShopLoyaltyCardEntity shopLoyaltyCardEntity) {
-		// TODO Auto-generated method stub
+	public ShopLoyaltyCardEntity update(ShopLoyaltyCardEntity shopLoyaltyCardEntity) {
+		//  Function to add shoployaltycard entity
+		System.out.println("--------+ shopLoyaltyCardEntity +-----------" + shopLoyaltyCardEntity);
+		ShopLoyaltyCardEntity rc = new ShopLoyaltyCardEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.update(shopLoyaltyCardEntity);
+		rc=shopLoyaltyCardEntity;
 		tx.commit();
 		session.close();
+		return rc;
 		
 	}
 	

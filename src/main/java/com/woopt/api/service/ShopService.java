@@ -166,7 +166,9 @@ public class ShopService {
 			se = this.addShopEmployee(shopId,se);
 		}
 		
-		returnCode = this.addShopLoyaltyCard(shopModel.getShopLoyaltyCard());
+		ShopLoyaltyCard shopLoyaltyCard = new ShopLoyaltyCard();
+		shopLoyaltyCard = this.addShopLoyaltyCard(shopModel.getShopLoyaltyCard(),shopId);
+		shopModel.setShopLoyaltyCard(shopLoyaltyCard);
 		
 		returnCode = this.addShopLoyaltyProgram(shopModel.getShopLoyaltyProgram());
 		
@@ -413,7 +415,7 @@ public class ShopService {
 	}
 	
 	// function to update shop Employee
-	public ShopEmployee updateShopEmployee(ShopEmployee shopEmployee,int shopId){
+	public ShopEmployee updateShopEmployee(int shopId, ShopEmployee shopEmployee){
 		ShopEmployeeEntity shopEmployeeEntity = new ShopEmployeeEntity();
 		Gson gson = new Gson();
 		String jsonShopEmpEntity = gson.toJson(shopEmployee, ShopEmployee.class);
@@ -421,8 +423,6 @@ public class ShopService {
 		
 		shopEmployeeEntity.setShopId(shopId);
 		shopEmployeeEntity.setUserId(shopEmployee.getUser().getUserId());
-	
-		LOGGER.info("!!!!!! shopEntity !!!!!!" + shopEmployeeEntity);
 		try {
 			shopEmployeeDAO.update(shopEmployeeEntity);
 			shopEmployee = this.getShopEmployee(shopEmployeeEntity.getShopEmployeeId());
@@ -475,47 +475,71 @@ public class ShopService {
 	
 	
 	// function to add a new shop loyalty card
-	public String addShopLoyaltyCard(ShopLoyaltyCard shopLoyaltyCard){
+	public ShopLoyaltyCard addShopLoyaltyCard(ShopLoyaltyCard shopLoyaltyCard,int shopId){
 		ShopLoyaltyCardEntity shopLoyaltyCardEntity = new ShopLoyaltyCardEntity();
-		Gson gson = new Gson();
-		String jsonShopLoyaltyCardEntity = gson.toJson(shopLoyaltyCard, ShopLoyaltyCard.class);
-		shopLoyaltyCardEntity = gson.fromJson(jsonShopLoyaltyCardEntity, ShopLoyaltyCardEntity.class);
 		try {
-			shopLoyaltyCardDAO.save(shopLoyaltyCardEntity);
+			Gson gson = new Gson();
+			String jsonShopLoyaltyCard = gson.toJson(shopLoyaltyCard, ShopLoyaltyCard.class);
+			shopLoyaltyCardEntity = gson.fromJson(jsonShopLoyaltyCard, ShopLoyaltyCardEntity.class);
+			shopLoyaltyCardEntity.setShopId(shopId);
+			shopLoyaltyCardEntity.setShopLoyaltyCardId(null);
 			
-			for (ShopLoyaltyCardStage stage: shopLoyaltyCard.getShopLoyaltyCardStage()){
-				ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity = new ShopLoyaltyCardStageEntity();
+			LOGGER.info("before shopLoyaltyCardEntity ====" +shopLoyaltyCardEntity);
+			
+			shopLoyaltyCardEntity = shopLoyaltyCardDAO.save(shopLoyaltyCardEntity);
+			LOGGER.info("shopLoyaltyCardEntity ====" +shopLoyaltyCardEntity);
+			
+			shopLoyaltyCard.setShopLoyaltyCardId(shopLoyaltyCardEntity.getShopLoyaltyCardId());
+			int shopLoyaltyCardId = shopLoyaltyCardEntity.getShopLoyaltyCardId();
+			
+			for (int i = 0; i < shopLoyaltyCard.getShopLoyaltyCardStage().size(); i++) {
+				ShopLoyaltyCardStage stage = new ShopLoyaltyCardStage();
+			    stage = shopLoyaltyCard.getShopLoyaltyCardStage().get(i);
+			    
+			    ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity = new ShopLoyaltyCardStageEntity();
 				String jsonShopLoyaltyCardStageEntity = gson.toJson(stage, ShopLoyaltyCardStage.class);
 				shopLoyaltyCardStageEntity = gson.fromJson(jsonShopLoyaltyCardStageEntity, ShopLoyaltyCardStageEntity.class);
-				shopLoyaltyCardStageDAO.save(shopLoyaltyCardStageEntity);
+				shopLoyaltyCardStageEntity.setShopLoyaltyCardId(shopLoyaltyCardId);
+				shopLoyaltyCardStageEntity.setShopLoyaltyCardStageId(null);
+				
+				shopLoyaltyCardStageEntity = shopLoyaltyCardStageDAO.save(shopLoyaltyCardStageEntity);
+				shopLoyaltyCard.getShopLoyaltyCardStage().get(i).setShopLoyaltyCardStageId(shopLoyaltyCardStageEntity.getShopLoyaltyCardStageId());
 			}
-			return WooptCode.SUCCESS;
+			
+			return shopLoyaltyCard;
 		}
 		catch (Exception e){
-			return WooptCode.FAIL;
+			LOGGER.info(e);
+			return null;
 		}
 	}
 		
 		
 	// function to update shop loyalty card
-	public String updateShopLoyaltyCard(ShopLoyaltyCard shopLoyaltyCard){
+	public ShopLoyaltyCard updateShopLoyaltyCard(ShopLoyaltyCard shopLoyaltyCard,int shopId){
 		ShopLoyaltyCardEntity shopLoyaltyCardEntity = new ShopLoyaltyCardEntity();
 		Gson gson = new Gson();
 		String jsonShopLoyaltyCardEntity = gson.toJson(shopLoyaltyCard, ShopLoyaltyCard.class);
 		shopLoyaltyCardEntity = gson.fromJson(jsonShopLoyaltyCardEntity, ShopLoyaltyCardEntity.class);
+		shopLoyaltyCardEntity.setShopId(shopId);
+		
 		try {
 			shopLoyaltyCardDAO.update(shopLoyaltyCardEntity);
+			int shopLoyaltyCardId = shopLoyaltyCardEntity.getShopLoyaltyCardId();
 			
 			for (ShopLoyaltyCardStage stage: shopLoyaltyCard.getShopLoyaltyCardStage()){
 				ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity = new ShopLoyaltyCardStageEntity();
 				String jsonShopLoyaltyCardStageEntity = gson.toJson(stage, ShopLoyaltyCardStage.class);
 				shopLoyaltyCardStageEntity = gson.fromJson(jsonShopLoyaltyCardStageEntity, ShopLoyaltyCardStageEntity.class);
+				shopLoyaltyCardStageEntity.setShopLoyaltyCardId(shopLoyaltyCardId);
+				
 				shopLoyaltyCardStageDAO.update(shopLoyaltyCardStageEntity);
+				shopLoyaltyCardStageEntity=null;
 			}
-			return WooptCode.SUCCESS;
+			return shopLoyaltyCard;
 		}
 		catch (Exception e){
-			return WooptCode.FAIL;
+			return null;
 		}
 	}
 	

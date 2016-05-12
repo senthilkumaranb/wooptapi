@@ -37,8 +37,8 @@ public class ShopLoyaltyCardEntity {
 	private String shopLoyaltyCardName;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_ISSAME_FOR_ALLBRANCHES")
-	private Integer shopLoyaltyCardIsSameForAllBranches;
-	
+	private Integer shopLoyaltyCardIsSameForAllbranches;
+					
 	@Column(name = "SHOP_LOYALTY_CARD_STATUS")
 	private Integer shopLoyaltyCardStatus;
 	
@@ -48,8 +48,8 @@ public class ShopLoyaltyCardEntity {
 	@Column(name = "SHOP_LOYALTY_CARD_EXPIRY_DATE")
 	private Timestamp shopLoyaltyCardExpiryDate;
 
-	@Column(name = "SHOP_LOYALTY_CARD_TYPE_ID")
-	private Integer shopLoyaltyCardTypeId;
+	@Column(name = "SHOP_LOYALTY_CARD_TYPE")
+	private String shopLoyaltyCardTypeId;
 	
 	@Column(name = "SHOP_LOYALTY_CARD_NO_OF_STAGES")
 	private Integer shopLoyaltyCardNoOfStages;
@@ -92,12 +92,12 @@ public class ShopLoyaltyCardEntity {
 		this.shopLoyaltyCardName = shopLoyaltyCardName;
 	}
 
-	public Integer getShopLoyaltyCardIsSameForAllBranches() {
-		return shopLoyaltyCardIsSameForAllBranches;
+	public Integer getShopLoyaltyCardIsSameForAllbranches() {
+		return shopLoyaltyCardIsSameForAllbranches;
 	}
 
-	public void setShopLoyaltyCardIsSameForAllBranches(Integer shopLoyaltyCardIsSameForAllBranches) {
-		this.shopLoyaltyCardIsSameForAllBranches = shopLoyaltyCardIsSameForAllBranches;
+	public void setShopLoyaltyCardIsSameForAllbranches(Integer shopLoyaltyCardIsSameForAllbranches) {
+		this.shopLoyaltyCardIsSameForAllbranches = shopLoyaltyCardIsSameForAllbranches;
 	}
 
 	public Integer getShopLoyaltyCardStatus() {
@@ -124,11 +124,11 @@ public class ShopLoyaltyCardEntity {
 		this.shopLoyaltyCardExpiryDate = shopLoyaltyCardExpiryDate;
 	}
 
-	public Integer getShopLoyaltyCardTypeId() {
+	public String getShopLoyaltyCardTypeId() {
 		return shopLoyaltyCardTypeId;
 	}
 
-	public void setShopLoyaltyCardTypeId(Integer shopLoyaltyCardTypeId) {
+	public void setShopLoyaltyCardTypeId(String shopLoyaltyCardTypeId) {
 		this.shopLoyaltyCardTypeId = shopLoyaltyCardTypeId;
 	}
 
@@ -167,8 +167,8 @@ public class ShopLoyaltyCardEntity {
 	@Override
 	public String toString() {
 		return "ShopLoyaltyCardEntity [shopLoyaltyCardId=" + shopLoyaltyCardId + ", shopId=" + shopId
-				+ ", shopLoyaltyCardName=" + shopLoyaltyCardName + ", shopLoyaltyCardIsSameForAllBranches="
-				+ shopLoyaltyCardIsSameForAllBranches + ", shopLoyaltyCardStatus=" + shopLoyaltyCardStatus
+				+ ", shopLoyaltyCardName=" + shopLoyaltyCardName + ", shopLoyaltyCardIsSameForAllbranches="
+				+ shopLoyaltyCardIsSameForAllbranches + ", shopLoyaltyCardStatus=" + shopLoyaltyCardStatus
 				+ ", shopLoyaltyCardStartDate=" + shopLoyaltyCardStartDate + ", shopLoyaltyCardExpiryDate="
 				+ shopLoyaltyCardExpiryDate + ", shopLoyaltyCardTypeId=" + shopLoyaltyCardTypeId
 				+ ", shopLoyaltyCardNoOfStages=" + shopLoyaltyCardNoOfStages + ", shopLoyaltyCardValidity="

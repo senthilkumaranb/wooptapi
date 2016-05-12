@@ -20,24 +20,30 @@ public class ShopLoyaltyCardStageDAOImpl implements ShopLoyaltyCardStageDAO {
 	}
 	
 	@Override
-	public void save(ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity) {
+	public ShopLoyaltyCardStageEntity save(ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity) {
 		// TODO Auto-generated method stub
+		ShopLoyaltyCardStageEntity rc = new ShopLoyaltyCardStageEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(shopLoyaltyCardStageEntity);
+		rc = shopLoyaltyCardStageEntity;
 		tx.commit();
 		session.close();
+		return rc;
 		
 	}
 	
 	@Override
-	public void update(ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity) {
+	public ShopLoyaltyCardStageEntity update(ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity) {
 		// TODO Auto-generated method stub
+		ShopLoyaltyCardStageEntity rc = new ShopLoyaltyCardStageEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.update(shopLoyaltyCardStageEntity);
+		rc=shopLoyaltyCardStageEntity;
 		tx.commit();
 		session.close();
+		return rc;
 		
 	}
 	

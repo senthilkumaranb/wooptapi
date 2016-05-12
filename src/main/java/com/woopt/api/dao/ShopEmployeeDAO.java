@@ -8,7 +8,7 @@ public interface ShopEmployeeDAO {
 	
 	public ShopEmployeeEntity save(ShopEmployeeEntity shopemployee);
 	
-	public void  update(ShopEmployeeEntity shopemployee);
+	public ShopEmployeeEntity  update(ShopEmployeeEntity shopemployee);
 	
 	public void  delete(int shopemployeeId);
 	

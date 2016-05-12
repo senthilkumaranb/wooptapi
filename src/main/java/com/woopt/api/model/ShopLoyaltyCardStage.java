@@ -2,6 +2,8 @@ package com.woopt.api.model;
 
 public class ShopLoyaltyCardStage {
 	
+	private int shopLoyaltyCardStageId;
+	
 	private int shopLoyaltyCardStageNo;
 	
     private int shopLoyaltyCardStageIsRedeemable;
@@ -11,6 +13,15 @@ public class ShopLoyaltyCardStage {
     private String shopLoyaltyCardStageRewardPhoto;
     
     private int shopLoyaltyCardStageStatus;
+    
+
+	public int getShopLoyaltyCardStageId() {
+		return shopLoyaltyCardStageId;
+	}
+
+	public void setShopLoyaltyCardStageId(int shopLoyaltyCardStageId) {
+		this.shopLoyaltyCardStageId = shopLoyaltyCardStageId;
+	}
 
 	public int getShopLoyaltyCardStageNo() {
 		return shopLoyaltyCardStageNo;
@@ -56,6 +67,7 @@ public class ShopLoyaltyCardStage {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + shopLoyaltyCardStageId;
 		result = prime * result + shopLoyaltyCardStageIsRedeemable;
 		result = prime * result + shopLoyaltyCardStageNo;
 		result = prime * result + ((shopLoyaltyCardStageReward == null) ? 0 : shopLoyaltyCardStageReward.hashCode());
@@ -74,6 +86,8 @@ public class ShopLoyaltyCardStage {
 		if (getClass() != obj.getClass())
 			return false;
 		ShopLoyaltyCardStage other = (ShopLoyaltyCardStage) obj;
+		if (shopLoyaltyCardStageId != other.shopLoyaltyCardStageId)
+			return false;
 		if (shopLoyaltyCardStageIsRedeemable != other.shopLoyaltyCardStageIsRedeemable)
 			return false;
 		if (shopLoyaltyCardStageNo != other.shopLoyaltyCardStageNo)
@@ -95,9 +109,11 @@ public class ShopLoyaltyCardStage {
 
 	@Override
 	public String toString() {
-		return "ShopLoyaltyCardStage [shopLoyaltyCardStageNo=" + shopLoyaltyCardStageNo
-				+ ", shopLoyaltyCardStageIsRedeemable=" + shopLoyaltyCardStageIsRedeemable
+		return "ShopLoyaltyCardStage [shopLoyaltyCardStageId=" + shopLoyaltyCardStageId + ", shopLoyaltyCardStageNo="
+				+ shopLoyaltyCardStageNo + ", shopLoyaltyCardStageIsRedeemable=" + shopLoyaltyCardStageIsRedeemable
 				+ ", shopLoyaltyCardStageReward=" + shopLoyaltyCardStageReward + ", shopLoyaltyCardStageRewardPhoto="
 				+ shopLoyaltyCardStageRewardPhoto + ", shopLoyaltyCardStageStatus=" + shopLoyaltyCardStageStatus + "]";
 	}
+
+
 }

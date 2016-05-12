@@ -179,7 +179,7 @@ public class ShopController {
 	}
 	
 	//API to get shop employee by id
-	@RequestMapping(value = "/employee/{id}", method = RequestMethod.POST, headers="Accept=application/json")
+	@RequestMapping(value = "/employee/{id}", method = RequestMethod.GET, headers="Accept=application/json")
 	public ResponseEntity<List<ShopEmployee>> employeeGET(@RequestBody ShopEmployee shopEmployee, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
 		return null;
@@ -200,7 +200,7 @@ public class ShopController {
 		try{			
 			if (null != shopEmployee){
 				//user = userModel.getUser();
-				shopEmployee = shopService.updateShopEmployee(shopEmployee, shopId);
+				shopEmployee = shopService.updateShopEmployee(shopId, shopEmployee);
 				
 			}			
 		}
@@ -221,7 +221,27 @@ public class ShopController {
 	@RequestMapping(value = "/lcard", method = RequestMethod.POST, headers="Accept=application/json")
 	public ResponseEntity<ShopLoyaltyCard> lcardPOST(@RequestBody ShopLoyaltyCard shopLoyaltyCard, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		//Getting the shopId from request header
+		int shopId = Integer.parseInt(header.get("shopId").get(0));
+
+		String responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != shopLoyaltyCard){
+				LOGGER.info("Inside shopLoyaltyCard....");
+				shopLoyaltyCard = shopService.addShopLoyaltyCard(shopLoyaltyCard,shopId);
+				
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return shopLoyaltyCard !!!!!!!!:" + shopLoyaltyCard);
+		return new ResponseEntity<ShopLoyaltyCard>(shopLoyaltyCard, returnHeader, HttpStatus.OK);
 	}
 	
 
@@ -229,7 +249,26 @@ public class ShopController {
 	@RequestMapping(value = "/lcard", method = RequestMethod.PUT, headers="Accept=application/json")
 	public ResponseEntity<ShopLoyaltyCard> lcardPUT(@RequestBody ShopLoyaltyCard shopLoyaltyCard, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		//Getting the shopId from request header
+		int shopId = Integer.parseInt(header.get("shopId").get(0));
+
+		String responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != shopLoyaltyCard){
+				LOGGER.info("Inside shopLoyaltyCard....");
+				shopLoyaltyCard = shopService.updateShopLoyaltyCard(shopLoyaltyCard,shopId);				
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return shopLoyaltyCard !!!!!!!!:" + shopLoyaltyCard);
+		return new ResponseEntity<ShopLoyaltyCard>(shopLoyaltyCard, returnHeader, HttpStatus.OK);
 	}
 	
 	//API to update shop loyalty card stage
