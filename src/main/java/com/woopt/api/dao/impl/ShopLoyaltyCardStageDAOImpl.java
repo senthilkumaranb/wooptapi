@@ -1,5 +1,6 @@
 package com.woopt.api.dao.impl;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -7,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.woopt.api.common.Updater;
 import com.woopt.api.dao.ShopLoyaltyCardStageDAO;
 import com.woopt.api.entity.ShopLoyaltyCardEntity;
 import com.woopt.api.entity.ShopLoyaltyCardStageEntity;
@@ -34,16 +36,31 @@ public class ShopLoyaltyCardStageDAOImpl implements ShopLoyaltyCardStageDAO {
 	}
 	
 	@Override
-	public ShopLoyaltyCardStageEntity update(ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity) {
-		// TODO Auto-generated method stub
-		ShopLoyaltyCardStageEntity rc = new ShopLoyaltyCardStageEntity();
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		session.update(shopLoyaltyCardStageEntity);
-		rc=shopLoyaltyCardStageEntity;
-		tx.commit();
-		session.close();
-		return rc;
+	public ShopLoyaltyCardStageEntity update(ShopLoyaltyCardStageEntity oldE, ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity) {
+				
+		// Auto-generated method stub
+		try{
+			
+			ShopLoyaltyCardStageEntity rc = new ShopLoyaltyCardStageEntity();
+					
+			Session session = this.sessionFactory.openSession();
+
+			System.out.println("--------+ Existing Record +-----------" + oldE);
+			System.out.println("--------+ NEW +-----------" + shopLoyaltyCardStageEntity);
+			shopLoyaltyCardStageEntity = Updater.updater(oldE, shopLoyaltyCardStageEntity);
+			System.out.println("--------+ After update +-----------" + shopLoyaltyCardStageEntity);
+
+			Transaction tx = session.beginTransaction();
+			session.update(shopLoyaltyCardStageEntity);
+			rc=shopLoyaltyCardStageEntity;
+			tx.commit();
+			session.close();
+			return rc;
+		}
+		catch (Exception e){
+			System.out.println("--------+ exception +-----------" + e);
+			return null;
+		}
 		
 	}
 	
@@ -75,8 +92,19 @@ public class ShopLoyaltyCardStageDAOImpl implements ShopLoyaltyCardStageDAO {
 
 	@Override
 	public ShopLoyaltyCardStageEntity findById(int shopStageId) {
-		// TODO Auto-generated method stub
+
+		System.out.println("--------+ ShopLoyaltyCard +-----------");
+		Session session = this.sessionFactory.openSession();
+		//System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from ShopLoyaltyCardStageEntity W where W.shopLoyaltyCardStageId=:shopLoyaltyCardStageId");
+		query.setParameter("shopLoyaltyCardStageId",shopStageId);
+		@SuppressWarnings("unchecked")
+		List<ShopLoyaltyCardStageEntity> shopLoyaltyCardStageEntity = query.list();
+		session.close();
+		if (shopLoyaltyCardStageEntity.size()!=0)
+			return shopLoyaltyCardStageEntity.get(0);
 		return null;
 	}
+	
 
 }

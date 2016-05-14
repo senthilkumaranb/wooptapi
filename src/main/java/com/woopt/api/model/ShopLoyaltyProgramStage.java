@@ -2,13 +2,24 @@ package com.woopt.api.model;
 
 public class ShopLoyaltyProgramStage {
 	
-    private Integer shopLoyaltyProgramStageNo;
+	private Integer shopLoyaltyProgramStageId;
+	   
+	private Integer shopLoyaltyProgramStageNo;
     
     private String shopLoyaltyProgramStageName;
     
     private Integer shopLoyaltyProgramStagePromotionEligibility;
     
     private String shopLoyaltyProgramStageDiscount;
+    
+
+	public Integer getShopLoyaltyProgramStageId() {
+		return shopLoyaltyProgramStageId;
+	}
+
+	public void setShopLoyaltyProgramStageId(Integer shopLoyaltyProgramStageId) {
+		this.shopLoyaltyProgramStageId = shopLoyaltyProgramStageId;
+	}
 
 	public Integer getShopLoyaltyProgramStageNo() {
 		return shopLoyaltyProgramStageNo;
@@ -48,6 +59,7 @@ public class ShopLoyaltyProgramStage {
 		int result = 1;
 		result = prime * result
 				+ ((shopLoyaltyProgramStageDiscount == null) ? 0 : shopLoyaltyProgramStageDiscount.hashCode());
+		result = prime * result + ((shopLoyaltyProgramStageId == null) ? 0 : shopLoyaltyProgramStageId.hashCode());
 		result = prime * result + ((shopLoyaltyProgramStageName == null) ? 0 : shopLoyaltyProgramStageName.hashCode());
 		result = prime * result + ((shopLoyaltyProgramStageNo == null) ? 0 : shopLoyaltyProgramStageNo.hashCode());
 		result = prime * result + ((shopLoyaltyProgramStagePromotionEligibility == null) ? 0
@@ -68,6 +80,11 @@ public class ShopLoyaltyProgramStage {
 			if (other.shopLoyaltyProgramStageDiscount != null)
 				return false;
 		} else if (!shopLoyaltyProgramStageDiscount.equals(other.shopLoyaltyProgramStageDiscount))
+			return false;
+		if (shopLoyaltyProgramStageId == null) {
+			if (other.shopLoyaltyProgramStageId != null)
+				return false;
+		} else if (!shopLoyaltyProgramStageId.equals(other.shopLoyaltyProgramStageId))
 			return false;
 		if (shopLoyaltyProgramStageName == null) {
 			if (other.shopLoyaltyProgramStageName != null)
@@ -90,9 +107,11 @@ public class ShopLoyaltyProgramStage {
 
 	@Override
 	public String toString() {
-		return "ShopLoyaltyProgramStage [shopLoyaltyProgramStageNo=" + shopLoyaltyProgramStageNo
-				+ ", shopLoyaltyProgramStageName=" + shopLoyaltyProgramStageName
-				+ ", shopLoyaltyProgramStagePromotionEligibility=" + shopLoyaltyProgramStagePromotionEligibility
-				+ ", shopLoyaltyProgramStageDiscount=" + shopLoyaltyProgramStageDiscount + "]";
-	}   
+		return "ShopLoyaltyProgramStage [shopLoyaltyProgramStageId=" + shopLoyaltyProgramStageId
+				+ ", shopLoyaltyProgramStageNo=" + shopLoyaltyProgramStageNo + ", shopLoyaltyProgramStageName="
+				+ shopLoyaltyProgramStageName + ", shopLoyaltyProgramStagePromotionEligibility="
+				+ shopLoyaltyProgramStagePromotionEligibility + ", shopLoyaltyProgramStageDiscount="
+				+ shopLoyaltyProgramStageDiscount + "]";
+	}
+
 }

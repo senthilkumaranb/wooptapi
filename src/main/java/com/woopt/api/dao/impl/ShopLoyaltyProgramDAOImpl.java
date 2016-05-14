@@ -19,23 +19,29 @@ public class ShopLoyaltyProgramDAOImpl implements ShopLoyaltyProgramDAO {
 	}
 
 	@Override
-	public void save(ShopLoyaltyProgramEntity shopLoyaltyProgramEntity) {
+	public ShopLoyaltyProgramEntity save(ShopLoyaltyProgramEntity shopLoyaltyProgramEntity) {
 		// TODO Auto-generated method stub
+		ShopLoyaltyProgramEntity rc = new ShopLoyaltyProgramEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(shopLoyaltyProgramEntity);
+		rc = shopLoyaltyProgramEntity;
 		tx.commit();
 		session.close();
+		return rc;
 	}
 
 	@Override
-	public void update(ShopLoyaltyProgramEntity shopLoyaltyProgramEntity) {
+	public ShopLoyaltyProgramEntity update(ShopLoyaltyProgramEntity shopLoyaltyProgramEntity) {
 		// TODO Auto-generated method stub
+		ShopLoyaltyProgramEntity rc = new ShopLoyaltyProgramEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.update(shopLoyaltyProgramEntity);
+		rc = shopLoyaltyProgramEntity;
 		tx.commit();
 		session.close();
+		return rc;
 	}
 	
 	@Override

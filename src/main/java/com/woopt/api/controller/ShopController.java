@@ -275,7 +275,25 @@ public class ShopController {
 	@RequestMapping(value = "/lcard/stage", method = RequestMethod.PUT, headers="Accept=application/json")
 	public ResponseEntity<ShopLoyaltyCardStage> lcardStagePUT(@RequestBody ShopLoyaltyCardStage shopLoyaltyCardStage, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		//Getting the shopId from request header
+		int shopId = Integer.parseInt(header.get("shopId").get(0));
+
+		String responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != shopLoyaltyCardStage){
+				shopLoyaltyCardStage = shopService.updateShopLoyaltyCardStage(shopLoyaltyCardStage);				
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return shopLoyaltyCard !!!!!!!!:" + shopLoyaltyCardStage);
+		return new ResponseEntity<ShopLoyaltyCardStage>(shopLoyaltyCardStage, returnHeader, HttpStatus.OK);
 	}
 	
 	//Shop Loyalty Program related rest services go here
@@ -284,7 +302,26 @@ public class ShopController {
 	@RequestMapping(value = "/lprogram", method = RequestMethod.POST, headers="Accept=application/json")
 	public ResponseEntity<ShopLoyaltyProgram> lprogramPOST(@RequestBody ShopLoyaltyProgram shopLoyaltyProgram, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		//Getting the shopId from request header
+		int shopId = Integer.parseInt(header.get("shopId").get(0));
+
+		String responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != shopLoyaltyProgram){
+				LOGGER.info("Inside shopLoyaltyProgram....");
+				shopLoyaltyProgram = shopService.addShopLoyaltyProgram(shopLoyaltyProgram,shopId);				
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return shopLoyaltyProgram !!!!!!!!:" + shopLoyaltyProgram);
+		return new ResponseEntity<ShopLoyaltyProgram>(shopLoyaltyProgram, returnHeader, HttpStatus.OK);
 	}
 	
 

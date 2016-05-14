@@ -19,23 +19,29 @@ public class ShopLoyaltyProgramStageDAOImpl implements ShopLoyaltyProgramStageDA
 	}
 	
 	@Override
-	public void save(ShopLoyaltyProgramStageEntity shopLoyaltyProgramStageEntity) {
+	public ShopLoyaltyProgramStageEntity save(ShopLoyaltyProgramStageEntity shopLoyaltyProgramStageEntity) {
 		// TODO Auto-generated method stub
+		ShopLoyaltyProgramStageEntity rc = new ShopLoyaltyProgramStageEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(shopLoyaltyProgramStageEntity);
+		rc=shopLoyaltyProgramStageEntity;
 		tx.commit();
 		session.close();
+		return rc;
 	}
 
 	@Override
-	public void update(ShopLoyaltyProgramStageEntity shopLoyaltyProgramStageEntity) {
+	public ShopLoyaltyProgramStageEntity update(ShopLoyaltyProgramStageEntity shopLoyaltyProgramStageEntity) {
 		// TODO Auto-generated method stub
+		ShopLoyaltyProgramStageEntity rc = new ShopLoyaltyProgramStageEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.update(shopLoyaltyProgramStageEntity);
+		rc=shopLoyaltyProgramStageEntity;
 		tx.commit();
 		session.close();
+		return rc;
 	}
 	
 	@Override

@@ -9,7 +9,7 @@ public interface ShopLoyaltyCardStageDAO {
 	
 	public ShopLoyaltyCardStageEntity save(ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity);
 	
-	public ShopLoyaltyCardStageEntity  update(ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity);
+	public ShopLoyaltyCardStageEntity  update(ShopLoyaltyCardStageEntity oldE, ShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity);
 	
 	public void  delete(int ShopLoyaltyCardId);
 	

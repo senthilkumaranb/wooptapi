@@ -15,6 +15,7 @@ import javax.persistence.Table;
  * @author Senthil
  *
  */
+
 @Entity
 @Table(name = "WOOPT_SHOP_LOYALTY_CARD_STAGE")
 public class ShopLoyaltyCardStageEntity {
@@ -22,8 +23,8 @@ public class ShopLoyaltyCardStageEntity {
 	/**
 	 * 
 	 */
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
+	//@SuppressWarnings("unused")
+	//private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name = "SHOP_LOYALTY_CARD_STAGE_ID")
@@ -141,6 +142,5 @@ public class ShopLoyaltyCardStageEntity {
 				+ ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
 	}
 
-	
 
 }
