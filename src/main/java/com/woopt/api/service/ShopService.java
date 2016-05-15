@@ -175,7 +175,7 @@ public class ShopService {
 		shopModel.setShopLoyaltyProgram(shopLoyaltyProgram);
 		
 		for (Offer so: shopModel.getOffer()) {
-			returnCode = this.addShopOffer(so);
+			so = this.addShopOffer(so,shopId);
 		}
 
 		return null;
@@ -654,7 +654,7 @@ public class ShopService {
 				
 				shopLoyaltyProgramStageEntity = shopLoyaltyProgramStageDAO.save(shopLoyaltyProgramStageEntity);
 				
-				shopLoyaltyProgram.getShopLoyaltyProgramStage().get(i).setShopLoyaltyProgramStageId(shopLoyaltyProgramStageEntity.getShopLoyaltyProgramId());
+				shopLoyaltyProgram.getShopLoyaltyProgramStage().get(i).setShopLoyaltyProgramStageId(shopLoyaltyProgramStageEntity.getShopLoyaltyProgramStageId());
 
 			}
 
@@ -667,39 +667,45 @@ public class ShopService {
 	}
 	
 	// function to update shop loyalty program
-	public String updateShopLoyaltyProgram(ShopLoyaltyProgram shopLoyaltyProgram){
+	public ShopLoyaltyProgram updateShopLoyaltyProgram(ShopLoyaltyProgram shopLoyaltyProgram,int shopId){
 		ShopLoyaltyProgramEntity shopLoyaltyProgramEntity = new ShopLoyaltyProgramEntity();
-		Gson gson = new Gson();
-		String jsonShopLoyaltyProgramEntity = gson.toJson(shopLoyaltyProgram, ShopLoyaltyProgram.class);
-		shopLoyaltyProgramEntity = gson.fromJson(jsonShopLoyaltyProgramEntity, ShopLoyaltyProgramEntity.class);
 		try {
+			Gson gson = new Gson();
+			String jsonShopLoyaltyProgramEntity = gson.toJson(shopLoyaltyProgram, ShopLoyaltyProgram.class);
+			shopLoyaltyProgramEntity = gson.fromJson(jsonShopLoyaltyProgramEntity, ShopLoyaltyProgramEntity.class);
+			shopLoyaltyProgramEntity.setShopId(shopId);
+			
 			shopLoyaltyProgramDAO.update(shopLoyaltyProgramEntity);
+			//int shopLoyaltyProgramId = shopLoyaltyProgramEntity.getShopLoyaltyProgramId();
+			
 			for (ShopLoyaltyProgramStage stage: shopLoyaltyProgram.getShopLoyaltyProgramStage()){
 				ShopLoyaltyProgramStageEntity shopLoyaltyProgramStageEntity = new ShopLoyaltyProgramStageEntity();
 				String jsonShopLoyaltyProgramStageEntity = gson.toJson(stage, ShopLoyaltyProgramStage.class);
 				shopLoyaltyProgramStageEntity = gson.fromJson(jsonShopLoyaltyProgramStageEntity, ShopLoyaltyProgramStageEntity.class);
-				shopLoyaltyProgramStageDAO.update(shopLoyaltyProgramStageEntity);
+				//shopLoyaltyProgramStageEntity.setShopLoyaltyProgramId(shopLoyaltyProgramId);
+				shopLoyaltyProgramStageDAO.update(shopLoyaltyProgramStageDAO.findById(shopLoyaltyProgramStageEntity.getShopLoyaltyProgramStageId()),shopLoyaltyProgramStageEntity);
+				shopLoyaltyProgramStageEntity = null;
 			}
-			return WooptCode.SUCCESS;
+			return shopLoyaltyProgram;
 		}
 		catch (Exception e){
-			return WooptCode.FAIL;
+			return null;
 		}
 	}
 		
 	
 	//function to update shop loyalty program stage
-	public String updateShopLoyaltyProgramStage(ShopLoyaltyProgramStage shopLoyaltyProgramStage){
+	public ShopLoyaltyProgramStage updateShopLoyaltyProgramStage(ShopLoyaltyProgramStage shopLoyaltyProgramStage){
 		Gson gson = new Gson();
 		try{
 			ShopLoyaltyProgramStageEntity shopLoyaltyProgramStageEntity = new ShopLoyaltyProgramStageEntity();
 			String jsonShopLoyaltyProgramStageEntity = gson.toJson(shopLoyaltyProgramStage, ShopLoyaltyProgramStage.class);
 			shopLoyaltyProgramStageEntity = gson.fromJson(jsonShopLoyaltyProgramStageEntity, ShopLoyaltyProgramStageEntity.class);
-			shopLoyaltyProgramStageDAO.update(shopLoyaltyProgramStageEntity);
-			return WooptCode.SUCCESS;
+			shopLoyaltyProgramStageDAO.update(shopLoyaltyProgramStageDAO.findById(shopLoyaltyProgramStageEntity.getShopLoyaltyProgramStageId()),shopLoyaltyProgramStageEntity);
+			return shopLoyaltyProgramStage;
 		}
 		catch (Exception e){
-			return WooptCode.FAIL;
+			return shopLoyaltyProgramStage;
 		}
 	}
 	
@@ -719,17 +725,21 @@ public class ShopService {
 	}
 	
 	// function to add a new shop offer
-	public String addShopOffer(Offer shopOffer){
+	public Offer addShopOffer(Offer offer,int shopId){
+		LOGGER.info("----- inside addshopoffer -----");
 		OfferEntity offerEntity = new OfferEntity();
 		Gson gson = new Gson();
-		String jsonOffer = gson.toJson(shopOffer, Offer.class);
-		offerEntity = gson.fromJson(jsonOffer, OfferEntity.class);
 		try {
+			String jsonOffer = gson.toJson(offer, Offer.class);
+			offerEntity = gson.fromJson(jsonOffer, OfferEntity.class);
+			offerEntity.setOfferId(null);
+			offerEntity.setShopId(shopId);
 			offerDAO.save(offerEntity);
-			return WooptCode.SUCCESS;
+			return offer;
 		}
 		catch (Exception e){
-			return WooptCode.FAIL;
+			LOGGER.info("----- Exception -----" + e.getMessage());
+			return null;
 		}
 	}
 		

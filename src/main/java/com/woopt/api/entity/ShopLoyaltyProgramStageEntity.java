@@ -23,8 +23,8 @@ public class ShopLoyaltyProgramStageEntity {
 	/**
 	 * 
 	 */
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
+	//@SuppressWarnings("unused")
+	//private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name = "SHOP_LOYALTY_PROGRAM_STAGE_ID")

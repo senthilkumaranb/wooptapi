@@ -26,11 +26,16 @@ public class OfferDAOImpl implements OfferDAO {
 	@Override
 	public void save(OfferEntity offerEntity) {
 		// TODO Auto-generated method stub
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		session.persist(offerEntity);
-		tx.commit();
-		session.close();
+		try{
+			Session session = this.sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			session.persist(offerEntity);
+			tx.commit();
+			session.close();
+		}
+		catch (Exception e){
+			System.out.println("----Exception offer save ---" + e.getMessage());
+		}
 		
 	}
 	

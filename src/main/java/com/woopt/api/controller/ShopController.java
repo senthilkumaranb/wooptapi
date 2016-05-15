@@ -329,14 +329,52 @@ public class ShopController {
 	@RequestMapping(value = "/lprogram", method = RequestMethod.PUT, headers="Accept=application/json")
 	public ResponseEntity<ShopLoyaltyProgram> lprogramPUT(@RequestBody ShopLoyaltyProgram shopLoyaltyProgram, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		//Getting the shopId from request header
+		int shopId = Integer.parseInt(header.get("shopId").get(0));
+
+		String responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != shopLoyaltyProgram){
+				LOGGER.info("Inside shopLoyaltyProgram....");
+				shopLoyaltyProgram = shopService.updateShopLoyaltyProgram(shopLoyaltyProgram,shopId);				
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return shopLoyaltyProgram !!!!!!!!:" + shopLoyaltyProgram);
+		return new ResponseEntity<ShopLoyaltyProgram>(shopLoyaltyProgram, returnHeader, HttpStatus.OK);
 	}
 	
 	//API to update shop loyalty program stage
 	@RequestMapping(value = "/lprogram/stage", method = RequestMethod.PUT, headers="Accept=application/json")
 	public ResponseEntity<ShopLoyaltyProgramStage> lprogramStagePOST(@RequestBody ShopLoyaltyProgramStage shopLoyaltyProgramStage, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		//Getting the shopId from request header
+		int shopId = Integer.parseInt(header.get("shopId").get(0));
+
+		String responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != shopLoyaltyProgramStage){
+				LOGGER.info("Inside ShopLoyaltyProgramStage....");
+				shopLoyaltyProgramStage = shopService.updateShopLoyaltyProgramStage(shopLoyaltyProgramStage);				
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return shopLoyaltyProgram !!!!!!!!:" + shopLoyaltyProgramStage);
+		return new ResponseEntity<ShopLoyaltyProgramStage>(shopLoyaltyProgramStage, returnHeader, HttpStatus.OK);
 	}
 	
 	//Offer related rest services go here
@@ -345,7 +383,31 @@ public class ShopController {
 	@RequestMapping(value = "/offer", method = RequestMethod.POST, headers="Accept=application/json")
 	public ResponseEntity<List<Offer>> offerPOST(@RequestBody Offer offer, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		//Getting the shopId from request header
+		int shopId = Integer.parseInt(header.get("shopId").get(0));
+		
+		LOGGER.debug("Inside offer api....");
+
+		String responseCode = WooptCode.SUCCESS;
+		List<Offer> offers = new ArrayList<Offer>();
+		
+		try{			
+			if (null != offer){
+				LOGGER.debug("Inside offer...." + offer);
+				offer = shopService.addShopOffer(offer,shopId);
+				
+				//offers = shopService.getShopOffer(shopId);
+			}			
+		}
+		catch (Exception e){
+			LOGGER.error("----- Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return shopLoyaltyProgram !!!!!!!!:" + offer);
+		return new ResponseEntity<List<Offer>>(offers, returnHeader, HttpStatus.OK);
 	}
 	
 	//API to update offer

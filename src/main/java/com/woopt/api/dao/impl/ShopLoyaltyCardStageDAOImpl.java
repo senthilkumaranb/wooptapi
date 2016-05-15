@@ -41,15 +41,9 @@ public class ShopLoyaltyCardStageDAOImpl implements ShopLoyaltyCardStageDAO {
 		// Auto-generated method stub
 		try{
 			
-			ShopLoyaltyCardStageEntity rc = new ShopLoyaltyCardStageEntity();
-					
+			ShopLoyaltyCardStageEntity rc = new ShopLoyaltyCardStageEntity();			
 			Session session = this.sessionFactory.openSession();
-
-			System.out.println("--------+ Existing Record +-----------" + oldE);
-			System.out.println("--------+ NEW +-----------" + shopLoyaltyCardStageEntity);
 			shopLoyaltyCardStageEntity = Updater.updater(oldE, shopLoyaltyCardStageEntity);
-			System.out.println("--------+ After update +-----------" + shopLoyaltyCardStageEntity);
-
 			Transaction tx = session.beginTransaction();
 			session.update(shopLoyaltyCardStageEntity);
 			rc=shopLoyaltyCardStageEntity;

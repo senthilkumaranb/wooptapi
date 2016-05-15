@@ -46,10 +46,10 @@ public class OfferEntity {
 	private String offerQRCode;
 	
 	@Column(name = "OFFER_AMOUNT")
-	private String offerAmount;
+	private double offerAmount;
 	
 	@Column(name = "OFFER_MINIMUM_ORDER")
-	private String offerMinimumOrder;
+	private Integer offerMinimumOrder;
 	
 	@Column(name = "OFFER_START_DATE")
 	private Timestamp offerStartDate;
@@ -85,10 +85,10 @@ public class OfferEntity {
 	private String offerPhoto;
 	
 	@Column(name = "OFFER_PRODUCT_ID")
-	private String offerProductId;
+	private String productId;
 	
 	@Column(name = "OFFER_ISIN_SHOP_BILLING_SYSTEM")
-	private String offerIsInShopBillingSystem;
+	private Integer offerIsInShopBillingSystem;
 	
 	@Column(name = "OFFER_WHO_CREATED")
 	private Integer offerWhoCreated;
@@ -97,7 +97,7 @@ public class OfferEntity {
 	private Integer shopId;
 	
 	@Column(name = "OFFER_MANUFACTUREID")
-	private Integer offerManufactureId;
+	private Integer manufactureId;
 	
 	@Column(name = "OFFER_AVAILABLE_UNITS")
 	private Integer offerAvailableUnits;
@@ -153,27 +153,27 @@ public class OfferEntity {
 		this.offerCode = offerCode;
 	}
 
-	public String getOfferQrCode() {
+	public String getOfferQRCode() {
 		return offerQRCode;
 	}
 
-	public void setOfferQrCode(String offerQrCode) {
-		this.offerQRCode = offerQrCode;
+	public void setOfferQRCode(String offerQRCode) {
+		this.offerQRCode = offerQRCode;
 	}
 
-	public String getOfferAmount() {
+	public double getOfferAmount() {
 		return offerAmount;
 	}
 
-	public void setOfferAmount(String offerAmount) {
+	public void setOfferAmount(double offerAmount) {
 		this.offerAmount = offerAmount;
 	}
 
-	public String getOfferMinimumOrder() {
+	public Integer getOfferMinimumOrder() {
 		return offerMinimumOrder;
 	}
 
-	public void setOfferMinimumOrder(String offerMinimumOrder) {
+	public void setOfferMinimumOrder(Integer offerMinimumOrder) {
 		this.offerMinimumOrder = offerMinimumOrder;
 	}
 
@@ -265,19 +265,19 @@ public class OfferEntity {
 		this.offerPhoto = offerPhoto;
 	}
 
-	public String getOfferProductId() {
-		return offerProductId;
+	public String getProductId() {
+		return productId;
 	}
 
-	public void setOfferProductId(String offerProductId) {
-		this.offerProductId = offerProductId;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
-	public String getOfferIsInShopBillingSystem() {
+	public Integer getOfferIsInShopBillingSystem() {
 		return offerIsInShopBillingSystem;
 	}
 
-	public void setOfferIsInShopBillingSystem(String offerIsInShopBillingSystem) {
+	public void setOfferIsInShopBillingSystem(Integer offerIsInShopBillingSystem) {
 		this.offerIsInShopBillingSystem = offerIsInShopBillingSystem;
 	}
 
@@ -297,12 +297,12 @@ public class OfferEntity {
 		this.shopId = shopId;
 	}
 
-	public Integer getOfferManufactureId() {
-		return offerManufactureId;
+	public Integer getManufactureId() {
+		return manufactureId;
 	}
 
-	public void setOfferManufactureId(Integer offerManufactureId) {
-		this.offerManufactureId = offerManufactureId;
+	public void setManufactureId(Integer manufactureId) {
+		this.manufactureId = manufactureId;
 	}
 
 	public Integer getOfferAvailableUnits() {
@@ -338,11 +338,11 @@ public class OfferEntity {
 				+ ", offerZoneRestriction=" + offerZoneRestriction + ", offerUnitsPerZone=" + offerUnitsPerZone
 				+ ", offerPerUser=" + offerPerUser + ", offerStatus=" + offerStatus + ", offerZones=" + offerZones
 				+ ", offerDescription=" + offerDescription + ", offerProfilePhoto=" + offerProfilePhoto
-				+ ", offerPhoto=" + offerPhoto + ", offerProductId=" + offerProductId + ", offerIsInShopBillingSystem="
+				+ ", offerPhoto=" + offerPhoto + ", productId=" + productId + ", offerIsInShopBillingSystem="
 				+ offerIsInShopBillingSystem + ", offerWhoCreated=" + offerWhoCreated + ", shopId=" + shopId
-				+ ", offerManufactureId=" + offerManufactureId + ", offerAvailableUnits=" + offerAvailableUnits
+				+ ", manufactureId=" + manufactureId + ", offerAvailableUnits=" + offerAvailableUnits
 				+ ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
 	}
-	
+
 	
 }

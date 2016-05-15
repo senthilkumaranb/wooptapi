@@ -7,7 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.woopt.api.common.Updater;
 import com.woopt.api.dao.ShopLoyaltyProgramStageDAO;
+import com.woopt.api.entity.ShopLoyaltyCardStageEntity;
 import com.woopt.api.entity.ShopLoyaltyProgramStageEntity;
 
 public class ShopLoyaltyProgramStageDAOImpl implements ShopLoyaltyProgramStageDAO {
@@ -32,16 +34,26 @@ public class ShopLoyaltyProgramStageDAOImpl implements ShopLoyaltyProgramStageDA
 	}
 
 	@Override
-	public ShopLoyaltyProgramStageEntity update(ShopLoyaltyProgramStageEntity shopLoyaltyProgramStageEntity) {
+	public ShopLoyaltyProgramStageEntity update(ShopLoyaltyProgramStageEntity oldE,ShopLoyaltyProgramStageEntity shopLoyaltyProgramStageEntity) {
 		// TODO Auto-generated method stub
-		ShopLoyaltyProgramStageEntity rc = new ShopLoyaltyProgramStageEntity();
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		session.update(shopLoyaltyProgramStageEntity);
-		rc=shopLoyaltyProgramStageEntity;
-		tx.commit();
-		session.close();
-		return rc;
+		try{
+			ShopLoyaltyProgramStageEntity rc = new ShopLoyaltyProgramStageEntity();
+			Session session = this.sessionFactory.openSession();
+			System.out.println("----- Original -----" + oldE);
+			System.out.println("----- New -----" + shopLoyaltyProgramStageEntity);
+			shopLoyaltyProgramStageEntity = Updater.updater(oldE, shopLoyaltyProgramStageEntity);
+			System.out.println("----- After update -----" + shopLoyaltyProgramStageEntity);
+			Transaction tx = session.beginTransaction();
+			session.update(shopLoyaltyProgramStageEntity);
+			rc=shopLoyaltyProgramStageEntity;
+			tx.commit();
+			session.close();
+			return rc;
+		}
+		catch (Exception e){
+			System.out.println("----- Exception -----" + e);
+			return null;
+		}
 	}
 	
 	@Override

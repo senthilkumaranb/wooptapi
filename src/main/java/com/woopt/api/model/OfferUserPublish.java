@@ -15,6 +15,7 @@ public class OfferUserPublish {
 	private Integer offerUserPublishIsShared;
 	private Integer offerUserPublishStatus;
 	private Integer offerUserPublishWhoRedeemed;
+	
 	public Integer getOfferUserPublishId() {
 		return offerUserPublishId;
 	}
