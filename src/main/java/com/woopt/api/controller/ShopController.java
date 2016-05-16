@@ -421,7 +421,27 @@ public class ShopController {
 	@RequestMapping(value = "/offer/publish", method = RequestMethod.POST, headers="Accept=application/json")
 	public ResponseEntity<Offer> offerPublishPUT(@RequestBody Offer offer, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		//Getting the shopId from request header
+		int shopId = Integer.parseInt(header.get("shopId").get(0));
+
+		String responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != offer){
+
+				String str = shopService.publishShopOffer(offer,shopId);
+
+			}			
+		}
+		catch (Exception e){
+			LOGGER.error("----- Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return offer !!!!!!!!:" + offer);
+		return new ResponseEntity<Offer>(offer, returnHeader, HttpStatus.OK);
 	}
 
 }

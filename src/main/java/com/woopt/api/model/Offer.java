@@ -34,11 +34,11 @@ public class Offer {
 	
 	private List<OfferUserPublish> offerUserPublish;
 
-	public int getOfferId() {
+	public Integer getOfferId() {
 		return offerId;
 	}
 
-	public void setOfferId(int offerId) {
+	public void setOfferId(Integer offerId) {
 		this.offerId = offerId;
 	}
 

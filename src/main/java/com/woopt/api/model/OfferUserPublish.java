@@ -5,6 +5,7 @@ public class OfferUserPublish {
 	private Integer offerUserPublishId;
 	private Integer userId;
 	private String offerUserPublishOfferCode;
+	private String offerUserPublishQRCode;
 	private String offerUserPublishMethod;
 	private Integer offerUserPublishIsRedeemed;
 	private String offerUserPublishDatetime;
@@ -33,6 +34,12 @@ public class OfferUserPublish {
 	}
 	public void setOfferUserPublishOfferCode(String offerUserPublishOfferCode) {
 		this.offerUserPublishOfferCode = offerUserPublishOfferCode;
+	}
+	public String getOfferUserPublishQRCode() {
+		return offerUserPublishQRCode;
+	}
+	public void setOfferUserPublishQRCode(String offerUserPublishQRCode) {
+		this.offerUserPublishQRCode = offerUserPublishQRCode;
 	}
 	public String getOfferUserPublishMethod() {
 		return offerUserPublishMethod;
@@ -108,6 +115,7 @@ public class OfferUserPublish {
 		result = prime * result + ((offerUserPublishIsShared == null) ? 0 : offerUserPublishIsShared.hashCode());
 		result = prime * result + ((offerUserPublishMethod == null) ? 0 : offerUserPublishMethod.hashCode());
 		result = prime * result + ((offerUserPublishOfferCode == null) ? 0 : offerUserPublishOfferCode.hashCode());
+		result = prime * result + ((offerUserPublishQRCode == null) ? 0 : offerUserPublishQRCode.hashCode());
 		result = prime * result
 				+ ((offerUserPublishRedeemMethod == null) ? 0 : offerUserPublishRedeemMethod.hashCode());
 		result = prime * result
@@ -166,6 +174,11 @@ public class OfferUserPublish {
 				return false;
 		} else if (!offerUserPublishOfferCode.equals(other.offerUserPublishOfferCode))
 			return false;
+		if (offerUserPublishQRCode == null) {
+			if (other.offerUserPublishQRCode != null)
+				return false;
+		} else if (!offerUserPublishQRCode.equals(other.offerUserPublishQRCode))
+			return false;
 		if (offerUserPublishRedeemMethod == null) {
 			if (other.offerUserPublishRedeemMethod != null)
 				return false;
@@ -196,15 +209,14 @@ public class OfferUserPublish {
 	@Override
 	public String toString() {
 		return "OfferUserPublish [offerUserPublishId=" + offerUserPublishId + ", userId=" + userId
-				+ ", offerUserPublishOfferCode=" + offerUserPublishOfferCode + ", offerUserPublishMethod="
-				+ offerUserPublishMethod + ", offerUserPublishIsRedeemed=" + offerUserPublishIsRedeemed
-				+ ", offerUserPublishDatetime=" + offerUserPublishDatetime + ", offerUserPublishDateOfRedeem="
-				+ offerUserPublishDateOfRedeem + ", offerUserPublishRedeemShopId=" + offerUserPublishRedeemShopId
-				+ ", offerUserPublishRedeemMethod=" + offerUserPublishRedeemMethod + ", offerUserPublishExpireDatetime="
-				+ offerUserPublishExpireDatetime + ", offerUserPublishIsShared=" + offerUserPublishIsShared
-				+ ", offerUserPublishStatus=" + offerUserPublishStatus + ", offerUserPublishWhoRedeemed="
-				+ offerUserPublishWhoRedeemed + "]";
+				+ ", offerUserPublishOfferCode=" + offerUserPublishOfferCode + ", offerUserPublishQRCode="
+				+ offerUserPublishQRCode + ", offerUserPublishMethod=" + offerUserPublishMethod
+				+ ", offerUserPublishIsRedeemed=" + offerUserPublishIsRedeemed + ", offerUserPublishDatetime="
+				+ offerUserPublishDatetime + ", offerUserPublishDateOfRedeem=" + offerUserPublishDateOfRedeem
+				+ ", offerUserPublishRedeemShopId=" + offerUserPublishRedeemShopId + ", offerUserPublishRedeemMethod="
+				+ offerUserPublishRedeemMethod + ", offerUserPublishExpireDatetime=" + offerUserPublishExpireDatetime
+				+ ", offerUserPublishIsShared=" + offerUserPublishIsShared + ", offerUserPublishStatus="
+				+ offerUserPublishStatus + ", offerUserPublishWhoRedeemed=" + offerUserPublishWhoRedeemed + "]";
 	}
-
 	
 }

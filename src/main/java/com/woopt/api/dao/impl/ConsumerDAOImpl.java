@@ -65,8 +65,13 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 
 	@Override
 	public List<ConsumerEntity> getShopConsumers(int shopId) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("--------+ ConsumerEntity +-----------");
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("from ConsumerEntity W where W.shopId=:shopId");
+		query.setParameter("shopId",shopId);
+		List<ConsumerEntity> consumerList = query.list();
+		session.close();
+		return consumerList;
 	}
 
 	@Override

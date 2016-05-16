@@ -139,6 +139,10 @@
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 	
+	<bean id="offerUserPublishDAO" class="com.woopt.api.dao.impl.OfferUserPublishDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
 	<bean id="userToShopLoyaltyCardDAO" class="com.woopt.api.dao.impl.UserToShopLoyaltyCardDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
@@ -166,6 +170,5 @@
 	<bean id="orderDAO" class="com.woopt.api.dao.impl.OrderDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
-	
 	
 </beans>

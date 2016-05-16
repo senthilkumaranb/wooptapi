@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.woopt.api.common.WooptCode;
 import com.woopt.api.dao.OfferDAO;
+import com.woopt.api.dao.OfferUserPublishDAO;
 import com.woopt.api.dao.ShopBranchDAO;
 import com.woopt.api.dao.ShopDAO;
 import com.woopt.api.dao.ShopEmployeeDAO;
@@ -27,6 +28,7 @@ import com.woopt.api.dao.ShopReviewDAO;
 import com.woopt.api.dao.UserDAO;
 import com.woopt.api.dao.impl.ShopLoyaltyCardDAOImpl;
 import com.woopt.api.entity.OfferEntity;
+import com.woopt.api.entity.OfferUserPublishEntity;
 import com.woopt.api.entity.ShopBranchEntity;
 import com.woopt.api.entity.ShopEmployeeEntity;
 import com.woopt.api.entity.ShopEntity;
@@ -37,6 +39,7 @@ import com.woopt.api.entity.ShopLoyaltyProgramEntity;
 import com.woopt.api.entity.ShopLoyaltyProgramStageEntity;
 import com.woopt.api.entity.ShopReviewEntity;
 import com.woopt.api.entity.UserEntity;
+import com.woopt.api.model.Consumer;
 import com.woopt.api.model.Offer;
 import com.woopt.api.model.Shop;
 import com.woopt.api.model.ShopBranch;
@@ -73,6 +76,9 @@ public class ShopService {
 	ObjectMapper mapper = new ObjectMapper();
 	
 	@Autowired
+	private PartnerService partnerService;
+	
+	@Autowired
 	ShopDAO shopDAO;
 	
 	@Autowired
@@ -101,6 +107,9 @@ public class ShopService {
 	
 	@Autowired
 	OfferDAO offerDAO;
+	
+	@Autowired
+	OfferUserPublishDAO offerUserPublishDAO;
 	
 	@Autowired
 	UserDAO userDAO;
@@ -759,8 +768,35 @@ public class ShopService {
 	}
 	
 	// function to publish Shop Offer
-	public String publishShopOffer(Offer shopOffer){
-		return null;
+	public String publishShopOffer(Offer offer,int shopId){
+
+		int offerId = offer.getOfferId();
+		String offerCode = offer.getOfferCode();
+		String QRCode = offer.getOfferQRCode();
+
+		try{
+			List<Consumer> consumers = new ArrayList<Consumer>();		
+			consumers = partnerService.getConsumersByShop(shopId);
+			LOGGER.info("----Consumers -----" + consumers);
+			
+			if(consumers.size()!=0){
+				for(Consumer c: consumers) {
+					OfferUserPublishEntity offerUserPublishEntity = new OfferUserPublishEntity();
+					offerUserPublishEntity.setOfferId(offerId);
+					offerUserPublishEntity.setUserId(c.getUserId());
+					offerUserPublishEntity.setOfferUserPublishOfferCode(offerCode);
+					offerUserPublishEntity.setOfferUserPublishStatus(1);
+					offerUserPublishEntity.setOfferUserPublishQRCode(QRCode);
+					offerUserPublishDAO.save(offerUserPublishEntity);
+					offerUserPublishEntity=null;
+				}
+			}
+			return WooptCode.SUCCESS;
+		}
+		catch (Exception e){
+			LOGGER.info("---PUBLISH SHOP OFFER Exception -----" + e);
+			return WooptCode.FAIL;
+		}
 	}
 	
 	//SHOP REVIEW RELATED FUNCTIONS GO HERE

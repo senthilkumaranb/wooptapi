@@ -28,25 +28,28 @@ public class OfferUserPublishEntity {
 	@Id
 	@Column(name = "OFFER_USER_PUBLISH_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int offerUserPublishId;
+	private Integer offerUserPublishId;
 	
 	@Column(name = "OFFER_ID")
-	private int offerId;
+	private Integer offerId;
 	
 	@Column(name = "OFFER_ZONE_SCOPE_ID")
-	private int offerZoneScopeId;
+	private Integer offerZoneScopeId;
 	
 	@Column(name = "USER_ID")
-	private int userId;
+	private Integer userId;
 	
 	@Column(name = "OFFER_USER_PUBLISH_OFFER_CODE")
 	private String offerUserPublishOfferCode;
+	
+	@Column(name = "OFFER_USER_PUBLISH_QR_CODE")
+	private String offerUserPublishQRCode;
 	
 	@Column(name = "OFFER_USER_PUBLISH_METHOD")
 	private String offerUserPublishMethod;
 	
 	@Column(name = "OFFER_USER_PUBLISH_IS_REDEEMED")
-	private int offerUserPublishIsRedeemed;
+	private Integer offerUserPublishIsRedeemed;
 	
 	@Column(name = "OFFER_USER_PUBLISH_DATETIME")
 	private Timestamp offerUserPublishDateTime;
@@ -55,22 +58,22 @@ public class OfferUserPublishEntity {
 	private Timestamp offerUserPublishRedeemDate;
 	
 	@Column(name = "OFFER_USER_PUBLISH_REDEEM_SHOP_ID")
-	private int offerUserPublishRedeemShopId;
+	private Integer offerUserPublishRedeemShopId;
 	
 	@Column(name = "OFFER_USER_PUBLISH_REDEEM_METHOD")
-	private int offerUserPublishRedeemMethod;
+	private Integer offerUserPublishRedeemMethod;
 	
 	@Column(name = "OFFER_USER_PUBLISH_EXPIRE_DATETIME")
 	private Timestamp offerUserPublishExpireDateTime;
 	
 	@Column(name = "OFFER_USER_PUBLISH_IS_SHARED")
-	private int offerUserPublishIsShared;
+	private Integer offerUserPublishIsShared;
 	
 	@Column(name = "OFFER_USER_PUBLISH_STATUS")
-	private int offerUserPublishStatus;
+	private Integer offerUserPublishStatus;
 	
 	@Column(name = "OFFER_USER_PUBLISH_WHO_REDEEMED")
-	private int offerUserPublishWhoRedeemed;
+	private Integer offerUserPublishWhoRedeemed;
 	
 	@Column(name = "CREATED_DATETIME")
 	private Timestamp createdDatetime;
@@ -78,35 +81,40 @@ public class OfferUserPublishEntity {
 	@Column(name = "LAST_UPDATED_DATETIME")
 	private Timestamp lastUpdatedDatetime;
 
-	public int getOfferUserPublishId() {
+	public OfferUserPublishEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Integer getOfferUserPublishId() {
 		return offerUserPublishId;
 	}
 
-	public void setOfferUserPublishId(int offerUserPublishId) {
+	public void setOfferUserPublishId(Integer offerUserPublishId) {
 		this.offerUserPublishId = offerUserPublishId;
 	}
 
-	public int getOfferId() {
+	public Integer getOfferId() {
 		return offerId;
 	}
 
-	public void setOfferId(int offerId) {
+	public void setOfferId(Integer offerId) {
 		this.offerId = offerId;
 	}
 
-	public int getOfferZoneScopeId() {
+	public Integer getOfferZoneScopeId() {
 		return offerZoneScopeId;
 	}
 
-	public void setOfferZoneScopeId(int offerZoneScopeId) {
+	public void setOfferZoneScopeId(Integer offerZoneScopeId) {
 		this.offerZoneScopeId = offerZoneScopeId;
 	}
 
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
@@ -117,6 +125,15 @@ public class OfferUserPublishEntity {
 	public void setOfferUserPublishOfferCode(String offerUserPublishOfferCode) {
 		this.offerUserPublishOfferCode = offerUserPublishOfferCode;
 	}
+	
+
+	public String getOfferUserPublishQRCode() {
+		return offerUserPublishQRCode;
+	}
+
+	public void setOfferUserPublishQRCode(String offerUserPublishQRCode) {
+		this.offerUserPublishQRCode = offerUserPublishQRCode;
+	}
 
 	public String getOfferUserPublishMethod() {
 		return offerUserPublishMethod;
@@ -126,11 +143,11 @@ public class OfferUserPublishEntity {
 		this.offerUserPublishMethod = offerUserPublishMethod;
 	}
 
-	public int getOfferUserPublishIsRedeemed() {
+	public Integer getOfferUserPublishIsRedeemed() {
 		return offerUserPublishIsRedeemed;
 	}
 
-	public void setOfferUserPublishIsRedeemed(int offerUserPublishIsRedeemed) {
+	public void setOfferUserPublishIsRedeemed(Integer offerUserPublishIsRedeemed) {
 		this.offerUserPublishIsRedeemed = offerUserPublishIsRedeemed;
 	}
 
@@ -150,19 +167,19 @@ public class OfferUserPublishEntity {
 		this.offerUserPublishRedeemDate = offerUserPublishRedeemDate;
 	}
 
-	public int getOfferUserPublishRedeemShopId() {
+	public Integer getOfferUserPublishRedeemShopId() {
 		return offerUserPublishRedeemShopId;
 	}
 
-	public void setOfferUserPublishRedeemShopId(int offerUserPublishRedeemShopId) {
+	public void setOfferUserPublishRedeemShopId(Integer offerUserPublishRedeemShopId) {
 		this.offerUserPublishRedeemShopId = offerUserPublishRedeemShopId;
 	}
 
-	public int getOfferUserPublishRedeemMethod() {
+	public Integer getOfferUserPublishRedeemMethod() {
 		return offerUserPublishRedeemMethod;
 	}
 
-	public void setOfferUserPublishRedeemMethod(int offerUserPublishRedeemMethod) {
+	public void setOfferUserPublishRedeemMethod(Integer offerUserPublishRedeemMethod) {
 		this.offerUserPublishRedeemMethod = offerUserPublishRedeemMethod;
 	}
 
@@ -174,27 +191,27 @@ public class OfferUserPublishEntity {
 		this.offerUserPublishExpireDateTime = offerUserPublishExpireDateTime;
 	}
 
-	public int getOfferUserPublishIsShared() {
+	public Integer getOfferUserPublishIsShared() {
 		return offerUserPublishIsShared;
 	}
 
-	public void setOfferUserPublishIsShared(int offerUserPublishIsShared) {
+	public void setOfferUserPublishIsShared(Integer offerUserPublishIsShared) {
 		this.offerUserPublishIsShared = offerUserPublishIsShared;
 	}
 
-	public int getOfferUserPublishStatus() {
+	public Integer getOfferUserPublishStatus() {
 		return offerUserPublishStatus;
 	}
 
-	public void setOfferUserPublishStatus(int offerUserPublishStatus) {
+	public void setOfferUserPublishStatus(Integer offerUserPublishStatus) {
 		this.offerUserPublishStatus = offerUserPublishStatus;
 	}
 
-	public int getOfferUserPublishWhoRedeemed() {
+	public Integer getOfferUserPublishWhoRedeemed() {
 		return offerUserPublishWhoRedeemed;
 	}
 
-	public void setOfferUserPublishWhoRedeemed(int offerUserPublishWhoRedeemed) {
+	public void setOfferUserPublishWhoRedeemed(Integer offerUserPublishWhoRedeemed) {
 		this.offerUserPublishWhoRedeemed = offerUserPublishWhoRedeemed;
 	}
 
@@ -218,107 +235,15 @@ public class OfferUserPublishEntity {
 	public String toString() {
 		return "OfferUserPublishEntity [offerUserPublishId=" + offerUserPublishId + ", offerId=" + offerId
 				+ ", offerZoneScopeId=" + offerZoneScopeId + ", userId=" + userId + ", offerUserPublishOfferCode="
-				+ offerUserPublishOfferCode + ", offerUserPublishMethod=" + offerUserPublishMethod
-				+ ", offerUserPublishIsRedeemed=" + offerUserPublishIsRedeemed + ", offerUserPublishDateTime="
-				+ offerUserPublishDateTime + ", offerUserPublishRedeemDate=" + offerUserPublishRedeemDate
-				+ ", offerUserPublishRedeemShopId=" + offerUserPublishRedeemShopId + ", offerUserPublishRedeemMethod="
-				+ offerUserPublishRedeemMethod + ", offerUserPublishExpireDateTime=" + offerUserPublishExpireDateTime
-				+ ", offerUserPublishIsShared=" + offerUserPublishIsShared + ", offerUserPublishStatus="
-				+ offerUserPublishStatus + ", offerUserPublishWhoRedeemed=" + offerUserPublishWhoRedeemed
-				+ ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
+				+ offerUserPublishOfferCode + ", offerUserPublishQRCode=" + offerUserPublishQRCode
+				+ ", offerUserPublishMethod=" + offerUserPublishMethod + ", offerUserPublishIsRedeemed="
+				+ offerUserPublishIsRedeemed + ", offerUserPublishDateTime=" + offerUserPublishDateTime
+				+ ", offerUserPublishRedeemDate=" + offerUserPublishRedeemDate + ", offerUserPublishRedeemShopId="
+				+ offerUserPublishRedeemShopId + ", offerUserPublishRedeemMethod=" + offerUserPublishRedeemMethod
+				+ ", offerUserPublishExpireDateTime=" + offerUserPublishExpireDateTime + ", offerUserPublishIsShared="
+				+ offerUserPublishIsShared + ", offerUserPublishStatus=" + offerUserPublishStatus
+				+ ", offerUserPublishWhoRedeemed=" + offerUserPublishWhoRedeemed + ", createdDatetime="
+				+ createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((createdDatetime == null) ? 0 : createdDatetime.hashCode());
-		result = prime * result + ((lastUpdatedDatetime == null) ? 0 : lastUpdatedDatetime.hashCode());
-		result = prime * result + offerId;
-		result = prime * result + ((offerUserPublishDateTime == null) ? 0 : offerUserPublishDateTime.hashCode());
-		result = prime * result
-				+ ((offerUserPublishExpireDateTime == null) ? 0 : offerUserPublishExpireDateTime.hashCode());
-		result = prime * result + offerUserPublishId;
-		result = prime * result + offerUserPublishIsRedeemed;
-		result = prime * result + offerUserPublishIsShared;
-		result = prime * result + ((offerUserPublishMethod == null) ? 0 : offerUserPublishMethod.hashCode());
-		result = prime * result + ((offerUserPublishOfferCode == null) ? 0 : offerUserPublishOfferCode.hashCode());
-		result = prime * result + ((offerUserPublishRedeemDate == null) ? 0 : offerUserPublishRedeemDate.hashCode());
-		result = prime * result + offerUserPublishRedeemMethod;
-		result = prime * result + offerUserPublishRedeemShopId;
-		result = prime * result + offerUserPublishStatus;
-		result = prime * result + offerUserPublishWhoRedeemed;
-		result = prime * result + offerZoneScopeId;
-		result = prime * result + userId;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		OfferUserPublishEntity other = (OfferUserPublishEntity) obj;
-		if (createdDatetime == null) {
-			if (other.createdDatetime != null)
-				return false;
-		} else if (!createdDatetime.equals(other.createdDatetime))
-			return false;
-		if (lastUpdatedDatetime == null) {
-			if (other.lastUpdatedDatetime != null)
-				return false;
-		} else if (!lastUpdatedDatetime.equals(other.lastUpdatedDatetime))
-			return false;
-		if (offerId != other.offerId)
-			return false;
-		if (offerUserPublishDateTime == null) {
-			if (other.offerUserPublishDateTime != null)
-				return false;
-		} else if (!offerUserPublishDateTime.equals(other.offerUserPublishDateTime))
-			return false;
-		if (offerUserPublishExpireDateTime == null) {
-			if (other.offerUserPublishExpireDateTime != null)
-				return false;
-		} else if (!offerUserPublishExpireDateTime.equals(other.offerUserPublishExpireDateTime))
-			return false;
-		if (offerUserPublishId != other.offerUserPublishId)
-			return false;
-		if (offerUserPublishIsRedeemed != other.offerUserPublishIsRedeemed)
-			return false;
-		if (offerUserPublishIsShared != other.offerUserPublishIsShared)
-			return false;
-		if (offerUserPublishMethod == null) {
-			if (other.offerUserPublishMethod != null)
-				return false;
-		} else if (!offerUserPublishMethod.equals(other.offerUserPublishMethod))
-			return false;
-		if (offerUserPublishOfferCode == null) {
-			if (other.offerUserPublishOfferCode != null)
-				return false;
-		} else if (!offerUserPublishOfferCode.equals(other.offerUserPublishOfferCode))
-			return false;
-		if (offerUserPublishRedeemDate == null) {
-			if (other.offerUserPublishRedeemDate != null)
-				return false;
-		} else if (!offerUserPublishRedeemDate.equals(other.offerUserPublishRedeemDate))
-			return false;
-		if (offerUserPublishRedeemMethod != other.offerUserPublishRedeemMethod)
-			return false;
-		if (offerUserPublishRedeemShopId != other.offerUserPublishRedeemShopId)
-			return false;
-		if (offerUserPublishStatus != other.offerUserPublishStatus)
-			return false;
-		if (offerUserPublishWhoRedeemed != other.offerUserPublishWhoRedeemed)
-			return false;
-		if (offerZoneScopeId != other.offerZoneScopeId)
-			return false;
-		if (userId != other.userId)
-			return false;
-		return true;
-	}
-	
-	
 }
