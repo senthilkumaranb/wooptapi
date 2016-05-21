@@ -24,6 +24,7 @@ import com.woopt.api.model.Cart;
 import com.woopt.api.model.ConsumerCheckIn;
 import com.woopt.api.model.Device;
 import com.woopt.api.model.Offer;
+import com.woopt.api.model.OfferUserPublish;
 import com.woopt.api.model.Order;
 import com.woopt.api.model.Shop;
 import com.woopt.api.model.ShopBranch;
@@ -378,7 +379,7 @@ public class ShopController {
 	}
 	
 	//Offer related rest services go here
-
+	
 	//API to add new offer
 	@RequestMapping(value = "/offer", method = RequestMethod.POST, headers="Accept=application/json")
 	public ResponseEntity<List<Offer>> offerPOST(@RequestBody Offer offer, 
@@ -443,5 +444,34 @@ public class ShopController {
 		LOGGER.info("Return offer !!!!!!!!:" + offer);
 		return new ResponseEntity<Offer>(offer, returnHeader, HttpStatus.OK);
 	}
+	
+	//API to get published offer
+	@RequestMapping(value = "/offer/published", method = RequestMethod.GET, headers="Accept=application/json")
+	public ResponseEntity<List<OfferUserPublish>> offerPublishGET(
+			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		//Getting the shopId from request header
+		int shopId = Integer.parseInt(header.get("shopId").get(0));
+		int userId = Integer.parseInt(header.get("userId").get(0));
+
+		List<OfferUserPublish> offerUserPublishList = new ArrayList<OfferUserPublish>();
+
+		String responseCode = WooptCode.SUCCESS;
+		
+		try{			
+
+				offerUserPublishList = shopService.getPublishedShopOffersbyUser(userId, shopId);
+			
+		}
+		catch (Exception e){
+			LOGGER.error("----- Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return offer !!!!!!!!:" + offerUserPublishList);
+		return new ResponseEntity<List<OfferUserPublish>>(offerUserPublishList, returnHeader, HttpStatus.OK);
+	}
+
 
 }

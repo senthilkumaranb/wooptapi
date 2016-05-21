@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.woopt.api.dao.OfferUserPublishDAO;
+import com.woopt.api.entity.OfferEntity;
 import com.woopt.api.entity.OfferUserPublishEntity;
 
 public class OfferUserPublishDAOImpl implements OfferUserPublishDAO {
@@ -59,16 +60,57 @@ public class OfferUserPublishDAOImpl implements OfferUserPublishDAO {
 
 	@Override
 	public List<OfferUserPublishEntity> getbyOfferId(int offerId) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("--------+ PublishedOffer +-----------");
+		Session session = this.sessionFactory.openSession();
+		//System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from OfferUserPublishEntity W where W.offerId=:offerId and W.offer_user_publish_status=1 ORDER BY offerId, shopId");
+		query.setParameter("offerId",offerId);
+		@SuppressWarnings("unchecked")
+		List<OfferUserPublishEntity> offerUserPublishEntity = query.list();
+		session.close();
+		return offerUserPublishEntity;
 	}
 
 	@Override
-	public List<OfferUserPublishEntity> getbyUserId(int shopId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OfferUserPublishEntity> getbyUserId(int userId) {
+		System.out.println("--------+ PublishedOffer +-----------");
+		Session session = this.sessionFactory.openSession();
+		//System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from OfferUserPublishEntity W where W.userId=:userId and W.offer_user_publish_status=1 ORDER BY userId, offerId");
+		query.setParameter("userId",userId);
+		@SuppressWarnings("unchecked")
+		List<OfferUserPublishEntity> offerUserPublishEntity = query.list();
+		session.close();
+		return offerUserPublishEntity;
 	}
 
+	@Override
+	public List<OfferUserPublishEntity> getbyShopId(int shopId) {
+		System.out.println("--------+ PublishedOffer +-----------");
+		Session session = this.sessionFactory.openSession();
+		//System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from OfferUserPublishEntity W where W.offerId in (SELECT offerId in OfferEntity O where O.shopId=:shopId) ORDER BY offerId");
+		query.setParameter("shopId",shopId);
+		@SuppressWarnings("unchecked")
+		List<OfferUserPublishEntity> offerUserPublishEntity = query.list();
+		session.close();
+		return offerUserPublishEntity;
+	}
+
+	@Override
+	public List<OfferUserPublishEntity> getPublishedShopOffersbyUserId(int userId, int shopId) {
+		System.out.println("--------+ PublishedOffer +-----------");
+		Session session = this.sessionFactory.openSession();
+		//System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from OfferUserPublishEntity W where W.offerId in (SELECT O.offerId from OfferEntity O where O.shopId=:shopId) AND W.userId=:userId ORDER BY userId");
+		query.setParameter("shopId",shopId);
+		query.setParameter("userId",userId);
+		@SuppressWarnings("unchecked")
+		List<OfferUserPublishEntity> offerUserPublishEntity = query.list();
+		session.close();
+		return offerUserPublishEntity;
+	}
+	
 	@Override
 	public OfferUserPublishEntity findById(int offerUserPublishId) {
 		// TODO Auto-generated method stub

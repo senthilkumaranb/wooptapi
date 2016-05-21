@@ -41,6 +41,7 @@ import com.woopt.api.entity.ShopReviewEntity;
 import com.woopt.api.entity.UserEntity;
 import com.woopt.api.model.Consumer;
 import com.woopt.api.model.Offer;
+import com.woopt.api.model.OfferUserPublish;
 import com.woopt.api.model.Shop;
 import com.woopt.api.model.ShopBranch;
 import com.woopt.api.model.ShopEmployee;
@@ -731,6 +732,28 @@ public class ShopService {
 		shopOffers = gson.fromJson(jsonOfferEntities, new TypeToken<List<Offer>>() {}.getType());
 		
 		return shopOffers;
+	}
+	
+	//function to get shop offer list
+	public List<OfferUserPublish> getPublishedShopOffersbyUser(int userId,int shopId){
+		LOGGER.info("----- inside getPublishedShopOffersbyUser -----");
+		List<OfferUserPublish> offerUserPublishList = new ArrayList<OfferUserPublish>();
+		List<OfferUserPublishEntity> offerUserPublishEntities = new ArrayList<OfferUserPublishEntity>();
+		
+		try{
+			offerUserPublishEntities = offerUserPublishDAO.getPublishedShopOffersbyUserId(userId, shopId);
+		
+			Gson gson = new Gson();
+			String jsonOfferPublish = gson.toJson(offerUserPublishEntities, new TypeToken<List<OfferUserPublishEntity>>() {}.getType());
+			offerUserPublishList = gson.fromJson(jsonOfferPublish, new TypeToken<List<OfferUserPublish>>() {}.getType());
+			LOGGER.info("----- offerUserPublishList -----" + offerUserPublishList);
+			return offerUserPublishList;
+		}
+		catch (Exception e){
+			LOGGER.info("----- Exception -----" + e.getMessage());
+			return null;
+		}
+		
 	}
 	
 	// function to add a new shop offer
