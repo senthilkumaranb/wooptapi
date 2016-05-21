@@ -65,7 +65,7 @@ public class PartnerController {
    		User user = null;
 
    		List<PartnerViewModel> partnerViewModels = new ArrayList<PartnerViewModel>();
-   		String responseCode = WooptCode.SUCCESS;
+   		int responseCode = WooptCode.SUCCESS;
    		
    		try{			
    			if (null != shopModel){

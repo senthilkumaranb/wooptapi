@@ -1,8 +1,6 @@
 package com.woopt.api.controller;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,22 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.woopt.api.common.WooptCode;
-import com.woopt.api.model.Cart;
-import com.woopt.api.model.ConsumerCheckIn;
-import com.woopt.api.model.Device;
 import com.woopt.api.model.Offer;
 import com.woopt.api.model.OfferUserPublish;
-import com.woopt.api.model.Order;
-import com.woopt.api.model.Shop;
-import com.woopt.api.model.ShopBranch;
 import com.woopt.api.model.ShopEmployee;
-import com.woopt.api.model.ShopInfo;
 import com.woopt.api.model.ShopLoyaltyCard;
 import com.woopt.api.model.ShopLoyaltyCardStage;
 import com.woopt.api.model.ShopLoyaltyProgram;
 import com.woopt.api.model.ShopLoyaltyProgramStage;
 import com.woopt.api.model.ShopModel;
-import com.woopt.api.model.ShopReview;
 import com.woopt.api.model.User;
 import com.woopt.api.model.UserModel;
 import com.woopt.api.service.ShopService;
@@ -71,7 +60,7 @@ public class ShopController {
 		User user = null;
 
 		List<ShopModel> shopModels = new ArrayList<ShopModel>();
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != userModel){
@@ -101,7 +90,7 @@ public class ShopController {
 		User user = null;
 
 		List<ShopModel> shopModels = new ArrayList<ShopModel>();
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != shopModel){
@@ -127,7 +116,7 @@ public class ShopController {
 		User user = null;
 
 		List<ShopModel> shopModels = new ArrayList<ShopModel>();
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != shopModel){
@@ -158,7 +147,7 @@ public class ShopController {
 		LOGGER.info("shopId value :" + shopId);
 
 		List<ShopEmployee> shopEmployees = new ArrayList<ShopEmployee>();
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != shopEmployee){
@@ -196,7 +185,7 @@ public class ShopController {
 		int shopId = Integer.parseInt(header.get("ShopId").get(0));
 		
 		List<ShopEmployee> shopEmployees = new ArrayList<ShopEmployee>();
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != shopEmployee){
@@ -227,7 +216,7 @@ public class ShopController {
 		//Getting the shopId from request header
 		int shopId = Integer.parseInt(header.get("shopId").get(0));
 
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != shopLoyaltyCard){
@@ -255,7 +244,7 @@ public class ShopController {
 		//Getting the shopId from request header
 		int shopId = Integer.parseInt(header.get("shopId").get(0));
 
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != shopLoyaltyCard){
@@ -281,7 +270,7 @@ public class ShopController {
 		//Getting the shopId from request header
 		int shopId = Integer.parseInt(header.get("shopId").get(0));
 
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != shopLoyaltyCardStage){
@@ -308,7 +297,7 @@ public class ShopController {
 		//Getting the shopId from request header
 		int shopId = Integer.parseInt(header.get("shopId").get(0));
 
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != shopLoyaltyProgram){
@@ -335,7 +324,7 @@ public class ShopController {
 		//Getting the shopId from request header
 		int shopId = Integer.parseInt(header.get("shopId").get(0));
 
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != shopLoyaltyProgram){
@@ -361,7 +350,7 @@ public class ShopController {
 		//Getting the shopId from request header
 		int shopId = Integer.parseInt(header.get("shopId").get(0));
 
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != shopLoyaltyProgramStage){
@@ -391,7 +380,7 @@ public class ShopController {
 		
 		LOGGER.debug("Inside offer api....");
 
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		List<Offer> offers = new ArrayList<Offer>();
 		
 		try{			
@@ -427,12 +416,12 @@ public class ShopController {
 		//Getting the shopId from request header
 		int shopId = Integer.parseInt(header.get("shopId").get(0));
 
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != offer){
 
-				String str = shopService.publishShopOffer(offer,shopId);
+				int str = shopService.publishShopOffer(offer,shopId);
 
 			}			
 		}
@@ -457,7 +446,7 @@ public class ShopController {
 
 		List<OfferUserPublish> offerUserPublishList = new ArrayList<OfferUserPublish>();
 
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 

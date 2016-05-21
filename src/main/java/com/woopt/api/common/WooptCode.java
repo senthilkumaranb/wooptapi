@@ -2,33 +2,41 @@ package com.woopt.api.common;
 
 public class WooptCode {
 	
-	public static final String SUCCESS = "0";
+	/** Global Status Code **/
+	public static final int SUCCESS = 0;
+	public static final int FAIL = -1;
+	public static final int SYSTEM_ERROR = 9;
 	
-	public static final String FAIL = "-1";
+	/** User Status Code **/
+	public static final int INVALID_USERMODEL = 100;
+	public static final int INVALID_FIRSTNAME = 101;
+	public static final int INVALID_LASTNAME = 102;
+	public static final int INVALID_MOBILENUMBER = 103;
+	public static final int MOBILE_NUMBER_ALREADY_EXIST = 104;
+	public static final int USER_DELETED = 105;
+	public static final int USER_DOES_NOT_EXIST = 106;
+	public static final int USER_ACTIVE = 107;
+	public static final int USER_INACTIVE = 108;
+	public static final int USER_ALREADY_ACTIVE = 109;
 	
-	public static final String MOBILE_ALREADY_EXIST = "1";
+	/** Device Status Code **/
+	public static final int DEVICE_STATUS_ACTIVE = 200;
+	public static final int DEVICE_STATUS_INACTIVE = 201;
+	public static final int DEVICE_INVALID_IMEI = 202;
+	public static final int DEVICE_INVALID_DEVICESERIALNO = 203;
 	
-	public static final String INVALID_USERMODE = "2";
-	
-	public static final String INVALID_FIRSTNAME = "3";
-	
-	public static final String INVALID_MOBILENUMBER = "4";
-	
-	public static final String INVALID_IMEI = "5";
-	
-	public static final String INVALID_DEVICESERIALNO = "6";
-	
-	public static final String MOBILE_NUMBER_ALREADY_EXIST = "7";
-	
-	// number 8
-	
-	public static final String SYSTEM_ERROR = "9";
-	
+	/** OTP Status Code **/
 	public static final int OPT_NOT_YET_VALIDATED = 10;
-	
 	public static final int OPT_VALIDATED = 11;
+	
+	/** TOKEN Status Code **/
+	public static final int TOKEN_TYPE_ADMIN = 600;
+	public static final int TOKEN_TYPE_SHOPKEEPER = 601;
+	public static final int TOKEN_TYPE_SHOP_EMPLOYEE = 602;
+	public static final int TOKEN_TYPE_USER = 603;
+	public static final int TOKEN_INVALID = 604;
+	public static final int TOKEN_VALID = 605;
 
 	private WooptCode(){
-		
 	}
 }

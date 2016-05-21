@@ -1,18 +1,16 @@
 package com.woopt.api.service;
 
-import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import org.json.*;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.woopt.api.common.WooptCode;
 import com.woopt.api.dao.OfferDAO;
 import com.woopt.api.dao.OfferUserPublishDAO;
@@ -26,7 +24,6 @@ import com.woopt.api.dao.ShopLoyaltyProgramDAO;
 import com.woopt.api.dao.ShopLoyaltyProgramStageDAO;
 import com.woopt.api.dao.ShopReviewDAO;
 import com.woopt.api.dao.UserDAO;
-import com.woopt.api.dao.impl.ShopLoyaltyCardDAOImpl;
 import com.woopt.api.entity.OfferEntity;
 import com.woopt.api.entity.OfferUserPublishEntity;
 import com.woopt.api.entity.ShopBranchEntity;
@@ -37,7 +34,6 @@ import com.woopt.api.entity.ShopLoyaltyCardEntity;
 import com.woopt.api.entity.ShopLoyaltyCardStageEntity;
 import com.woopt.api.entity.ShopLoyaltyProgramEntity;
 import com.woopt.api.entity.ShopLoyaltyProgramStageEntity;
-import com.woopt.api.entity.ShopReviewEntity;
 import com.woopt.api.entity.UserEntity;
 import com.woopt.api.model.Consumer;
 import com.woopt.api.model.Offer;
@@ -53,15 +49,6 @@ import com.woopt.api.model.ShopLoyaltyProgramStage;
 import com.woopt.api.model.ShopModel;
 import com.woopt.api.model.ShopReview;
 import com.woopt.api.model.User;
-import com.woopt.api.model.UserModel;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 /**
  * Service Implementation for ShopController
@@ -160,7 +147,7 @@ public class ShopService {
 	@Transactional
 	public List<ShopModel> addShopModel(ShopModel shopModel){
 		
-		String returnCode;
+		int returnCode;
 		Shop shop = new Shop();
 		shop = shopModel.getShop();
 		int shopId = this.addShop(shop);
@@ -280,7 +267,7 @@ public class ShopService {
 	
 	// function to add a new shop info
 	@Transactional
-	public String addShopInfo(ShopInfo shopInfo, int shopId){
+	public int addShopInfo(ShopInfo shopInfo, int shopId){
 		ShopInfoEntity shopInfoEntity = new ShopInfoEntity();
 		Gson gson = new Gson();
 		String jsonShopInfoEntity = gson.toJson(shopInfo, ShopInfo.class);
@@ -337,7 +324,7 @@ public class ShopService {
 	}
 	
 	// function to add a new shop Branch
-	public String addShopBranch(ShopBranch shopBranch){
+	public int addShopBranch(ShopBranch shopBranch){
 		ShopBranchEntity shopBranchEntity = new ShopBranchEntity();
 		Gson gson = new Gson();
 		String jsonShopBranchEntity = gson.toJson(shopBranch, ShopBranch.class);
@@ -776,7 +763,7 @@ public class ShopService {
 	}
 		
 	// function to add a new shop offer
-	public String updateShopOffer(Offer shopOffer){
+	public int updateShopOffer(Offer shopOffer){
 		OfferEntity offerEntity = new OfferEntity();
 		Gson gson = new Gson();
 		String jsonOffer = gson.toJson(shopOffer, Offer.class);
@@ -791,7 +778,7 @@ public class ShopService {
 	}
 	
 	// function to publish Shop Offer
-	public String publishShopOffer(Offer offer,int shopId){
+	public int publishShopOffer(Offer offer,int shopId){
 
 		int offerId = offer.getOfferId();
 		String offerCode = offer.getOfferCode();

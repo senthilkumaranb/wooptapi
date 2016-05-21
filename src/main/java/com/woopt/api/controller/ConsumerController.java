@@ -63,7 +63,7 @@ private static final Logger LOGGER = Logger.getLogger(ShopController.class.getNa
 		User user = null;
 
 		List<ConsumerViewModel> consumerShopModels = new ArrayList<ConsumerViewModel>();
-		String responseCode = WooptCode.SUCCESS;
+		int responseCode = WooptCode.SUCCESS;
 		
 		try{			
 			if (null != userModel){
