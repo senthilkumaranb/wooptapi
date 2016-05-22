@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Cart {
 	
-	private Integer cardId;
+	private Integer cartId;
 	
 	private List<CartItem> cartItems;
 	
@@ -16,12 +16,12 @@ public class Cart {
 	
 	private Integer consumerCheckInId;
 
-	public Integer getCardId() {
-		return cardId;
+	public Integer getCartId() {
+		return cartId;
 	}
 
-	public void setCardId(Integer cardId) {
-		this.cardId = cardId;
+	public void setCartId(Integer cartId) {
+		this.cartId = cartId;
 	}
 
 	public List<CartItem> getCartItems() {
@@ -68,7 +68,7 @@ public class Cart {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cardId == null) ? 0 : cardId.hashCode());
+		result = prime * result + ((cartId == null) ? 0 : cartId.hashCode());
 		result = prime * result + ((cartItems == null) ? 0 : cartItems.hashCode());
 		result = prime * result + ((cartStatus == null) ? 0 : cartStatus.hashCode());
 		result = prime * result + ((cartType == null) ? 0 : cartType.hashCode());
@@ -86,10 +86,10 @@ public class Cart {
 		if (getClass() != obj.getClass())
 			return false;
 		Cart other = (Cart) obj;
-		if (cardId == null) {
-			if (other.cardId != null)
+		if (cartId == null) {
+			if (other.cartId != null)
 				return false;
-		} else if (!cardId.equals(other.cardId))
+		} else if (!cartId.equals(other.cartId))
 			return false;
 		if (cartItems == null) {
 			if (other.cartItems != null)
@@ -121,7 +121,7 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [cardId=" + cardId + ", cartItems=" + cartItems + ", consumerId=" + consumerId + ", cartType="
+		return "Cart [cartId=" + cartId + ", cartItems=" + cartItems + ", consumerId=" + consumerId + ", cartType="
 				+ cartType + ", cartStatus=" + cartStatus + ", consumerCheckInId=" + consumerCheckInId + "]";
 	}
 

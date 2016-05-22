@@ -64,11 +64,11 @@ public class PartnerService {
 			partnerView.setConsumer(c);
 			
 			// Populate consumer loyalty card to partner view
-			ShopLoyaltyCard shopLoyaltyCard = consumerService.getUserShopLoyaltyCard(consumerId);
+			ShopLoyaltyCard shopLoyaltyCard = consumerService.getUserShopLoyaltyCard(consumerId,shopId);
 			partnerView.setShopLoyaltyCard(shopLoyaltyCard);
 			
 			// Populate consumer loyalty program to partner view
-			ShopLoyaltyProgram shopLoyaltyProgram = consumerService.getUserShopLoyaltyProgram(consumerId);
+			ShopLoyaltyProgram shopLoyaltyProgram = consumerService.getUserShopLoyaltyProgram(consumerId,shopId);
 			partnerView.setShopLoyaltyProgram(shopLoyaltyProgram);
 			
 			//partnerView.setConsumerCheckIn(consumerCheckIn);

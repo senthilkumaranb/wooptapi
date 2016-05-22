@@ -79,8 +79,18 @@ public class OfferDAOImpl implements OfferDAO {
 
 	@Override
 	public OfferEntity findById(int offerId) {
-		// TODO Auto-generated method stub
-		return null;
+		//System.out.println("--------+ offer +-----------");
+		Session session = this.sessionFactory.openSession();
+		//System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from OfferEntity W where W.offerId=:offerId and W.offerStatus=1");
+		query.setParameter("offerId",offerId);
+		@SuppressWarnings("unchecked")
+		List<OfferEntity> offerEntity = query.list();
+		session.close();
+		if(offerEntity.size()!=0)
+			return offerEntity.get(0);
+		else
+			return null;
 	}
 
 }

@@ -31,7 +31,7 @@ public class CartItemEntity {
 	private Integer cartItemId;
 	
 	@Column(name = "CART_ID")
-	private Integer cardId;
+	private Integer cartId;
 	
 	@Column(name = "OFFER_USER_PUBLISH_ID")
 	private Integer offerUserPublishId;
@@ -64,12 +64,12 @@ public class CartItemEntity {
 		this.cartItemId = cartItemId;
 	}
 
-	public Integer getCardId() {
-		return cardId;
+	public Integer getCartId() {
+		return cartId;
 	}
 
-	public void setCardId(Integer cardId) {
-		this.cardId = cardId;
+	public void setCartId(Integer cartId) {
+		this.cartId = cartId;
 	}
 
 	public Integer getOfferUserPublishId() {
@@ -122,7 +122,7 @@ public class CartItemEntity {
 
 	@Override
 	public String toString() {
-		return "CartItemEntity [cartItemId=" + cartItemId + ", cardId=" + cardId + ", offerUserPublishId="
+		return "CartItemEntity [cartItemId=" + cartItemId + ", cartId=" + cartId + ", offerUserPublishId="
 				+ offerUserPublishId + ", cartItemOfferCode=" + cartItemOfferCode + ", cartItemOfferAmount="
 				+ cartItemOfferAmount + ", cartItemStatus=" + cartItemStatus + ", createdDatetime=" + createdDatetime
 				+ ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";

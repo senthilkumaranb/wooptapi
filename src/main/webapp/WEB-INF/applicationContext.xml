@@ -158,6 +158,10 @@
 	<bean id="userToShopLoyaltyProgramStageDAO" class="com.woopt.api.dao.impl.UserToShopLoyaltyProgramStageDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
+	
+	<bean id="consumerCheckInDAO" class="com.woopt.api.dao.impl.ConsumerCheckInDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
 		
 	<bean id="cartDAO" class="com.woopt.api.dao.impl.CartDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />

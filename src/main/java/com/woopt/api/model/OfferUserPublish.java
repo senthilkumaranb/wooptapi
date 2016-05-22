@@ -4,6 +4,7 @@ public class OfferUserPublish {
 
 	private Integer offerUserPublishId;
 	private Integer userId;
+	private Integer offerId;
 	private String offerUserPublishOfferCode;
 	private String offerUserPublishQRCode;
 	private String offerUserPublishMethod;
@@ -28,6 +29,12 @@ public class OfferUserPublish {
 	}
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+	public Integer getOfferId() {
+		return offerId;
+	}
+	public void setOfferId(Integer offerId) {
+		this.offerId = offerId;
 	}
 	public String getOfferUserPublishOfferCode() {
 		return offerUserPublishOfferCode;
@@ -105,6 +112,7 @@ public class OfferUserPublish {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((offerId == null) ? 0 : offerId.hashCode());
 		result = prime * result
 				+ ((offerUserPublishDateOfRedeem == null) ? 0 : offerUserPublishDateOfRedeem.hashCode());
 		result = prime * result + ((offerUserPublishDatetime == null) ? 0 : offerUserPublishDatetime.hashCode());
@@ -134,6 +142,11 @@ public class OfferUserPublish {
 		if (getClass() != obj.getClass())
 			return false;
 		OfferUserPublish other = (OfferUserPublish) obj;
+		if (offerId == null) {
+			if (other.offerId != null)
+				return false;
+		} else if (!offerId.equals(other.offerId))
+			return false;
 		if (offerUserPublishDateOfRedeem == null) {
 			if (other.offerUserPublishDateOfRedeem != null)
 				return false;
@@ -208,8 +221,8 @@ public class OfferUserPublish {
 	}
 	@Override
 	public String toString() {
-		return "OfferUserPublish [offerUserPublishId=" + offerUserPublishId + ", userId=" + userId
-				+ ", offerUserPublishOfferCode=" + offerUserPublishOfferCode + ", offerUserPublishQRCode="
+		return "OfferUserPublish [offerUserPublishId=" + offerUserPublishId + ", userId=" + userId + ", offerId="
+				+ offerId + ", offerUserPublishOfferCode=" + offerUserPublishOfferCode + ", offerUserPublishQRCode="
 				+ offerUserPublishQRCode + ", offerUserPublishMethod=" + offerUserPublishMethod
 				+ ", offerUserPublishIsRedeemed=" + offerUserPublishIsRedeemed + ", offerUserPublishDatetime="
 				+ offerUserPublishDatetime + ", offerUserPublishDateOfRedeem=" + offerUserPublishDateOfRedeem

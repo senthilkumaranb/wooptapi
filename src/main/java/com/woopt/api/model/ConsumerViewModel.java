@@ -4,6 +4,8 @@ import java.util.List;
 
 public class ConsumerViewModel {
 	
+	private Consumer consumer;
+	
 	private Shop shop;
 	
 	private ShopInfo shopInfo;
@@ -26,6 +28,15 @@ public class ConsumerViewModel {
 	List<Order> allOrders;
 	
 	List<Chat> chats;
+	
+
+	public Consumer getConsumer() {
+		return consumer;
+	}
+
+	public void setConsumer(Consumer consumer) {
+		this.consumer = consumer;
+	}
 
 	public Shop getShop() {
 		return shop;
@@ -113,6 +124,7 @@ public class ConsumerViewModel {
 		int result = 1;
 		result = prime * result + ((allOrders == null) ? 0 : allOrders.hashCode());
 		result = prime * result + ((chats == null) ? 0 : chats.hashCode());
+		result = prime * result + ((consumer == null) ? 0 : consumer.hashCode());
 		result = prime * result + ((consumerCheckIn == null) ? 0 : consumerCheckIn.hashCode());
 		result = prime * result + ((offers == null) ? 0 : offers.hashCode());
 		result = prime * result + ((order == null) ? 0 : order.hashCode());
@@ -142,6 +154,11 @@ public class ConsumerViewModel {
 			if (other.chats != null)
 				return false;
 		} else if (!chats.equals(other.chats))
+			return false;
+		if (consumer == null) {
+			if (other.consumer != null)
+				return false;
+		} else if (!consumer.equals(other.consumer))
 			return false;
 		if (consumerCheckIn == null) {
 			if (other.consumerCheckIn != null)
@@ -188,10 +205,10 @@ public class ConsumerViewModel {
 
 	@Override
 	public String toString() {
-		return "ConsumerViewModel [shop=" + shop + ", shopInfo=" + shopInfo + ", shopReview=" + shopReview
-				+ ", shopLoyaltyCard=" + shopLoyaltyCard + ", shopLoyaltyProgram=" + shopLoyaltyProgram + ", offers="
-				+ offers + ", consumerCheckIn=" + consumerCheckIn + ", order=" + order + ", allOrders=" + allOrders
-				+ ", chats=" + chats + "]";
+		return "ConsumerViewModel [consumer=" + consumer + ", shop=" + shop + ", shopInfo=" + shopInfo + ", shopReview="
+				+ shopReview + ", shopLoyaltyCard=" + shopLoyaltyCard + ", shopLoyaltyProgram=" + shopLoyaltyProgram
+				+ ", offers=" + offers + ", consumerCheckIn=" + consumerCheckIn + ", order=" + order + ", allOrders="
+				+ allOrders + ", chats=" + chats + "]";
 	}
 
 
