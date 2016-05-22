@@ -42,11 +42,8 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<UserEntity> list() {
-		System.out.println("--------++-----------");
 		Session session = this.sessionFactory.openSession();
-		System.out.println("--------++****************-----------" + session);
 		List<UserEntity> userList = session.createQuery("from UserEntity").list();
-		System.out.println("-------------------" + userList);
 		session.close();
 		return userList;
 	}
@@ -55,6 +52,7 @@ public class UserDAOImpl implements UserDAO {
 	@SuppressWarnings("unchecked")
 	public UserEntity findById(long id) {
 		Session session = this.sessionFactory.openSession();
+		//TODO Change query to directly search User by Id.
 		List<UserEntity> userList = session.createQuery("from UserEntity").list();
 		session.close();
 		for (UserEntity user : userList) {
@@ -82,7 +80,6 @@ public class UserDAOImpl implements UserDAO {
 			}
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
@@ -101,7 +98,6 @@ public class UserDAOImpl implements UserDAO {
 			}
 			e.printStackTrace();
 		}
-		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -110,15 +106,12 @@ public class UserDAOImpl implements UserDAO {
 		Session session = this.sessionFactory.openSession();
 		List<UserEntity> userList = session.createQuery("from UserEntity").list();
 		session.close();
-		
 		for (UserEntity user : userList) {
 			LOGGER.info("User object in findByMobile method (for mobile no-" + mobileNo + "): " + user);
-			
-			if (null != user && user.getUserMobile() == mobileNo) {
+			if (null != user && user.getUserMobile().equals(mobileNo)) {
 				return user;
 			}
 		}
 		return null;
 	}
-
 }

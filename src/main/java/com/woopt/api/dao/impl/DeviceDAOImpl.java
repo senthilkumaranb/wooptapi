@@ -2,12 +2,9 @@ package com.woopt.api.dao.impl;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.woopt.api.dao.DeviceDAO;
 import com.woopt.api.entity.DeviceEntity;
@@ -18,6 +15,7 @@ import com.woopt.api.entity.DeviceEntity;
  * @author Sushil
  *
  */
+@SuppressWarnings("unchecked")
 public class DeviceDAOImpl implements DeviceDAO {
 
 	private SessionFactory sessionFactory;
@@ -28,32 +26,80 @@ public class DeviceDAOImpl implements DeviceDAO {
 	
 	@Override
 	public void save(DeviceEntity device) {
-		// TODO Auto-generated method stub
-		
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(device);
+		tx.commit();
+		session.close();
 	}
 
 	@Override
 	public List<DeviceEntity> list() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.openSession();
+		List<DeviceEntity> deviceList = session.createQuery("from DeviceEntity").list();
+		session.close();
+		return deviceList;
 	}
 
 	@Override
 	public DeviceEntity findById(long deviceId) {
-		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		//TODO Change query to directly search Device by Id.
+		List<DeviceEntity> deviceList = session.createQuery("from DeviceEntity").list();
+		session.close();
+		for (DeviceEntity device : deviceList) {
+			if (device.getDeviceId() == deviceId) {
+				return device;
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public DeviceEntity findByUserId(long userId) {
+		Session session = this.sessionFactory.openSession();
+		//TODO Change query to directly search Device by Id.
+		List<DeviceEntity> deviceList = session.createQuery("from DeviceEntity").list();
+		session.close();
+		for (DeviceEntity device : deviceList) {
+			if (device.getUserId() == userId) {
+				return device;
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public void delete(long deviceId) {
-		// TODO Auto-generated method stub
-		
+		Transaction transaction = null;
+		Session session = this.sessionFactory.openSession();
+		try {
+			transaction = session.beginTransaction();
+			DeviceEntity device = (DeviceEntity) session.load(DeviceEntity.class, deviceId);
+			session.delete(device);
+			session.getTransaction().commit();
+		} catch (RuntimeException e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void updateDevice(DeviceEntity device) {
-		// TODO Auto-generated method stub
-		
-	}
+		Transaction transaction = null;
+		Session session = this.sessionFactory.openSession();
+		try {
+			transaction = session.beginTransaction();
+			session.update(device);
+			session.getTransaction().commit();
 
+		} catch (RuntimeException e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
 }

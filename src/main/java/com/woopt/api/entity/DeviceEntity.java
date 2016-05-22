@@ -249,6 +249,15 @@ public class DeviceEntity {
 	}
 
 	@Override
+	public String toString() {
+		return "DeviceEntity [deviceId=" + deviceId + ", userId=" + userId + ", deviceIMEI=" + deviceIMEI
+				+ ", deviceMAC=" + deviceMAC + ", deviceSerialNo=" + deviceSerialNo + ", deviceStatus=" + deviceStatus
+				+ ", deviceToken=" + deviceToken + ", devicePhone=" + devicePhone + ", deviceOTP=" + deviceOTP
+				+ ", deviceOTPStatus=" + deviceOTPStatus + ", deviceOTPTimestamp=" + deviceOTPTimestamp
+				+ ", createdDatetime=" + createdDatetime + ", lastUpdatedDatetime=" + lastUpdatedDatetime + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

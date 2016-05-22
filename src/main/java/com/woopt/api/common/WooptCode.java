@@ -1,11 +1,17 @@
 package com.woopt.api.common;
 
+/**
+ * Woopt Constant Code
+ * @author Sushil
+ * 
+ */
 public class WooptCode {
 	
 	/** Global Status Code **/
 	public static final int SUCCESS = 0;
 	public static final int FAIL = -1;
 	public static final int SYSTEM_ERROR = 9;
+	public static final int INVALID_INPUT = 10;
 	
 	/** User Status Code **/
 	public static final int INVALID_USERMODEL = 100;
@@ -13,11 +19,11 @@ public class WooptCode {
 	public static final int INVALID_LASTNAME = 102;
 	public static final int INVALID_MOBILENUMBER = 103;
 	public static final int MOBILE_NUMBER_ALREADY_EXIST = 104;
-	public static final int USER_DELETED = 105;
-	public static final int USER_DOES_NOT_EXIST = 106;
-	public static final int USER_ACTIVE = 107;
-	public static final int USER_INACTIVE = 108;
-	public static final int USER_ALREADY_ACTIVE = 109;
+	public static final int USER_STATUS_ACTIVE = 105;
+	public static final int USER_STATUS_INACTIVE = 106;
+	public static final int USER_STATUS_ALREADY_ACTIVE = 107;
+	public static final int USER_STATUS_DELETED = 108;
+	public static final int USER_STATUS_DOES_NOT_EXIST = 109;
 	
 	/** Device Status Code **/
 	public static final int DEVICE_STATUS_ACTIVE = 200;
@@ -26,8 +32,9 @@ public class WooptCode {
 	public static final int DEVICE_INVALID_DEVICESERIALNO = 203;
 	
 	/** OTP Status Code **/
-	public static final int OPT_NOT_YET_VALIDATED = 10;
-	public static final int OPT_VALIDATED = 11;
+	public static final int OPT_NOT_YET_VALIDATED = 300;
+	public static final int OPT_VALIDATED = 301;
+	public static final int OPT_VALIDAT_FAILED = 302;
 	
 	/** TOKEN Status Code **/
 	public static final int TOKEN_TYPE_ADMIN = 600;

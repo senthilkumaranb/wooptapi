@@ -12,6 +12,8 @@ public interface DeviceDAO {
 	
 	public DeviceEntity findById(long deviceId);
 	
+	public DeviceEntity findByUserId(long userId);
+	
 	public void  delete(long deviceId);
 	
 	public void  updateDevice(DeviceEntity device);

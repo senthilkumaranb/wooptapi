@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.woopt.api.common.WooptCode;
 import com.woopt.api.model.FamilyMember;
 import com.woopt.api.model.UserModel;
 import com.woopt.api.service.UserService;
@@ -46,27 +47,24 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/getIn", method = RequestMethod.POST, headers="Accept=application/json")
-	public ResponseEntity<String> getIn(@RequestBody UserModel userModel, UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		System.out.println("Calling POST /api/user/getIn");
-		
+	public ResponseEntity<String> getIn(@RequestBody UserModel userModel, UriComponentsBuilder ucBuilder, 
+			@RequestHeader HttpHeaders header ) {
+		LOGGER.info("Calling POST /api/user/getIn");
 		int result = userServive.updateOTP(userModel, header);
-		
-		
-		
-		
-		
-		header.get("otp").get(0);
-		
-		
-		
+		String token = "";
+		if (result == WooptCode.SUCCESS){
+			token = userServive.getUserToken(userModel);
+		}
 		HttpHeaders returnHeader = new HttpHeaders();
-		//returnHeader.add("token", TokenService.generateNewToken(userId, deviceId));
-		returnHeader.add("responseCode", "30");
+		returnHeader.add("Token", token);
+		returnHeader.add("Responsecode", result+"");
+		LOGGER.info("/api/user/getIn returnHeader:" + returnHeader);
 		return new ResponseEntity<String>(returnHeader, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/userProfile", method = RequestMethod.GET, headers="Accept=application/json")
-	public ResponseEntity<String> userProfileGET(@RequestBody UserModel userModel, UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ){
+	public ResponseEntity<String> userProfileGET(@RequestBody UserModel userModel, UriComponentsBuilder ucBuilder,
+			@RequestHeader HttpHeaders header ){
 		System.out.println("Calling GET /api/user/userProfile/");
 		HttpHeaders returnHeader = new HttpHeaders();
 		returnHeader.add("token", "tokenStringdasdas");
@@ -168,5 +166,4 @@ public class UserController {
 		System.out.println("************** test json : " + json);
 		return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 	}*/
-	
 }

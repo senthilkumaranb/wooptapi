@@ -16,6 +16,11 @@ import com.woopt.api.entity.DeviceEntity;
 import com.woopt.api.entity.UserEntity;
 import com.woopt.api.model.UserModel;
 
+/**
+ * User Service
+ * @author Sushil
+ * 
+ */
 @Service
 public class UserService {
 	
@@ -64,31 +69,30 @@ public class UserService {
 				}
 			}
 			if (userDAO.findByMobile(userModel.getUser().getUserMobile()) != null) {
-				LOGGER.warn("Mobile number already exist");
 				returnCode = WooptCode.MOBILE_NUMBER_ALREADY_EXIST;
 				throw new Exception();
 			} else {
 				UserEntity userEntity = new UserEntity();
 				DeviceEntity deviceEntity = new DeviceEntity();
 				Timestamp currentTimestamp = new Timestamp(new java.util.Date().getTime());
-				int newOTP = OTPService.generateOpt();
 				userEntity.setUserFirstName(userModel.getUser().getUserFirstName());
 				userEntity.setUserMobile(userModel.getUser().getUserMobile());
 				userEntity.setUserCreatedDatetime(currentTimestamp);
 				userEntity.setUserLastUpdateDatetime(currentTimestamp);
-				
-				deviceEntity.setDeviceStatus(WooptCode.DEVICE_STATUS_ACTIVE);
+				userEntity.setUserStatus(WooptCode.USER_STATUS_INACTIVE);
+				userDAO.save(userEntity);
+				int newOTP = OTPService.generateOpt();
+				deviceEntity.setDeviceStatus(WooptCode.DEVICE_STATUS_INACTIVE);
 				deviceEntity.setDeviceIMEI(userModel.getDevice().getDeviceImei());
 				deviceEntity.setDeviceSerialNo(userModel.getDevice().getDeviceSerialNo());
 				deviceEntity.setDeviceOTP(newOTP+"");
 				deviceEntity.setDeviceOTPStatus(WooptCode.OPT_NOT_YET_VALIDATED);
 				deviceEntity.setDeviceOTPTimestamp(currentTimestamp);
-				userDAO.save(userEntity);
+				deviceEntity.setUserId(userEntity.getUserId());
+				deviceEntity.setCreatedDatetime(currentTimestamp);
+				deviceEntity.setLastUpdatedDatetime(currentTimestamp);
 				deviceDAO.save(deviceEntity);
 				OTPService.sendOTP(newOTP, userModel.getUser().getUserMobile());
-				LOGGER.info("userEntity:" + userEntity);
-				LOGGER.info("deviceEntity:" + deviceEntity);
-				LOGGER.info("newOTP:" + newOTP);
 				returnCode = WooptCode.SUCCESS;
 			}
 		} catch (Exception e) {
@@ -100,41 +104,71 @@ public class UserService {
 	
 	public int updateOTP(UserModel userModel, HttpHeaders header){
 		int result = WooptCode.SYSTEM_ERROR;
-		String mobileNumber = null;
 		String OTP = null;
+		String mobileNumber = null;
+		String deviceIMEI = null;
 		long userId = 0;
+		Timestamp currentTimestamp = new Timestamp(new java.util.Date().getTime());
 		try {
-			if (null != header && null != header.get("otp") 
+			if (null != header 
+				&& null != header.get("otp") 
+				&& null != header.get("otp").get(0) 
 					&& null != userModel && null != userModel.getUser() 
-					&& null != userModel.getUser().getUserMobile()) {
+					&& null != userModel.getUser().getUserMobile() 
+					&& null != userModel.getDevice() 
+					&& null != userModel.getDevice().getDeviceImei()) {
 				OTP = header.get("otp").get(0);
 				mobileNumber = userModel.getUser().getUserMobile();
+				deviceIMEI = userModel.getDevice().getDeviceImei();
 				UserEntity userEntity = userDAO.findByMobile(mobileNumber);
-				if (null == userEntity || userEntity.getUserStatus() == WooptCode.USER_DELETED){
-					return WooptCode.USER_DOES_NOT_EXIST;
-				}else if(userEntity.getUserStatus() == WooptCode.USER_ACTIVE){
-					return  WooptCode.USER_ALREADY_ACTIVE;
+				if (null == userEntity || userEntity.getUserStatus() == WooptCode.USER_STATUS_DELETED){
+					return WooptCode.USER_STATUS_DOES_NOT_EXIST;
+				}else if(userEntity.getUserStatus() == WooptCode.USER_STATUS_ACTIVE){
+					return  WooptCode.USER_STATUS_ALREADY_ACTIVE;
 				}else{
-					userId = userEntity.getUserId(); 
+					userId = userEntity.getUserId();
+					DeviceEntity deviceEntity = deviceDAO.findByUserId(userId);
+					if (null != deviceEntity 
+							&& deviceEntity.getDeviceOTPStatus() == WooptCode.OPT_NOT_YET_VALIDATED 
+							&& deviceEntity.getDeviceStatus() == WooptCode.DEVICE_STATUS_INACTIVE
+							&& deviceEntity.getUserId() == userId 
+							&& deviceEntity.getDeviceIMEI().equals(deviceIMEI) 
+							&& deviceEntity.getDeviceOTP().equals(OTP)){
+						deviceEntity.setDeviceOTPStatus(WooptCode.OPT_VALIDATED);
+						deviceEntity.setDeviceStatus(WooptCode.DEVICE_STATUS_ACTIVE);
+						deviceEntity.setLastUpdatedDatetime(currentTimestamp);
+						deviceDAO.updateDevice(deviceEntity);
+						userEntity.setDeviceId(deviceEntity.getDeviceId());
+						userEntity.setUserStatus(WooptCode.USER_STATUS_ACTIVE);
+						userDAO.updateUser(userEntity);
+						result = WooptCode.SUCCESS;
+					}else{
+						return  WooptCode.OPT_VALIDAT_FAILED;
+					}
 				}
-				if (null != header && null != header.get("otp") && null != header.get("otp").get(0)){
-					OTP = header.get("otp").get(0);
-				}else{
-					//Write Logic to check OTP in Device table and update the table.
-				}
-				
+			}else{
+				result = WooptCode.INVALID_INPUT;
 			}
-			result = WooptCode.SUCCESS;
 		} catch (Exception e) {
-			
+			e.printStackTrace();
+			result = WooptCode.SYSTEM_ERROR;
 		}
 		return result;
 	}
 	
+	public String getUserToken(UserModel userModel){
+		String token = null;
+		if (null != userModel && null != userModel.getUser()){
+			UserEntity userEntity = userDAO.findByMobile(userModel.getUser().getUserMobile());
+			DeviceEntity deviceEntity = deviceDAO.findByUserId(userEntity.getUserId());
+			if (null != deviceEntity){
+				try {
+					token = TokenService.generateNewToken(userModel.getUser().getUserId()+"", deviceEntity.getDeviceId()+"");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return token;
+	}
 }
-
-
-
-
-
-
