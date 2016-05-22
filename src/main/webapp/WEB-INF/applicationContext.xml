@@ -18,7 +18,7 @@
         http://activemq.apache.org/schema/core/activemq-core-5.8.0.xsd">
 
 	<!-- <import resource="gwt-servlet.xml"/> -->
-
+	
 	<!-- Activates various annotations to be detected in bean classes -->
 	<context:annotation-config />
 
