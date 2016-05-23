@@ -23,23 +23,28 @@ public class CartDAOImpl implements CartDAO {
 	@Override
 	public CartEntity save(CartEntity cartEntity) {
 		// Save Cart Entity
+		CartEntity rc = new CartEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(cartEntity);
+		rc=cartEntity;
 		tx.commit();
 		session.close();
-		return cartEntity;
+		return rc;
 		
 	}
 
 	@Override
-	public void update(CartEntity cartEntity) {
+	public CartEntity update(CartEntity cartEntity) {
 		// Update Cart Entity
+		CartEntity rc = new CartEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.update(cartEntity);
+		rc=cartEntity;
 		tx.commit();
 		session.close();
+		return rc;
 		
 	}
 
@@ -57,7 +62,7 @@ public class CartDAOImpl implements CartDAO {
 
 	@Override
 	public CartEntity getActiveCartbyConsumerId(int consumerId) {
-		System.out.println("--------+ Order +-----------");
+		System.out.println("--------+ getActiveCartbyConsumerId +-----------");
 		Session session = this.sessionFactory.openSession();
 		//System.out.println("--------++****************-----------" + session);
 		Query query = session.createQuery("from CartEntity W where W.consumerId=:consumerId and W.cartStatus=1");

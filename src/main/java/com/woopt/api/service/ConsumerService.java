@@ -15,10 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.woopt.api.common.WooptCode;
 import com.woopt.api.dao.CartDAO;
 import com.woopt.api.dao.CartItemDAO;
+import com.woopt.api.dao.ConsumerCheckInDAO;
 import com.woopt.api.dao.ConsumerDAO;
 import com.woopt.api.dao.OfferDAO;
+import com.woopt.api.dao.OfferUserPublishDAO;
 import com.woopt.api.dao.OrderDAO;
 import com.woopt.api.dao.ShopDAO;
 import com.woopt.api.dao.ShopInfoDAO;
@@ -29,8 +32,10 @@ import com.woopt.api.dao.UserToShopLoyaltyProgramDAO;
 import com.woopt.api.dao.UserToShopLoyaltyProgramStageDAO;
 import com.woopt.api.entity.CartEntity;
 import com.woopt.api.entity.CartItemEntity;
+import com.woopt.api.entity.ConsumerCheckInEntity;
 import com.woopt.api.entity.ConsumerEntity;
 import com.woopt.api.entity.OfferEntity;
+import com.woopt.api.entity.OfferUserPublishEntity;
 import com.woopt.api.entity.OrderEntity;
 import com.woopt.api.entity.ShopEntity;
 import com.woopt.api.entity.ShopInfoEntity;
@@ -45,7 +50,9 @@ import com.woopt.api.model.Cart;
 import com.woopt.api.model.CartItem;
 import com.woopt.api.model.Chat;
 import com.woopt.api.model.Consumer;
+import com.woopt.api.model.ConsumerCheckIn;
 import com.woopt.api.model.Offer;
+import com.woopt.api.model.OfferUserPublish;
 import com.woopt.api.model.Order;
 import com.woopt.api.model.Shop;
 import com.woopt.api.model.ShopBranch;
@@ -101,6 +108,12 @@ public class ConsumerService {
     ShopLoyaltyProgramStageDAO shopLoyaltyProgramStageDAO;
     
     @Autowired
+    ConsumerCheckInDAO consumerCheckInDAO;
+    
+    @Autowired
+    OfferUserPublishDAO offerUserPublishDAO;
+    
+    @Autowired
     OrderDAO orderDAO;
     
     @Autowired
@@ -108,7 +121,10 @@ public class ConsumerService {
     
     @Autowired
     CartItemDAO cartItemDAO;
+    
+    //USER FAVOURITE SHOP RELATED FUNCTIONS GO HERE
 	
+    //function to get user favourite shops by userId
 	public List<ConsumerViewModel> getMyFavShops(int userId){
 		
 		List<ConsumerViewModel> consumerViewModel = new ArrayList<ConsumerViewModel>();
@@ -124,6 +140,8 @@ public class ConsumerService {
 			int shopId = c.getShopId();
 			ConsumerViewModel consumerView = new ConsumerViewModel();
 			
+			consumerView.setConsumer(c);
+			
 			LOGGER.info("!!!!!!! calling Shop Details !!!!!!!!" + c);
 			consumerView.setShop(this.getShopbyShopId(shopId));
 			
@@ -131,10 +149,10 @@ public class ConsumerService {
 			consumerView.setShopInfo(this.getUserShopInfo(shopId));
 			
 			LOGGER.info("!!!!!!! calling User Shop Loyalty Card !!!!!!!!");
-			consumerView.setShopLoyaltyCard(this.getUserShopLoyaltyCard(consumerId));
+			consumerView.setShopLoyaltyCard(this.getUserShopLoyaltyCard(consumerId,shopId));
 			
 			LOGGER.info("!!!!!!! calling User Shop Loyalty Program !!!!!!!!");
-			consumerView.setShopLoyaltyProgram(this.getUserShopLoyaltyProgram(consumerId));
+			consumerView.setShopLoyaltyProgram(this.getUserShopLoyaltyProgram(consumerId,shopId));
 			
 			LOGGER.info("!!!!!!! calling Shop Offer !!!!!!!!");
 			//offers are not based on consumer ID
@@ -142,6 +160,8 @@ public class ConsumerService {
 			
 			LOGGER.info("!!!!!!! calling Shop Order !!!!!!!!");
 			//consumerView.setOrder(this.getUserShopOrder(consumerId));
+			
+			consumerView.setConsumerCheckIn(this.getUserCheckIn(consumerId));
 			
 			consumerViewModel.add(consumerView);
 			
@@ -193,7 +213,7 @@ public class ConsumerService {
 		return shopInfo;
 	}
 	
-	public ShopLoyaltyCard getUserShopLoyaltyCard(int consumerId){
+	public ShopLoyaltyCard getUserShopLoyaltyCard(int consumerId, int shopId){
 		LOGGER.info("Inside getUserShopLoyaltyCard function...");
 		ShopLoyaltyCard shopLoyaltyCard = new ShopLoyaltyCard();
 		UserToShopLoyaltyCardEntity userShopLoyaltyCardEntity = new UserToShopLoyaltyCardEntity();
@@ -231,11 +251,12 @@ public class ConsumerService {
 			return shopLoyaltyCard;
 		}
 		else {
+			shopLoyaltyCard = shopService.getShopLoyaltyCard(shopId);
 			return null;
 		}
 	}
 	
-	public ShopLoyaltyProgram getUserShopLoyaltyProgram(int consumerId){
+	public ShopLoyaltyProgram getUserShopLoyaltyProgram(int consumerId,int shopId){
 		LOGGER.info("Inside getUserShopLoyaltyProgram function...");
 		ShopLoyaltyProgram shopLoyaltyProgram = new ShopLoyaltyProgram();
 		UserToShopLoyaltyProgramEntity userShopLoyaltyProgramEntity = new UserToShopLoyaltyProgramEntity();
@@ -267,11 +288,13 @@ public class ConsumerService {
 				
 				shopLoyaltyProgram.setShopLoyaltyProgramStage(shopLoyaltyProgramStages);
 			}
-			return shopLoyaltyProgram;
+
 		}
 		else {
-			return null;
+			shopLoyaltyProgram = shopService.getShopLoyaltyProgram(shopId);
+
 		}
+		return shopLoyaltyProgram;
 	}
 	
 /*	public ShopLoyaltyProgramStage getShopLoyaltyProgramStage(int shopLoyaltyProgramStageId){
@@ -299,6 +322,140 @@ public class ConsumerService {
 		return shopOffers;
 	}
 	
+	public List<Offer> getUserOffers(int userId){
+		
+		List<Offer> userOffers = new ArrayList<Offer>();
+
+		OfferEntity offerEntity = new OfferEntity();
+		
+		List<OfferUserPublish> offerUserPublishList = new ArrayList<OfferUserPublish>();
+		offerUserPublishList = this.getPublishedOffersbyUser(userId);
+		
+		for (OfferUserPublish op: offerUserPublishList) {
+			Offer offer = new Offer();
+			offerEntity = offerDAO.findById(op.getOfferId());
+			
+			Gson gson = new Gson();
+			String jsonOffer = gson.toJson(offerEntity, OfferEntity.class);
+			offer = gson.fromJson(jsonOffer, Offer.class);
+			offer.setOfferUserPublish(offerUserPublishList);
+			userOffers.add(offer);
+			offer=null;
+		}
+		
+		return userOffers;
+	}
+	
+	//function to get users published offer list
+	public List<OfferUserPublish> getPublishedOffersbyUser(int userId){
+		LOGGER.info("----- inside getPublishedShopOffersbyUser -----");
+		List<OfferUserPublish> offerUserPublishList = new ArrayList<OfferUserPublish>();
+		List<OfferUserPublishEntity> offerUserPublishEntities = new ArrayList<OfferUserPublishEntity>();
+		
+		try{
+			offerUserPublishEntities = offerUserPublishDAO.getbyUserId(userId);
+		
+			Gson gson = new Gson();
+			String jsonOfferPublish = gson.toJson(offerUserPublishEntities, new TypeToken<List<OfferUserPublishEntity>>() {}.getType());
+			offerUserPublishList = gson.fromJson(jsonOfferPublish, new TypeToken<List<OfferUserPublish>>() {}.getType());
+			LOGGER.info("----- offerUserPublishList -----" + offerUserPublishList);
+			return offerUserPublishList;
+		}
+		catch (Exception e){
+			LOGGER.info("----- Exception -----" + e.getMessage());
+			return null;
+		}
+		
+	}
+	
+	//Check In related functions go here
+	public ConsumerCheckIn userCheckIn(int consumerId){
+		ConsumerCheckIn consumerCheckIn = new ConsumerCheckIn();
+		ConsumerCheckInEntity consumerCheckInEntity = new ConsumerCheckInEntity();
+		
+		consumerCheckInEntity.setConsumerCheckInId(null);
+		consumerCheckInEntity.setConsumerId(consumerId);
+		consumerCheckInEntity.setConsumerCheckInStatus(WooptCode.USER_CHECKIN_STATUS_ACTIVE);
+		
+		consumerCheckInEntity = consumerCheckInDAO.save(consumerCheckInEntity);
+		
+		Gson gson = new Gson();
+		String jsonConsumerCheckIn = gson.toJson(consumerCheckInEntity, ConsumerCheckInEntity.class);
+		consumerCheckIn = gson.fromJson(jsonConsumerCheckIn, ConsumerCheckIn.class);
+		
+		return consumerCheckIn;
+	}
+	
+	public ConsumerCheckIn getUserCheckIn(int consumerId){
+		ConsumerCheckIn consumerCheckIn = new ConsumerCheckIn();
+		ConsumerCheckInEntity consumerCheckInEntity = new ConsumerCheckInEntity();
+		
+		consumerCheckInEntity = consumerCheckInDAO.getConsumerCheckInbyUser(consumerId);
+		
+		Gson gson = new Gson();
+		String jsonConsumerCheckIn = gson.toJson(consumerCheckInEntity, ConsumerCheckInEntity.class);
+		consumerCheckIn = gson.fromJson(jsonConsumerCheckIn, ConsumerCheckIn.class);
+		
+		return consumerCheckIn;
+	}
+	
+	//Redeem offer and cart related functions go here
+	
+	public Cart redeemOffer(Offer offer, int consumerId){
+		
+		LOGGER.info(" ---Inside redeemOffer ----");
+		
+		Cart cart = new Cart();
+		CartItem cartItem = new CartItem();
+		
+		cartItem = this.createCartItem(offer);
+		LOGGER.info("createCartItem----" + cartItem);
+		
+		//Check any existing cart present for the given shop
+		cart = this.getCartbyConsumerId(consumerId);
+		
+		//Create Cart if cart not present
+		if(cart==null) {
+			LOGGER.info("cart not present, hence creating");
+			cart=this.createCart(consumerId);
+		}
+		LOGGER.info("cart----"+cart);
+		
+		//Add Offer to the cart
+		cart = this.addCartItem(cart, cartItem);
+
+		return cart;
+	}
+	
+	public CartItem createCartItem(Offer offer){
+		
+		CartItem cartItem = new CartItem();
+		CartItemEntity cartItemEntity = new CartItemEntity();
+		
+		int offerId = offer.getOfferId();
+		int offerUserPublishId;
+		try {
+			offerUserPublishId = offer.getOfferUserPublish().get(0).getOfferUserPublishId();
+		}
+		catch (Exception e){
+			offerUserPublishId = offerId;
+		}
+
+		cartItemEntity.setOfferUserPublishId(offerUserPublishId);
+		cartItemEntity.setCartItemStatus(WooptCode.CARTITEM_STATUS_ACTIVE);
+		
+		//cartItemEntity = cartItemDAO.save(cartItemEntity);
+		
+		Gson gson = new Gson();
+		String jsonCartItemEntity = gson.toJson(cartItemEntity, CartItemEntity.class);
+		cartItem = gson.fromJson(jsonCartItemEntity, CartItem.class);
+		
+		cartItem.setOffer(offer);
+		
+		return cartItem;
+		
+	}
+	
 	
 	public Cart createCart(int consumerId){
 		
@@ -306,6 +463,7 @@ public class ConsumerService {
 		CartEntity cartEntity = new CartEntity();
 		
 		cartEntity.setConsumerId(consumerId);
+		cartEntity.setCartStatus(WooptCode.CART_STATUS_ACTIVE);
 		
 		cartEntity = cartDAO.save(cartEntity);
 		
@@ -316,35 +474,66 @@ public class ConsumerService {
 		return cart;
 	}
 	
+	//Create CartItem entity and add cartItems
 	public Cart addCartItem(Cart cart, CartItem cartItem){
 		
 		CartItemEntity cartItemEntity = new CartItemEntity();
 		
-		cartItemEntity.setCardId(cart.getCardId());
-		cartItemEntity.setOfferUserPublishId(cartItem.getOffer().getOfferUserPublish().get(0).getOfferUserPublishId());
-		Integer cartItemStatus=1;
-		cartItemEntity.setCartItemStatus(cartItemStatus);
-		
-		cartItemEntity = cartItemDAO.save(cartItemEntity);
-		
-		Gson gson = new Gson();
-		String jsonCartItemEntity = gson.toJson(cartItemEntity, CartEntity.class);
-		cartItem = gson.fromJson(jsonCartItemEntity, CartItem.class);
-		
-		List<CartItem> cartItems = new ArrayList<CartItem>();
-		cartItems = cart.getCartItems();
-		cartItems.add(cartItem);
-		
-		cart.setCartItems(cartItems);
-		
-		return cart;
+		try {
+			cartItemEntity.setCartId(cart.getCartId());
+			cartItemEntity.setCartItemStatus(cartItem.getCartItemStatus());
+			
+			int offerId = cartItem.getOffer().getOfferId();
+			int offerUserPublishId;
+			try {
+				offerUserPublishId = cartItem.getOffer().getOfferUserPublish().get(0).getOfferUserPublishId();
+			}
+			catch (Exception e){
+				offerUserPublishId = offerId;
+			}
+			cartItemEntity.setOfferUserPublishId(offerUserPublishId);
+			
+			cartItemEntity = cartItemDAO.save(cartItemEntity);
+			
+			cartItem.setCartItemId(cartItemEntity.getCartItemId());
+			cartItem.setCartId(cart.getCartId());
+			
+			LOGGER.info("cartItemEntity----"+cartItemEntity);		
+			LOGGER.info("cartItem----"+cartItem);
+	
+			List<CartItem> cartItems = new ArrayList<CartItem>();
+			List<CartItem> cartNewItems = new ArrayList<CartItem>();
+			
+			cartItems = cart.getCartItems();
+			LOGGER.info("cartItems----"+cartItems);
+			
+			if(cartItems.size()!=0) {
+				LOGGER.info("before assignment ----");
+				cartNewItems = cartItems;
+				LOGGER.info("cartNewItems----"+cartNewItems);
+			}
+
+			LOGGER.info("before new sssignment ----");
+			cartNewItems.add(cartItem);
+			LOGGER.info("cartNewItems----"+cartNewItems);
+			
+			cart.setCartItems(cartNewItems);
+			
+			LOGGER.info("cart:----"+cart);
+			
+			return cart;
+		}
+		catch (Exception e){
+			LOGGER.info("addCartItem Exception ----"+e.getMessage());
+		}
+		return null;
 	
 	}
 	
 	public Cart removeCartItem(Cart cart, CartItem cartItem){
 		CartItemEntity cartItemEntity = new CartItemEntity();
 		
-		cartItemEntity.setCardId(cart.getCardId());
+		cartItemEntity.setCartId(cart.getCartId());
 		cartItemEntity.setOfferUserPublishId(cartItem.getOffer().getOfferUserPublish().get(0).getOfferUserPublishId());
 		Integer cartItemStatus=0;
 		cartItemEntity.setCartItemStatus(cartItemStatus);
@@ -372,16 +561,29 @@ public class ConsumerService {
 		Cart cart = new Cart();
 		CartEntity cartEntity = new CartEntity();
 		
-		cartEntity = cartDAO.getActiveCartbyConsumerId(consumerId);
-		
-		Gson gson = new Gson();
-		String jsonCartEntity = gson.toJson(cartEntity, CartEntity.class);
-		cart = gson.fromJson(jsonCartEntity, Cart.class);
-		
-		//update cart model with cart items
-		cart.setCartItems(this.getCartItems(cart.getCardId()));
-		
-		return cart;
+		try{
+			cartEntity = cartDAO.getActiveCartbyConsumerId(consumerId);
+			
+			if(cartEntity!=null){
+				Gson gson = new Gson();
+				String jsonCartEntity = gson.toJson(cartEntity, CartEntity.class);
+				cart = gson.fromJson(jsonCartEntity, Cart.class);
+				
+				//update cart model with cart items
+				List<CartItem> cartItems = new ArrayList<CartItem>();
+				cartItems = this.getCartItemsbyCart(cart.getCartId());
+				if (cartItems.size()!=0)
+						cart.setCartItems(cartItems);
+				LOGGER.info("getCart ----" + cart);
+				return cart;
+			}
+		}
+		catch (Exception e){
+			LOGGER.info("getCartbyConsumerId Exception ----" + e.getMessage());
+		}
+
+		return null;
+
 	}
 	
 	public Cart getCartbyCartId(int cartId){
@@ -395,21 +597,27 @@ public class ConsumerService {
 		cart = gson.fromJson(jsonCartEntity, Cart.class);
 		
 		//Update cart model with cart items
-		cart.setCartItems(this.getCartItems(cart.getCardId()));
+		cart.setCartItems(this.getCartItemsbyCart(cart.getCartId()));
 		
 		return cart;
 	}
 	
-	public List<CartItem> getCartItems(int cartId){
+	public List<CartItem> getCartItemsbyCart(int cartId){
 		
 		List<CartItem> cartItems = new ArrayList<CartItem>();
 		
 		List<CartItemEntity> cartItemEntities = new ArrayList<CartItemEntity>();
 		cartItemEntities = cartItemDAO.getbyCartId(cartId);
 		
-		Gson gson = new Gson();
-		String jsonCartItemEntity = gson.toJson(cartItemEntities, new TypeToken<List<CartItemEntity>>() {}.getType());
-		cartItems = gson.fromJson(jsonCartItemEntity, new TypeToken<List<CartItem>>() {}.getType());
+		for (CartItemEntity ce: cartItemEntities) {
+			CartItem cartItem = new CartItem();
+			cartItem.setCartItemId(ce.getCartItemId());
+			cartItem.setCartId(ce.getCartId());
+			cartItem.setCartItemStatus(ce.getCartItemStatus());
+			//cartItem.setOffer(offer);
+			cartItems.add(cartItem);
+			cartItem=null;
+		}
 		
 		return cartItems;
 	}
@@ -420,7 +628,7 @@ public class ConsumerService {
 
 		orderEntity.setShopId(shopId);
 		orderEntity.setUserId(userId);
-		orderEntity.setCartId(cart.getCardId());
+		orderEntity.setCartId(cart.getCartId());
 		int orderStatus=1;
 		orderEntity.setOrderStatus(orderStatus);
 		

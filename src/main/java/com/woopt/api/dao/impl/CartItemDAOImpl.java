@@ -24,24 +24,30 @@ public class CartItemDAOImpl implements CartItemDAO {
 	@Override
 	public CartItemEntity save(CartItemEntity cartItemEntity) {
 		// Save Cart Item Entity
+		CartItemEntity rc = new CartItemEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(cartItemEntity);
+		rc=cartItemEntity;
 		tx.commit();
 		session.close();
 		
-		return cartItemEntity;
+		return rc;
 		
 	}
 
 	@Override
-	public void update(CartItemEntity cartItemEntity) {
+	public CartItemEntity update(CartItemEntity cartItemEntity) {
 		// Update Cart Item Entity
+		CartItemEntity rc = new CartItemEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.update(cartItemEntity);
+		rc=cartItemEntity;
 		tx.commit();
 		session.close();
+		
+		return rc;
 		
 	}
 

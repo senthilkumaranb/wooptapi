@@ -18,7 +18,7 @@
         http://activemq.apache.org/schema/core/activemq-core-5.8.0.xsd">
 
 	<!-- <import resource="gwt-servlet.xml"/> -->
-
+	
 	<!-- Activates various annotations to be detected in bean classes -->
 	<context:annotation-config />
 
@@ -156,6 +156,10 @@
 	</bean>
 	
 	<bean id="userToShopLoyaltyProgramStageDAO" class="com.woopt.api.dao.impl.UserToShopLoyaltyProgramStageDAOImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+	
+	<bean id="consumerCheckInDAO" class="com.woopt.api.dao.impl.ConsumerCheckInDAOImpl">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
 		

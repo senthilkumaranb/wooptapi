@@ -76,7 +76,7 @@ public class OfferUserPublishDAOImpl implements OfferUserPublishDAO {
 		System.out.println("--------+ PublishedOffer +-----------");
 		Session session = this.sessionFactory.openSession();
 		//System.out.println("--------++****************-----------" + session);
-		Query query = session.createQuery("from OfferUserPublishEntity W where W.userId=:userId and W.offer_user_publish_status=1 ORDER BY userId, offerId");
+		Query query = session.createQuery("from OfferUserPublishEntity W where W.userId=:userId and W.offerUserPublishStatus=1 ORDER BY userId, offerId");
 		query.setParameter("userId",userId);
 		@SuppressWarnings("unchecked")
 		List<OfferUserPublishEntity> offerUserPublishEntity = query.list();

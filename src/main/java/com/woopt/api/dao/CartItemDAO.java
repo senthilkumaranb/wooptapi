@@ -9,7 +9,7 @@ public interface CartItemDAO {
 	
 	public CartItemEntity save(CartItemEntity cartItemEntity);
 	
-	public void  update(CartItemEntity cartItemEntity);
+	public CartItemEntity  update(CartItemEntity cartItemEntity);
 	
 	public void  delete(int cartItemId);
 	

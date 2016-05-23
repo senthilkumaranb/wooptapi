@@ -25,11 +25,6 @@ import com.woopt.api.model.ConsumerCheckIn;
 import com.woopt.api.model.ConsumerViewModel;
 import com.woopt.api.model.Offer;
 import com.woopt.api.model.Order;
-import com.woopt.api.model.ShopLoyaltyCard;
-import com.woopt.api.model.ShopLoyaltyCardStage;
-import com.woopt.api.model.ShopLoyaltyProgram;
-import com.woopt.api.model.ShopLoyaltyProgramStage;
-import com.woopt.api.model.ShopModel;
 import com.woopt.api.model.User;
 import com.woopt.api.model.UserModel;
 import com.woopt.api.service.ConsumerService;
@@ -44,7 +39,7 @@ import com.woopt.api.service.ConsumerService;
 @RequestMapping("/consumer")
 public class ConsumerController {
 	
-private static final Logger LOGGER = Logger.getLogger(ShopController.class.getName());
+private static final Logger LOGGER = Logger.getLogger(ConsumerController.class.getName());
 	
 	private ConsumerService consumerService;
 	
@@ -102,16 +97,79 @@ private static final Logger LOGGER = Logger.getLogger(ShopController.class.getNa
   		//qr
   		//code
   		//auto
-  		return null;
+  		LOGGER.info("calling /checkin/atshop api");
+		LOGGER.info("Input User:" + consumerCheckIn);
+		HttpHeaders returnHeader = new HttpHeaders();
+		int consumerId = Integer.parseInt(header.get("consumerId").get(0));
+
+		int responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != consumerCheckIn){
+				//user = userModel.getUser();
+				consumerCheckIn = consumerService.userCheckIn(consumerId);
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return CheckInModel:" + consumerCheckIn);
+		return new ResponseEntity<ConsumerCheckIn>(consumerCheckIn, returnHeader, HttpStatus.OK);
   	}
 
   	//Offer related services go here
+  	
+  	//API to get offer for the users including generic offers
+  	@RequestMapping(value = "/offer", method = RequestMethod.POST, headers="Accept=application/json")
+  	public ResponseEntity<List<Offer>> offerPOST(@RequestBody UserModel userModel, 
+  			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+  		LOGGER.info("calling /api/consumer/offer api");
+		LOGGER.info("Input User:" + userModel);
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		List<Offer> userOffers = new ArrayList<Offer>();
+		try{			
+			if (null != userModel){
+				//user = userModel.getUser();
+				userOffers = consumerService.getUserOffers(userModel.getUser().getUserId());
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return ShopModel:" + userOffers);
+		return new ResponseEntity<List<Offer>>(userOffers, returnHeader, HttpStatus.OK);
+  	}
   	
   	//API to redeem an offer
   	@RequestMapping(value = "/offer/redeem", method = RequestMethod.POST, headers="Accept=application/json")
   	public ResponseEntity<Cart> offerRedeemPOST(@RequestBody Offer offer, 
   			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-  		return null;
+  		LOGGER.info("calling /api/offer/redeem api");
+		LOGGER.info("Input offer:" + offer);
+		
+		HttpHeaders returnHeader = new HttpHeaders();
+		//int consumerId = Integer.parseInt(header.get("consumerId").get(0));
+		int consumerId=1;
+		
+		Cart cart = new Cart();
+		
+		try{			
+			if (null != offer){
+				cart = consumerService.redeemOffer(offer, consumerId);
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return cart :" + cart);
+		return new ResponseEntity<Cart>(cart, returnHeader, HttpStatus.OK);
   	}
   	
   	//API to share an offer
@@ -123,8 +181,15 @@ private static final Logger LOGGER = Logger.getLogger(ShopController.class.getNa
   	
   	//Order and Cart related rest services go here
   	
+  	//API to get User Cart for the shop
+  	@RequestMapping(value = "/cart", method = RequestMethod.GET, headers="Accept=application/json")
+  	public ResponseEntity<Cart> cartGET(@RequestBody Cart cart, 
+  			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+  		return null;
+  	}
+  	
   	//API to update User Cart
-  	@RequestMapping(value = "/consumer/cart", method = RequestMethod.PUT, headers="Accept=application/json")
+  	@RequestMapping(value = "/cart", method = RequestMethod.PUT, headers="Accept=application/json")
   	public ResponseEntity<Cart> cartPUT(@RequestBody Cart cart, 
   			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
   		return null;
