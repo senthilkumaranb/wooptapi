@@ -43,6 +43,18 @@ public class WooptCode {
 	public static final int TOKEN_TYPE_USER = 603;
 	public static final int TOKEN_INVALID = 604;
 	public static final int TOKEN_VALID = 605;
+	
+	/** User CheckIn Code **/
+	public static final int USER_CHECKIN_STATUS_ACTIVE = 1;
+	public static final int USER_CHECKIN_STATUS_INACTIVE = 0;
+	
+	/** Cart Status **/
+	public static final int CART_STATUS_ACTIVE = 1;
+	public static final int CART_STATUS_INACTIVE = 0;
+	
+	/** Cart Item Status **/
+	public static final int CARTITEM_STATUS_ACTIVE = 1;
+	public static final int CARTITEM_STATUS_INACTIVE = 0;
 
 	private WooptCode(){
 	}
