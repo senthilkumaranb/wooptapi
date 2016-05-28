@@ -153,8 +153,8 @@ private static final Logger LOGGER = Logger.getLogger(ConsumerController.class.g
 		LOGGER.info("Input offer:" + offer);
 		
 		HttpHeaders returnHeader = new HttpHeaders();
-		//int consumerId = Integer.parseInt(header.get("consumerId").get(0));
-		int consumerId=1;
+		int consumerId = Integer.parseInt(header.get("consumerId").get(0));
+		//int consumerId=1;
 		
 		Cart cart = new Cart();
 		
@@ -183,9 +183,28 @@ private static final Logger LOGGER = Logger.getLogger(ConsumerController.class.g
   	
   	//API to get User Cart for the shop
   	@RequestMapping(value = "/cart", method = RequestMethod.GET, headers="Accept=application/json")
-  	public ResponseEntity<Cart> cartGET(@RequestBody Cart cart, 
+  	public ResponseEntity<Cart> cartGET( 
   			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-  		return null;
+  		LOGGER.info("calling /api/consumer/cart api");
+		LOGGER.info("Header-----:" + header);
+		
+		HttpHeaders returnHeader = new HttpHeaders();
+		int consumerId = Integer.parseInt(header.get("consumerId").get(0));
+		
+		Cart cart = new Cart();
+		
+		try{			
+			if (consumerId>0){
+				cart = consumerService.getCartbyConsumerId(consumerId);
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return cart :" + cart);
+		return new ResponseEntity<Cart>(cart, returnHeader, HttpStatus.OK);
   	}
   	
   	//API to update User Cart
