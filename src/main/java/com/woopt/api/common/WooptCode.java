@@ -48,6 +48,10 @@ public class WooptCode {
 	public static final int USER_CHECKIN_STATUS_ACTIVE = 1;
 	public static final int USER_CHECKIN_STATUS_INACTIVE = 0;
 	
+	/** Offer **/
+	public static final String OFFER_METHOD_GENERIC = "GENERIC";
+	public static final String OFFER_METHOD_USER_SPECIFIC = "USER SPECIFIC";
+	
 	/** Cart Status **/
 	public static final int CART_STATUS_ACTIVE = 1;
 	public static final int CART_STATUS_INACTIVE = 0;

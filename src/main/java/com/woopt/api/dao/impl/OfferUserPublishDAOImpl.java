@@ -96,6 +96,20 @@ public class OfferUserPublishDAOImpl implements OfferUserPublishDAO {
 		session.close();
 		return offerUserPublishEntity;
 	}
+	
+	@Override
+	public List<OfferUserPublishEntity> getPublishedOfferbyUserId(int offerId, int userId) {
+		System.out.println("--------+ PublishedOffer +-----------");
+		Session session = this.sessionFactory.openSession();
+		//System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from OfferUserPublishEntity W where W.offerId=offerId AND W.userId=:userId");
+		query.setParameter("offerId",offerId);
+		query.setParameter("userId",userId);
+		@SuppressWarnings("unchecked")
+		List<OfferUserPublishEntity> offerUserPublishEntity = query.list();
+		session.close();
+		return offerUserPublishEntity;
+	}
 
 	@Override
 	public List<OfferUserPublishEntity> getPublishedShopOffersbyUserId(int userId, int shopId) {
@@ -113,7 +127,16 @@ public class OfferUserPublishDAOImpl implements OfferUserPublishDAO {
 	
 	@Override
 	public OfferUserPublishEntity findById(int offerUserPublishId) {
-		// TODO Auto-generated method stub
+		System.out.println("--------+ PublishedOffer +-----------");
+		Session session = this.sessionFactory.openSession();
+		//System.out.println("--------++****************-----------" + session);
+		Query query = session.createQuery("from OfferUserPublishEntity W where W.offerUserPublishId=:offerUserPublishId");
+		query.setParameter("offerUserPublishId",offerUserPublishId);
+		@SuppressWarnings("unchecked")
+		List<OfferUserPublishEntity> offerUserPublishEntity = query.list();
+		session.close();
+		if(offerUserPublishEntity.size()!=0)
+			return offerUserPublishEntity.get(0);
 		return null;
 	}
 

@@ -76,7 +76,14 @@ public class ConsumerDAOImpl implements ConsumerDAO {
 
 	@Override
 	public ConsumerEntity findById(int consumerId) {
-		// TODO Auto-generated method stub
+		System.out.println("--------+ ConsumerEntity +-----------");
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("from ConsumerEntity W where W.consumerId=:consumerId");
+		query.setParameter("consumerId",consumerId);
+		List<ConsumerEntity> consumerList = query.list();
+		session.close();
+		if(consumerList.size()!=0)
+			return consumerList.get(0);
 		return null;
 	}
 

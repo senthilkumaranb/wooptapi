@@ -408,7 +408,15 @@ public class ConsumerService {
 		Cart cart = new Cart();
 		CartItem cartItem = new CartItem();
 		
-		cartItem = this.createCartItem(offer);
+		LOGGER.info("consumerId----" + consumerId);
+		
+		ConsumerEntity consumerEntity = new ConsumerEntity();
+		consumerEntity = consumerDAO.findById(consumerId);
+		LOGGER.info("consumerEntity----" + consumerEntity);
+		
+		Integer userId=consumerEntity.getUserId();
+		
+		cartItem = this.createCartItem(offer,userId);
 		LOGGER.info("createCartItem----" + cartItem);
 		
 		//Check any existing cart present for the given shop
@@ -427,19 +435,40 @@ public class ConsumerService {
 		return cart;
 	}
 	
-	public CartItem createCartItem(Offer offer){
+	public CartItem createCartItem(Offer offer, int userId){
 		
 		CartItem cartItem = new CartItem();
 		CartItemEntity cartItemEntity = new CartItemEntity();
+		OfferUserPublish offerUserPublish = new OfferUserPublish();
 		
-		int offerId = offer.getOfferId();
+		LOGGER.info("offer.getOfferMethod() ----" + offer.getOfferMethod());
+		
+		//creating user specific instance in user publish table to track generic redeem
+		//If it is not generic, there should already be user specific instance created
+		if(offer.getOfferUserPublish().size()==0){
+			if((offer.getOfferMethod().equals(WooptCode.OFFER_METHOD_GENERIC))){
+				LOGGER.info("Offer User Publish is null, creating an instance of generic offer for user----");
+				List<OfferUserPublish> offerUserPublishList = new ArrayList<OfferUserPublish>();
+				offerUserPublish = shopService.publishShopOfferbyUser(offer, userId);
+				offerUserPublishList.add(offerUserPublish);
+				offer.setOfferUserPublish(offerUserPublishList);
+			} 
+		}
+		
+		offerUserPublish = offer.getOfferUserPublish().get(0);
+		LOGGER.info("offerUserPublish----" + offerUserPublish);
+		
+		//int offerId = offer.getOfferId();
 		int offerUserPublishId;
-		try {
+		
+		offerUserPublishId = offerUserPublish.getOfferUserPublishId();
+		
+		/*try {
 			offerUserPublishId = offer.getOfferUserPublish().get(0).getOfferUserPublishId();
 		}
 		catch (Exception e){
 			offerUserPublishId = offerId;
-		}
+		}*/
 
 		cartItemEntity.setOfferUserPublishId(offerUserPublishId);
 		cartItemEntity.setCartItemStatus(WooptCode.CARTITEM_STATUS_ACTIVE);
@@ -572,8 +601,10 @@ public class ConsumerService {
 				//update cart model with cart items
 				List<CartItem> cartItems = new ArrayList<CartItem>();
 				cartItems = this.getCartItemsbyCart(cart.getCartId());
+				
 				if (cartItems.size()!=0)
 						cart.setCartItems(cartItems);
+				
 				LOGGER.info("getCart ----" + cart);
 				return cart;
 			}
@@ -614,12 +645,56 @@ public class ConsumerService {
 			cartItem.setCartItemId(ce.getCartItemId());
 			cartItem.setCartId(ce.getCartId());
 			cartItem.setCartItemStatus(ce.getCartItemStatus());
-			//cartItem.setOffer(offer);
+			cartItem.setOffer(this.getPublishedOffer(ce.getOfferUserPublishId()));
 			cartItems.add(cartItem);
 			cartItem=null;
 		}
 		
 		return cartItems;
+	}
+	
+	//function to get shop offer list
+	public Offer getPublishedOffer(int offerUserPublishId){
+		Offer offer = new Offer();
+		OfferEntity offerEntity = new OfferEntity();
+		
+		OfferUserPublish offerUserPublish = new OfferUserPublish();
+		List<OfferUserPublish> offerUserPublishList = new ArrayList<OfferUserPublish>();
+		
+		offerUserPublish = this.getOfferUserPublishbyId(offerUserPublishId);
+		
+		offerEntity = offerDAO.findById(offerUserPublish.getOfferId());
+		
+		Gson gson = new Gson();
+		String jsonOfferEntities = gson.toJson(offerEntity, OfferEntity.class);
+		offer = gson.fromJson(jsonOfferEntities, Offer.class);
+		
+		offerUserPublishList.add(offerUserPublish);
+		offer.setOfferUserPublish(offerUserPublishList);
+		
+		return offer;
+	}
+	
+	//function to get shop offer list
+	public OfferUserPublish getOfferUserPublishbyId(int offerUserPublishId){
+		LOGGER.info("----- inside getPublishedShopOffersbyUser -----");
+		OfferUserPublish offerUserPublish = new OfferUserPublish();
+		OfferUserPublishEntity offerUserPublishEntity = new OfferUserPublishEntity();
+		
+		try{
+			offerUserPublishEntity = offerUserPublishDAO.findById(offerUserPublishId);
+		
+			Gson gson = new Gson();
+			String jsonOfferPublish = gson.toJson(offerUserPublishEntity, OfferUserPublishEntity.class);
+			offerUserPublish = gson.fromJson(jsonOfferPublish, OfferUserPublish.class);
+			
+			LOGGER.info("----- offerUserPublishList -----" + offerUserPublish);
+			return offerUserPublish;
+		}
+		catch (Exception e){
+			LOGGER.info("----- Exception -----" + e.getMessage());
+			return null;
+		}
 	}
 	
 	public Order createOrder(int shopId,int userId, Cart cart){

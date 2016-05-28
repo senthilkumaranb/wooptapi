@@ -20,6 +20,8 @@ public interface OfferUserPublishDAO {
 	
 	public List<OfferUserPublishEntity> getbyShopId(int shopId);
 	
+	public List<OfferUserPublishEntity> getPublishedOfferbyUserId(int offerId, int userId);
+	
 	public List<OfferUserPublishEntity> getPublishedShopOffersbyUserId(int userId, int shopId);
 	
 	public OfferUserPublishEntity findById(int offerUserPublishId);

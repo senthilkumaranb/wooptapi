@@ -10,6 +10,7 @@ public class Offer {
 	private Integer offerId;
 	private String offerName;
 	private String offerType;
+	private String offerMethod;
 	private String offerCode;
 	private String offerQRCode;
 	private double offerAmount;
@@ -56,6 +57,14 @@ public class Offer {
 
 	public void setOfferType(String offerType) {
 		this.offerType = offerType;
+	}
+
+	public String getOfferMethod() {
+		return offerMethod;
+	}
+
+	public void setOfferMethod(String offerMethod) {
+		this.offerMethod = offerMethod;
 	}
 
 	public String getOfferCode() {
@@ -236,16 +245,16 @@ public class Offer {
 
 	@Override
 	public String toString() {
-		return "Offer [offerId=" + offerId + ", offerName=" + offerName + ", offerType=" + offerType + ", offerCode="
-				+ offerCode + ", offerQRCode=" + offerQRCode + ", offerAmount=" + offerAmount + ", offerMinimumOrder="
-				+ offerMinimumOrder + ", offerStartDate=" + offerStartDate + ", offerExpireDate=" + offerExpireDate
-				+ ", offerUnits=" + offerUnits + ", offerZoneRestriction=" + offerZoneRestriction
-				+ ", offerUnitsPerZone=" + offerUnitsPerZone + ", offerPerUser=" + offerPerUser + ", offerStatus="
-				+ offerStatus + ", offerZones=" + offerZones + ", offerDescription=" + offerDescription
-				+ ", offerProfilephoto=" + offerProfilephoto + ", offerPhoto=" + offerPhoto + ", productId=" + productId
-				+ ", offerIsInShopBillingSystem=" + offerIsInShopBillingSystem + ", offerWhoCreated=" + offerWhoCreated
-				+ ", shopId=" + shopId + ", manufacturerid=" + manufacturerid + ", offerAvailableUnits="
-				+ offerAvailableUnits + ", offerUserPublish=" + offerUserPublish + "]";
+		return "Offer [offerId=" + offerId + ", offerName=" + offerName + ", offerType=" + offerType + ", offerMethod="
+				+ offerMethod + ", offerCode=" + offerCode + ", offerQRCode=" + offerQRCode + ", offerAmount="
+				+ offerAmount + ", offerMinimumOrder=" + offerMinimumOrder + ", offerStartDate=" + offerStartDate
+				+ ", offerExpireDate=" + offerExpireDate + ", offerUnits=" + offerUnits + ", offerZoneRestriction="
+				+ offerZoneRestriction + ", offerUnitsPerZone=" + offerUnitsPerZone + ", offerPerUser=" + offerPerUser
+				+ ", offerStatus=" + offerStatus + ", offerZones=" + offerZones + ", offerDescription="
+				+ offerDescription + ", offerProfilephoto=" + offerProfilephoto + ", offerPhoto=" + offerPhoto
+				+ ", productId=" + productId + ", offerIsInShopBillingSystem=" + offerIsInShopBillingSystem
+				+ ", offerWhoCreated=" + offerWhoCreated + ", shopId=" + shopId + ", manufacturerid=" + manufacturerid
+				+ ", offerAvailableUnits=" + offerAvailableUnits + ", offerUserPublish=" + offerUserPublish + "]";
 	}
 
 

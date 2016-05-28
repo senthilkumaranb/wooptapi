@@ -809,6 +809,35 @@ public class ShopService {
 		}
 	}
 	
+	// function to publish Shop Offer
+	public OfferUserPublish publishShopOfferbyUser(Offer offer,int userId){
+
+		OfferUserPublish offerUserPublish = new OfferUserPublish();
+		
+		int offerId = offer.getOfferId();
+		String offerCode = offer.getOfferCode();
+		String QRCode = offer.getOfferQRCode();
+
+		try{
+			OfferUserPublishEntity offerUserPublishEntity = new OfferUserPublishEntity();
+			offerUserPublishEntity.setOfferId(offerId);
+			offerUserPublishEntity.setUserId(userId);
+			offerUserPublishEntity.setOfferUserPublishOfferCode(offerCode);
+			offerUserPublishEntity.setOfferUserPublishStatus(1);
+			offerUserPublishEntity.setOfferUserPublishQRCode(QRCode);
+			offerUserPublishEntity = offerUserPublishDAO.save(offerUserPublishEntity);
+			
+			Gson gson = new Gson();
+			String jsonOfferPublish = gson.toJson(offerUserPublishEntity, OfferUserPublishEntity.class);
+			offerUserPublish = gson.fromJson(jsonOfferPublish, OfferUserPublish.class);
+			return offerUserPublish;
+		}
+		catch (Exception e){
+			LOGGER.info("---PUBLISH SHOP OFFER Exception -----" + e);
+			return null;
+		}
+	}
+	
 	//SHOP REVIEW RELATED FUNCTIONS GO HERE
 	
 	public List<ShopReview> getShopReviews(int shopId){
