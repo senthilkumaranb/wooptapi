@@ -33,6 +33,7 @@ import com.woopt.api.model.ShopLoyaltyProgramStage;
 import com.woopt.api.model.ShopModel;
 import com.woopt.api.model.User;
 import com.woopt.api.model.UserModel;
+import com.woopt.api.service.ConsumerService;
 import com.woopt.api.service.PartnerService;
 
 
@@ -57,20 +58,22 @@ public class PartnerController {
         this.partnerService = ps;
     }
     
-    @RequestMapping(value = "/consumers/", method = RequestMethod.POST, headers="Accept=application/json")
-   	public ResponseEntity<List<PartnerViewModel>> partnerView(@RequestBody ShopModel shopModel, 
+    @RequestMapping(value = "/consumers", method = RequestMethod.GET, headers="Accept=application/json")
+   	public ResponseEntity<List<PartnerViewModel>> partnerView( 
    			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
     	
    		HttpHeaders returnHeader = new HttpHeaders();
    		User user = null;
+   		
+   		Integer shopId = Integer.parseInt(header.get("shopId").get(0));
 
    		List<PartnerViewModel> partnerViewModels = new ArrayList<PartnerViewModel>();
    		int responseCode = WooptCode.SUCCESS;
    		
    		try{			
-   			if (null != shopModel){
+   			if (shopId!=null){
    				//user = userModel.getUser();
-   				partnerViewModels = partnerService.getConsumers(shopModel.getShop().getShopId());
+   				partnerViewModels = partnerService.getConsumers(shopId);
    			}			
    		}
    		catch (Exception e){
@@ -95,7 +98,26 @@ public class PartnerController {
 	@RequestMapping(value = "/checkinConsumer", method = RequestMethod.POST, headers="Accept=application/json")
 	public ResponseEntity<ConsumerCheckIn> checkInPost(@RequestBody ConsumerCheckIn consumerCheckIn, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		LOGGER.info("calling /checkinConsumer api");
+		LOGGER.info("Input User:" + consumerCheckIn);
+		HttpHeaders returnHeader = new HttpHeaders();
+		int consumerId = Integer.parseInt(header.get("consumerId").get(0));
+
+		int responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != consumerCheckIn){
+				//user = userModel.getUser();
+				consumerCheckIn = partnerService.checkInConsumer(consumerId);
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return CheckInModel:" + consumerCheckIn);
+		return new ResponseEntity<ConsumerCheckIn>(consumerCheckIn, returnHeader, HttpStatus.OK);
 	}
 	
 	//Shop Loyalty Card related rest services go here
@@ -111,7 +133,24 @@ public class PartnerController {
 	@RequestMapping(value = "/consumer/lcard/stage", method = RequestMethod.PUT, headers="Accept=application/json")
 	public ResponseEntity<ShopLoyaltyCardStage> lcardStagePUT(@RequestBody ShopLoyaltyCardStage shopLoyaltyCardStage, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		LOGGER.info("calling /consumer/lcard/stage api");
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		int responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != shopLoyaltyCardStage){
+				//user = userModel.getUser();
+				shopLoyaltyCardStage = partnerService.updateUserShopLoyaltyCardStage(shopLoyaltyCardStage);
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return CheckInModel:" + shopLoyaltyCardStage);
+		return new ResponseEntity<ShopLoyaltyCardStage>(shopLoyaltyCardStage, returnHeader, HttpStatus.OK);
 	}
 	
 	//Shop Loyalty Program related rest services go here
@@ -159,7 +198,25 @@ public class PartnerController {
 	@RequestMapping(value = "/consumer/order", method = RequestMethod.POST, headers="Accept=application/json")
 	public ResponseEntity<Order> orderPOST(@RequestBody Cart cart, 
 			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
-		return null;
+		LOGGER.info("calling /consumer/order api");
+		HttpHeaders returnHeader = new HttpHeaders();
+		
+		Order order = new Order();
+		int responseCode = WooptCode.SUCCESS;
+		
+		try{			
+			if (null != cart){
+				//user = userModel.getUser();
+				order = partnerService.createOrder(cart);
+			}			
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return order :" + order);
+		return new ResponseEntity<Order>(order, returnHeader, HttpStatus.OK);
 	}
 	
 	//API to update User Order

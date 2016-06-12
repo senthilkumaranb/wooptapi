@@ -12,7 +12,9 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.woopt.api.common.Updater;
 import com.woopt.api.dao.UserToShopLoyaltyCardStageDAO;
+import com.woopt.api.entity.ShopLoyaltyCardStageEntity;
 import com.woopt.api.entity.UserToShopLoyaltyCardStageEntity;
 
 
@@ -37,8 +39,29 @@ public class UserToShopLoyaltyCardStageDAOImpl implements UserToShopLoyaltyCardS
 	}
 
 	@Override
-	public void update(UserToShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity) {
-		// TODO Auto-generated method stub
+	public UserToShopLoyaltyCardStageEntity update(UserToShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity) {
+
+		try{
+			System.out.println("--------+ getShopLoyaltyCardStageId +-----------" + shopLoyaltyCardStageEntity.getUserToShopLoyaltyCardStageId());
+			
+			UserToShopLoyaltyCardStageEntity oldE = this.findById(shopLoyaltyCardStageEntity.getUserToShopLoyaltyCardStageId());
+			System.out.println("--------+ UserToShopLoyaltyCardStageEntity +-----------" + oldE);
+			
+			UserToShopLoyaltyCardStageEntity rc = new UserToShopLoyaltyCardStageEntity();	
+			
+			Session session = this.sessionFactory.openSession();
+			shopLoyaltyCardStageEntity = Updater.updater(oldE, shopLoyaltyCardStageEntity);
+			Transaction tx = session.beginTransaction();
+			session.update(shopLoyaltyCardStageEntity);
+			rc=shopLoyaltyCardStageEntity;
+			tx.commit();
+			session.close();
+			return rc;
+		}
+		catch (Exception e){
+			System.out.println("--------+ exception +-----------" + e);
+			return null;
+		}
 		
 	}
 
@@ -70,7 +93,17 @@ public class UserToShopLoyaltyCardStageDAOImpl implements UserToShopLoyaltyCardS
 
 	@Override
 	public UserToShopLoyaltyCardStageEntity findById(int userShopLoyaltyCardStageId) {
-		// TODO Auto-generated method stub
+
+		System.out.println("--------+ UserShopLoyaltyCardStage +-----------");
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("from UserToShopLoyaltyCardStageEntity W "
+				+ "where W.userToShopLoyaltyCardStageId=:userShopLoyaltyCardStageId");
+		query.setParameter("userShopLoyaltyCardStageId",userShopLoyaltyCardStageId);
+		@SuppressWarnings("unchecked")
+		List<UserToShopLoyaltyCardStageEntity> userToShopLoyaltyCardStageEntity = query.list();
+		session.close();
+		if (userToShopLoyaltyCardStageEntity.size()!=0)
+			return userToShopLoyaltyCardStageEntity.get(0);
 		return null;
 	}
 

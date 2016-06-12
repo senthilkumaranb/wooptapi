@@ -237,7 +237,8 @@ public class ConsumerService {
 				
 				for (UserToShopLoyaltyCardStageEntity ucard: userShopLoyaltyCardStageEntities){
 					ShopLoyaltyCardStage shopLoyaltyCardStage = new ShopLoyaltyCardStage();
-					shopLoyaltyCardStage.setShopLoyaltyCardStageNo(ucard.getUserToShopLoyaltyCardStageId());
+					shopLoyaltyCardStage.setShopLoyaltyCardStageId(ucard.getUserToShopLoyaltyCardStageId());
+					shopLoyaltyCardStage.setShopLoyaltyCardStageNo(ucard.getShopLoyaltyCardStageId());
 					shopLoyaltyCardStage.setShopLoyaltyCardStageIsRedeemable(ucard.getShopLoyaltyCardStageIsRedeemable());
 					shopLoyaltyCardStage.setShopLoyaltyCardStageReward(ucard.getShopLoyaltyCardStageReward());
 					shopLoyaltyCardStage.setShopLoyaltyCardStageRewardPhoto(ucard.getShopLoyaltyCardStageRewardPhoto());
@@ -559,27 +560,25 @@ public class ConsumerService {
 	
 	}
 	
-	public Cart removeCartItem(Cart cart, CartItem cartItem){
+	public int removeCartItem(CartItem cartItem){
+		
 		CartItemEntity cartItemEntity = new CartItemEntity();
 		
-		cartItemEntity.setCartId(cart.getCartId());
-		cartItemEntity.setOfferUserPublishId(cartItem.getOffer().getOfferUserPublish().get(0).getOfferUserPublishId());
+		Gson gson = new Gson();
+		String jsonCartItemEntity = gson.toJson(cartItem, CartItem.class);
+		cartItemEntity = gson.fromJson(jsonCartItemEntity, CartItemEntity.class);
+		
 		Integer cartItemStatus=0;
 		cartItemEntity.setCartItemStatus(cartItemStatus);
 		
-		cartItemEntity = cartItemDAO.save(cartItemEntity);
-		
-		Gson gson = new Gson();
-		String jsonCartItemEntity = gson.toJson(cartItemEntity, CartEntity.class);
-		cartItem = gson.fromJson(jsonCartItemEntity, CartItem.class);
-		
-		List<CartItem> cartItems = new ArrayList<CartItem>();
-		cartItems = cart.getCartItems();
-		cartItems.add(cartItem);
-		
-		cart.setCartItems(cartItems);
-		
-		return cart;
+		try {
+			cartItemEntity = cartItemDAO.update(cartItemEntity);
+			return WooptCode.SUCCESS;
+		}
+		catch (Exception e){
+			return WooptCode.FAIL;
+		}		
+
 	}
 	
 	public Cart cancelCart(int cartId){

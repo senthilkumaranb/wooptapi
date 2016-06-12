@@ -21,6 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.woopt.api.common.WooptCode;
 import com.woopt.api.model.Cart;
+import com.woopt.api.model.CartItem;
 import com.woopt.api.model.ConsumerCheckIn;
 import com.woopt.api.model.ConsumerViewModel;
 import com.woopt.api.model.Offer;
@@ -214,6 +215,28 @@ private static final Logger LOGGER = Logger.getLogger(ConsumerController.class.g
   		return null;
   	}
   	
+ 	//API to update User Cart Item
+  	@RequestMapping(value = "/cart/cartitem", method = RequestMethod.PUT, headers="Accept=application/json")
+  	public ResponseEntity<Integer> cartItemPUT(@RequestBody CartItem cartItem, 
+  			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+  		LOGGER.info("calling /api/consumer/cart/cartitem api");
+		
+		HttpHeaders returnHeader = new HttpHeaders();
+		Integer rc=0;
+		
+		try{	
+			rc = consumerService.removeCartItem(cartItem);
+			//cart = consumerService.getCartbyConsumerId(consumerId);		
+		}
+		catch (Exception e){
+			LOGGER.info("Exception :" + e.getMessage());
+		} finally {
+		}
+	
+		LOGGER.info("Return cart :" + rc);
+		return new ResponseEntity<Integer>(returnHeader, HttpStatus.OK);
+  	}
+  	
   	//API to create User Order
   	@RequestMapping(value = "/consumer/order", method = RequestMethod.POST, headers="Accept=application/json")
   	public ResponseEntity<Order> orderPOST(@RequestBody Cart cart, 
@@ -224,6 +247,13 @@ private static final Logger LOGGER = Logger.getLogger(ConsumerController.class.g
   	//API to update User Order
   	@RequestMapping(value = "/consumer/order", method = RequestMethod.PUT, headers="Accept=application/json")
   	public ResponseEntity<Order> orderPUT(@RequestBody Cart cart, 
+  			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
+  		return null;
+  	}
+  	
+  	//API to get User Order
+  	@RequestMapping(value = "/consumer/order", method = RequestMethod.GET, headers="Accept=application/json")
+  	public ResponseEntity<Order> orderGET( 
   			UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ) {
   		return null;
   	}

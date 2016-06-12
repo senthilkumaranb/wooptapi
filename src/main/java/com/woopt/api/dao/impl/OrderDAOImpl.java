@@ -24,12 +24,13 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public OrderEntity save(OrderEntity orderEntity) {
 		// Save Order Entity
+		OrderEntity rc = new OrderEntity();
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(orderEntity);
+		rc = orderEntity;
 		tx.commit();
 		session.close();
-		
 		return orderEntity;
 		
 	}

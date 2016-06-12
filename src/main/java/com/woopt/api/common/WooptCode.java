@@ -48,6 +48,10 @@ public class WooptCode {
 	public static final int USER_CHECKIN_STATUS_ACTIVE = 1;
 	public static final int USER_CHECKIN_STATUS_INACTIVE = 0;
 	
+	/** Loyalty program **/
+	public static final String LOYALTY_PROGRAM_BYVISIT = "VISIT";
+	public static final String LOYALTY_PROGRAM_BYTRANSACTION = "TRANSACTION";
+	
 	/** Offer **/
 	public static final String OFFER_METHOD_GENERIC = "GENERIC";
 	public static final String OFFER_METHOD_USER_SPECIFIC = "USER SPECIFIC";
@@ -59,6 +63,10 @@ public class WooptCode {
 	/** Cart Item Status **/
 	public static final int CARTITEM_STATUS_ACTIVE = 1;
 	public static final int CARTITEM_STATUS_INACTIVE = 0;
+	
+	/** Order Status **/
+	public static final int ORDER_CONFIRMED = 1;
+	public static final int ORDER_CANCELLED = 0;
 
 	private WooptCode(){
 	}

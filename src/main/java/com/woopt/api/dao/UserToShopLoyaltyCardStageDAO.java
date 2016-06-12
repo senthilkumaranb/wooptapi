@@ -8,7 +8,7 @@ public interface UserToShopLoyaltyCardStageDAO {
 	
 	public void save(UserToShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity);
 	
-	public void  update(UserToShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity);
+	public UserToShopLoyaltyCardStageEntity  update(UserToShopLoyaltyCardStageEntity shopLoyaltyCardStageEntity);
 	
 	public void  delete(int userShopLoyaltyCardStageId);
 	
