@@ -15,17 +15,11 @@ public class Device {
 	private static final long serialVersionUID = 1L;
 
 	private int deviceId;
-	
 	private String deviceImei;
-	
 	private String deviceMac;
-	
 	private String deviceSerialNo;
-	
 	private int deviceStatus;
-	
 	private String deviceToken;
-	
 	private String devicePhone;
 
 	public int getDeviceId() {

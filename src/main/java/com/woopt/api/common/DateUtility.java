@@ -24,6 +24,33 @@ public class DateUtility {
 		DATE_FORMAT.setTimeZone(TimeZone.getTimeZone(timeZone));
 		return DATE_FORMAT.format(date);
 	}
+	
+	public static Date stringToDate(String strdate) {
+		Date date = null;
+		try {
+			DateFormat DATE_FORMAT = new SimpleDateFormat(DATE_FORMATE_STRING);
+			if (null != strdate && strdate.length() != 0) {
+				date = DATE_FORMAT.parse(strdate);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return date;
+	}
+	
+	public static String dateToString(Date date) {
+		String strDate = null;
+		try {
+			
+			DateFormat DATE_FORMAT = new SimpleDateFormat(DATE_FORMATE_STRING);
+			if (null != date) {
+				strDate = DATE_FORMAT.format(date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return strDate;
+	}
 
 	public static void main(String[] args) {
 		String utcDateStr = null;

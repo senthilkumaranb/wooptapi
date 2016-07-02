@@ -1,6 +1,7 @@
 package com.woopt.api.service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,16 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.woopt.api.common.Validate;
 import com.woopt.api.common.WooptCode;
+import com.woopt.api.common.WooptUtility;
+import com.woopt.api.dao.AddressDAO;
 import com.woopt.api.dao.DeviceDAO;
 import com.woopt.api.dao.UserDAO;
 import com.woopt.api.entity.DeviceEntity;
 import com.woopt.api.entity.UserEntity;
+import com.woopt.api.model.Address;
+import com.woopt.api.model.Device;
+import com.woopt.api.model.FamilyMember;
+import com.woopt.api.model.User;
 import com.woopt.api.model.UserModel;
 
 /**
@@ -33,6 +40,18 @@ public class UserService {
 	
 	@Autowired
 	DeviceDAO deviceDAO;
+	
+	@Autowired
+	AddressDAO addressDAO;
+	
+	@Autowired
+	DeviceService deviceService;
+	
+	@Autowired
+	AddressService addressService;
+	
+	@Autowired
+	FamilyService familyService;
 	
 	public int joinNewUser(UserModel userModel) {
 		LOGGER.info("Envoking UserService.joinNewUser method");
@@ -156,6 +175,34 @@ public class UserService {
 		return result;
 	}
 	
+	public UserModel getUserProfile(HttpHeaders header) {
+		UserModel userModel = null;
+		if (null != header && null != header.get("Token") && null != header.get("Token").get(0) ) {
+			String encryptedToken = header.get("Token").get(0);
+			boolean result = TokenService.isValidToken(encryptedToken);
+			
+			if (result){
+				long userId = TokenService.getUserId(encryptedToken);
+				long deviceId = TokenService.getDeviceId(encryptedToken);
+				
+				UserEntity userEntity = userDAO.findById(userId);
+				User user = WooptUtility.getUserFromUserEntity(userEntity);
+				
+				Device device = deviceService.getDeviceModelById(deviceId);
+				Address address = addressService.getAddressModelByUserId((int)userId);
+				List<FamilyMember> familyMembers = familyService.getFamilyMemberListByUserId(userId);
+				
+				userModel = new UserModel();
+				userModel.setUser(user);
+				userModel.setDevice(device);
+				userModel.setAddress(address);
+				userModel.setFamilyMembers(familyMembers);
+			}
+		}
+		return userModel;
+	}
+	
+
 	public String getUserToken(UserModel userModel){
 		String token = null;
 		if (null != userModel && null != userModel.getUser()){

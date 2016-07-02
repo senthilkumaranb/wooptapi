@@ -65,15 +65,14 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void delete(int id) {
-		Transaction transaction = null;
 		Session session = this.sessionFactory.openSession();
+		Transaction transaction = null;
 
 		try {
 			transaction = session.beginTransaction();
 			UserEntity user = (UserEntity) session.load(UserEntity.class, new Integer(id));
 			session.delete(user);
 			session.getTransaction().commit();
-
 		} catch (RuntimeException e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -91,7 +90,6 @@ public class UserDAOImpl implements UserDAO {
 			transaction = session.beginTransaction();
 			session.update(user);
 			session.getTransaction().commit();
-
 		} catch (RuntimeException e) {
 			if (transaction != null) {
 				transaction.rollback();

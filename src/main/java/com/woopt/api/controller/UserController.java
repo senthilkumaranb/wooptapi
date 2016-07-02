@@ -63,13 +63,20 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/userProfile", method = RequestMethod.GET, headers="Accept=application/json")
-	public ResponseEntity<String> userProfileGET(@RequestBody UserModel userModel, UriComponentsBuilder ucBuilder,
-			@RequestHeader HttpHeaders header ){
+	public ResponseEntity<UserModel> userProfileGET(UriComponentsBuilder ucBuilder, @RequestHeader HttpHeaders header ){
+		//TODO check this api after adding following
+		//1. Add some family member and check it
+		//2. Add address and check it once again
+		//3. Add part of Family and check it once again
+		//4. Add myServices and check it once again
 		System.out.println("Calling GET /api/user/userProfile/");
-		HttpHeaders returnHeader = new HttpHeaders();
-		returnHeader.add("token", "tokenStringdasdas");
-		returnHeader.add("responseCode", "30");
-		return new ResponseEntity<String>(returnHeader, HttpStatus.OK);
+		UserModel returnUserModel = userServive.getUserProfile(header);
+		if (null != returnUserModel){
+			header.add("responseCode", WooptCode.SUCCESS+"");
+		}else{
+			header.add("responseCode", WooptCode.FAIL+"");
+		}
+		return new ResponseEntity<UserModel>(returnUserModel, header, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/userProfile", method = RequestMethod.POST, headers="Accept=application/json")

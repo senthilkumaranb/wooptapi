@@ -10,7 +10,11 @@ public interface AddressDAO {
 	
 	public List<AddressEntity> list();
 	
-	public AddressEntity findById(long id);
+	public AddressEntity findByAddressId(long addressId);
+	
+	public AddressEntity findByUserId(int userid);
+	
+	public AddressEntity findByShopId(long shopId);
 	
 	public void  delete(long id);
 	

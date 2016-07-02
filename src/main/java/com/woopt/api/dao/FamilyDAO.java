@@ -12,6 +12,10 @@ public interface FamilyDAO {
 	
 	public FamilyEntity findById(long familyId);
 	
+	public List<FamilyEntity> findByFamilyHeadId(long familyHeadId);
+	
+	public List<FamilyEntity> findByFamilyMemberId(long familyMemberId);
+	
 	public void  delete(long familyId);
 	
 	public void  updateFamily(FamilyEntity family);
